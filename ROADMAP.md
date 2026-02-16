@@ -222,6 +222,9 @@ Exit criteria:
 - Tagged release candidate shipped.
 - Repository state reproducible and documented.
 
+Status:
+- Completed as release-candidate baseline (`0.10.0`) on `main`.
+
 ## Next Execution Cycles
 
 Cycle A (`v0.010-a`) - Frozen Reference Governance:
@@ -244,3 +247,29 @@ Cycle C (`v0.010-c`) - Operational Docs And Status:
 - Re-run `release:check` and keep all gates green.
 Status:
 - Completed on `main`.
+
+## Planned Next Cycles (Execution Bulk)
+
+Cycle D (`v0.010-d`) - Release Candidate Finalization:
+- Finalize version bump artifacts for first productized pre-1.0 release candidate.
+- Keep gate suite green on the exact release candidate tree.
+- Commit and push stable release-candidate snapshot.
+Status:
+- Completed on `main`.
+
+Cycle E (`v0.011`) - Product-Facing Mode Terminology Normalization:
+- Remove `13a`/`13b` naming from product-facing script names and README command examples.
+- Expose mode labels as:
+  - `generic-baseline`
+  - `default-extended`
+- Keep backward-compatible script aliases where needed for migration safety.
+Status:
+- Planned.
+
+Cycle F (`v0.012`) - Product-Facing Naming Guardrails:
+- Add tests that assert product-facing surfaces do not expose forbidden labels:
+  - `step13`, `13a`, `13b`
+  - `wiki`, `wti`
+- Guard CLI help and primary docs from terminology regression.
+Status:
+- Planned.
