@@ -107,6 +107,7 @@ const { executeCliMainExecution } = require("./core/cli-main-execution");
 const { buildCliMainDependencySources } = require("./core/cli-main-dependency-sources");
 const { invokeCliMainExecution } = require("./core/cli-main-invocation");
 const { handleCliMainCatch } = require("./core/cli-main-catch-handler");
+const { runCliEntrypoint } = require("./core/cli-entrypoint");
 const {
   loadConceptCandidatesSchema,
   validateSchema,
@@ -1077,9 +1078,7 @@ async function main() {
   }
 }
 
-if (require.main === module) {
-  main();
-}
+runCliEntrypoint(require.main, module, main);
 
 module.exports = {
   ROLE_KEYS,

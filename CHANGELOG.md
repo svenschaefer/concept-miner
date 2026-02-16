@@ -253,3 +253,6 @@ All notable changes to this project are documented in this file.
 - v0.089 prototype split groundwork:
   - extracted CLI main catch-handler helper logic into `prototype/core/cli-main-catch-handler.js`
   - wired `prototype/concept-candidates.js` to delegate catch-path error-exit handling with unchanged behavior.
+- v0.090 prototype split groundwork:
+  - extracted CLI main entrypoint-wrapper helper logic into `prototype/core/cli-entrypoint.js`
+  - wired `prototype/concept-candidates.js` to delegate `require.main === module` entrypoint handling with unchanged behavior.

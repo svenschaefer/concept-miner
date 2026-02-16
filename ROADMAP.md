@@ -831,4 +831,11 @@ Cycle CF (`v0.090`) - Prototype Split Groundwork (CLI Main Entrypoint Wrapper He
 - Keep behavior and exported prototype runtime contracts unchanged.
 - Preserve full frozen-reference and determinism gate stability after extraction.
 Status:
+- Completed on `main`.
+
+Cycle CG (`v0.091`) - Prototype Split Groundwork (CLI Main Function Export Helper):
+- Extract CLI main function export helper logic from `prototype/concept-candidates.js` into dedicated modules.
+- Keep behavior and exported prototype runtime contracts unchanged.
+- Preserve full frozen-reference and determinism gate stability after extraction.
+Status:
 - Planned.
