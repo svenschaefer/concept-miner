@@ -503,3 +503,10 @@ Cycle AK (`v0.043`) - Runtime Input Path Transition Closure:
 - Close TODO item for preserving runtime input paths and modes during transition.
 Status:
 - Completed on `main`.
+
+Cycle AL (`v0.044`) - Prototype Split Groundwork (Canonicalization Module):
+- Extract canonicalization and concept-id utility functions from `prototype/concept-candidates.js` into a dedicated module.
+- Keep behavior and public exports unchanged while reducing monolith size.
+- Preserve full frozen-reference and determinism gate stability after extraction.
+Status:
+- Completed on `main`.

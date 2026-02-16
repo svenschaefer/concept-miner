@@ -115,3 +115,6 @@ All notable changes to this project are documented in this file.
 - v0.043 runtime seed-path transition closure:
   - updated `prototype/generateForSeed` to support both legacy (`<seed>/seed/seed.txt`) and flattened (`<seed>/seed.txt`) artifact layouts
   - added `test/integration/runtime-seed-path.contract.test.js` to enforce product API runtime seed-path extraction in both product modes.
+- v0.044 prototype split groundwork:
+  - extracted canonicalization and concept-id utilities into `prototype/core/canonicalization.js`
+  - wired `prototype/concept-candidates.js` to import extracted utilities with unchanged public behavior and exports.
