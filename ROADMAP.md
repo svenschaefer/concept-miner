@@ -284,3 +284,10 @@ Cycle G (`v0.013`) - Mode Value Ergonomics:
 - Update help/docs/tests to reflect accepted mode values clearly.
 Status:
 - Completed on `main`.
+
+Cycle H (`v0.014`) - Scope Decision Closure In Backlog:
+- Reconcile `TODO.md` Section 0 with already-implemented repository decisions.
+- Mark resolved scope/contract decisions as complete with explicit selected options.
+- Keep remaining backlog focused on still-open engineering work.
+Status:
+- Completed on `main`.

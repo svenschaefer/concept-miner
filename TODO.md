@@ -21,28 +21,27 @@ Status date: 2026-02-16
 - [x] `v0.011` product-facing script/readme mode terminology normalized (generic-baseline/default-extended).
 - [x] `v0.012` product-facing terminology guardrails added (no `step13`/`13a`/`13b`/`wiki`/`wti` in primary surfaces).
 - [x] `v0.013` mode ergonomics aligned: kebab-case and underscore mode values both supported in API/CLI.
+- [x] `v0.014` scope/contract decisions in Section 0 reconciled to implemented repository state.
 - [ ] Remaining roadmap cycles continue from current baseline (`main`).
 
 ## 0. Scope And Decisions (must be resolved first)
 
-- [ ] Confirm final packaging target:
-- Target A: publishable package at repository root (`C:\code\concept-miner`).
-- Target B: publishable package inside `prototype/` with root as meta-repo.
-- [ ] Confirm product contract boundary:
-- Option 1: product output contract is `schema/concepts.schema.json` (`concepts[]`).
-- Option 2: product output contract is prototype candidate schema (`concept_candidates[]`).
-- [ ] Define compatibility policy between current OpenAPI and prototype output:
-- Keep both with explicit transform, or
-- Consolidate onto one canonical public document.
-- [ ] Confirm final mode naming and defaults in all public interfaces:
+- [x] Confirm final packaging target:
+- Selected: Target A, publishable package at repository root (`C:\code\concept-miner`).
+- [x] Confirm product contract boundary:
+- Selected: Option 1, product output contract is `schema/concepts.schema.json` (`concepts[]`).
+- [x] Define compatibility policy between current OpenAPI and prototype output:
+- Selected: keep canonical public concepts document and use explicit transform from prototype candidate output.
+- [x] Confirm final mode naming and defaults in all public interfaces:
 - `generic baseline mode` = extraction without wikipedia/wikipedia-title-index information (optional)
 - `default extended mode` = extraction with wikipedia/wikipedia-title-index information (default)
-- [ ] Enforce terminology policy in code/docs/contracts:
+- [x] Enforce terminology policy in code/docs/contracts:
 - Use `wikipedia` and `wikipedia-title-index`
 - Do not expose `step13`, `13a`, `13b`, `wiki`, or `wti` in product-facing naming
-- [ ] Confirm Node baseline (template requires Node >=20) and npm baseline.
-- [ ] Confirm publish intent and timing:
-- Keep `"private": true` until first release-ready milestone.
+- [x] Confirm Node baseline (template requires Node >=20) and npm baseline.
+- Current baseline: Node `>=20` (enforced in `package.json` engines).
+- [x] Confirm publish intent and timing:
+- Current state: `"private": true` kept through current release-candidate milestones.
 
 ## 1. Template Baseline Adoption
 
