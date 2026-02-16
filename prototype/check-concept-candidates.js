@@ -11,7 +11,9 @@ const {
 } = require("./concept-candidates");
 
 const DEFAULT_ARTIFACTS_ROOT = path.resolve(__dirname, "..", "artifacts");
-const SCHEMA_PATH = path.join(__dirname, "seed.concept-candidates.schema.json");
+const MIGRATED_SCHEMA_PATH = path.resolve(__dirname, "..", "schema", "seed.concept-candidates.schema.json");
+const LEGACY_SCHEMA_PATH = path.join(__dirname, "seed.concept-candidates.schema.json");
+const SCHEMA_PATH = fs.existsSync(MIGRATED_SCHEMA_PATH) ? MIGRATED_SCHEMA_PATH : LEGACY_SCHEMA_PATH;
 
 function usage() {
   return "Usage: node check-concept-candidates.js --seed-id <id> [--artifacts-root <path>] [--step13-mode <13a|13b>] [--in <path>]";

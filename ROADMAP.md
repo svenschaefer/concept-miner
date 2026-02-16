@@ -457,3 +457,10 @@ Cycle AE (`v0.037`) - Compatibility Alias Contract Closure:
 - Close TODO item for backward-compatible aliases/flags retention during transition.
 Status:
 - Completed on `main`.
+
+Cycle AF (`v0.038`) - Persisted Candidate-Schema Migration:
+- Promote the prototype persisted candidate schema into `schema/` as product-owned contract artifact.
+- Wire prototype generator/checker/test paths to resolve schema from product location with compatibility fallback.
+- Close TODO item for persisted schema artifact migration/replacement.
+Status:
+- Completed on `main`.

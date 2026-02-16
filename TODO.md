@@ -45,6 +45,7 @@ Status date: 2026-02-16
 - [x] `v0.035` ad-hoc concepts runtime helpers modularized into focused `src/core` and `src/validate` modules.
 - [x] `v0.036` thin-CLI entrypoint contract enforced (`bin/cli.js` delegates only) with compatibility usage guards.
 - [x] `v0.037` compatibility command/alias positive-path contracts added (`run`, `validate`, underscore/kebab mode support).
+- [x] `v0.038` persisted concept-candidates schema migrated to `schema/` and wired via product-location-first resolution with legacy fallback.
 - [ ] Remaining roadmap cycles continue from current baseline (`main`).
 
 ## 0. Scope And Decisions (must be resolved first)
@@ -150,7 +151,7 @@ Status date: 2026-02-16
 - [x] Add schema export file under `src/schema/` and wire it to package export.
 - [x] Ensure `validate` command validates against the canonical public schema.
 - Current behavior: canonical concepts schema is validated first; legacy template output validation remains as compatibility fallback.
-- [ ] Migrate/replace prototype persisted schema artifact:
+- [x] Migrate/replace prototype persisted schema artifact:
 - `prototype/seed.concept-candidates.schema.json` -> product schema location and validator wiring
 - [x] Preserve prototype deterministic serialization contracts where applicable:
 - stable top-level key order

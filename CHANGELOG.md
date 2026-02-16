@@ -93,3 +93,6 @@ All notable changes to this project are documented in this file.
 - v0.037 compatibility alias contract closure:
   - added positive-path compatibility tests for `concept-miner run` and `concept-miner validate`
   - kept underscore and kebab-case mode compatibility contractually covered in CLI tests.
+- v0.038 persisted candidate-schema migration:
+  - added `schema/seed.concept-candidates.schema.json` as product-owned schema location
+  - updated prototype generator/checker/tests to resolve the migrated schema first, with legacy fallback.

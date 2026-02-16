@@ -1821,7 +1821,9 @@ function validateConceptCandidatesDeterminism(doc) {
 }
 
 function loadConceptCandidatesSchema() {
-  const schemaPath = path.join(STEP13_DIR, "seed.concept-candidates.schema.json");
+  const migratedSchemaPath = path.resolve(STEP13_DIR, "..", "schema", "seed.concept-candidates.schema.json");
+  const legacySchemaPath = path.join(STEP13_DIR, "seed.concept-candidates.schema.json");
+  const schemaPath = fs.existsSync(migratedSchemaPath) ? migratedSchemaPath : legacySchemaPath;
   return JSON.parse(fs.readFileSync(schemaPath, "utf8"));
 }
 

@@ -427,7 +427,10 @@ function test13bModeContractGuard() {
   assert.equal(set13a.has("gamma"), true, "Fixture sanity: 13a must include supplemental gamma candidate.");
   assert.equal(set13b.has("gamma"), true, "Fixture sanity: 13b remains structurally valid for supplemental candidate.");
 
-  const schema = JSON.parse(fs.readFileSync(path.join(step13Dir, "seed.concept-candidates.schema.json"), "utf8"));
+  const schemaPath = fs.existsSync(path.join(repoRoot, "schema", "seed.concept-candidates.schema.json"))
+    ? path.join(repoRoot, "schema", "seed.concept-candidates.schema.json")
+    : path.join(step13Dir, "seed.concept-candidates.schema.json");
+  const schema = JSON.parse(fs.readFileSync(schemaPath, "utf8"));
   validateSchema(schema, out13a);
   validateSchema(schema, out13b);
 
