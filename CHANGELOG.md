@@ -139,3 +139,6 @@ All notable changes to this project are documented in this file.
 - v0.051 prototype split groundwork:
   - extracted mention selection helpers into `prototype/core/mention-selection.js`
   - wired `prototype/concept-candidates.js` to import mention selection helpers with unchanged public behavior and contracts.
+- v0.052 prototype split groundwork:
+  - extracted mention lifting helpers into `prototype/core/mention-lifting.js`
+  - wired `prototype/concept-candidates.js` to import mention lifting helpers with unchanged public behavior and contracts.

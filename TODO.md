@@ -59,6 +59,7 @@ Status date: 2026-02-16
 - [x] `v0.049` prototype split groundwork continued by extracting wikipedia-signal helpers into `prototype/core/wikipedia-signals.js` with behavior-preserving wiring.
 - [x] `v0.050` prototype split groundwork continued by extracting wikipedia-title-index mapping helpers into `prototype/core/wikipedia-mapping.js` with behavior-preserving wiring.
 - [x] `v0.051` prototype split groundwork continued by extracting mention selection helpers into `prototype/core/mention-selection.js` with behavior-preserving wiring.
+- [x] `v0.052` prototype split groundwork continued by extracting mention lifting helpers into `prototype/core/mention-lifting.js` with behavior-preserving wiring.
 - [ ] Remaining roadmap cycles continue from current baseline (`main`).
 
 ## 0. Scope And Decisions (must be resolved first)
@@ -131,6 +132,7 @@ Status date: 2026-02-16
 - Progress: wikipedia-signal regex/constants/helpers extracted from monolith to `prototype/core/wikipedia-signals.js` as the sixth safe split step.
 - Progress: wikipedia-title-index mapping helpers extracted from monolith to `prototype/core/wikipedia-mapping.js` as the seventh safe split step.
 - Progress: mention selection helpers extracted from monolith to `prototype/core/mention-selection.js` as the eighth safe split step.
+- Progress: mention lifting helpers extracted from monolith to `prototype/core/mention-lifting.js` as the ninth safe split step.
 - [x] Remove business logic from CLI path; keep CLI as thin wrapper only.
 - [x] Convert current ad-hoc helpers into coherent modules:
 - argument parsing, IO, deterministic sorting, canonicalization, ID generation, policy parsing.

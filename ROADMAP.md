@@ -565,4 +565,11 @@ Cycle AT (`v0.052`) - Prototype Split Groundwork (Mention Lifting Helpers):
 - Keep behavior and exported prototype runtime contracts unchanged.
 - Preserve full frozen-reference and determinism gate stability after extraction.
 Status:
+- Completed on `main`.
+
+Cycle AU (`v0.053`) - Prototype Split Groundwork (Candidate Accumulator Helpers):
+- Extract candidate accumulator/update helper logic from `prototype/concept-candidates.js` into a dedicated module.
+- Keep behavior and exported prototype runtime contracts unchanged.
+- Preserve full frozen-reference and determinism gate stability after extraction.
+Status:
 - Planned.
