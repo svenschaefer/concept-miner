@@ -166,3 +166,6 @@ All notable changes to this project are documented in this file.
 - v0.060 prototype split groundwork:
   - extracted persisted output writer/meta-sidecar helper logic into `prototype/core/output-writers.js`
   - wired `prototype/concept-candidates.js` CLI write path to import output writer helpers with unchanged persisted output and sidecar contracts.
+- v0.061 prototype split groundwork:
+  - extracted deterministic candidate validation helper cluster into `prototype/core/determinism-validation.js`
+  - wired `prototype/concept-candidates.js` deterministic output validator loop to use the extracted helper with unchanged contract checks.

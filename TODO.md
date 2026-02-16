@@ -68,6 +68,7 @@ Status date: 2026-02-16
 - [x] `v0.058` prototype split groundwork continued by extracting emission assembly helpers into `prototype/core/emission-assembly.js` with behavior-preserving wiring.
 - [x] `v0.059` prototype split groundwork continued by extracting diagnostics assembly helpers into `prototype/core/diagnostics-assembly.js` with behavior-preserving wiring.
 - [x] `v0.060` prototype split groundwork continued by extracting persisted output writer helpers into `prototype/core/output-writers.js` with behavior-preserving wiring.
+- [x] `v0.061` prototype split groundwork continued by extracting determinism validation helpers into `prototype/core/determinism-validation.js` with behavior-preserving wiring.
 - [ ] Remaining roadmap cycles continue from current baseline (`main`).
 
 ## 0. Scope And Decisions (must be resolved first)
@@ -149,6 +150,7 @@ Status date: 2026-02-16
 - Progress: emission assembly helpers extracted from monolith to `prototype/core/emission-assembly.js` as the fifteenth safe split step.
 - Progress: diagnostics assembly helpers extracted from monolith to `prototype/core/diagnostics-assembly.js` as the sixteenth safe split step.
 - Progress: persisted output writer helpers extracted from monolith to `prototype/core/output-writers.js` as the seventeenth safe split step.
+- Progress: determinism validation helpers extracted from monolith to `prototype/core/determinism-validation.js` as the eighteenth safe split step.
 - [x] Remove business logic from CLI path; keep CLI as thin wrapper only.
 - [x] Convert current ad-hoc helpers into coherent modules:
 - argument parsing, IO, deterministic sorting, canonicalization, ID generation, policy parsing.

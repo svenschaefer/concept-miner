@@ -628,4 +628,11 @@ Cycle BC (`v0.061`) - Prototype Split Groundwork (Determinism Validation Helpers
 - Keep behavior and exported prototype runtime contracts unchanged.
 - Preserve full frozen-reference and determinism gate stability after extraction.
 Status:
+- Completed on `main`.
+
+Cycle BD (`v0.062`) - Prototype Split Groundwork (Runtime/Persisted Generation Helpers):
+- Extract shared runtime/persisted generation orchestration helper logic from `prototype/concept-candidates.js` into dedicated modules.
+- Keep behavior and exported prototype runtime contracts unchanged.
+- Preserve full frozen-reference and determinism gate stability after extraction.
+Status:
 - Planned.
