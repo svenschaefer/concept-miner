@@ -182,10 +182,16 @@ components:
     ExtractConceptsResponse:
       type: object
       additionalProperties: false
-      required: [concepts]
+      required: [schema_version, concepts]
       properties:
+        schema_version:
+          type: string
+          minLength: 1
+          description: Public schema version for the concepts document.
+          example: "1.0.0"
         input_id:
           type: string
+          minLength: 1
           description: Echo of request.input_id, if provided.
         concepts:
           type: array
@@ -207,6 +213,7 @@ components:
           example: "1.0.0"
         input_id:
           type: string
+          minLength: 1
           description: Optional caller-provided identifier.
         concepts:
           type: array
