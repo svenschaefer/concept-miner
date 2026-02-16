@@ -241,3 +241,6 @@ All notable changes to this project are documented in this file.
 - v0.085 prototype split groundwork:
   - extracted CLI error-exit handling helper logic into `prototype/core/cli-error-exit.js`
   - wired `prototype/concept-candidates.js` to delegate error exit handling with unchanged behavior.
+- v0.086 prototype split groundwork:
+  - extracted CLI main execution helper logic into `prototype/core/cli-main-execution.js`
+  - wired `prototype/concept-candidates.js` to delegate main execution orchestration with unchanged behavior.

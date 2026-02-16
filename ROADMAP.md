@@ -803,4 +803,11 @@ Cycle CB (`v0.086`) - Prototype Split Groundwork (CLI Main Execution Helper):
 - Keep behavior and exported prototype runtime contracts unchanged.
 - Preserve full frozen-reference and determinism gate stability after extraction.
 Status:
+- Completed on `main`.
+
+Cycle CC (`v0.087`) - Prototype Split Groundwork (CLI Main Dependency Source Helper):
+- Extract CLI main dependency-source assembly helper logic from `prototype/concept-candidates.js` into dedicated modules.
+- Keep behavior and exported prototype runtime contracts unchanged.
+- Preserve full frozen-reference and determinism gate stability after extraction.
+Status:
 - Planned.
