@@ -100,3 +100,6 @@ All notable changes to this project are documented in this file.
   - added `test/integration/prototype-frozen-full-artifact.contract.test.js`
   - regenerates per-seed persisted artifacts and compares all frozen YAML/JSON outputs against `result-reference`
   - normalizes diagnostics `stats.phase_ms.*` timing values during comparison to avoid false drift from runtime timing variance.
+- v0.040 core extraction invariant contracts:
+  - added `test/integration/prototype-core-invariants.contract.test.js`
+  - enforces canonicalization, deterministic concept-id derivation, role bucket non-negative integer counts, and wikipedia-title-index signal typing across realistic persisted Step12 seeds.

@@ -471,3 +471,14 @@ Cycle AG (`v0.039`) - Golden Full-Artifact Diff Coverage:
 - Close the TODO item for full frozen artifact diff validation.
 Status:
 - Completed on `main`.
+
+Cycle AH (`v0.040`) - Core Extraction Invariant Contracts:
+- Add explicit invariant tests for prototype extraction core behavior:
+  - canonicalization behavior
+  - deterministic concept-id generation
+  - role bucket materialization and non-negative counts
+  - wikipedia-title-index signal typing (`*_count` integer, non-count boolean)
+- Validate invariants across realistic persisted Step12 seed fixtures.
+- Close TODO item for preserving core extraction contract invariants.
+Status:
+- Completed on `main`.

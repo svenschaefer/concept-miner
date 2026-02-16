@@ -47,6 +47,7 @@ Status date: 2026-02-16
 - [x] `v0.037` compatibility command/alias positive-path contracts added (`run`, `validate`, underscore/kebab mode support).
 - [x] `v0.038` persisted concept-candidates schema migrated to `schema/` and wired via product-location-first resolution with legacy fallback.
 - [x] `v0.039` full per-seed frozen artifact regeneration diff coverage added for YAML/JSON golden references (diagnostics normalized for timing fields).
+- [x] `v0.040` core extraction invariant contracts added and enforced across realistic persisted Step12 seeds.
 - [ ] Remaining roadmap cycles continue from current baseline (`main`).
 
 ## 0. Scope And Decisions (must be resolved first)
@@ -158,7 +159,7 @@ Status date: 2026-02-16
 - stable top-level key order
 - stable per-candidate key order
 - UTF-8 + LF + exactly one trailing newline
-- [ ] Preserve core extraction contract invariants from prototype:
+- [x] Preserve core extraction contract invariants from prototype:
 - canonicalization pipeline behavior
 - deterministic concept identifier generation
 - role bucket materialization and non-negative counts
