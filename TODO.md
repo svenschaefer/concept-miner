@@ -49,6 +49,7 @@ Status date: 2026-02-16
 - [x] `v0.039` full per-seed frozen artifact regeneration diff coverage added for YAML/JSON golden references (diagnostics normalized for timing fields).
 - [x] `v0.040` core extraction invariant contracts added and enforced across realistic persisted Step12 seeds.
 - [x] `v0.041` pre/post publish smoke rehearsal flow executed via clean-workspace tarball installs (postpublish simulated for private-package phase).
+- [x] `v0.042` repeat-run determinism and ordering contracts enforced across realistic persisted Step12 seeds and both modes.
 - [ ] Remaining roadmap cycles continue from current baseline (`main`).
 
 ## 0. Scope And Decisions (must be resolved first)
@@ -116,7 +117,7 @@ Status date: 2026-02-16
 - [x] Remove business logic from CLI path; keep CLI as thin wrapper only.
 - [x] Convert current ad-hoc helpers into coherent modules:
 - argument parsing, IO, deterministic sorting, canonicalization, ID generation, policy parsing.
-- [ ] Preserve deterministic behavior and ordering guarantees during refactor.
+- [x] Preserve deterministic behavior and ordering guarantees during refactor.
 - [x] Keep backward-compatible aliases/flags where already documented (for controlled transition).
 - [ ] Replace internal mode names in API/CLI/config/meta from step labels to product mode labels.
 - [ ] Migrate prototype support modules and governance artifacts into product structure:

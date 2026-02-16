@@ -489,3 +489,10 @@ Cycle AI (`v0.041`) - Release Smoke Rehearsal Closure:
 - Document rehearsal behavior in release docs and close TODO item for pre/post publish smoke flow execution.
 Status:
 - Completed on `main`.
+
+Cycle AJ (`v0.042`) - Determinism And Ordering Guard Closure:
+- Add explicit repeat-run determinism contracts across realistic Step12 seed fixtures for `13a` and `13b`.
+- Assert byte-stable YAML and metadata ordering, with diagnostics comparison normalized only for runtime timing fields.
+- Close TODO item for preserving deterministic behavior and ordering guarantees during refactor.
+Status:
+- Completed on `main`.

@@ -108,3 +108,7 @@ All notable changes to this project are documented in this file.
   - executes prepublish and postpublish-style clean-workspace smoke installs against the local tarball
   - added script contract test `test/integration/release-smoke-rehearsal-script.contract.test.js`
   - updated `docs/NPM_RELEASE.md` with private-phase tarball-simulated postpublish flow and public-registry toggle.
+- v0.042 determinism and ordering guard closure:
+  - added `test/integration/prototype-repeat-determinism.contract.test.js`
+  - enforces repeat-run deterministic persisted-step12 outputs across all realistic seeds and both modes
+  - asserts byte-stable YAML/metadata and normalized diagnostics stability, plus object-level determinism validation.
