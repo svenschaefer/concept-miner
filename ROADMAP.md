@@ -894,4 +894,11 @@ Cycle CO (`v0.099`) - Prototype Split Groundwork (CLI Main Export Assignment Dep
 - Keep behavior and exported prototype runtime contracts unchanged.
 - Preserve full frozen-reference and determinism gate stability after extraction.
 Status:
+- Completed on `main`.
+
+Cycle CP (`v0.100`) - Prototype Split Groundwork (CLI Main Catch Invocation-Args Helper):
+- Extract CLI main catch invocation-args helper logic from `prototype/concept-candidates.js` into dedicated modules.
+- Keep behavior and exported prototype runtime contracts unchanged.
+- Preserve full frozen-reference and determinism gate stability after extraction.
+Status:
 - Planned.

@@ -116,6 +116,7 @@ const { buildCliEntrypointDependencies } = require("./core/cli-entrypoint-depend
 const { buildCliEntrypointInvocationArgs } = require("./core/cli-entrypoint-invocation-args");
 const { buildCliMainExportDependencies } = require("./core/cli-main-export-dependencies");
 const { buildCliMainExportInvocationArgs } = require("./core/cli-main-export-invocation-args");
+const { buildCliMainExportAssignmentDependencies } = require("./core/cli-main-export-assignment-dependencies");
 const {
   loadConceptCandidatesSchema,
   validateSchema,
@@ -1113,9 +1114,9 @@ const cliMainExportDependencies = buildCliMainExportDependencies({
   generateForStep12Path,
 });
 assignCliMainExports(
-  ...buildCliMainExportInvocationArgs({
+  ...buildCliMainExportInvocationArgs(buildCliMainExportAssignmentDependencies({
     moduleObject: module,
     buildCliMainExports,
     mainExportDependencies: cliMainExportDependencies,
-  })
+  }))
 );
