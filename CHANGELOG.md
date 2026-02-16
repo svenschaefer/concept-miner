@@ -217,3 +217,6 @@ All notable changes to this project are documented in this file.
 - v0.077 prototype split groundwork:
   - extracted CLI runtime-invocation dependency assembly helper logic into `prototype/core/cli-runtime-invocation-dependencies.js`
   - wired `prototype/concept-candidates.js` to delegate runtime-invocation dependency assembly with unchanged behavior.
+- v0.078 prototype split groundwork:
+  - extracted CLI flow-dependency assembly helper logic into `prototype/core/cli-flow-dependency-assembly.js`
+  - wired `prototype/concept-candidates.js` to delegate flow-dependency assembly with unchanged behavior.
