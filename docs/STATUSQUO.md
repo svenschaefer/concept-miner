@@ -1,21 +1,48 @@
 # Status Quo
 
-Use this file as a short operational snapshot of the repository.
+## Repo status
 
-Update it when significant milestones are reached.
+- Branch: `main`
+- Sync: tracking `origin/main` (kept in sync via stable phase commits)
+- Major completed workstreams:
+  - template baseline scaffold + CI/release workflow
+  - transition product API (`extractConcepts`, `validateConcepts`)
+  - product CLI commands (`extract`, `validate-concepts`) plus compatibility commands
+  - prototype governance checks integrated into CI
+  - frozen artifact corpus layout + frozen reference regression checks
+  - OpenAPI/schema contract guard tests
 
-Suggested structure:
+## Runtime status
 
-- Repo status:
-  - branch and sync state
-  - major pending workstreams
-- Runtime status:
-  - key commands currently working
-  - known setup constraints
-- Quality status:
-  - latest local check results (for example: `npm run ci:check`)
-  - known flaky areas (if any)
-- Documentation status:
-  - docs that were updated in the latest cycle
+Working commands:
 
-Keep this file concise and factual.
+- `npm test`
+- `npm run ci:check`
+- `npm run release:check`
+- `npm run check:concept-candidates:policies`
+- `npm run check:frozen-references-policy`
+
+Known setup constraints:
+
+- Node.js `>=20` is required.
+- Prototype benchmark/policy scripts rely on in-repo `prototype/` paths.
+
+## Quality status
+
+- Local gates are green:
+  - lint
+  - tests (unit + integration)
+  - policy checks
+  - report scripts
+  - pack dry-run
+  - release smoke
+- Deterministic frozen-reference checks are active for persisted-mode outputs.
+
+## Documentation status
+
+Recently updated:
+
+- `README.md`
+- `ROADMAP.md`
+- `TODO.md`
+- `docs/FROZEN_REFERENCES_POLICY.md`
