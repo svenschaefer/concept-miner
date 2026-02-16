@@ -14,6 +14,9 @@ Status date: 2026-02-16
 - [x] `v0.007` frozen persisted-mode references enforced against `result-reference` (`33d6cfe`).
 - [x] `v0.008` README updated with current API/CLI usage (`8ba14c0`).
 - [x] `v0.009` release-readiness gate (`npm run release:check`) passes locally.
+- [x] `v0.010-a` frozen reference policy guard added to CI (`235442d`).
+- [x] `v0.010-b` OpenAPI/schema constraint alignment tightened (`73efa3a`).
+- [x] `v0.010-c` operational docs/changelog refreshed and release check re-verified (`ab2671f`).
 - [ ] Remaining roadmap cycles continue from current baseline (`main`).
 
 ## 0. Scope And Decisions (must be resolved first)

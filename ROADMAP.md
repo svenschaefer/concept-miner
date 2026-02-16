@@ -243,4 +243,4 @@ Cycle C (`v0.010-c`) - Operational Docs And Status:
 - Update changelog unreleased notes for completed productization phases.
 - Re-run `release:check` and keep all gates green.
 Status:
-- In progress.
+- Completed on `main`.
