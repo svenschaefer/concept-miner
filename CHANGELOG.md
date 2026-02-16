@@ -283,3 +283,6 @@ All notable changes to this project are documented in this file.
 - v0.099 prototype split groundwork:
   - extracted CLI main export-assignment dependency helper logic into `prototype/core/cli-main-export-assignment-dependencies.js`
   - wired `prototype/concept-candidates.js` to delegate export-assignment dependency assembly with unchanged behavior.
+- v0.100 prototype split groundwork:
+  - extracted CLI main catch invocation-args helper logic into `prototype/core/cli-main-catch-invocation-args.js`
+  - wired `prototype/concept-candidates.js` to delegate catch invocation-argument assembly with unchanged behavior.

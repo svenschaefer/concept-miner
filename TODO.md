@@ -107,6 +107,7 @@ Status date: 2026-02-16
 - [x] `v0.097` prototype split groundwork continued by extracting CLI main export dependency helper into `prototype/core/cli-main-export-dependencies.js` with behavior-preserving wiring.
 - [x] `v0.098` prototype split groundwork continued by extracting CLI main export invocation-args helper into `prototype/core/cli-main-export-invocation-args.js` with behavior-preserving wiring.
 - [x] `v0.099` prototype split groundwork continued by extracting CLI main export-assignment dependency helper into `prototype/core/cli-main-export-assignment-dependencies.js` with behavior-preserving wiring.
+- [x] `v0.100` prototype split groundwork continued by extracting CLI main catch invocation-args helper into `prototype/core/cli-main-catch-invocation-args.js` with behavior-preserving wiring.
 - [ ] Remaining roadmap cycles continue from current baseline (`main`).
 
 ## 0. Scope And Decisions (must be resolved first)
@@ -227,6 +228,7 @@ Status date: 2026-02-16
 - Progress: CLI main export dependency helper extracted from monolith to `prototype/core/cli-main-export-dependencies.js` as the fifty-fourth safe split step.
 - Progress: CLI main export invocation-args helper extracted from monolith to `prototype/core/cli-main-export-invocation-args.js` as the fifty-fifth safe split step.
 - Progress: CLI main export-assignment dependency helper extracted from monolith to `prototype/core/cli-main-export-assignment-dependencies.js` as the fifty-sixth safe split step.
+- Progress: CLI main catch invocation-args helper extracted from monolith to `prototype/core/cli-main-catch-invocation-args.js` as the fifty-seventh safe split step.
 - [x] Remove business logic from CLI path; keep CLI as thin wrapper only.
 - [x] Convert current ad-hoc helpers into coherent modules:
 - argument parsing, IO, deterministic sorting, canonicalization, ID generation, policy parsing.

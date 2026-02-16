@@ -117,6 +117,7 @@ const { buildCliEntrypointInvocationArgs } = require("./core/cli-entrypoint-invo
 const { buildCliMainExportDependencies } = require("./core/cli-main-export-dependencies");
 const { buildCliMainExportInvocationArgs } = require("./core/cli-main-export-invocation-args");
 const { buildCliMainExportAssignmentDependencies } = require("./core/cli-main-export-assignment-dependencies");
+const { buildCliMainCatchInvocationArgs } = require("./core/cli-main-catch-invocation-args");
 const {
   loadConceptCandidatesSchema,
   validateSchema,
@@ -1084,7 +1085,9 @@ async function main() {
       stderr: console.error,
       exit: process.exit,
     });
-    handleCliMainCatch(err, catchDependencies);
+    handleCliMainCatch(
+      ...buildCliMainCatchInvocationArgs(err, catchDependencies)
+    );
   }
 }
 
