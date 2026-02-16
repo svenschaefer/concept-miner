@@ -26,3 +26,7 @@ All notable changes to this project are documented in this file.
   - independent benchmark checks for `13a` and `13b` execution paths
   - threshold sweep report generation contract
   - wikipedia-title-index coverage report generation contract.
+- v0.018 README now includes concrete REST quick-start examples for:
+  - `POST /v1/concepts/extract`
+  - `POST /v1/concepts/validate`
+  plus docs contract coverage to prevent regression.

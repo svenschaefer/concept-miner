@@ -41,6 +41,13 @@ test("README documentation links reference existing files", () => {
   }
 });
 
+test("README includes REST quick-start examples for extract and validate endpoints", () => {
+  const readme = read("README.md");
+  assert.match(readme, /\/v1\/concepts\/extract/);
+  assert.match(readme, /\/v1\/concepts\/validate/);
+  assert.match(readme, /curl -sS -X POST/);
+});
+
 test("release guide uses explicit staging paths for release commits", () => {
   const releaseGuide = read("docs/NPM_RELEASE.md");
   assert.match(

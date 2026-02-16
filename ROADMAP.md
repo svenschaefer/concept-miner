@@ -312,3 +312,12 @@ Cycle K (`v0.017`) - Prototype Tooling Execution Contracts:
 - Validate threshold sweep and wikipedia-title-index coverage reports are generated with expected top-level shape.
 Status:
 - Completed on `main`.
+
+Cycle L (`v0.018`) - README REST Quick-Start Completion:
+- Add concrete REST quick-start examples for:
+  - `POST /v1/concepts/extract`
+  - `POST /v1/concepts/validate`
+- Keep wording consistent with canonical `concepts` document contract.
+- Add docs contract test coverage to prevent regression.
+Status:
+- Completed on `main`.

@@ -25,6 +25,7 @@ Status date: 2026-02-16
 - [x] `v0.015` compatibility `validate` command aligned to canonical concepts validation with legacy fallback.
 - [x] `v0.016` metadata/diagnostics sidecar contracts added and enforced against frozen references.
 - [x] `v0.017` prototype benchmark/report tooling execution contracts added in bounded deterministic integration tests.
+- [x] `v0.018` README REST quick-start examples added with docs regression coverage.
 - [ ] Remaining roadmap cycles continue from current baseline (`main`).
 
 ## 0. Scope And Decisions (must be resolved first)
@@ -246,7 +247,7 @@ Status date: 2026-02-16
 - [ ] Mine and migrate prototype documentation content:
 - `prototype/README.md` contract details into product docs
 - `prototype/TODO.md` open/closed governance items into product backlog/history notes
-- [ ] Add concrete quick-start examples for JS API, CLI, and REST.
+- [x] Add concrete quick-start examples for JS API, CLI, and REST.
 - [ ] Ensure README links to all required docs and that all linked docs exist.
 - [ ] Create/align docs from template:
 - `docs/NPM_RELEASE.md`

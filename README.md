@@ -79,6 +79,33 @@ concept-miner run --text "alpha beta alpha"
 concept-miner validate --in output.json
 ```
 
+## REST API (Contract)
+
+The REST contract is specified in `openapi/openapi.yaml`.
+
+`POST /v1/concepts/extract`:
+
+```bash
+curl -sS -X POST "http://127.0.0.1:32180/v1/concepts/extract?view=compact" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "text": "A webshop accepts orders."
+  }'
+```
+
+`POST /v1/concepts/validate`:
+
+```bash
+curl -sS -X POST "http://127.0.0.1:32180/v1/concepts/validate" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "schema_version": "1.0.0",
+    "concepts": [
+      { "id": "c_aaaaaaaaaaaa", "name": "order" }
+    ]
+  }'
+```
+
 ## Release
 
 This repository follows a dual-stream release model:
