@@ -277,3 +277,6 @@ All notable changes to this project are documented in this file.
 - v0.097 prototype split groundwork:
   - extracted CLI main export dependency helper logic into `prototype/core/cli-main-export-dependencies.js`
   - wired `prototype/concept-candidates.js` to delegate main export dependency assembly with unchanged behavior.
+- v0.098 prototype split groundwork:
+  - extracted CLI main export invocation-args helper logic into `prototype/core/cli-main-export-invocation-args.js`
+  - wired `prototype/concept-candidates.js` to delegate main export invocation-argument assembly with unchanged behavior.
