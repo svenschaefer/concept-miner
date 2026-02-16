@@ -33,6 +33,7 @@ test("README documentation links reference existing files", () => {
     "docs/CONTRACT_ALIGNMENT.md",
     "docs/GUARANTEES.md",
     "docs/PROTOTYPE_MIGRATION_NOTES.md",
+    "docs/REPO_LAYOUT_DECISION.md",
     "docs/STEP12_UPSTREAM_BACKLOG.md",
     "docs/STATUSQUO.md",
     "docs/TEMPLATE_SETUP.md",

@@ -70,3 +70,6 @@ All notable changes to this project are documented in this file.
   - added `docs/CONTRACT_ALIGNMENT.md` with canonical payload/no-envelope rule
   - synchronized `openapi/README.md` and `schema/README.md` with contract mapping
   - added contract-doc alignment checks in integration tests.
+- v0.032 repository layout decision:
+  - retained `prototype/` as in-repo historical/governance reference for current phase
+  - documented in `docs/REPO_LAYOUT_DECISION.md`.

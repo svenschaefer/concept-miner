@@ -412,3 +412,10 @@ Cycle Y (`v0.031`) - Contract Docs Sync And Envelope Clarification:
 - Add tests so contract-doc alignment and endpoint/schema mapping cannot silently drift.
 Status:
 - Completed on `main`.
+
+Cycle Z (`v0.032`) - Repository Layout Decision Closure:
+- Make explicit long-term placement decision for prototype assets.
+- Document migration-table applicability based on that decision.
+- Close repository-layout decision TODO items with traceable rationale.
+Status:
+- Completed on `main`.

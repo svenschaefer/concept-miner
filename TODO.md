@@ -39,6 +39,7 @@ Status date: 2026-02-16
 - [x] `v0.029` suggested execution-order phase status synced with completed sections.
 - [x] `v0.030` prototype hard-failure and replay determinism contracts added (in-process + fresh-process).
 - [x] `v0.031` contract docs synchronized with explicit no-envelope rule and OpenAPI/schema mapping checks.
+- [x] `v0.032` repository layout decision documented: keep `prototype/` in-place for current phase.
 - [ ] Remaining roadmap cycles continue from current baseline (`main`).
 
 ## 0. Scope And Decisions (must be resolved first)
@@ -293,11 +294,12 @@ Status date: 2026-02-16
 
 ## 9. Repository Layout Cleanup And Migration Operations
 
-- [ ] Decide long-term placement of prototype assets:
+- [x] Decide long-term placement of prototype assets:
 - migrate into `src/` + `test/fixtures`, or
 - keep under `prototype/` as historical reference.
-- [ ] If migrating, create a traceable mapping table:
+- [x] If migrating, create a traceable mapping table:
 - old file -> new file/module.
+- Current decision: no migration in this phase, therefore mapping table is not yet applicable.
 - [x] Decide how to handle current symlinked `prototype` dependency.
 - [x] Ensure no runtime dependency on external symlink paths after productization.
 - [x] Normalize artifact paths to repository-local, documented locations.
