@@ -190,3 +190,6 @@ All notable changes to this project are documented in this file.
 - v0.068 prototype split groundwork:
   - extracted high-level CLI main-flow orchestration helper logic into `prototype/core/cli-main-flow.js`
   - wired `prototype/concept-candidates.js` main execution path to delegate orchestration with unchanged CLI behavior and exit semantics.
+- v0.069 prototype split groundwork:
+  - extracted CLI runtime generation invocation helper logic into `prototype/core/cli-runtime-invocation.js`
+  - wired `prototype/core/cli-main-flow.js` and `prototype/concept-candidates.js` to delegate runtime/persisted invocation branching with unchanged output behavior.

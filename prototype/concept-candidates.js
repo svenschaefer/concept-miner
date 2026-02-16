@@ -86,6 +86,7 @@ const { buildUsageText } = require("./core/cli-usage");
 const { hasCliInputSource } = require("./core/cli-guards");
 const { handleCliResultIO } = require("./core/cli-write-emit");
 const { executeCliMainFlow } = require("./core/cli-main-flow");
+const { invokeCliRuntimeGeneration } = require("./core/cli-runtime-invocation");
 const {
   loadConceptCandidatesSchema,
   validateSchema,
@@ -1071,8 +1072,14 @@ async function main() {
         writePersistedOutputs,
       },
       hasCliInputSource,
-      generateForStep12Path,
-      generateForSeed,
+      invokeCliRuntimeGeneration: ({ seedId: invokeSeedId, step12In: invokeStep12In, runOptions: invokeRunOptions }) =>
+        invokeCliRuntimeGeneration({
+          seedId: invokeSeedId,
+          step12In: invokeStep12In,
+          runOptions: invokeRunOptions,
+          generateForStep12Path,
+          generateForSeed,
+        }),
       handleCliResultIO,
     });
     if (flow.usage) {

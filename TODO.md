@@ -76,6 +76,7 @@ Status date: 2026-02-16
 - [x] `v0.066` prototype split groundwork continued by extracting CLI usage/validation guard helpers into `prototype/core/cli-usage.js` and `prototype/core/cli-guards.js` with behavior-preserving wiring.
 - [x] `v0.067` prototype split groundwork continued by extracting CLI write/emit orchestration helpers into `prototype/core/cli-write-emit.js` with behavior-preserving wiring.
 - [x] `v0.068` prototype split groundwork continued by extracting CLI main-flow orchestration helper into `prototype/core/cli-main-flow.js` with behavior-preserving wiring.
+- [x] `v0.069` prototype split groundwork continued by extracting CLI runtime invocation helper into `prototype/core/cli-runtime-invocation.js` with behavior-preserving wiring.
 - [ ] Remaining roadmap cycles continue from current baseline (`main`).
 
 ## 0. Scope And Decisions (must be resolved first)
@@ -165,6 +166,7 @@ Status date: 2026-02-16
 - Progress: CLI usage/validation guard helpers extracted from monolith to `prototype/core/cli-usage.js` and `prototype/core/cli-guards.js` as the twenty-third safe split step.
 - Progress: CLI write/emit orchestration helpers extracted from monolith to `prototype/core/cli-write-emit.js` as the twenty-fourth safe split step.
 - Progress: CLI main-flow orchestration helper extracted from monolith to `prototype/core/cli-main-flow.js` as the twenty-fifth safe split step.
+- Progress: CLI runtime invocation helper extracted from monolith to `prototype/core/cli-runtime-invocation.js` as the twenty-sixth safe split step.
 - [x] Remove business logic from CLI path; keep CLI as thin wrapper only.
 - [x] Convert current ad-hoc helpers into coherent modules:
 - argument parsing, IO, deterministic sorting, canonicalization, ID generation, policy parsing.

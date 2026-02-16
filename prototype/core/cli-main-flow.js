@@ -1,8 +1,7 @@
 async function executeCliMainFlow({
   context,
   hasCliInputSource,
-  generateForStep12Path,
-  generateForSeed,
+  invokeCliRuntimeGeneration,
   handleCliResultIO,
 }) {
   const {
@@ -37,7 +36,11 @@ async function executeCliMainFlow({
     return { usage: true };
   }
 
-  const result = step12In ? generateForStep12Path(step12In, runOptions) : await generateForSeed(seedId, runOptions);
+  const result = await invokeCliRuntimeGeneration({
+    seedId,
+    step12In,
+    runOptions,
+  });
   await handleCliResultIO({
     result,
     printOnly,
