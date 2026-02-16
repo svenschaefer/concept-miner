@@ -89,6 +89,7 @@ Status date: 2026-02-16
 - [x] `v0.079` prototype split groundwork continued by extracting CLI main-setup dependency bundle helper into `prototype/core/cli-main-setup-dependencies.js` with behavior-preserving wiring.
 - [x] `v0.080` prototype split groundwork continued by extracting CLI main-setup invocation helper into `prototype/core/cli-main-setup-invocation.js` with behavior-preserving wiring.
 - [x] `v0.081` prototype split groundwork continued by extracting CLI main-setup pipeline helper into `prototype/core/cli-main-pipeline.js` with behavior-preserving wiring.
+- [x] `v0.082` prototype split groundwork continued by extracting CLI main pipeline input-assembly helper into `prototype/core/cli-main-pipeline-inputs.js` with behavior-preserving wiring.
 - [ ] Remaining roadmap cycles continue from current baseline (`main`).
 
 ## 0. Scope And Decisions (must be resolved first)
@@ -191,6 +192,7 @@ Status date: 2026-02-16
 - Progress: CLI main-setup dependency bundle helper extracted from monolith to `prototype/core/cli-main-setup-dependencies.js` as the thirty-sixth safe split step.
 - Progress: CLI main-setup invocation helper extracted from monolith to `prototype/core/cli-main-setup-invocation.js` as the thirty-seventh safe split step.
 - Progress: CLI main-setup pipeline helper extracted from monolith to `prototype/core/cli-main-pipeline.js` as the thirty-eighth safe split step.
+- Progress: CLI main pipeline input-assembly helper extracted from monolith to `prototype/core/cli-main-pipeline-inputs.js` as the thirty-ninth safe split step.
 - [x] Remove business logic from CLI path; keep CLI as thin wrapper only.
 - [x] Convert current ad-hoc helpers into coherent modules:
 - argument parsing, IO, deterministic sorting, canonicalization, ID generation, policy parsing.

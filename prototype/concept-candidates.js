@@ -99,6 +99,7 @@ const { buildCliFlowDependencies } = require("./core/cli-flow-dependency-assembl
 const { buildCliMainSetupDependencies } = require("./core/cli-main-setup-dependencies");
 const { invokeCliMainSetup } = require("./core/cli-main-setup-invocation");
 const { buildCliMainFlowPipeline } = require("./core/cli-main-pipeline");
+const { buildCliMainPipelineInputs } = require("./core/cli-main-pipeline-inputs");
 const {
   loadConceptCandidatesSchema,
   validateSchema,
@@ -1019,6 +1020,29 @@ function generateForStep12Path(step12Path, options = {}) {
 async function main() {
   try {
     const args = process.argv.slice(2);
+    const pipelineInputs = buildCliMainPipelineInputs({
+      env: process.env,
+      arg,
+      hasFlag,
+      parseStepMode,
+      parseNonNegativeNumberArg,
+      step13Modes: STEP13_MODES,
+      defaultArtifactsRoot: DEFAULT_ARTIFACTS_ROOT,
+      defaultWikipediaTitleIndexEndpoint: DEFAULT_WIKIPEDIA_TITLE_INDEX_ENDPOINT,
+      parseCliExecutionContext,
+      buildMetaSidecar,
+      writePersistedOutputs,
+      invokeCliRuntimeGeneration,
+      generateForStep12Path,
+      generateForSeed,
+      hasCliInputSource,
+      handleCliResultIO,
+      parseCliMainExecutionContext,
+      buildCliMainFlowContext,
+      bindCliRuntimeInvocation,
+      buildCliMainFlowDependencies,
+      buildCliMainSetup,
+    });
     const { context, cliMainFlowDependencies } = buildCliMainFlowPipeline(args, {
       buildCliParseDependencies,
       buildCliFlowContextDependencies,
@@ -1026,37 +1050,7 @@ async function main() {
       buildCliFlowDependencies,
       buildCliMainSetupDependencies,
       invokeCliMainSetup,
-      parseDependencyInputs: {
-        env: process.env,
-        arg,
-        hasFlag,
-        parseStepMode,
-        parseNonNegativeNumberArg,
-        step13Modes: STEP13_MODES,
-        defaultArtifactsRoot: DEFAULT_ARTIFACTS_ROOT,
-        defaultWikipediaTitleIndexEndpoint: DEFAULT_WIKIPEDIA_TITLE_INDEX_ENDPOINT,
-        parseCliExecutionContext,
-      },
-      flowContextDependencyInputs: {
-        buildMetaSidecar,
-        writePersistedOutputs,
-      },
-      runtimeInvocationDependencyInputs: {
-        invokeCliRuntimeGeneration,
-        generateForStep12Path,
-        generateForSeed,
-      },
-      flowDependencyInputs: {
-        hasCliInputSource,
-        handleCliResultIO,
-      },
-      mainSetupCoreDependencies: {
-        parseCliMainExecutionContext,
-        buildCliMainFlowContext,
-        bindCliRuntimeInvocation,
-        buildCliMainFlowDependencies,
-        buildCliMainSetup,
-      },
+      ...pipelineInputs,
     });
 
     const flow = await executeCliMainFlow({
