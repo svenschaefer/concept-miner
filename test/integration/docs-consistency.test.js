@@ -26,8 +26,10 @@ test("README documentation links reference existing files", () => {
     "docs/OPERATIONAL.md",
     "docs/DEV_TOOLING.md",
     "docs/RELEASE_NOTES_TEMPLATE.md",
+    "docs/releases/v0.10.0.md",
     "docs/BASELINE_TEST_RUN.md",
     "docs/GUARANTEES.md",
+    "docs/STEP12_UPSTREAM_BACKLOG.md",
     "docs/STATUSQUO.md",
     "docs/TEMPLATE_SETUP.md",
     "CONTRIBUTING.md",
@@ -68,4 +70,10 @@ test("repo workflows doc states pre-1.0 tag strategy", () => {
   const workflows = read("docs/REPO_WORKFLOWS.md");
   assert.match(workflows, /Pre-1\.0 strategy/i);
   assert.match(workflows, /v0\.x\.y/);
+});
+
+test("npm release guide documents npm publish prerequisites", () => {
+  const releaseGuide = read("docs/NPM_RELEASE.md");
+  assert.match(releaseGuide, /npm whoami/);
+  assert.match(releaseGuide, /NPM_TOKEN/);
 });

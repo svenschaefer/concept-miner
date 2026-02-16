@@ -39,3 +39,13 @@ All notable changes to this project are documented in this file.
 - v0.021 `TODO.md` truth-sync:
   - completed template/package/CLI/test/docs/CI checklist items marked done
   - remaining unchecked items narrowed to genuinely open engineering scope.
+- v0.022 release workflow contract checks added:
+  - validates tag/version consistency in `.github/workflows/release.yml`
+  - validates npm tarball creation and artifact upload steps are present.
+- v0.023 publish prerequisite and install-gate closure:
+  - docs consistency checks enforce npm prerequisite guidance (`npm whoami`, `NPM_TOKEN`)
+  - `npm ci` executed successfully and local quality gates re-verified.
+- v0.024 post-productization documentation closure:
+  - release notes published at `docs/releases/v0.10.0.md`
+  - operational snapshot refreshed in `docs/STATUSQUO.md`
+  - upstream backlog documented at `docs/STEP12_UPSTREAM_BACKLOG.md`.

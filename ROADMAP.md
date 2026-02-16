@@ -342,3 +342,24 @@ Cycle O (`v0.021`) - TODO Truth-Sync Pass:
 - Leave genuinely open engineering items unchecked with explicit remaining scope.
 Status:
 - Completed on `main`.
+
+Cycle P (`v0.022`) - Release Workflow Contract Enforcement:
+- Add tests that assert `.github/workflows/release.yml` enforces tag/version match.
+- Assert release workflow produces and uploads npm tarball artifacts.
+- Keep release documentation and TODO status aligned with verified workflow behavior.
+Status:
+- Completed on `main`.
+
+Cycle Q (`v0.023`) - Publish Prerequisites And `npm ci` Gate Closure:
+- Add docs consistency checks for npm publish prerequisites (`NPM_TOKEN`, `npm whoami`).
+- Execute `npm ci` in repository and keep lockfile/install state stable.
+- Close remaining TODO quality-gate/doc prerequisite items backed by explicit checks.
+Status:
+- Completed on `main`.
+
+Cycle R (`v0.024`) - Post-Productization Documentation Closure:
+- Publish concrete release notes from `docs/RELEASE_NOTES_TEMPLATE.md` for `v0.10.0`.
+- Refresh `docs/STATUSQUO.md` with current repository/tag/test state.
+- Add and document an explicit backlog for upstream Step12 improvements that remain out of this repository.
+Status:
+- Completed on `main`.

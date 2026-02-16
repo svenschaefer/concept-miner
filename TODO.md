@@ -29,6 +29,9 @@ Status date: 2026-02-16
 - [x] `v0.019` Step12 upstream dependency boundary documented and regression-tested in docs checks.
 - [x] `v0.020` first annotated pre-1.0 tag workflow closed with clean `release:check` gate.
 - [x] `v0.021` TODO checklist truth-synced to completed template/CLI/tests/docs/CI work.
+- [x] `v0.022` release workflow contract checks added for tag/version match and tarball artifact publication steps.
+- [x] `v0.023` npm publish prerequisites docs and `npm ci` clean-install gate verified and test-covered.
+- [x] `v0.024` post-productization docs closed: release notes published, status snapshot refreshed, upstream Step12 backlog documented.
 - [ ] Remaining roadmap cycles continue from current baseline (`main`).
 
 ## 0. Scope And Decisions (must be resolved first)
@@ -277,8 +280,8 @@ Status date: 2026-02-16
 - `npm test`
 - `npm run pack:check`
 - `npm run smoke:release`
-- [ ] Ensure release workflow validates tag/version match and produces tarball artifact.
-- [ ] Document npm publish prerequisites (`NPM_TOKEN`, optional publish gate).
+- [x] Ensure release workflow validates tag/version match and produces tarball artifact.
+- [x] Document npm publish prerequisites (`NPM_TOKEN`, optional publish gate).
 - [x] Add `scripts/ensure-clean-worktree.js` and wire `release:check`.
 
 ## 9. Repository Layout Cleanup And Migration Operations
@@ -301,7 +304,7 @@ Status date: 2026-02-16
 
 ## 10. Quality Gates And Exit Criteria
 
-- [ ] `npm ci` succeeds on clean checkout.
+- [x] `npm ci` succeeds on clean checkout.
 - [x] `npm run lint` passes.
 - [x] `npm test` passes.
 - [x] `npm run dev:check` passes.
@@ -325,9 +328,9 @@ Status date: 2026-02-16
 
 - [x] Cut first productized version and tag strategy (`v0.x` or `v1.0.0` decision).
 - [ ] Run pre-publish and post-publish smoke flows from release docs.
-- [ ] Publish release notes using `docs/RELEASE_NOTES_TEMPLATE.md`.
-- [ ] Record operational snapshot in `docs/STATUSQUO.md`.
-- [ ] Plan backlog for upstream Step 12 improvements that remain out-of-repo.
+- [x] Publish release notes using `docs/RELEASE_NOTES_TEMPLATE.md`.
+- [x] Record operational snapshot in `docs/STATUSQUO.md`.
+- [x] Plan backlog for upstream Step 12 improvements that remain out-of-repo.
 
 ## 12. Suggested Execution Order
 

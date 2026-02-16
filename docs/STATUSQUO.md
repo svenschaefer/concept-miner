@@ -4,6 +4,7 @@
 
 - Branch: `main`
 - Sync: tracking `origin/main` (kept in sync via stable phase commits)
+- Current annotated release tag: `v0.10.0`
 - Major completed workstreams:
   - template baseline scaffold + CI/release workflow
   - transition product API (`extractConcepts`, `validateConcepts`)
@@ -11,11 +12,13 @@
   - prototype governance checks integrated into CI
   - frozen artifact corpus layout + frozen reference regression checks
   - OpenAPI/schema contract guard tests
+  - sidecar and release-workflow contract tests
 
 ## Runtime status
 
 Working commands:
 
+- `npm ci`
 - `npm test`
 - `npm run ci:check`
 - `npm run release:check`
@@ -46,3 +49,5 @@ Recently updated:
 - `ROADMAP.md`
 - `TODO.md`
 - `docs/FROZEN_REFERENCES_POLICY.md`
+- `docs/releases/v0.10.0.md`
+- `docs/STEP12_UPSTREAM_BACKLOG.md`

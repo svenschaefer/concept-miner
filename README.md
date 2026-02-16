@@ -126,8 +126,10 @@ Relevant documentation:
 - `docs/OPERATIONAL.md`
 - `docs/DEV_TOOLING.md`
 - `docs/RELEASE_NOTES_TEMPLATE.md`
+- `docs/releases/v0.10.0.md`
 - `docs/BASELINE_TEST_RUN.md`
 - `docs/GUARANTEES.md`
+- `docs/STEP12_UPSTREAM_BACKLOG.md`
 - `docs/STATUSQUO.md`
 - `docs/TEMPLATE_SETUP.md`
 - `CONTRIBUTING.md`
