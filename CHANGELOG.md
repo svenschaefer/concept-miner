@@ -196,3 +196,6 @@ All notable changes to this project are documented in this file.
 - v0.070 prototype split groundwork:
   - extracted CLI main-flow context assembly helper logic into `prototype/core/cli-context-assembly.js`
   - wired `prototype/concept-candidates.js` to build the high-level CLI flow context via helper delegation with unchanged behavior.
+- v0.071 prototype split groundwork:
+  - extracted CLI runtime invocation dependency-binding helper logic into `prototype/core/cli-runtime-binding.js`
+  - wired `prototype/concept-candidates.js` to delegate invocation binding through helper composition with unchanged behavior.

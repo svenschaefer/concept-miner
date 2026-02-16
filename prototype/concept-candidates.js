@@ -88,6 +88,7 @@ const { handleCliResultIO } = require("./core/cli-write-emit");
 const { executeCliMainFlow } = require("./core/cli-main-flow");
 const { invokeCliRuntimeGeneration } = require("./core/cli-runtime-invocation");
 const { buildCliMainFlowContext } = require("./core/cli-context-assembly");
+const { bindCliRuntimeInvocation } = require("./core/cli-runtime-binding");
 const {
   loadConceptCandidatesSchema,
   validateSchema,
@@ -1023,18 +1024,16 @@ async function main() {
       buildMetaSidecar,
       writePersistedOutputs,
     });
+    const invokeCliRuntimeGenerationBound = bindCliRuntimeInvocation({
+      invokeCliRuntimeGeneration,
+      generateForStep12Path,
+      generateForSeed,
+    });
 
     const flow = await executeCliMainFlow({
       context,
       hasCliInputSource,
-      invokeCliRuntimeGeneration: ({ seedId: invokeSeedId, step12In: invokeStep12In, runOptions: invokeRunOptions }) =>
-        invokeCliRuntimeGeneration({
-          seedId: invokeSeedId,
-          step12In: invokeStep12In,
-          runOptions: invokeRunOptions,
-          generateForStep12Path,
-          generateForSeed,
-        }),
+      invokeCliRuntimeGeneration: invokeCliRuntimeGenerationBound,
       handleCliResultIO,
     });
     if (flow.usage) {
