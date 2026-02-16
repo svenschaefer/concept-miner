@@ -199,3 +199,6 @@ All notable changes to this project are documented in this file.
 - v0.071 prototype split groundwork:
   - extracted CLI runtime invocation dependency-binding helper logic into `prototype/core/cli-runtime-binding.js`
   - wired `prototype/concept-candidates.js` to delegate invocation binding through helper composition with unchanged behavior.
+- v0.072 prototype split groundwork:
+  - extracted CLI flow dependency assembly helper logic into `prototype/core/cli-flow-dependencies.js`
+  - wired `prototype/concept-candidates.js` to delegate `executeCliMainFlow` dependency wiring with unchanged behavior.

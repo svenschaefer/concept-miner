@@ -89,6 +89,7 @@ const { executeCliMainFlow } = require("./core/cli-main-flow");
 const { invokeCliRuntimeGeneration } = require("./core/cli-runtime-invocation");
 const { buildCliMainFlowContext } = require("./core/cli-context-assembly");
 const { bindCliRuntimeInvocation } = require("./core/cli-runtime-binding");
+const { buildCliMainFlowDependencies } = require("./core/cli-flow-dependencies");
 const {
   loadConceptCandidatesSchema,
   validateSchema,
@@ -1029,12 +1030,15 @@ async function main() {
       generateForStep12Path,
       generateForSeed,
     });
-
-    const flow = await executeCliMainFlow({
-      context,
+    const cliMainFlowDependencies = buildCliMainFlowDependencies({
       hasCliInputSource,
       invokeCliRuntimeGeneration: invokeCliRuntimeGenerationBound,
       handleCliResultIO,
+    });
+
+    const flow = await executeCliMainFlow({
+      context,
+      ...cliMainFlowDependencies,
     });
     if (flow.usage) {
       console.error(usage());
