@@ -58,6 +58,12 @@ node -e "console.log(require('concept-miner/package.json').version)"
 npx concept-miner --help
 ```
 
+Shortcut rehearsal command (automates the prepublish and postpublish-style clean-workspace flow):
+
+```powershell
+npm run smoke:release:rehearsal
+```
+
 ## 4) Commit, Merge, Tag, Push
 
 Commit release files:
@@ -102,6 +108,14 @@ npm init -y
 npm install concept-miner@<x.y.z>
 node -e "console.log(require('concept-miner/package.json').version)"
 npx concept-miner --help
+```
+
+For the current private-package phase, run the same postpublish checks in a second clean workspace using the local tarball rehearsal (`npm run smoke:release:rehearsal`).
+When public npm validation is required, set:
+
+```powershell
+$env:CONCEPT_MINER_PUBLIC_POSTPUBLISH_SMOKE = "1"
+npm run smoke:release:rehearsal
 ```
 
 ## 8) Optional GitHub Release

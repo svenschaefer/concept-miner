@@ -5,7 +5,7 @@
 - Branch: `main`
 - Sync: tracking `origin/main` (kept in sync via stable phase commits)
 - Current annotated release tag: `v0.10.0`
-- Latest stable phase: `v0.040` (core extraction invariant contracts)
+- Latest stable phase: `v0.041` (release smoke rehearsal closure)
 - Major completed workstreams:
   - template baseline scaffold + CI/release workflow
   - transition product API (`extractConcepts`, `validateConcepts`)
@@ -16,6 +16,7 @@
   - sidecar and release-workflow contract tests
   - full per-seed golden artifact regeneration diff checks (YAML/JSON) with diagnostics timing normalization
   - explicit core extraction invariant contracts across realistic persisted Step12 seeds
+  - pre/post publish smoke rehearsal flow for private-package phase (`smoke:release:rehearsal`)
 
 ## Implementation status
 
@@ -45,6 +46,7 @@ Working commands:
 - `npm run check:concept-candidates:policies`
 - `npm run check:frozen-references-policy`
 - `npm run check:generated-report-artifacts-policy`
+- `npm run smoke:release:rehearsal`
 
 Known setup constraints:
 

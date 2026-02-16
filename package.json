@@ -49,6 +49,7 @@
     "dev:report:maturity": "node scripts/dev-report-maturity.js",
     "pack:check": "npm pack --dry-run",
     "smoke:release": "node scripts/release-smoke-check.js",
+    "smoke:release:rehearsal": "node scripts/release-smoke-rehearsal.js",
     "ci:check": "npm run lint && npm test && npm run check:concept-candidates:policies && npm run check:frozen-references-policy && npm run check:generated-report-artifacts-policy && npm run dev:report:metrics && npm run dev:report:maturity && npm run pack:check && npm run smoke:release",
     "release:check": "node scripts/ensure-clean-worktree.js && npm run ci:check",
     "check:concept-candidates": "node prototype/check-concept-candidates.js",

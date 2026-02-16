@@ -103,3 +103,8 @@ All notable changes to this project are documented in this file.
 - v0.040 core extraction invariant contracts:
   - added `test/integration/prototype-core-invariants.contract.test.js`
   - enforces canonicalization, deterministic concept-id derivation, role bucket non-negative integer counts, and wikipedia-title-index signal typing across realistic persisted Step12 seeds.
+- v0.041 release smoke rehearsal closure:
+  - added `scripts/release-smoke-rehearsal.js` and npm script `smoke:release:rehearsal`
+  - executes prepublish and postpublish-style clean-workspace smoke installs against the local tarball
+  - added script contract test `test/integration/release-smoke-rehearsal-script.contract.test.js`
+  - updated `docs/NPM_RELEASE.md` with private-phase tarball-simulated postpublish flow and public-registry toggle.

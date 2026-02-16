@@ -48,6 +48,7 @@ Status date: 2026-02-16
 - [x] `v0.038` persisted concept-candidates schema migrated to `schema/` and wired via product-location-first resolution with legacy fallback.
 - [x] `v0.039` full per-seed frozen artifact regeneration diff coverage added for YAML/JSON golden references (diagnostics normalized for timing fields).
 - [x] `v0.040` core extraction invariant contracts added and enforced across realistic persisted Step12 seeds.
+- [x] `v0.041` pre/post publish smoke rehearsal flow executed via clean-workspace tarball installs (postpublish simulated for private-package phase).
 - [ ] Remaining roadmap cycles continue from current baseline (`main`).
 
 ## 0. Scope And Decisions (must be resolved first)
@@ -349,7 +350,8 @@ Status date: 2026-02-16
 ## 11. Post-Productization Follow-Up (after baseline is green)
 
 - [x] Cut first productized version and tag strategy (`v0.x` or `v1.0.0` decision).
-- [ ] Run pre-publish and post-publish smoke flows from release docs.
+- [x] Run pre-publish and post-publish smoke flows from release docs.
+- Current phase uses tarball-based postpublish simulation (`npm run smoke:release:rehearsal`) while package publication remains private.
 - [x] Publish release notes using `docs/RELEASE_NOTES_TEMPLATE.md`.
 - [x] Record operational snapshot in `docs/STATUSQUO.md`.
 - [x] Plan backlog for upstream Step 12 improvements that remain out-of-repo.

@@ -482,3 +482,10 @@ Cycle AH (`v0.040`) - Core Extraction Invariant Contracts:
 - Close TODO item for preserving core extraction contract invariants.
 Status:
 - Completed on `main`.
+
+Cycle AI (`v0.041`) - Release Smoke Rehearsal Closure:
+- Implement and execute deterministic release-smoke rehearsal for both prepublish and postpublish-style clean workspaces.
+- Use local tarball install flow for rehearsal to avoid requiring public npm publication in the current private-package phase.
+- Document rehearsal behavior in release docs and close TODO item for pre/post publish smoke flow execution.
+Status:
+- Completed on `main`.
