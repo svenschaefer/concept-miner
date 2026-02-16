@@ -4,6 +4,14 @@ Goal: productize the current concept-miner prototype (`prototype/`) into a templ
 
 Status date: 2026-02-16
 
+## Progress Snapshot
+
+- [x] `v0.001` scaffold baseline integrated and green gates (`28c7c0a`).
+- [x] `v0.003` transition `extractConcepts` / `validateConcepts` API added (`ac5711a`).
+- [x] `v0.004` product CLI commands `extract` and `validate-concepts` added (`9e08f3b`).
+- [x] `v0.005` realistic artifacts corpus layout contract test added (`077d9cf`).
+- [ ] Remaining roadmap cycles continue from current baseline (`main`).
+
 ## 0. Scope And Decisions (must be resolved first)
 
 - [ ] Confirm final packaging target:
