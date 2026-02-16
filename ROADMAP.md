@@ -600,4 +600,11 @@ Cycle AY (`v0.057`) - Prototype Split Groundwork (Alias-Merge Helpers):
 - Keep behavior and exported prototype runtime contracts unchanged.
 - Preserve full frozen-reference and determinism gate stability after extraction.
 Status:
+- Completed on `main`.
+
+Cycle AZ (`v0.058`) - Prototype Split Groundwork (Emission Assembly Helpers):
+- Extract emitted candidate assembly and wikipedia-title-index evidence materialization helpers from `prototype/concept-candidates.js` into a dedicated module.
+- Keep behavior and exported prototype runtime contracts unchanged.
+- Preserve full frozen-reference and determinism gate stability after extraction.
+Status:
 - Planned.

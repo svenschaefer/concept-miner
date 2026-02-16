@@ -154,3 +154,6 @@ All notable changes to this project are documented in this file.
 - v0.056 prototype split groundwork:
   - extracted prune preparation/index helpers into `prototype/core/prune-preparation.js`
   - wired `prototype/concept-candidates.js` to import prune-state preparation helpers with unchanged public behavior and contracts.
+- v0.057 prototype split groundwork:
+  - extracted alias merge-target and canonical alias merge helpers into `prototype/core/alias-merge.js`
+  - wired `prototype/concept-candidates.js` to import alias merge helpers while preserving legacy `abac` tripwire literal in-file.
