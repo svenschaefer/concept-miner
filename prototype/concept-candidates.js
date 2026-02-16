@@ -106,6 +106,7 @@ const { handleCliErrorExit } = require("./core/cli-error-exit");
 const { executeCliMainExecution } = require("./core/cli-main-execution");
 const { buildCliMainDependencySources } = require("./core/cli-main-dependency-sources");
 const { invokeCliMainExecution } = require("./core/cli-main-invocation");
+const { handleCliMainCatch } = require("./core/cli-main-catch-handler");
 const {
   loadConceptCandidatesSchema,
   validateSchema,
@@ -1068,7 +1069,8 @@ async function main() {
       dependencySources,
     });
   } catch (err) {
-    handleCliErrorExit(err, {
+    handleCliMainCatch(err, {
+      handleCliErrorExit,
       stderr: console.error,
       exit: process.exit,
     });

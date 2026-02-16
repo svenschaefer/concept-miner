@@ -250,3 +250,6 @@ All notable changes to this project are documented in this file.
 - v0.088 prototype split groundwork:
   - extracted CLI main invocation-wrapper helper logic into `prototype/core/cli-main-invocation.js`
   - wired `prototype/concept-candidates.js` to delegate main invocation wrapping with unchanged behavior.
+- v0.089 prototype split groundwork:
+  - extracted CLI main catch-handler helper logic into `prototype/core/cli-main-catch-handler.js`
+  - wired `prototype/concept-candidates.js` to delegate catch-path error-exit handling with unchanged behavior.

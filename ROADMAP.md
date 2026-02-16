@@ -824,4 +824,11 @@ Cycle CE (`v0.089`) - Prototype Split Groundwork (CLI Main Catch-Handler Helper)
 - Keep behavior and exported prototype runtime contracts unchanged.
 - Preserve full frozen-reference and determinism gate stability after extraction.
 Status:
+- Completed on `main`.
+
+Cycle CF (`v0.090`) - Prototype Split Groundwork (CLI Main Entrypoint Wrapper Helper):
+- Extract CLI main entrypoint-wrapper helper logic from `prototype/concept-candidates.js` into dedicated modules.
+- Keep behavior and exported prototype runtime contracts unchanged.
+- Preserve full frozen-reference and determinism gate stability after extraction.
+Status:
 - Planned.
