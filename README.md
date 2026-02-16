@@ -46,11 +46,11 @@ Prototype-oriented checks and reports:
 ```bash
 npm run check:concept-candidates:benchmark-policy
 npm run check:concept-candidates:legacy-policy
-npm run eval:concept-candidates:independent:13a
-npm run eval:concept-candidates:independent:13b
-npm run eval:concept-candidates:independent:13b:policy
-npm run eval:concept-candidates:13b:sweep
-npm run report:step12:wikipedia-title-index-coverage
+npm run eval:concept-candidates:independent:generic-baseline
+npm run eval:concept-candidates:independent:default-extended
+npm run eval:concept-candidates:independent:default-extended:policy
+npm run eval:concept-candidates:default-extended:threshold-sweep
+npm run report:wikipedia-title-index:coverage
 ```
 
 ## JavaScript API (Current)

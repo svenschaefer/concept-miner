@@ -264,7 +264,7 @@ Cycle E (`v0.011`) - Product-Facing Mode Terminology Normalization:
   - `default-extended`
 - Keep backward-compatible script aliases where needed for migration safety.
 Status:
-- Planned.
+- Completed on `main`.
 
 Cycle F (`v0.012`) - Product-Facing Naming Guardrails:
 - Add tests that assert product-facing surfaces do not expose forbidden labels:
@@ -272,4 +272,4 @@ Cycle F (`v0.012`) - Product-Facing Naming Guardrails:
   - `wiki`, `wti`
 - Guard CLI help and primary docs from terminology regression.
 Status:
-- Planned.
+- Completed on `main`.
