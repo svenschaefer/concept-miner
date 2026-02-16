@@ -221,3 +221,20 @@ Deliverables:
 Exit criteria:
 - Tagged release candidate shipped.
 - Repository state reproducible and documented.
+
+## Next Execution Cycles
+
+Cycle A (`v0.010-a`) - Frozen Reference Governance:
+- Add explicit frozen-reference change policy enforcement in CI.
+- Require changelog rationale when `test/artifacts/*/result-reference/*` changes.
+- Keep existing frozen-reference regression tests green.
+
+Cycle B (`v0.010-b`) - OpenAPI/Schema Tight Alignment:
+- Close remaining contract drift between `openapi/openapi.yaml` and `schema/concepts.schema.json`.
+- Add alignment tests for required fields and input constraints.
+- Keep product extraction/validation surfaces stable.
+
+Cycle C (`v0.010-c`) - Operational Docs And Status:
+- Update `docs/STATUSQUO.md` with current factual project state.
+- Update changelog unreleased notes for completed productization phases.
+- Re-run `release:check` and keep all gates green.
