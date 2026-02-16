@@ -426,3 +426,13 @@ Cycle AA (`v0.033`) - Prototype Test Corpus Entrypoint Migration:
 - Close remaining TODO test-governance items covered by that corpus (anti-regression guards and soft performance budget retention decision).
 Status:
 - Completed on `main`.
+
+Cycle AB (`v0.034`) - Concepts-Contract Invariant Enforcement:
+- Enforce currently undocumented-but-required invariants in concepts validation:
+  - occurrence bounds (`end >= start`)
+  - unique concept `id`
+  - unique concept `name`
+- Add unit contract tests for these invariants.
+- Close the corresponding TODO schema/runtime invariant item.
+Status:
+- Completed on `main`.

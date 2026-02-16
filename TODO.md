@@ -41,6 +41,7 @@ Status date: 2026-02-16
 - [x] `v0.031` contract docs synchronized with explicit no-envelope rule and OpenAPI/schema mapping checks.
 - [x] `v0.032` repository layout decision documented: keep `prototype/` in-place for current phase.
 - [x] `v0.033` prototype test corpus entrypoint migrated into product integration contracts (including anti-regression and soft performance budget checks).
+- [x] `v0.034` concepts-document invariants enforced in validation (`end >= start`, unique concept ids, unique concept names) with unit contract tests.
 - [ ] Remaining roadmap cycles continue from current baseline (`main`).
 
 ## 0. Scope And Decisions (must be resolved first)
@@ -139,7 +140,7 @@ Status date: 2026-02-16
 - `POST /v1/concepts/extract`
 - `POST /v1/concepts/validate`
 - [x] Remove or explicitly document envelope/document differences.
-- [ ] Enforce missing invariants in schema validation (for example):
+- [x] Enforce missing invariants in schema validation (for example):
 - occurrence bounds (`end >= start`)
 - uniqueness constraints where required by contract
 - identifier/version format constraints if part of public contract

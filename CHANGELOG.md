@@ -77,3 +77,8 @@ All notable changes to this project are documented in this file.
   - made `prototype/concept-candidates.test.js` runnable against productized `test/artifacts` layout
   - added integration contract test `test/integration/prototype-test-corpus-entrypoint.contract.test.js`
   - retained anti-regression and soft performance budget checks by executing the legacy corpus runner in CI gates.
+- v0.034 concepts validation invariants:
+  - `validateConcepts` now enforces duplicate concept-id rejection
+  - `validateConcepts` now enforces duplicate concept-name rejection
+  - `validateConcepts` now enforces occurrence bound validity (`end >= start`)
+  - added unit contract tests for all three invariant classes.
