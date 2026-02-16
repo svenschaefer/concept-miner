@@ -1,0 +1,93 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/svenschaefer/concept-miner/schema/concept-candidates-meta.schema.json",
+  "title": "Concept Candidates Metadata Sidecar",
+  "type": "object",
+  "required": ["mode", "seed_id", "step13", "runtime"],
+  "properties": {
+    "mode": {
+      "type": "string",
+      "const": "persisted_step12"
+    },
+    "seed_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "step13": {
+      "type": "object",
+      "required": [
+        "wikipedia_title_index_policy",
+        "step13_mode",
+        "enable_13b_mode",
+        "mode13b_policy",
+        "enable_supplemental",
+        "enable_alias_synthesis",
+        "enable_legacy_enrichment",
+        "enable_recovery_synthesis",
+        "emit_wikipedia_title_index_evidence"
+      ],
+      "properties": {
+        "wikipedia_title_index_policy": {
+          "type": "string",
+          "minLength": 1
+        },
+        "step13_mode": {
+          "type": "string",
+          "enum": ["13a", "13b"]
+        },
+        "enable_13b_mode": {
+          "type": "boolean"
+        },
+        "mode13b_policy": {
+          "type": "object",
+          "required": [
+            "verb_promotion_min_wikipedia_count",
+            "unlinked_finite_verb_promotion_min_wikipedia_count",
+            "low_wikipedia_count_unlinked_min_avg",
+            "nonnominal_share_min",
+            "nonnominal_weak_wikipedia_count_max",
+            "merge_host_min_wikipedia_count_ratio"
+          ],
+          "properties": {
+            "verb_promotion_min_wikipedia_count": { "type": "number" },
+            "unlinked_finite_verb_promotion_min_wikipedia_count": { "type": "number" },
+            "low_wikipedia_count_unlinked_min_avg": { "type": "number" },
+            "nonnominal_share_min": { "type": "number" },
+            "nonnominal_weak_wikipedia_count_max": { "type": "number" },
+            "merge_host_min_wikipedia_count_ratio": { "type": "number" }
+          },
+          "additionalProperties": true
+        },
+        "enable_supplemental": { "type": "boolean" },
+        "enable_alias_synthesis": { "type": "boolean" },
+        "enable_legacy_enrichment": { "type": "boolean" },
+        "enable_recovery_synthesis": { "type": "boolean" },
+        "emit_wikipedia_title_index_evidence": { "type": "boolean" }
+      },
+      "additionalProperties": true
+    },
+    "runtime": {
+      "type": "object",
+      "required": [
+        "wikipedia_title_index_endpoint",
+        "timeout_ms",
+        "wikipedia_title_index_timeout_ms"
+      ],
+      "properties": {
+        "wikipedia_title_index_endpoint": {
+          "type": ["string", "null"]
+        },
+        "timeout_ms": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "wikipedia_title_index_timeout_ms": {
+          "type": "integer",
+          "minimum": 1
+        }
+      },
+      "additionalProperties": true
+    }
+  },
+  "additionalProperties": true
+}

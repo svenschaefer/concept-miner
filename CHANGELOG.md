@@ -18,3 +18,7 @@ All notable changes to this project are documented in this file.
   - `ExtractConceptsResponse` now requires `schema_version` + `concepts`
   - `input_id` minLength constraints aligned with JSON schema
 - v0.015 compatibility `validate` command now prioritizes canonical concepts-schema validation, with legacy template-output fallback retained during transition.
+- v0.016 sidecar contracts added:
+  - `schema/concept-candidates-meta.schema.json`
+  - `schema/concept-candidates-diagnostics.schema.json`
+  - integration checks validate frozen sidecars for all seeds/modes.

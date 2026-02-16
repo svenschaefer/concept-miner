@@ -23,6 +23,7 @@ Status date: 2026-02-16
 - [x] `v0.013` mode ergonomics aligned: kebab-case and underscore mode values both supported in API/CLI.
 - [x] `v0.014` scope/contract decisions in Section 0 reconciled to implemented repository state.
 - [x] `v0.015` compatibility `validate` command aligned to canonical concepts validation with legacy fallback.
+- [x] `v0.016` metadata/diagnostics sidecar contracts added and enforced against frozen references.
 - [ ] Remaining roadmap cycles continue from current baseline (`main`).
 
 ## 0. Scope And Decisions (must be resolved first)
@@ -145,7 +146,7 @@ Status date: 2026-02-16
 - optional `input_id` non-empty when present
 - [ ] Preserve occurrence offset contract in schema/docs/runtime:
 - offsets are UTF-16 code units (`occurrences[*].start`, `occurrences[*].end`)
-- [ ] Define and validate sidecar contracts explicitly:
+- [x] Define and validate sidecar contracts explicitly:
 - metadata sidecar schema/content (mode + thresholds + runtime context)
 - diagnostics sidecar schema/content (source-by-canonical + policy hits + stats)
 

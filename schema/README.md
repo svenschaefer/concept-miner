@@ -4,6 +4,10 @@ This directory contains JSON Schemas for public, product-facing documents.
 
 - `concepts.schema.json` defines the public "Concepts Document" format intended for storage,
   interchange, and validation (independent of REST transport).
+- `concept-candidates-meta.schema.json` defines the persisted metadata sidecar contract used by
+  frozen prototype-reference artifacts.
+- `concept-candidates-diagnostics.schema.json` defines the persisted diagnostics sidecar contract
+  used by frozen prototype-reference artifacts.
 
 Notes:
 - Offsets in `occurrences[*].start/end` are UTF-16 code units (JavaScript string indexing).

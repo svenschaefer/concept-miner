@@ -1,0 +1,83 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/svenschaefer/concept-miner/schema/concept-candidates-diagnostics.schema.json",
+  "title": "Concept Candidates Diagnostics Sidecar",
+  "type": "object",
+  "required": ["source_by_canonical", "mode13b_by_canonical", "stats"],
+  "properties": {
+    "source_by_canonical": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "array",
+        "items": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "mode13b_by_canonical": {
+      "type": "object",
+      "additionalProperties": true
+    },
+    "stats": {
+      "type": "object",
+      "required": [
+        "step13_mode",
+        "mentions_total",
+        "assertions_total",
+        "role_mentions_scanned",
+        "role_candidates_lifted",
+        "supplemental_mentions_scanned",
+        "supplemental_candidates_lifted",
+        "mode13b_suppressed_candidates",
+        "mode13b_suppressed_low_wikipedia_count_unlinked",
+        "mode13b_suppressed_non_nominal_bias",
+        "mode13b_suppressed_contained_by_stronger_host",
+        "mode13b_promoted_unlinked_finite_verb",
+        "mode13b_suppressed_participial_fragment",
+        "mode13b_suppressed_participial_chunk_reduction",
+        "mode13b_suppressed_two_token_participial_lift",
+        "mode13b_suppressed_short_symbolic_token",
+        "mode13b_merged_into_stronger_host",
+        "phase_ms"
+      ],
+      "properties": {
+        "step13_mode": {
+          "type": "string",
+          "enum": ["13a", "13b"]
+        },
+        "mentions_total": { "type": "integer", "minimum": 0 },
+        "assertions_total": { "type": "integer", "minimum": 0 },
+        "role_mentions_scanned": { "type": "integer", "minimum": 0 },
+        "role_candidates_lifted": { "type": "integer", "minimum": 0 },
+        "supplemental_mentions_scanned": { "type": "integer", "minimum": 0 },
+        "supplemental_candidates_lifted": { "type": "integer", "minimum": 0 },
+        "mode13b_suppressed_candidates": { "type": "integer", "minimum": 0 },
+        "mode13b_suppressed_low_wikipedia_count_unlinked": { "type": "integer", "minimum": 0 },
+        "mode13b_suppressed_non_nominal_bias": { "type": "integer", "minimum": 0 },
+        "mode13b_suppressed_contained_by_stronger_host": { "type": "integer", "minimum": 0 },
+        "mode13b_promoted_unlinked_finite_verb": { "type": "integer", "minimum": 0 },
+        "mode13b_suppressed_participial_fragment": { "type": "integer", "minimum": 0 },
+        "mode13b_suppressed_participial_chunk_reduction": { "type": "integer", "minimum": 0 },
+        "mode13b_suppressed_two_token_participial_lift": { "type": "integer", "minimum": 0 },
+        "mode13b_suppressed_short_symbolic_token": { "type": "integer", "minimum": 0 },
+        "mode13b_merged_into_stronger_host": { "type": "integer", "minimum": 0 },
+        "phase_ms": {
+          "type": "object",
+          "required": ["role_lifting", "supplemental_lifting", "prune", "alias_and_legacy", "emit", "total"],
+          "properties": {
+            "role_lifting": { "type": "number", "minimum": 0 },
+            "supplemental_lifting": { "type": "number", "minimum": 0 },
+            "prune": { "type": "number", "minimum": 0 },
+            "alias_and_legacy": { "type": "number", "minimum": 0 },
+            "emit": { "type": "number", "minimum": 0 },
+            "total": { "type": "number", "minimum": 0 }
+          },
+          "additionalProperties": true
+        }
+      },
+      "additionalProperties": true
+    }
+  },
+  "additionalProperties": true
+}

@@ -298,3 +298,10 @@ Cycle I (`v0.015`) - Canonical Validation Command Alignment:
 - Add explicit CLI tests for canonical and fallback validation behavior.
 Status:
 - Completed on `main`.
+
+Cycle J (`v0.016`) - Sidecar Contract Guarding:
+- Add explicit integration contracts for metadata and diagnostics sidecars in frozen references.
+- Assert mode-tagging consistency for `generic baseline mode` and `default extended mode`.
+- Validate required top-level shape so accidental sidecar drift is detected early.
+Status:
+- Completed on `main`.
