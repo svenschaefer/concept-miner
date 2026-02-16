@@ -7,15 +7,25 @@ const { loadProjectConfig } = require("./config");
 function usage() {
   return [
     "Usage:",
-    "  concept-miner extract --text <string> [--out <path>] [--mode <generic_baseline|default_extended>] [--config <path>]",
-    "  concept-miner extract --seed-id <id> [--artifacts-root <path>] [--out <path>] [--mode <generic_baseline|default_extended>] [--config <path>]",
-    "  concept-miner extract --step12-in <path> [--out <path>] [--mode <generic_baseline|default_extended>] [--config <path>]",
+    "  concept-miner extract --text <string> [--out <path>] [--mode <generic-baseline|default-extended>] [--config <path>]",
+    "  concept-miner extract --seed-id <id> [--artifacts-root <path>] [--out <path>] [--mode <generic-baseline|default-extended>] [--config <path>]",
+    "  concept-miner extract --step12-in <path> [--out <path>] [--mode <generic-baseline|default-extended>] [--config <path>]",
     "  concept-miner validate-concepts --in <path>",
     "",
     "Compatibility commands:",
     "  concept-miner run --text <string> | --in <path> [--out <path>] [--config <path>]",
     "  concept-miner validate --in <path>",
   ].join("\n");
+}
+
+function normalizeModeValue(modeRaw) {
+  if (modeRaw === "generic_baseline" || modeRaw === "generic-baseline") {
+    return "generic_baseline";
+  }
+  if (modeRaw === "default_extended" || modeRaw === "default-extended") {
+    return "default_extended";
+  }
+  return "default_extended";
 }
 
 async function runCommand(args) {
@@ -67,7 +77,7 @@ async function extractCommand(args) {
   const outPath = arg(args, "--out");
   const configPath = arg(args, "--config");
 
-  const mode = modeRaw === "generic_baseline" ? "generic_baseline" : "default_extended";
+  const mode = normalizeModeValue(modeRaw);
 
   if (!text && !seedId && !step12Path) {
     throw new Error("extract requires one of --text, --seed-id, or --step12-in.");

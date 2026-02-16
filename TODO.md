@@ -20,6 +20,7 @@ Status date: 2026-02-16
 - [x] `v0.010-d` release-candidate baseline finalized at `0.10.0` (`efab0a1`).
 - [x] `v0.011` product-facing script/readme mode terminology normalized (generic-baseline/default-extended).
 - [x] `v0.012` product-facing terminology guardrails added (no `step13`/`13a`/`13b`/`wiki`/`wti` in primary surfaces).
+- [x] `v0.013` mode ergonomics aligned: kebab-case and underscore mode values both supported in API/CLI.
 - [ ] Remaining roadmap cycles continue from current baseline (`main`).
 
 ## 0. Scope And Decisions (must be resolved first)

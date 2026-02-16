@@ -273,3 +273,14 @@ Cycle F (`v0.012`) - Product-Facing Naming Guardrails:
 - Guard CLI help and primary docs from terminology regression.
 Status:
 - Completed on `main`.
+
+Cycle G (`v0.013`) - Mode Value Ergonomics:
+- Accept kebab-case mode values in product API/CLI:
+  - `generic-baseline`
+  - `default-extended`
+- Keep underscore variants supported for compatibility:
+  - `generic_baseline`
+  - `default_extended`
+- Update help/docs/tests to reflect accepted mode values clearly.
+Status:
+- Completed on `main`.

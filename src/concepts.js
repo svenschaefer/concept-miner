@@ -24,8 +24,18 @@ function conceptIdFromName(name) {
   return `c_${crypto.createHash("sha256").update(Buffer.from(name, "utf8")).digest("hex").slice(0, 12)}`;
 }
 
+function normalizeModeValue(mode) {
+  if (mode === "generic_baseline" || mode === "generic-baseline") {
+    return "generic_baseline";
+  }
+  if (mode === "default_extended" || mode === "default-extended") {
+    return "default_extended";
+  }
+  return "default_extended";
+}
+
 function toProductMode(options = {}) {
-  return options.mode === "generic_baseline" ? "generic_baseline" : "default_extended";
+  return normalizeModeValue(options.mode);
 }
 
 function toPrototypeOptions(options = {}) {

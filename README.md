@@ -59,7 +59,7 @@ npm run report:wikipedia-title-index:coverage
 const { extractConcepts, validateConcepts } = require("concept-miner");
 
 const doc = await extractConcepts("alpha beta alpha", {
-  mode: "default_extended", // or "generic_baseline"
+  mode: "default-extended", // or "generic-baseline"
 });
 
 const validation = validateConcepts(doc);
@@ -68,7 +68,7 @@ const validation = validateConcepts(doc);
 ## CLI (Current)
 
 ```bash
-concept-miner extract --text "alpha beta alpha" --mode default_extended --out concepts.json
+concept-miner extract --text "alpha beta alpha" --mode default-extended --out concepts.json
 concept-miner validate-concepts --in concepts.json
 ```
 

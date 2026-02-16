@@ -54,6 +54,14 @@ test("CLI extract supports product mode flag", () => {
   assert.ok(Array.isArray(parsed.concepts));
 });
 
+test("CLI extract accepts kebab-case product mode flag", () => {
+  const result = runCli(["extract", "--text", "alpha beta alpha", "--mode", "generic-baseline"]);
+  assert.equal(result.status, 0);
+  const parsed = JSON.parse(String(result.stdout || "{}"));
+  assert.equal(parsed.schema_version, "1.0.0");
+  assert.ok(Array.isArray(parsed.concepts));
+});
+
 test("CLI validate-concepts validates extracted output", () => {
   const tmpDir = fs.mkdtempSync(path.join(os.tmpdir(), "nodejs-template-cli-"));
   const outputPath = path.join(tmpDir, "concepts.json");

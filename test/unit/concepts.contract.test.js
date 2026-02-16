@@ -24,3 +24,10 @@ test("validateConcepts rejects malformed concepts document", () => {
   assert.equal(result.ok, false);
   assert.ok(result.errors.length > 0);
 });
+
+test("extractConcepts accepts kebab-case mode values", async () => {
+  const doc = await extractConcepts("alpha beta alpha", { mode: "generic-baseline" });
+  assert.equal(doc.schema_version, "1.0.0");
+  assert.ok(Array.isArray(doc.concepts));
+  assert.equal(doc.concepts.length, 2);
+});
