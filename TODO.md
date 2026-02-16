@@ -86,6 +86,7 @@ Status date: 2026-02-16
 - [x] `v0.076` prototype split groundwork continued by extracting CLI flow-context dependency assembly helper into `prototype/core/cli-flow-context-dependencies.js` with behavior-preserving wiring.
 - [x] `v0.077` prototype split groundwork continued by extracting CLI runtime-invocation dependency assembly helper into `prototype/core/cli-runtime-invocation-dependencies.js` with behavior-preserving wiring.
 - [x] `v0.078` prototype split groundwork continued by extracting CLI flow-dependency assembly helper into `prototype/core/cli-flow-dependency-assembly.js` with behavior-preserving wiring.
+- [x] `v0.079` prototype split groundwork continued by extracting CLI main-setup dependency bundle helper into `prototype/core/cli-main-setup-dependencies.js` with behavior-preserving wiring.
 - [ ] Remaining roadmap cycles continue from current baseline (`main`).
 
 ## 0. Scope And Decisions (must be resolved first)
@@ -185,6 +186,7 @@ Status date: 2026-02-16
 - Progress: CLI flow-context dependency assembly helper extracted from monolith to `prototype/core/cli-flow-context-dependencies.js` as the thirty-third safe split step.
 - Progress: CLI runtime-invocation dependency assembly helper extracted from monolith to `prototype/core/cli-runtime-invocation-dependencies.js` as the thirty-fourth safe split step.
 - Progress: CLI flow-dependency assembly helper extracted from monolith to `prototype/core/cli-flow-dependency-assembly.js` as the thirty-fifth safe split step.
+- Progress: CLI main-setup dependency bundle helper extracted from monolith to `prototype/core/cli-main-setup-dependencies.js` as the thirty-sixth safe split step.
 - [x] Remove business logic from CLI path; keep CLI as thin wrapper only.
 - [x] Convert current ad-hoc helpers into coherent modules:
 - argument parsing, IO, deterministic sorting, canonicalization, ID generation, policy parsing.

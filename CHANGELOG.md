@@ -220,3 +220,6 @@ All notable changes to this project are documented in this file.
 - v0.078 prototype split groundwork:
   - extracted CLI flow-dependency assembly helper logic into `prototype/core/cli-flow-dependency-assembly.js`
   - wired `prototype/concept-candidates.js` to delegate flow-dependency assembly with unchanged behavior.
+- v0.079 prototype split groundwork:
+  - extracted CLI main-setup dependency-bundle helper logic into `prototype/core/cli-main-setup-dependencies.js`
+  - wired `prototype/concept-candidates.js` to delegate main-setup dependency bundle assembly with unchanged behavior.

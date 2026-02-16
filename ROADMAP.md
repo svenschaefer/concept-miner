@@ -754,4 +754,11 @@ Cycle BU (`v0.079`) - Prototype Split Groundwork (CLI Main Setup Dependency Bund
 - Keep behavior and exported prototype runtime contracts unchanged.
 - Preserve full frozen-reference and determinism gate stability after extraction.
 Status:
+- Completed on `main`.
+
+Cycle BV (`v0.080`) - Prototype Split Groundwork (CLI Main Setup Invocation Helper):
+- Extract CLI main-setup invocation helper logic from `prototype/concept-candidates.js` into dedicated modules.
+- Keep behavior and exported prototype runtime contracts unchanged.
+- Preserve full frozen-reference and determinism gate stability after extraction.
+Status:
 - Planned.

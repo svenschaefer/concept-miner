@@ -96,6 +96,7 @@ const { buildCliParseDependencies } = require("./core/cli-parse-dependencies");
 const { buildCliFlowContextDependencies } = require("./core/cli-flow-context-dependencies");
 const { buildCliRuntimeInvocationDependencies } = require("./core/cli-runtime-invocation-dependencies");
 const { buildCliFlowDependencies } = require("./core/cli-flow-dependency-assembly");
+const { buildCliMainSetupDependencies } = require("./core/cli-main-setup-dependencies");
 const {
   loadConceptCandidatesSchema,
   validateSchema,
@@ -1040,7 +1041,7 @@ async function main() {
       hasCliInputSource,
       handleCliResultIO,
     });
-    const { context, cliMainFlowDependencies } = buildCliMainSetup(args, {
+    const mainSetupDependencies = buildCliMainSetupDependencies({
       parseCliMainExecutionContext,
       buildCliMainFlowContext,
       bindCliRuntimeInvocation,
@@ -1050,6 +1051,7 @@ async function main() {
       runtimeInvocationDependencies,
       flowDependencies,
     });
+    const { context, cliMainFlowDependencies } = buildCliMainSetup(args, mainSetupDependencies);
 
     const flow = await executeCliMainFlow({
       context,
