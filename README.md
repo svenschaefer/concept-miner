@@ -53,6 +53,32 @@ npm run eval:concept-candidates:13b:sweep
 npm run report:step12:wikipedia-title-index-coverage
 ```
 
+## JavaScript API (Current)
+
+```js
+const { extractConcepts, validateConcepts } = require("concept-miner");
+
+const doc = await extractConcepts("alpha beta alpha", {
+  mode: "default_extended", // or "generic_baseline"
+});
+
+const validation = validateConcepts(doc);
+```
+
+## CLI (Current)
+
+```bash
+concept-miner extract --text "alpha beta alpha" --mode default_extended --out concepts.json
+concept-miner validate-concepts --in concepts.json
+```
+
+Compatibility commands still available:
+
+```bash
+concept-miner run --text "alpha beta alpha"
+concept-miner validate --in output.json
+```
+
 ## Release
 
 This repository follows a dual-stream release model:
