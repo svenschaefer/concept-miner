@@ -838,4 +838,11 @@ Cycle CG (`v0.091`) - Prototype Split Groundwork (CLI Main Function Export Helpe
 - Keep behavior and exported prototype runtime contracts unchanged.
 - Preserve full frozen-reference and determinism gate stability after extraction.
 Status:
+- Completed on `main`.
+
+Cycle CH (`v0.092`) - Prototype Split Groundwork (CLI Main Catch Dependency Helper):
+- Extract CLI main catch dependency helper logic from `prototype/concept-candidates.js` into dedicated modules.
+- Keep behavior and exported prototype runtime contracts unchanged.
+- Preserve full frozen-reference and determinism gate stability after extraction.
+Status:
 - Planned.

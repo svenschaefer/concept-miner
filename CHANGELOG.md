@@ -256,3 +256,6 @@ All notable changes to this project are documented in this file.
 - v0.090 prototype split groundwork:
   - extracted CLI main entrypoint-wrapper helper logic into `prototype/core/cli-entrypoint.js`
   - wired `prototype/concept-candidates.js` to delegate `require.main === module` entrypoint handling with unchanged behavior.
+- v0.091 prototype split groundwork:
+  - extracted CLI main function export helper logic into `prototype/core/cli-main-export.js`
+  - wired `prototype/concept-candidates.js` to delegate exported API object assembly with unchanged behavior.
