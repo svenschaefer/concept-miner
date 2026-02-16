@@ -5,7 +5,7 @@
 - Branch: `main`
 - Sync: tracking `origin/main` (kept in sync via stable phase commits)
 - Current annotated release tag: `v0.10.0`
-- Latest stable phase: `v0.065` (prototype split groundwork)
+- Latest stable phase: `v0.066` (prototype split groundwork)
 - Major completed workstreams:
   - template baseline scaffold + CI/release workflow
   - transition product API (`extractConcepts`, `validateConcepts`)
@@ -41,6 +41,7 @@
   - twentieth safe prototype monolith split step (schema/serialization IO helper extraction)
   - twenty-first safe prototype monolith split step (Step12 input loading helper extraction)
   - twenty-second safe prototype monolith split step (CLI option assembly helper extraction)
+  - twenty-third safe prototype monolith split step (CLI usage/validation guard helper extraction)
 
 ## Implementation status
 

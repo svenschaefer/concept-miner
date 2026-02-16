@@ -181,3 +181,6 @@ All notable changes to this project are documented in this file.
 - v0.065 prototype split groundwork:
   - extracted CLI option parsing and run-option assembly helpers into `prototype/core/cli-option-assembly.js`
   - wired `prototype/concept-candidates.js` main execution path to consume CLI option assembly helpers with unchanged CLI contract behavior.
+- v0.066 prototype split groundwork:
+  - extracted CLI usage text and input-source guard helpers into `prototype/core/cli-usage.js` and `prototype/core/cli-guards.js`
+  - wired `prototype/concept-candidates.js` main execution usage/guard path to consume these helpers with unchanged CLI exit semantics.
