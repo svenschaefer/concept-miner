@@ -169,3 +169,6 @@ All notable changes to this project are documented in this file.
 - v0.061 prototype split groundwork:
   - extracted deterministic candidate validation helper cluster into `prototype/core/determinism-validation.js`
   - wired `prototype/concept-candidates.js` deterministic output validator loop to use the extracted helper with unchanged contract checks.
+- v0.062 prototype split groundwork:
+  - extracted runtime/persisted generation finalization helper logic into `prototype/core/generation-orchestration.js`
+  - wired `prototype/concept-candidates.js` runtime and persisted generation paths to use shared finalization helper behavior.

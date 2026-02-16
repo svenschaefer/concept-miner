@@ -635,4 +635,11 @@ Cycle BD (`v0.062`) - Prototype Split Groundwork (Runtime/Persisted Generation H
 - Keep behavior and exported prototype runtime contracts unchanged.
 - Preserve full frozen-reference and determinism gate stability after extraction.
 Status:
+- Completed on `main`.
+
+Cycle BE (`v0.063`) - Prototype Split Groundwork (Schema/Serialization IO Helpers):
+- Extract schema loading/validation and deterministic serialization IO helper logic from `prototype/concept-candidates.js` into dedicated modules.
+- Keep behavior and exported prototype runtime contracts unchanged.
+- Preserve full frozen-reference and determinism gate stability after extraction.
+Status:
 - Planned.

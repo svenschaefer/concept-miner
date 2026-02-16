@@ -81,6 +81,7 @@ const {
 const { buildDiagnosticsDocument } = require("./core/diagnostics-assembly");
 const { buildMetaSidecar, writePersistedOutputs } = require("./core/output-writers");
 const { validateDeterministicCandidateRecord } = require("./core/determinism-validation");
+const { finalizeGeneratedOutput } = require("./core/generation-orchestration");
 const {
   LEGACY_GENERIC_DROP,
   LEGACY_NOMINAL_VERB_WHITELIST,
@@ -1009,14 +1010,15 @@ async function generateForSeed(seedId, options = {}) {
     emitWikipediaTitleIndexEvidence:
       options.emitWikipediaTitleIndexEvidence !== undefined ? options.emitWikipediaTitleIndexEvidence : options.emitWtiEvidence,
   });
-  const diagnostics = outputDoc._diagnostics || null;
-  if (outputDoc._diagnostics) delete outputDoc._diagnostics;
-  const schema = loadConceptCandidatesSchema();
-  validateSchema(schema, outputDoc);
-  validateConceptCandidatesDeterminism(outputDoc);
-
-  const yamlText = serializeDeterministicYaml(outputDoc);
-  return { outputDoc, yamlText, seedDir, diagnostics, mode: "runtime_step12" };
+  return finalizeGeneratedOutput({
+    outputDoc,
+    seedDir,
+    mode: "runtime_step12",
+    loadConceptCandidatesSchema,
+    validateSchema,
+    validateConceptCandidatesDeterminism,
+    serializeDeterministicYaml,
+  });
 }
 
 function loadStep12Yaml(step12Path) {
@@ -1049,13 +1051,16 @@ function generateForStep12Path(step12Path, options = {}) {
     emitWikipediaTitleIndexEvidence:
       options.emitWikipediaTitleIndexEvidence !== undefined ? options.emitWikipediaTitleIndexEvidence : options.emitWtiEvidence,
   });
-  const diagnostics = outputDoc._diagnostics || null;
-  if (outputDoc._diagnostics) delete outputDoc._diagnostics;
-  const schema = loadConceptCandidatesSchema();
-  validateSchema(schema, outputDoc);
-  validateConceptCandidatesDeterminism(outputDoc);
-  const yamlText = serializeDeterministicYaml(outputDoc);
-  return { outputDoc, yamlText, seedDir, diagnostics, mode: "persisted_step12", step12Path: inputPath };
+  return finalizeGeneratedOutput({
+    outputDoc,
+    seedDir,
+    mode: "persisted_step12",
+    step12Path: inputPath,
+    loadConceptCandidatesSchema,
+    validateSchema,
+    validateConceptCandidatesDeterminism,
+    serializeDeterministicYaml,
+  });
 }
 
 async function main() {
