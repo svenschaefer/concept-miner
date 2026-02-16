@@ -328,3 +328,10 @@ Cycle M (`v0.019`) - Step12 Dependency Boundary Documentation:
 - Add a docs consistency test for this boundary note.
 Status:
 - Completed on `main`.
+
+Cycle N (`v0.020`) - First Annotated Tag And Tag Strategy Closure:
+- Confirm and document pre-1.0 tag strategy for productized milestones.
+- Run `release:check` on clean tree.
+- Create and push first annotated repository tag aligned to current package version.
+Status:
+- Planned.

@@ -22,6 +22,9 @@
 10. Verify npm propagation and run post-publish smoke checks.
 
 Rules:
+- Pre-1.0 strategy:
+  - use `v0.x.y` annotated tags for stable productization milestones.
+  - keep `package.json` version and git tag version aligned.
 - Never rewrite history after tagging.
 - Never amend a tagged release commit.
 - If a release is wrong, ship a new patch release.

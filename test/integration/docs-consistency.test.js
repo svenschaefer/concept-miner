@@ -63,3 +63,9 @@ test("guarantees doc states the upstream elementary-assertions Step12 boundary",
   assert.match(guarantees, /Step12/i);
   assert.match(guarantees, /out of scope/i);
 });
+
+test("repo workflows doc states pre-1.0 tag strategy", () => {
+  const workflows = read("docs/REPO_WORKFLOWS.md");
+  assert.match(workflows, /Pre-1\.0 strategy/i);
+  assert.match(workflows, /v0\.x\.y/);
+});
