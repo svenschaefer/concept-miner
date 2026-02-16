@@ -82,3 +82,8 @@ All notable changes to this project are documented in this file.
   - `validateConcepts` now enforces duplicate concept-name rejection
   - `validateConcepts` now enforces occurrence bound validity (`end >= start`)
   - added unit contract tests for all three invariant classes.
+- v0.035 concepts runtime modularization:
+  - extracted fallback extraction helpers into `src/core/fallback-extraction.js`
+  - extracted prototype bridge/mode mapping helpers into `src/core/prototype-bridge.js` and `src/core/mode.js`
+  - extracted concept invariant checks into `src/validate/concepts-invariants.js`
+  - simplified `src/concepts.js` to orchestration only.

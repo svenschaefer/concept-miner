@@ -436,3 +436,10 @@ Cycle AB (`v0.034`) - Concepts-Contract Invariant Enforcement:
 - Close the corresponding TODO schema/runtime invariant item.
 Status:
 - Completed on `main`.
+
+Cycle AC (`v0.035`) - Concepts Runtime Modularization:
+- Refactor `src/concepts.js` helper clusters into focused modules under `src/core` and `src/validate`.
+- Keep extraction and validation behavior byte-for-byte compatible for existing tests.
+- Close the TODO item on ad-hoc helper modularization in the current product runtime path.
+Status:
+- Completed on `main`.
