@@ -118,3 +118,6 @@ All notable changes to this project are documented in this file.
 - v0.044 prototype split groundwork:
   - extracted canonicalization and concept-id utilities into `prototype/core/canonicalization.js`
   - wired `prototype/concept-candidates.js` to import extracted utilities with unchanged public behavior and exports.
+- v0.045 prototype split groundwork:
+  - extracted shared utility helpers into `prototype/core/shared-utils.js`
+  - wired `prototype/concept-candidates.js` to import shared helpers with unchanged public behavior and contracts.

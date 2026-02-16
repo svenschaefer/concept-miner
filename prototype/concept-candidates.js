@@ -10,6 +10,14 @@ const {
   normalizeLiftedSurface,
 } = require("./core/canonicalization");
 const {
+  compareStrings,
+  assert,
+  parseSemverMajor,
+  sortedUniqueStrings,
+  countObjectTotal,
+  roundFixed3,
+} = require("./core/shared-utils");
+const {
   LEGACY_GENERIC_DROP,
   LEGACY_NOMINAL_VERB_WHITELIST,
   applyLegacyStringRules,
@@ -67,28 +75,8 @@ function hasFlag(args, name) {
   return args.includes(name);
 }
 
-function compareStrings(a, b) {
-  if (a < b) return -1;
-  if (a > b) return 1;
-  return 0;
-}
-
-function assert(condition, message) {
-  if (!condition) throw new Error(message);
-}
-
-function parseSemverMajor(value) {
-  const m = /^(\d+)\.(\d+)\.(\d+)(?:[-+].*)?$/.exec(String(value || ""));
-  if (!m) return null;
-  return Number(m[1]);
-}
-
 function isNominalTag(tag) {
   return tag === "NN" || tag === "NNS" || tag === "NNP" || tag === "NNPS" || tag === "JJ" || tag === "JJR" || tag === "JJS" || tag === "CD" || tag === "VBN" || tag === "VBG";
-}
-
-function sortedUniqueStrings(values) {
-  return Array.from(new Set((values || []).map((v) => String(v)))).sort(compareStrings);
 }
 
 function orderedSparseWikipediaSignalObject(raw) {
@@ -170,24 +158,10 @@ function parseNonNegativeNumberArg(name, raw, fallback) {
   return value;
 }
 
-function countObjectTotal(raw) {
-  let total = 0;
-  for (const key of Object.keys(raw || {})) {
-    const value = raw[key];
-    if (Number.isInteger(value) && value > 0) total += value;
-  }
-  return total;
-}
 
 function selectMentionEvidenceByPolicy(assertionEvidence, lexiconEvidence, policy) {
   if (policy === "assertion_only") return assertionEvidence || {};
   return assertionEvidence || lexiconEvidence || {};
-}
-
-function roundFixed3(value) {
-  const n = Number(value);
-  if (!Number.isFinite(n)) return 0;
-  return Math.round(n * 1000) / 1000;
 }
 
 function walkWikipediaSignalFields(node, onSignal, pathLabel) {

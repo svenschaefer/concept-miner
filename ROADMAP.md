@@ -510,3 +510,10 @@ Cycle AL (`v0.044`) - Prototype Split Groundwork (Canonicalization Module):
 - Preserve full frozen-reference and determinism gate stability after extraction.
 Status:
 - Completed on `main`.
+
+Cycle AM (`v0.045`) - Prototype Split Groundwork (Shared Utility Module):
+- Extract shared utility helpers (`compare/assert/semver/sorting/count/rounding`) from `prototype/concept-candidates.js` into a dedicated module.
+- Keep behavior and exported prototype runtime contracts unchanged.
+- Preserve full frozen-reference and determinism gate stability after extraction.
+Status:
+- Completed on `main`.

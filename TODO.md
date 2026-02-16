@@ -52,6 +52,7 @@ Status date: 2026-02-16
 - [x] `v0.042` repeat-run determinism and ordering contracts enforced across realistic persisted Step12 seeds and both modes.
 - [x] `v0.043` runtime seed-text input-path transition compatibility enforced for both legacy and flattened artifact layouts with deterministic product API contracts.
 - [x] `v0.044` prototype split groundwork started by extracting canonicalization/concept-id utilities into `prototype/core/canonicalization.js` with behavior-preserving wiring.
+- [x] `v0.045` prototype split groundwork continued by extracting shared utility helpers into `prototype/core/shared-utils.js` with behavior-preserving wiring.
 - [ ] Remaining roadmap cycles continue from current baseline (`main`).
 
 ## 0. Scope And Decisions (must be resolved first)
@@ -117,6 +118,7 @@ Status date: 2026-02-16
 - `src/validate/*` (schema + integrity + stable errors)
 - `src/tools/*` (CLI/tool wrappers)
 - Progress: canonicalization and concept-id utilities extracted from monolith to `prototype/core/canonicalization.js` as the first safe split step.
+- Progress: shared utility helpers extracted from monolith to `prototype/core/shared-utils.js` as the second safe split step.
 - [x] Remove business logic from CLI path; keep CLI as thin wrapper only.
 - [x] Convert current ad-hoc helpers into coherent modules:
 - argument parsing, IO, deterministic sorting, canonicalization, ID generation, policy parsing.
