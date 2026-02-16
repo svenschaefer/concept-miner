@@ -291,3 +291,10 @@ Cycle H (`v0.014`) - Scope Decision Closure In Backlog:
 - Keep remaining backlog focused on still-open engineering work.
 Status:
 - Completed on `main`.
+
+Cycle I (`v0.015`) - Canonical Validation Command Alignment:
+- Align compatibility `validate` command with canonical concepts schema validation.
+- Keep legacy template-document validation as fallback during transition.
+- Add explicit CLI tests for canonical and fallback validation behavior.
+Status:
+- Completed on `main`.

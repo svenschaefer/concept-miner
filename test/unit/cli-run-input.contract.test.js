@@ -72,3 +72,31 @@ test("CLI validate-concepts validates extracted output", () => {
   assert.equal(validate.status, 0);
   assert.match(String(validate.stdout || ""), /^ok/m);
 });
+
+test("CLI validate validates canonical concepts document", () => {
+  const tmpDir = fs.mkdtempSync(path.join(os.tmpdir(), "nodejs-template-cli-"));
+  const outputPath = path.join(tmpDir, "concepts.json");
+  const extract = runCli(["extract", "--text", "alpha beta alpha", "--out", outputPath]);
+  assert.equal(extract.status, 0);
+
+  const validate = runCli(["validate", "--in", outputPath]);
+  assert.equal(validate.status, 0);
+  assert.match(String(validate.stdout || ""), /^ok/m);
+});
+
+test("CLI validate supports legacy template output as fallback", () => {
+  const tmpDir = fs.mkdtempSync(path.join(os.tmpdir(), "nodejs-template-cli-"));
+  const legacyPath = path.join(tmpDir, "legacy-output.json");
+  fs.writeFileSync(
+    legacyPath,
+    JSON.stringify({
+      stage: "output",
+      records: [{ id: "r:1", value: "x", tags: [] }],
+    }),
+    "utf8"
+  );
+
+  const validate = runCli(["validate", "--in", legacyPath]);
+  assert.equal(validate.status, 0);
+  assert.match(String(validate.stdout || ""), /^ok/m);
+});

@@ -64,6 +64,13 @@ function validateCommand(args) {
   if (!inPath) throw new Error("validate requires --in <path>");
   const raw = readUtf8(inPath, "input file");
   const doc = JSON.parse(raw);
+  const conceptsResult = validateConcepts(doc);
+  if (conceptsResult.ok) {
+    process.stdout.write("ok\n");
+    return;
+  }
+
+  // Backward-compatible fallback for legacy template output documents.
   validateOutput(doc);
   process.stdout.write("ok\n");
 }
