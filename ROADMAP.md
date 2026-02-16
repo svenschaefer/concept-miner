@@ -712,4 +712,11 @@ Cycle BO (`v0.073`) - Prototype Split Groundwork (CLI Parse-Context Wrapper Help
 - Keep behavior and exported prototype runtime contracts unchanged.
 - Preserve full frozen-reference and determinism gate stability after extraction.
 Status:
+- Completed on `main`.
+
+Cycle BP (`v0.074`) - Prototype Split Groundwork (CLI Main Setup Orchestrator Helper):
+- Extract CLI main setup/orchestration helper logic from `prototype/concept-candidates.js` into dedicated modules.
+- Keep behavior and exported prototype runtime contracts unchanged.
+- Preserve full frozen-reference and determinism gate stability after extraction.
+Status:
 - Planned.

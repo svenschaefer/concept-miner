@@ -80,6 +80,7 @@ Status date: 2026-02-16
 - [x] `v0.070` prototype split groundwork continued by extracting CLI context assembly helper into `prototype/core/cli-context-assembly.js` with behavior-preserving wiring.
 - [x] `v0.071` prototype split groundwork continued by extracting CLI runtime invocation binding helper into `prototype/core/cli-runtime-binding.js` with behavior-preserving wiring.
 - [x] `v0.072` prototype split groundwork continued by extracting CLI flow dependency assembly helper into `prototype/core/cli-flow-dependencies.js` with behavior-preserving wiring.
+- [x] `v0.073` prototype split groundwork continued by extracting CLI parse-context wrapper helper into `prototype/core/cli-parse-context.js` with behavior-preserving wiring.
 - [ ] Remaining roadmap cycles continue from current baseline (`main`).
 
 ## 0. Scope And Decisions (must be resolved first)
@@ -173,6 +174,7 @@ Status date: 2026-02-16
 - Progress: CLI context assembly helper extracted from monolith to `prototype/core/cli-context-assembly.js` as the twenty-seventh safe split step.
 - Progress: CLI runtime invocation binding helper extracted from monolith to `prototype/core/cli-runtime-binding.js` as the twenty-eighth safe split step.
 - Progress: CLI flow dependency assembly helper extracted from monolith to `prototype/core/cli-flow-dependencies.js` as the twenty-ninth safe split step.
+- Progress: CLI parse-context wrapper helper extracted from monolith to `prototype/core/cli-parse-context.js` as the thirtieth safe split step.
 - [x] Remove business logic from CLI path; keep CLI as thin wrapper only.
 - [x] Convert current ad-hoc helpers into coherent modules:
 - argument parsing, IO, deterministic sorting, canonicalization, ID generation, policy parsing.

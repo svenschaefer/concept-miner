@@ -90,6 +90,7 @@ const { invokeCliRuntimeGeneration } = require("./core/cli-runtime-invocation");
 const { buildCliMainFlowContext } = require("./core/cli-context-assembly");
 const { bindCliRuntimeInvocation } = require("./core/cli-runtime-binding");
 const { buildCliMainFlowDependencies } = require("./core/cli-flow-dependencies");
+const { parseCliMainExecutionContext } = require("./core/cli-parse-context");
 const {
   loadConceptCandidatesSchema,
   validateSchema,
@@ -1010,8 +1011,7 @@ function generateForStep12Path(step12Path, options = {}) {
 async function main() {
   try {
     const args = process.argv.slice(2);
-    const parsed = parseCliExecutionContext({
-      args,
+    const parsed = parseCliMainExecutionContext(args, {
       env: process.env,
       arg,
       hasFlag,
@@ -1020,6 +1020,7 @@ async function main() {
       step13Modes: STEP13_MODES,
       defaultArtifactsRoot: DEFAULT_ARTIFACTS_ROOT,
       defaultWikipediaTitleIndexEndpoint: DEFAULT_WIKIPEDIA_TITLE_INDEX_ENDPOINT,
+      parseCliExecutionContext,
     });
     const context = buildCliMainFlowContext(parsed, {
       buildMetaSidecar,

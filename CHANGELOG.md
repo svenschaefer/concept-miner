@@ -202,3 +202,6 @@ All notable changes to this project are documented in this file.
 - v0.072 prototype split groundwork:
   - extracted CLI flow dependency assembly helper logic into `prototype/core/cli-flow-dependencies.js`
   - wired `prototype/concept-candidates.js` to delegate `executeCliMainFlow` dependency wiring with unchanged behavior.
+- v0.073 prototype split groundwork:
+  - extracted CLI parse-context wrapper helper logic into `prototype/core/cli-parse-context.js`
+  - wired `prototype/concept-candidates.js` to delegate CLI parse-context assembly with unchanged behavior.

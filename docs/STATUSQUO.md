@@ -5,7 +5,7 @@
 - Branch: `main`
 - Sync: tracking `origin/main` (kept in sync via stable phase commits)
 - Current annotated release tag: `v0.10.0`
-- Latest stable phase: `v0.072` (prototype split groundwork)
+- Latest stable phase: `v0.073` (prototype split groundwork)
 - Major completed workstreams:
   - template baseline scaffold + CI/release workflow
   - transition product API (`extractConcepts`, `validateConcepts`)
@@ -48,6 +48,7 @@
   - twenty-seventh safe prototype monolith split step (CLI context assembly helper extraction)
   - twenty-eighth safe prototype monolith split step (CLI runtime invocation binding helper extraction)
   - twenty-ninth safe prototype monolith split step (CLI flow dependency assembly helper extraction)
+  - thirtieth safe prototype monolith split step (CLI parse-context wrapper helper extraction)
 
 ## Implementation status
 
