@@ -551,4 +551,11 @@ Cycle AR (`v0.050`) - Prototype Split Groundwork (Wikipedia Mapping Helpers):
 - Keep behavior and exported prototype runtime contracts unchanged.
 - Preserve full frozen-reference and determinism gate stability after extraction.
 Status:
+- Completed on `main`.
+
+Cycle AS (`v0.051`) - Prototype Split Groundwork (Mention Selection Helpers):
+- Extract mention ranking/selection helper logic from `prototype/concept-candidates.js` into a dedicated module.
+- Keep behavior and exported prototype runtime contracts unchanged.
+- Preserve full frozen-reference and determinism gate stability after extraction.
+Status:
 - Planned.

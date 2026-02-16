@@ -5,7 +5,7 @@
 - Branch: `main`
 - Sync: tracking `origin/main` (kept in sync via stable phase commits)
 - Current annotated release tag: `v0.10.0`
-- Latest stable phase: `v0.049` (prototype split groundwork)
+- Latest stable phase: `v0.050` (prototype split groundwork)
 - Major completed workstreams:
   - template baseline scaffold + CI/release workflow
   - transition product API (`extractConcepts`, `validateConcepts`)
@@ -25,6 +25,7 @@
   - fourth safe prototype monolith split step (options/policy helper extraction)
   - fifth safe prototype monolith split step (Step12 contract/index helper extraction)
   - sixth safe prototype monolith split step (wikipedia-signal helper extraction)
+  - seventh safe prototype monolith split step (wikipedia-title-index mapping helper extraction)
 
 ## Implementation status
 

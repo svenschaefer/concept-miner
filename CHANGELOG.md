@@ -133,3 +133,6 @@ All notable changes to this project are documented in this file.
 - v0.049 prototype split groundwork:
   - extracted wikipedia-signal regex/constants/helpers into `prototype/core/wikipedia-signals.js`
   - wired `prototype/concept-candidates.js` to import wikipedia-signal helpers with unchanged public behavior and contracts.
+- v0.050 prototype split groundwork:
+  - extracted wikipedia-title-index mapping helpers into `prototype/core/wikipedia-mapping.js`
+  - wired `prototype/concept-candidates.js` to import wikipedia mapping helpers with unchanged public behavior and contracts.
