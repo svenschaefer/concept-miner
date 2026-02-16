@@ -226,3 +226,6 @@ All notable changes to this project are documented in this file.
 - v0.080 prototype split groundwork:
   - extracted CLI main-setup invocation helper logic into `prototype/core/cli-main-setup-invocation.js`
   - wired `prototype/concept-candidates.js` to delegate main-setup invocation with unchanged behavior.
+- v0.081 prototype split groundwork:
+  - extracted CLI main-setup pipeline helper logic into `prototype/core/cli-main-pipeline.js`
+  - wired `prototype/concept-candidates.js` to delegate main setup pipeline assembly and invocation with unchanged behavior.

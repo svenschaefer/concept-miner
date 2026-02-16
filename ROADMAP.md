@@ -768,4 +768,11 @@ Cycle BW (`v0.081`) - Prototype Split Groundwork (CLI Main Setup Pipeline Helper
 - Keep behavior and exported prototype runtime contracts unchanged.
 - Preserve full frozen-reference and determinism gate stability after extraction.
 Status:
+- Completed on `main`.
+
+Cycle BX (`v0.082`) - Prototype Split Groundwork (CLI Main Pipeline Input Assembly Helper):
+- Extract CLI main pipeline input-assembly helper logic from `prototype/concept-candidates.js` into dedicated modules.
+- Keep behavior and exported prototype runtime contracts unchanged.
+- Preserve full frozen-reference and determinism gate stability after extraction.
+Status:
 - Planned.

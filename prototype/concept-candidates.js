@@ -98,6 +98,7 @@ const { buildCliRuntimeInvocationDependencies } = require("./core/cli-runtime-in
 const { buildCliFlowDependencies } = require("./core/cli-flow-dependency-assembly");
 const { buildCliMainSetupDependencies } = require("./core/cli-main-setup-dependencies");
 const { invokeCliMainSetup } = require("./core/cli-main-setup-invocation");
+const { buildCliMainFlowPipeline } = require("./core/cli-main-pipeline");
 const {
   loadConceptCandidatesSchema,
   validateSchema,
@@ -1018,44 +1019,44 @@ function generateForStep12Path(step12Path, options = {}) {
 async function main() {
   try {
     const args = process.argv.slice(2);
-    const parseDependencies = buildCliParseDependencies({
-      env: process.env,
-      arg,
-      hasFlag,
-      parseStepMode,
-      parseNonNegativeNumberArg,
-      step13Modes: STEP13_MODES,
-      defaultArtifactsRoot: DEFAULT_ARTIFACTS_ROOT,
-      defaultWikipediaTitleIndexEndpoint: DEFAULT_WIKIPEDIA_TITLE_INDEX_ENDPOINT,
-      parseCliExecutionContext,
-    });
-    const flowContextDependencies = buildCliFlowContextDependencies({
-      buildMetaSidecar,
-      writePersistedOutputs,
-    });
-    const runtimeInvocationDependencies = buildCliRuntimeInvocationDependencies({
-      invokeCliRuntimeGeneration,
-      generateForStep12Path,
-      generateForSeed,
-    });
-    const flowDependencies = buildCliFlowDependencies({
-      hasCliInputSource,
-      handleCliResultIO,
-    });
-    const mainSetupDependencies = buildCliMainSetupDependencies({
-      parseCliMainExecutionContext,
-      buildCliMainFlowContext,
-      bindCliRuntimeInvocation,
-      buildCliMainFlowDependencies,
-      parseDependencies,
-      flowContextDependencies,
-      runtimeInvocationDependencies,
-      flowDependencies,
-    });
-    const { context, cliMainFlowDependencies } = invokeCliMainSetup({
-      args,
-      buildCliMainSetup,
-      mainSetupDependencies,
+    const { context, cliMainFlowDependencies } = buildCliMainFlowPipeline(args, {
+      buildCliParseDependencies,
+      buildCliFlowContextDependencies,
+      buildCliRuntimeInvocationDependencies,
+      buildCliFlowDependencies,
+      buildCliMainSetupDependencies,
+      invokeCliMainSetup,
+      parseDependencyInputs: {
+        env: process.env,
+        arg,
+        hasFlag,
+        parseStepMode,
+        parseNonNegativeNumberArg,
+        step13Modes: STEP13_MODES,
+        defaultArtifactsRoot: DEFAULT_ARTIFACTS_ROOT,
+        defaultWikipediaTitleIndexEndpoint: DEFAULT_WIKIPEDIA_TITLE_INDEX_ENDPOINT,
+        parseCliExecutionContext,
+      },
+      flowContextDependencyInputs: {
+        buildMetaSidecar,
+        writePersistedOutputs,
+      },
+      runtimeInvocationDependencyInputs: {
+        invokeCliRuntimeGeneration,
+        generateForStep12Path,
+        generateForSeed,
+      },
+      flowDependencyInputs: {
+        hasCliInputSource,
+        handleCliResultIO,
+      },
+      mainSetupCoreDependencies: {
+        parseCliMainExecutionContext,
+        buildCliMainFlowContext,
+        bindCliRuntimeInvocation,
+        buildCliMainFlowDependencies,
+        buildCliMainSetup,
+      },
     });
 
     const flow = await executeCliMainFlow({
