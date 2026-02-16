@@ -63,6 +63,7 @@ Status date: 2026-02-16
 - [x] `v0.053` prototype split groundwork continued by extracting candidate accumulator helpers into `prototype/core/candidate-accumulator.js` with behavior-preserving wiring.
 - [x] `v0.054` prototype split groundwork continued by extracting mode13b metrics/host-evaluation helpers into `prototype/core/mode13b-metrics.js` with behavior-preserving wiring.
 - [x] `v0.055` prototype split groundwork continued by extracting mode13b host-selection helpers into `prototype/core/mode13b-host-selection.js` with behavior-preserving wiring.
+- [x] `v0.056` prototype split groundwork continued by extracting prune-preparation helpers into `prototype/core/prune-preparation.js` with behavior-preserving wiring.
 - [ ] Remaining roadmap cycles continue from current baseline (`main`).
 
 ## 0. Scope And Decisions (must be resolved first)
@@ -139,6 +140,7 @@ Status date: 2026-02-16
 - Progress: candidate accumulator helpers extracted from monolith to `prototype/core/candidate-accumulator.js` as the tenth safe split step.
 - Progress: mode13b metrics/host-evaluation helpers extracted from monolith to `prototype/core/mode13b-metrics.js` as the eleventh safe split step.
 - Progress: mode13b host-selection helpers extracted from monolith to `prototype/core/mode13b-host-selection.js` as the twelfth safe split step.
+- Progress: prune-preparation helpers extracted from monolith to `prototype/core/prune-preparation.js` as the thirteenth safe split step.
 - [x] Remove business logic from CLI path; keep CLI as thin wrapper only.
 - [x] Convert current ad-hoc helpers into coherent modules:
 - argument parsing, IO, deterministic sorting, canonicalization, ID generation, policy parsing.

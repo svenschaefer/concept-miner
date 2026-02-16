@@ -593,4 +593,11 @@ Cycle AX (`v0.056`) - Prototype Split Groundwork (Prune-Preparation Helpers):
 - Keep behavior and exported prototype runtime contracts unchanged.
 - Preserve full frozen-reference and determinism gate stability after extraction.
 Status:
+- Completed on `main`.
+
+Cycle AY (`v0.057`) - Prototype Split Groundwork (Alias-Merge Helpers):
+- Extract alias merge-target and canonical merge helper logic from `prototype/concept-candidates.js` into a dedicated module.
+- Keep behavior and exported prototype runtime contracts unchanged.
+- Preserve full frozen-reference and determinism gate stability after extraction.
+Status:
 - Planned.

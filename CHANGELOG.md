@@ -151,3 +151,6 @@ All notable changes to this project are documented in this file.
 - v0.055 prototype split groundwork:
   - extracted mode13b stronger-host suppression/ranking helpers into `prototype/core/mode13b-host-selection.js`
   - wired `prototype/concept-candidates.js` to import mode13b host-selection helpers with unchanged public behavior and contracts.
+- v0.056 prototype split groundwork:
+  - extracted prune preparation/index helpers into `prototype/core/prune-preparation.js`
+  - wired `prototype/concept-candidates.js` to import prune-state preparation helpers with unchanged public behavior and contracts.
