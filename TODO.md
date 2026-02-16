@@ -34,6 +34,7 @@ Status date: 2026-02-16
 - [x] `v0.024` post-productization docs closed: release notes published, status snapshot refreshed, upstream Step12 backlog documented.
 - [x] `v0.025` optional PowerShell wrapper flows documented and `check-concept-candidates` execution contract added.
 - [x] `v0.026` generated report artifact policy decided (checked-in snapshots) and enforced in CI.
+- [x] `v0.027` prototype documentation mined/migrated into product docs with backlog history mapping.
 - [ ] Remaining roadmap cycles continue from current baseline (`main`).
 
 ## 0. Scope And Decisions (must be resolved first)
@@ -252,7 +253,7 @@ Status date: 2026-02-16
 ## 7. Documentation And Governance Productization
 
 - [x] Rewrite root `README.md` to match real runnable state and chosen contract.
-- [ ] Mine and migrate prototype documentation content:
+- [x] Mine and migrate prototype documentation content:
 - `prototype/README.md` contract details into product docs
 - `prototype/TODO.md` open/closed governance items into product backlog/history notes
 - [x] Add concrete quick-start examples for JS API, CLI, and REST.

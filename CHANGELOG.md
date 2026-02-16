@@ -55,3 +55,6 @@ All notable changes to this project are documented in this file.
 - v0.026 generated report artifact governance:
   - checked-in snapshot policy documented in `docs/GENERATED_REPORT_ARTIFACTS_POLICY.md`
   - CI policy check added via `scripts/check-generated-report-artifacts-policy.js`.
+- v0.027 prototype documentation migration:
+  - contract/governance summary migrated into `docs/PROTOTYPE_MIGRATION_NOTES.md`
+  - prototype TODO open/closed history mapped into product backlog context.

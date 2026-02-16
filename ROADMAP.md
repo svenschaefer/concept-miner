@@ -377,3 +377,10 @@ Cycle T (`v0.026`) - Generated Report Artifact Policy Closure:
 - Align TODO status with explicit checked-in snapshot policy decision.
 Status:
 - Completed on `main`.
+
+Cycle U (`v0.027`) - Prototype Documentation Migration Closure:
+- Migrate key contract/governance points from `prototype/README.md` into product-facing docs.
+- Capture open/closed items from `prototype/TODO.md` in product backlog history.
+- Keep prototype specifics explicit while preserving product naming in primary docs.
+Status:
+- Completed on `main`.

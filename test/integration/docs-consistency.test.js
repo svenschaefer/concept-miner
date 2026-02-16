@@ -31,6 +31,7 @@ test("README documentation links reference existing files", () => {
     "docs/FROZEN_REFERENCES_POLICY.md",
     "docs/GENERATED_REPORT_ARTIFACTS_POLICY.md",
     "docs/GUARANTEES.md",
+    "docs/PROTOTYPE_MIGRATION_NOTES.md",
     "docs/STEP12_UPSTREAM_BACKLOG.md",
     "docs/STATUSQUO.md",
     "docs/TEMPLATE_SETUP.md",
