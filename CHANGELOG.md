@@ -178,3 +178,6 @@ All notable changes to this project are documented in this file.
 - v0.064 prototype split groundwork:
   - extracted Step12 artifact input loading and runtime seed-path resolution helpers into `prototype/core/step12-input.js`
   - wired `prototype/concept-candidates.js` generation paths to consume Step12 input helper functions with unchanged path compatibility behavior.
+- v0.065 prototype split groundwork:
+  - extracted CLI option parsing and run-option assembly helpers into `prototype/core/cli-option-assembly.js`
+  - wired `prototype/concept-candidates.js` main execution path to consume CLI option assembly helpers with unchanged CLI contract behavior.

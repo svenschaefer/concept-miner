@@ -656,4 +656,11 @@ Cycle BG (`v0.065`) - Prototype Split Groundwork (CLI Option Assembly Helpers):
 - Keep behavior and exported prototype runtime contracts unchanged.
 - Preserve full frozen-reference and determinism gate stability after extraction.
 Status:
+- Completed on `main`.
+
+Cycle BH (`v0.066`) - Prototype Split Groundwork (CLI Validation/Usage Guard Helpers):
+- Extract CLI validation/usage guard helper logic from `prototype/concept-candidates.js` into dedicated modules.
+- Keep behavior and exported prototype runtime contracts unchanged.
+- Preserve full frozen-reference and determinism gate stability after extraction.
+Status:
 - Planned.
