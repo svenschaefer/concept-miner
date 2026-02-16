@@ -24,6 +24,7 @@ Status date: 2026-02-16
 - [x] `v0.014` scope/contract decisions in Section 0 reconciled to implemented repository state.
 - [x] `v0.015` compatibility `validate` command aligned to canonical concepts validation with legacy fallback.
 - [x] `v0.016` metadata/diagnostics sidecar contracts added and enforced against frozen references.
+- [x] `v0.017` prototype benchmark/report tooling execution contracts added in bounded deterministic integration tests.
 - [ ] Remaining roadmap cycles continue from current baseline (`main`).
 
 ## 0. Scope And Decisions (must be resolved first)
@@ -212,7 +213,7 @@ Status date: 2026-02-16
 - mode-tagged output artifacts
 - mode-tagged metadata sidecars
 - diagnostics sidecars with expected top-level shape
-- [ ] Port prototype benchmark tooling tests:
+- [x] Port prototype benchmark tooling tests:
 - independent benchmark scoring scripts and policy-intersection reporting
 - threshold sweep reproducibility and report generation
 - wikipedia-title-index coverage report generation

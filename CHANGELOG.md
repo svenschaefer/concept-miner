@@ -22,3 +22,7 @@ All notable changes to this project are documented in this file.
   - `schema/concept-candidates-meta.schema.json`
   - `schema/concept-candidates-diagnostics.schema.json`
   - integration checks validate frozen sidecars for all seeds/modes.
+- v0.017 prototype tooling execution contracts added:
+  - independent benchmark checks for `13a` and `13b` execution paths
+  - threshold sweep report generation contract
+  - wikipedia-title-index coverage report generation contract.

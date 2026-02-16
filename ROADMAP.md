@@ -305,3 +305,10 @@ Cycle J (`v0.016`) - Sidecar Contract Guarding:
 - Validate required top-level shape so accidental sidecar drift is detected early.
 Status:
 - Completed on `main`.
+
+Cycle K (`v0.017`) - Prototype Tooling Execution Contracts:
+- Add integration contracts that execute benchmark/report scripts in deterministic test scope.
+- Validate both mode evaluations (`generic baseline mode` and `default extended mode`) execute successfully.
+- Validate threshold sweep and wikipedia-title-index coverage reports are generated with expected top-level shape.
+Status:
+- Completed on `main`.
