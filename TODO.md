@@ -10,6 +10,10 @@ Status date: 2026-02-16
 - [x] `v0.003` transition `extractConcepts` / `validateConcepts` API added (`ac5711a`).
 - [x] `v0.004` product CLI commands `extract` and `validate-concepts` added (`9e08f3b`).
 - [x] `v0.005` realistic artifacts corpus layout contract test added (`077d9cf`).
+- [x] `v0.006` prototype benchmark/legacy policy guards enforced in `ci:check` (`c4a5ff6`).
+- [x] `v0.007` frozen persisted-mode references enforced against `result-reference` (`33d6cfe`).
+- [x] `v0.008` README updated with current API/CLI usage (`8ba14c0`).
+- [x] `v0.009` release-readiness gate (`npm run release:check`) passes locally.
 - [ ] Remaining roadmap cycles continue from current baseline (`main`).
 
 ## 0. Scope And Decisions (must be resolved first)
