@@ -121,3 +121,6 @@ All notable changes to this project are documented in this file.
 - v0.045 prototype split groundwork:
   - extracted shared utility helpers into `prototype/core/shared-utils.js`
   - wired `prototype/concept-candidates.js` to import shared helpers with unchanged public behavior and contracts.
+- v0.046 prototype split groundwork:
+  - extracted alias/morphology helpers into `prototype/core/alias-morphology.js`
+  - wired `prototype/concept-candidates.js` to import alias/morphology helpers with unchanged public behavior and contracts.

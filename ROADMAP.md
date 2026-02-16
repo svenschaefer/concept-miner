@@ -517,3 +517,10 @@ Cycle AM (`v0.045`) - Prototype Split Groundwork (Shared Utility Module):
 - Preserve full frozen-reference and determinism gate stability after extraction.
 Status:
 - Completed on `main`.
+
+Cycle AN (`v0.046`) - Prototype Split Groundwork (Alias/Morphology Module):
+- Extract alias/morphology helper logic from `prototype/concept-candidates.js` into a dedicated module.
+- Keep behavior and exported prototype runtime contracts unchanged.
+- Preserve full frozen-reference and determinism gate stability after extraction.
+Status:
+- Completed on `main`.
