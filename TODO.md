@@ -94,6 +94,7 @@ Status date: 2026-02-16
 - [x] `v0.084` prototype split groundwork continued by extracting CLI usage-exit handling helper into `prototype/core/cli-usage-exit.js` with behavior-preserving wiring.
 - [x] `v0.085` prototype split groundwork continued by extracting CLI error-exit handling helper into `prototype/core/cli-error-exit.js` with behavior-preserving wiring.
 - [x] `v0.086` prototype split groundwork continued by extracting CLI main execution helper into `prototype/core/cli-main-execution.js` with behavior-preserving wiring.
+- [x] `v0.087` prototype split groundwork continued by extracting CLI main dependency-source helper into `prototype/core/cli-main-dependency-sources.js` with behavior-preserving wiring.
 - [ ] Remaining roadmap cycles continue from current baseline (`main`).
 
 ## 0. Scope And Decisions (must be resolved first)
@@ -201,6 +202,7 @@ Status date: 2026-02-16
 - Progress: CLI usage-exit handling helper extracted from monolith to `prototype/core/cli-usage-exit.js` as the forty-first safe split step.
 - Progress: CLI error-exit handling helper extracted from monolith to `prototype/core/cli-error-exit.js` as the forty-second safe split step.
 - Progress: CLI main execution helper extracted from monolith to `prototype/core/cli-main-execution.js` as the forty-third safe split step.
+- Progress: CLI main dependency-source helper extracted from monolith to `prototype/core/cli-main-dependency-sources.js` as the forty-fourth safe split step.
 - [x] Remove business logic from CLI path; keep CLI as thin wrapper only.
 - [x] Convert current ad-hoc helpers into coherent modules:
 - argument parsing, IO, deterministic sorting, canonicalization, ID generation, policy parsing.

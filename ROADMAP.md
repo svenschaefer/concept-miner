@@ -810,4 +810,11 @@ Cycle CC (`v0.087`) - Prototype Split Groundwork (CLI Main Dependency Source Hel
 - Keep behavior and exported prototype runtime contracts unchanged.
 - Preserve full frozen-reference and determinism gate stability after extraction.
 Status:
+- Completed on `main`.
+
+Cycle CD (`v0.088`) - Prototype Split Groundwork (CLI Main Invocation Wrapper Helper):
+- Extract CLI main invocation-wrapper helper logic from `prototype/concept-candidates.js` into dedicated modules.
+- Keep behavior and exported prototype runtime contracts unchanged.
+- Preserve full frozen-reference and determinism gate stability after extraction.
+Status:
 - Planned.

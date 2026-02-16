@@ -244,3 +244,6 @@ All notable changes to this project are documented in this file.
 - v0.086 prototype split groundwork:
   - extracted CLI main execution helper logic into `prototype/core/cli-main-execution.js`
   - wired `prototype/concept-candidates.js` to delegate main execution orchestration with unchanged behavior.
+- v0.087 prototype split groundwork:
+  - extracted CLI main dependency-source assembly helper logic into `prototype/core/cli-main-dependency-sources.js`
+  - wired `prototype/concept-candidates.js` to delegate main dependency-source assembly with unchanged behavior.

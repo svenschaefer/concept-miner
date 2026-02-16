@@ -104,6 +104,7 @@ const { buildCliMainPipelineDependencies } = require("./core/cli-main-pipeline-d
 const { handleCliUsageExit } = require("./core/cli-usage-exit");
 const { handleCliErrorExit } = require("./core/cli-error-exit");
 const { executeCliMainExecution } = require("./core/cli-main-execution");
+const { buildCliMainDependencySources } = require("./core/cli-main-dependency-sources");
 const {
   loadConceptCandidatesSchema,
   validateSchema,
@@ -1024,46 +1025,45 @@ function generateForStep12Path(step12Path, options = {}) {
 async function main() {
   try {
     const args = process.argv.slice(2);
+    const dependencySources = buildCliMainDependencySources({
+      env: process.env,
+      arg,
+      hasFlag,
+      parseStepMode,
+      parseNonNegativeNumberArg,
+      step13Modes: STEP13_MODES,
+      defaultArtifactsRoot: DEFAULT_ARTIFACTS_ROOT,
+      defaultWikipediaTitleIndexEndpoint: DEFAULT_WIKIPEDIA_TITLE_INDEX_ENDPOINT,
+      parseCliExecutionContext,
+      buildMetaSidecar,
+      writePersistedOutputs,
+      invokeCliRuntimeGeneration,
+      generateForStep12Path,
+      generateForSeed,
+      hasCliInputSource,
+      handleCliResultIO,
+      parseCliMainExecutionContext,
+      buildCliMainFlowContext,
+      bindCliRuntimeInvocation,
+      buildCliMainFlowDependencies,
+      buildCliMainSetup,
+      usage,
+      stderr: console.error,
+      exit: process.exit,
+      buildCliParseDependencies,
+      buildCliFlowContextDependencies,
+      buildCliRuntimeInvocationDependencies,
+      buildCliFlowDependencies,
+      buildCliMainSetupDependencies,
+      invokeCliMainSetup,
+    });
     await executeCliMainExecution(args, {
       buildCliMainPipelineInputs,
       buildCliMainPipelineDependencies,
       buildCliMainFlowPipeline,
       executeCliMainFlow,
       handleCliUsageExit,
-      pipelineInputSources: {
-        env: process.env,
-        arg,
-        hasFlag,
-        parseStepMode,
-        parseNonNegativeNumberArg,
-        step13Modes: STEP13_MODES,
-        defaultArtifactsRoot: DEFAULT_ARTIFACTS_ROOT,
-        defaultWikipediaTitleIndexEndpoint: DEFAULT_WIKIPEDIA_TITLE_INDEX_ENDPOINT,
-        parseCliExecutionContext,
-        buildMetaSidecar,
-        writePersistedOutputs,
-        invokeCliRuntimeGeneration,
-        generateForStep12Path,
-        generateForSeed,
-        hasCliInputSource,
-        handleCliResultIO,
-        parseCliMainExecutionContext,
-        buildCliMainFlowContext,
-        bindCliRuntimeInvocation,
-        buildCliMainFlowDependencies,
-        buildCliMainSetup,
-        usage,
-        stderr: console.error,
-        exit: process.exit,
-      },
-      pipelineDependencySources: {
-        buildCliParseDependencies,
-        buildCliFlowContextDependencies,
-        buildCliRuntimeInvocationDependencies,
-        buildCliFlowDependencies,
-        buildCliMainSetupDependencies,
-        invokeCliMainSetup,
-      },
+      ...dependencySources,
     });
   } catch (err) {
     handleCliErrorExit(err, {
