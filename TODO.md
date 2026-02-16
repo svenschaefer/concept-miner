@@ -36,6 +36,7 @@ Status date: 2026-02-16
 - [x] `v0.026` generated report artifact policy decided (checked-in snapshots) and enforced in CI.
 - [x] `v0.027` prototype documentation mined/migrated into product docs with backlog history mapping.
 - [x] `v0.028` PowerShell seed-runner persisted-mode contract covered via staged integration execution test.
+- [x] `v0.029` suggested execution-order phase status synced with completed sections.
 - [ ] Remaining roadmap cycles continue from current baseline (`main`).
 
 ## 0. Scope And Decisions (must be resolved first)
@@ -339,8 +340,8 @@ Status date: 2026-02-16
 
 ## 12. Suggested Execution Order
 
-- [ ] Phase 1: Scope decisions (Section 0)
-- [ ] Phase 2: Template scaffold + metadata (Sections 1-2)
+- [x] Phase 1: Scope decisions (Section 0)
+- [x] Phase 2: Template scaffold + metadata (Sections 1-2)
 - [ ] Phase 3: Core refactor + contract consolidation (Sections 3-4)
 - [ ] Phase 4: CLI/tests/docs completion (Sections 5-7)
 - [ ] Phase 5: CI/release wiring + cleanup (Sections 8-9)

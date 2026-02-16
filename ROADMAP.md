@@ -391,3 +391,10 @@ Cycle V (`v0.028`) - Batch Seed Runner Contract Closure:
 - Close remaining prototype-derived product check item for documented batch runner flow.
 Status:
 - Completed on `main`.
+
+Cycle W (`v0.029`) - Execution-Order Phase Sync:
+- Reconcile `TODO.md` Section 12 phase checkboxes with completed work to date.
+- Mark fully completed phases and leave partially complete phases open.
+- Keep roadmap/status text aligned with this phase-state truth.
+Status:
+- Completed on `main`.

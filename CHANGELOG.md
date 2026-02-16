@@ -60,3 +60,5 @@ All notable changes to this project are documented in this file.
   - prototype TODO open/closed history mapped into product backlog context.
 - v0.028 batch runner contract coverage:
   - added staged integration execution check for `prototype/run-seed-concept-candidates.ps1` in persisted mode.
+- v0.029 TODO execution-order sync:
+  - section-phase status now marks completed early phases (`Section 0`, `Sections 1-2`) explicitly.
