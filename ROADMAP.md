@@ -450,3 +450,10 @@ Cycle AD (`v0.036`) - CLI Thin-Entrypoint Contract:
 - Close TODO item for removing business logic from CLI path.
 Status:
 - Completed on `main`.
+
+Cycle AE (`v0.037`) - Compatibility Alias Contract Closure:
+- Add explicit positive-path tests for compatibility commands (`run`, `validate`) in addition to failure-path coverage.
+- Keep underscore mode aliases and legacy validation fallback behavior contractually covered.
+- Close TODO item for backward-compatible aliases/flags retention during transition.
+Status:
+- Completed on `main`.

@@ -90,3 +90,6 @@ All notable changes to this project are documented in this file.
 - v0.036 CLI entrypoint contract hardening:
   - added `test/unit/cli-entrypoint.contract.test.js` to enforce thin `bin/cli.js` delegation
   - strengthened CLI usage contract test to keep compatibility commands (`run`, `validate`) visible.
+- v0.037 compatibility alias contract closure:
+  - added positive-path compatibility tests for `concept-miner run` and `concept-miner validate`
+  - kept underscore and kebab-case mode compatibility contractually covered in CLI tests.

@@ -48,6 +48,27 @@ test("CLI run with --config fails explicitly when config file is missing", () =>
   assert.match(String(result.stderr || ""), /Config file does not exist/i);
 });
 
+test("CLI compatibility run command succeeds for JSON input", () => {
+  const tmpDir = fs.mkdtempSync(path.join(os.tmpdir(), "nodejs-template-cli-"));
+  const inputPath = path.join(tmpDir, "input.json");
+  fs.writeFileSync(
+    inputPath,
+    JSON.stringify({
+      items: [
+        { id: "i:1", value: "alpha" },
+        { id: "i:2", value: "beta" },
+      ],
+    }),
+    "utf8"
+  );
+
+  const result = runCli(["run", "--in", inputPath]);
+  assert.equal(result.status, 0);
+  const parsed = JSON.parse(String(result.stdout || "{}"));
+  assert.equal(parsed.stage, "output");
+  assert.ok(Array.isArray(parsed.records));
+});
+
 test("CLI extract supports product mode flag", () => {
   const result = runCli(["extract", "--text", "alpha beta alpha", "--mode", "generic_baseline"]);
   assert.equal(result.status, 0);
@@ -101,4 +122,24 @@ test("CLI validate supports legacy template output as fallback", () => {
   const validate = runCli(["validate", "--in", legacyPath]);
   assert.equal(validate.status, 0);
   assert.match(String(validate.stdout || ""), /^ok/m);
+});
+
+test("CLI compatibility validate command accepts run output", () => {
+  const tmpDir = fs.mkdtempSync(path.join(os.tmpdir(), "nodejs-template-cli-"));
+  const inputPath = path.join(tmpDir, "input.json");
+  const outputPath = path.join(tmpDir, "output.json");
+  fs.writeFileSync(
+    inputPath,
+    JSON.stringify({
+      items: [{ id: "i:1", value: "alpha" }],
+    }),
+    "utf8"
+  );
+
+  const runResult = runCli(["run", "--in", inputPath, "--out", outputPath]);
+  assert.equal(runResult.status, 0);
+
+  const validateResult = runCli(["validate", "--in", outputPath]);
+  assert.equal(validateResult.status, 0);
+  assert.match(String(validateResult.stdout || ""), /^ok/m);
 });

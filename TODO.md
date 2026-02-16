@@ -44,6 +44,7 @@ Status date: 2026-02-16
 - [x] `v0.034` concepts-document invariants enforced in validation (`end >= start`, unique concept ids, unique concept names) with unit contract tests.
 - [x] `v0.035` ad-hoc concepts runtime helpers modularized into focused `src/core` and `src/validate` modules.
 - [x] `v0.036` thin-CLI entrypoint contract enforced (`bin/cli.js` delegates only) with compatibility usage guards.
+- [x] `v0.037` compatibility command/alias positive-path contracts added (`run`, `validate`, underscore/kebab mode support).
 - [ ] Remaining roadmap cycles continue from current baseline (`main`).
 
 ## 0. Scope And Decisions (must be resolved first)
@@ -112,7 +113,7 @@ Status date: 2026-02-16
 - [x] Convert current ad-hoc helpers into coherent modules:
 - argument parsing, IO, deterministic sorting, canonicalization, ID generation, policy parsing.
 - [ ] Preserve deterministic behavior and ordering guarantees during refactor.
-- [ ] Keep backward-compatible aliases/flags where already documented (for controlled transition).
+- [x] Keep backward-compatible aliases/flags where already documented (for controlled transition).
 - [ ] Replace internal mode names in API/CLI/config/meta from step labels to product mode labels.
 - [ ] Migrate prototype support modules and governance artifacts into product structure:
 - `legacy-enrichment.js`
