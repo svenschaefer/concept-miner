@@ -93,6 +93,7 @@ const { buildCliMainFlowDependencies } = require("./core/cli-flow-dependencies")
 const { parseCliMainExecutionContext } = require("./core/cli-parse-context");
 const { buildCliMainSetup } = require("./core/cli-main-setup");
 const { buildCliParseDependencies } = require("./core/cli-parse-dependencies");
+const { buildCliFlowContextDependencies } = require("./core/cli-flow-context-dependencies");
 const {
   loadConceptCandidatesSchema,
   validateSchema,
@@ -1024,16 +1025,17 @@ async function main() {
       defaultWikipediaTitleIndexEndpoint: DEFAULT_WIKIPEDIA_TITLE_INDEX_ENDPOINT,
       parseCliExecutionContext,
     });
+    const flowContextDependencies = buildCliFlowContextDependencies({
+      buildMetaSidecar,
+      writePersistedOutputs,
+    });
     const { context, cliMainFlowDependencies } = buildCliMainSetup(args, {
       parseCliMainExecutionContext,
       buildCliMainFlowContext,
       bindCliRuntimeInvocation,
       buildCliMainFlowDependencies,
       parseDependencies,
-      flowContextDependencies: {
-        buildMetaSidecar,
-        writePersistedOutputs,
-      },
+      flowContextDependencies,
       runtimeInvocationDependencies: {
         invokeCliRuntimeGeneration,
         generateForStep12Path,
