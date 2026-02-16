@@ -649,4 +649,11 @@ Cycle BF (`v0.064`) - Prototype Split Groundwork (Step12 Input Loading Helpers):
 - Keep behavior and exported prototype runtime contracts unchanged.
 - Preserve full frozen-reference and determinism gate stability after extraction.
 Status:
+- Completed on `main`.
+
+Cycle BG (`v0.065`) - Prototype Split Groundwork (CLI Option Assembly Helpers):
+- Extract CLI option parsing and run-option assembly helper logic from `prototype/concept-candidates.js` into dedicated modules.
+- Keep behavior and exported prototype runtime contracts unchanged.
+- Preserve full frozen-reference and determinism gate stability after extraction.
+Status:
 - Planned.

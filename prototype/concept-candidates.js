@@ -1,7 +1,6 @@
 #!/usr/bin/env node
 const fs = require("fs");
 const path = require("path");
-const YAML = require("yaml");
 const { runElementaryAssertions } = require("elementary-assertions");
 const {
   canonicalizeSurface,
@@ -81,6 +80,7 @@ const { buildDiagnosticsDocument } = require("./core/diagnostics-assembly");
 const { buildMetaSidecar, writePersistedOutputs } = require("./core/output-writers");
 const { validateDeterministicCandidateRecord } = require("./core/determinism-validation");
 const { finalizeGeneratedOutput } = require("./core/generation-orchestration");
+const { resolveSeedTextInputPaths, loadStep12Yaml } = require("./core/step12-input");
 const {
   loadConceptCandidatesSchema,
   validateSchema,
@@ -951,12 +951,7 @@ async function generateForSeed(seedId, options = {}) {
   const wikipediaTitleIndexTimeoutMs =
     Number.isFinite(options.wikipediaTitleIndexTimeoutMs) ? options.wikipediaTitleIndexTimeoutMs
       : (Number.isFinite(options.wtiTimeoutMs) ? options.wtiTimeoutMs : 2000);
-  const legacySeedDir = path.join(artifactsRoot, seedId, "seed");
-  const flatSeedDir = path.join(artifactsRoot, seedId);
-  const legacySeedTextPath = path.join(legacySeedDir, "seed.txt");
-  const flatSeedTextPath = path.join(flatSeedDir, "seed.txt");
-  const seedDir = fs.existsSync(legacySeedTextPath) ? legacySeedDir : flatSeedDir;
-  const seedTextPath = fs.existsSync(legacySeedTextPath) ? legacySeedTextPath : flatSeedTextPath;
+  const { seedDir, seedTextPath, legacySeedTextPath, flatSeedTextPath } = resolveSeedTextInputPaths(artifactsRoot, seedId);
   if (!fs.existsSync(seedTextPath)) {
     throw new Error(`Missing seed.txt for seed ${seedId}: tried ${legacySeedTextPath} and ${flatSeedTextPath}`);
   }
@@ -996,16 +991,6 @@ async function generateForSeed(seedId, options = {}) {
     validateConceptCandidatesDeterminism,
     serializeDeterministicYaml,
   });
-}
-
-function loadStep12Yaml(step12Path) {
-  const inputPath = path.resolve(step12Path);
-  if (!fs.existsSync(inputPath)) {
-    throw new Error(`Missing Step 12 artifact: ${inputPath}`);
-  }
-  const text = fs.readFileSync(inputPath, "utf8");
-  const doc = YAML.parse(text);
-  return { inputPath, doc };
 }
 
 function generateForStep12Path(step12Path, options = {}) {

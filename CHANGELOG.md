@@ -175,3 +175,6 @@ All notable changes to this project are documented in this file.
 - v0.063 prototype split groundwork:
   - extracted schema loading/validation and deterministic YAML serialization helpers into `prototype/core/schema-serialization-io.js`
   - wired `prototype/concept-candidates.js` generation paths to consume the extracted schema/serialization IO helpers.
+- v0.064 prototype split groundwork:
+  - extracted Step12 artifact input loading and runtime seed-path resolution helpers into `prototype/core/step12-input.js`
+  - wired `prototype/concept-candidates.js` generation paths to consume Step12 input helper functions with unchanged path compatibility behavior.

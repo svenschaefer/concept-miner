@@ -71,6 +71,7 @@ Status date: 2026-02-16
 - [x] `v0.061` prototype split groundwork continued by extracting determinism validation helpers into `prototype/core/determinism-validation.js` with behavior-preserving wiring.
 - [x] `v0.062` prototype split groundwork continued by extracting runtime/persisted generation orchestration helpers into `prototype/core/generation-orchestration.js` with behavior-preserving wiring.
 - [x] `v0.063` prototype split groundwork continued by extracting schema/serialization IO helpers into `prototype/core/schema-serialization-io.js` with behavior-preserving wiring.
+- [x] `v0.064` prototype split groundwork continued by extracting Step12 input loading helpers into `prototype/core/step12-input.js` with behavior-preserving wiring.
 - [ ] Remaining roadmap cycles continue from current baseline (`main`).
 
 ## 0. Scope And Decisions (must be resolved first)
@@ -155,6 +156,7 @@ Status date: 2026-02-16
 - Progress: determinism validation helpers extracted from monolith to `prototype/core/determinism-validation.js` as the eighteenth safe split step.
 - Progress: runtime/persisted generation orchestration helpers extracted from monolith to `prototype/core/generation-orchestration.js` as the nineteenth safe split step.
 - Progress: schema/serialization IO helpers extracted from monolith to `prototype/core/schema-serialization-io.js` as the twentieth safe split step.
+- Progress: Step12 input loading helpers extracted from monolith to `prototype/core/step12-input.js` as the twenty-first safe split step.
 - [x] Remove business logic from CLI path; keep CLI as thin wrapper only.
 - [x] Convert current ad-hoc helpers into coherent modules:
 - argument parsing, IO, deterministic sorting, canonicalization, ID generation, policy parsing.
