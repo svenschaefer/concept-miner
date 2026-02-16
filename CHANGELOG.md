@@ -112,3 +112,6 @@ All notable changes to this project are documented in this file.
   - added `test/integration/prototype-repeat-determinism.contract.test.js`
   - enforces repeat-run deterministic persisted-step12 outputs across all realistic seeds and both modes
   - asserts byte-stable YAML/metadata and normalized diagnostics stability, plus object-level determinism validation.
+- v0.043 runtime seed-path transition closure:
+  - updated `prototype/generateForSeed` to support both legacy (`<seed>/seed/seed.txt`) and flattened (`<seed>/seed.txt`) artifact layouts
+  - added `test/integration/runtime-seed-path.contract.test.js` to enforce product API runtime seed-path extraction in both product modes.

@@ -5,7 +5,7 @@
 - Branch: `main`
 - Sync: tracking `origin/main` (kept in sync via stable phase commits)
 - Current annotated release tag: `v0.10.0`
-- Latest stable phase: `v0.042` (determinism and ordering guard closure)
+- Latest stable phase: `v0.043` (runtime input-path transition closure)
 - Major completed workstreams:
   - template baseline scaffold + CI/release workflow
   - transition product API (`extractConcepts`, `validateConcepts`)
@@ -18,6 +18,7 @@
   - explicit core extraction invariant contracts across realistic persisted Step12 seeds
   - pre/post publish smoke rehearsal flow for private-package phase (`smoke:release:rehearsal`)
   - repeat-run deterministic persisted-step12 output contracts across all seed fixtures and both modes
+  - runtime seed-text extraction compatibility for both legacy and flattened artifact layouts
 
 ## Implementation status
 

@@ -50,6 +50,7 @@ Status date: 2026-02-16
 - [x] `v0.040` core extraction invariant contracts added and enforced across realistic persisted Step12 seeds.
 - [x] `v0.041` pre/post publish smoke rehearsal flow executed via clean-workspace tarball installs (postpublish simulated for private-package phase).
 - [x] `v0.042` repeat-run determinism and ordering contracts enforced across realistic persisted Step12 seeds and both modes.
+- [x] `v0.043` runtime seed-text input-path transition compatibility enforced for both legacy and flattened artifact layouts with deterministic product API contracts.
 - [ ] Remaining roadmap cycles continue from current baseline (`main`).
 
 ## 0. Scope And Decisions (must be resolved first)
@@ -132,7 +133,7 @@ Status date: 2026-02-16
 - `concept-candidates.13b-threshold-sweep.js`
 - `run-seed-concept-candidates.ps1`
 - `step12-wikipedia-title-index-coverage.js`
-- [ ] Preserve current runtime input paths and modes during transition:
+- [x] Preserve current runtime input paths and modes during transition:
 - persisted artifact input path
 - runtime seed-text input path with `elementary-assertions` integration
 - [ ] Replace prototype names in code and CLI while preserving behavior:

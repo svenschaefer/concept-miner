@@ -1855,10 +1855,14 @@ async function generateForSeed(seedId, options = {}) {
   const wikipediaTitleIndexTimeoutMs =
     Number.isFinite(options.wikipediaTitleIndexTimeoutMs) ? options.wikipediaTitleIndexTimeoutMs
       : (Number.isFinite(options.wtiTimeoutMs) ? options.wtiTimeoutMs : 2000);
-  const seedDir = path.join(artifactsRoot, seedId, "seed");
-  const seedTextPath = path.join(seedDir, "seed.txt");
+  const legacySeedDir = path.join(artifactsRoot, seedId, "seed");
+  const flatSeedDir = path.join(artifactsRoot, seedId);
+  const legacySeedTextPath = path.join(legacySeedDir, "seed.txt");
+  const flatSeedTextPath = path.join(flatSeedDir, "seed.txt");
+  const seedDir = fs.existsSync(legacySeedTextPath) ? legacySeedDir : flatSeedDir;
+  const seedTextPath = fs.existsSync(legacySeedTextPath) ? legacySeedTextPath : flatSeedTextPath;
   if (!fs.existsSync(seedTextPath)) {
-    throw new Error(`Missing seed.txt for seed ${seedId}: ${seedTextPath}`);
+    throw new Error(`Missing seed.txt for seed ${seedId}: tried ${legacySeedTextPath} and ${flatSeedTextPath}`);
   }
   const seedText = fs.readFileSync(seedTextPath, "utf8");
 

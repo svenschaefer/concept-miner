@@ -496,3 +496,10 @@ Cycle AJ (`v0.042`) - Determinism And Ordering Guard Closure:
 - Close TODO item for preserving deterministic behavior and ordering guarantees during refactor.
 Status:
 - Completed on `main`.
+
+Cycle AK (`v0.043`) - Runtime Input Path Transition Closure:
+- Add explicit product-level integration contracts for runtime seed-text input path (`seedId` + `artifactsRoot`) in both product modes.
+- Assert deterministic output stability for repeated runtime seed-path extraction calls.
+- Close TODO item for preserving runtime input paths and modes during transition.
+Status:
+- Completed on `main`.
