@@ -607,4 +607,11 @@ Cycle AZ (`v0.058`) - Prototype Split Groundwork (Emission Assembly Helpers):
 - Keep behavior and exported prototype runtime contracts unchanged.
 - Preserve full frozen-reference and determinism gate stability after extraction.
 Status:
+- Completed on `main`.
+
+Cycle BA (`v0.059`) - Prototype Split Groundwork (Diagnostics Assembly Helpers):
+- Extract diagnostics/sidecar assembly helper logic from `prototype/concept-candidates.js` into a dedicated module.
+- Keep behavior and exported prototype runtime contracts unchanged.
+- Preserve full frozen-reference and determinism gate stability after extraction.
+Status:
 - Planned.

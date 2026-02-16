@@ -75,6 +75,10 @@ const {
 const { createPruneState } = require("./core/prune-preparation");
 const { applyAliasSynthesis } = require("./core/alias-merge");
 const {
+  materializeWikipediaTitleIndexForCandidate,
+  buildCandidateRecord,
+} = require("./core/emission-assembly");
+const {
   LEGACY_GENERIC_DROP,
   LEGACY_NOMINAL_VERB_WHITELIST,
   applyLegacyStringRules,
@@ -826,42 +830,19 @@ function buildConceptCandidatesFromStep12(step12, options = {}) {
     const assertionIds = sortedUniqueStrings(Array.from(candidate.assertion_ids));
     const surfaces = sortedUniqueStrings(Array.from(candidate.surfaces));
 
-    const wikipediaTitleIndex = Object.create(null);
-    for (const key of wikipediaSignalKeys) {
-      wikipediaTitleIndex[key] = COUNT_KEY_RE.test(key) ? 0 : false;
-    }
-    const mentionContrib = [];
-    for (const mentionId of mentionIds) {
-      const assertionEvidence = mentionWikipediaTitleIndex.get(mentionId) || null;
-      const lexiconEvidence = mentionLexiconWikipediaTitleIndex.get(mentionId) || null;
-      let evidence = {};
-      const policy = String(options.wikipediaTitleIndexPolicy || options.wtiPolicy || "assertion_then_lexicon_fallback");
-      if (policy === "assertion_only") {
-        evidence = assertionEvidence || {};
-      } else {
-        evidence = assertionEvidence || lexiconEvidence || {};
-      }
-      for (const key of wikipediaSignalKeys) {
-        const value = evidence[key];
-        if (value !== undefined) {
-          ensureWikipediaSignalScalar(key, value, `selected_signals.${mentionId}.${key}`);
-          mergeWikipediaSignalValue(wikipediaTitleIndex, key, value);
-        }
-      }
-      if (emitWikipediaTitleIndexEvidence) {
-        let source = "none";
-        if (assertionEvidence && lexiconEvidence) source = "assertion_and_lexicon";
-        else if (assertionEvidence) source = "assertion";
-        else if (lexiconEvidence) source = "lexicon_fallback";
-        mentionContrib.push({
-          mention_id: mentionId,
-          source,
-          assertion_signals: orderedSparseWikipediaSignalObject(assertionEvidence || {}),
-          lexicon_signals: orderedSparseWikipediaSignalObject(lexiconEvidence || {}),
-          selected_signals: orderedSparseWikipediaSignalObject(evidence || {}),
-        });
-      }
-    }
+    const policy = String(options.wikipediaTitleIndexPolicy || options.wtiPolicy || "assertion_then_lexicon_fallback");
+    const { wikipediaTitleIndex, mentionContrib } = materializeWikipediaTitleIndexForCandidate({
+      mentionIds,
+      wikipediaSignalKeys,
+      COUNT_KEY_RE,
+      mentionWikipediaTitleIndex,
+      mentionLexiconWikipediaTitleIndex,
+      policy,
+      ensureWikipediaSignalScalar,
+      mergeWikipediaSignalValue,
+      emitWikipediaTitleIndexEvidence,
+      orderedSparseWikipediaSignalObject,
+    });
 
     const conceptId = conceptIdFromCanonical(candidate.canonical);
     const existing = idToCandidate.get(conceptId);
@@ -897,32 +878,18 @@ function buildConceptCandidatesFromStep12(step12, options = {}) {
       assertion_ids: assertionIds,
     });
 
-    const roles = {
-      actor: candidate.roles.actor,
-      theme: candidate.roles.theme,
-      attr: candidate.roles.attr,
-      topic: candidate.roles.topic,
-      location: candidate.roles.location,
-      other: candidate.roles.other,
-    };
-    const orderedWikipediaTitleIndex = Object.create(null);
-    for (const k of wikipediaSignalKeys) orderedWikipediaTitleIndex[k] = wikipediaTitleIndex[k];
-
-    const record = {
-      concept_id: conceptId,
-      canonical: candidate.canonical,
+    const record = buildCandidateRecord({
+      conceptId,
+      candidate,
       surfaces,
-      mention_ids: mentionIds,
-      assertion_ids: assertionIds,
-      roles,
-      wikipedia_title_index: orderedWikipediaTitleIndex,
-    };
-    if (emitWikipediaTitleIndexEvidence) {
-      record.wikipedia_title_index_evidence = {
-        wikipedia_title_index_policy: String(options.wikipediaTitleIndexPolicy || options.wtiPolicy || "assertion_then_lexicon_fallback"),
-        mention_contributions: mentionContrib,
-      };
-    }
+      mentionIds,
+      assertionIds,
+      wikipediaSignalKeys,
+      wikipediaTitleIndex,
+      emitWikipediaTitleIndexEvidence,
+      policy,
+      mentionContrib,
+    });
     candidates.push(record);
   }
 

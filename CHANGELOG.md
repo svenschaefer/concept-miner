@@ -157,3 +157,6 @@ All notable changes to this project are documented in this file.
 - v0.057 prototype split groundwork:
   - extracted alias merge-target and canonical alias merge helpers into `prototype/core/alias-merge.js`
   - wired `prototype/concept-candidates.js` to import alias merge helpers while preserving legacy `abac` tripwire literal in-file.
+- v0.058 prototype split groundwork:
+  - extracted emission-phase candidate assembly and wikipedia-title-index evidence materialization helpers into `prototype/core/emission-assembly.js`
+  - wired `prototype/concept-candidates.js` emission path to import helpers with unchanged output contracts.
