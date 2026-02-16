@@ -13,6 +13,7 @@
   - frozen artifact corpus layout + frozen reference regression checks
   - OpenAPI/schema contract guard tests
   - sidecar and release-workflow contract tests
+  - full per-seed golden artifact regeneration diff checks (YAML/JSON) with diagnostics timing normalization
 
 ## Runtime status
 
@@ -24,6 +25,7 @@ Working commands:
 - `npm run release:check`
 - `npm run check:concept-candidates:policies`
 - `npm run check:frozen-references-policy`
+- `npm run check:generated-report-artifacts-policy`
 
 Known setup constraints:
 
@@ -40,6 +42,7 @@ Known setup constraints:
   - pack dry-run
   - release smoke
 - Deterministic frozen-reference checks are active for persisted-mode outputs.
+- Golden artifact regeneration checks are active for all seeds and both modes (`13a`, `13b`), plus default output.
 
 ## Documentation status
 
@@ -48,6 +51,8 @@ Recently updated:
 - `README.md`
 - `ROADMAP.md`
 - `TODO.md`
+- `CHANGELOG.md`
 - `docs/FROZEN_REFERENCES_POLICY.md`
+- `docs/STATUSQUO.md`
 - `docs/releases/v0.10.0.md`
 - `docs/STEP12_UPSTREAM_BACKLOG.md`
