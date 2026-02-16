@@ -23,6 +23,11 @@ const {
   roundFixed3,
 } = require("./core/shared-utils");
 const {
+  parseStepMode,
+  parseNonNegativeNumberArg,
+  selectMentionEvidenceByPolicy,
+} = require("./core/options-policy");
+const {
   LEGACY_GENERIC_DROP,
   LEGACY_NOMINAL_VERB_WHITELIST,
   applyLegacyStringRules,
@@ -111,29 +116,6 @@ function ensureWikipediaSignalScalar(key, value, pathLabel) {
   if (typeof value !== "boolean") {
     throw new Error(`Invalid ${key} at ${pathLabel}; expected boolean for non-count wiki signal.`);
   }
-}
-
-function parseStep13Mode(value) {
-  const mode = String(value || "13b");
-  if (!STEP13_MODES.has(mode)) {
-    throw new Error(`Invalid --step13-mode: ${mode}`);
-  }
-  return mode;
-}
-
-function parseNonNegativeNumberArg(name, raw, fallback) {
-  if (raw === null || raw === undefined || raw === "") return fallback;
-  const value = Number(raw);
-  if (!Number.isFinite(value) || value < 0) {
-    throw new Error(`Invalid ${name}: ${String(raw)}`);
-  }
-  return value;
-}
-
-
-function selectMentionEvidenceByPolicy(assertionEvidence, lexiconEvidence, policy) {
-  if (policy === "assertion_only") return assertionEvidence || {};
-  return assertionEvidence || lexiconEvidence || {};
 }
 
 function walkWikipediaSignalFields(node, onSignal, pathLabel) {
@@ -457,7 +439,7 @@ function validateMentionIdsShape(entries, entryPath, mentionById) {
 
 function buildConceptCandidatesFromStep12(step12, options = {}) {
   validateStep12Contract(step12);
-  const step13Mode = parseStep13Mode(options.step13Mode);
+  const step13Mode = parseStepMode(options.step13Mode, STEP13_MODES, "--step13-mode");
   const enableLegacyEnrichment = options.enableLegacyEnrichment === true;
   const mode13bVerbPromotionMinWti = parseNonNegativeNumberArg(
     "mode13bVerbPromotionMinWti",
@@ -1872,7 +1854,7 @@ async function main() {
     const wikipediaTitleIndexTimeoutMs = wikipediaTitleIndexTimeoutMsRaw ? Number(wikipediaTitleIndexTimeoutMsRaw) : 2000;
     const wikipediaTitleIndexPolicy =
       arg(args, "--wikipedia-title-index-policy") || arg(args, "--wti-policy") || "assertion_then_lexicon_fallback";
-    const step13Mode = parseStep13Mode(arg(args, "--step13-mode") || "13b");
+    const step13Mode = parseStepMode(arg(args, "--step13-mode") || "13b", STEP13_MODES, "--step13-mode");
     const mode13bVerbPromotionMinWti = parseNonNegativeNumberArg(
       "--mode13b-verb-promotion-min-wikipedia-count",
       arg(args, "--mode13b-verb-promotion-min-wikipedia-count") || arg(args, "--mode13b-verb-promotion-min-wti"),

@@ -524,3 +524,10 @@ Cycle AN (`v0.046`) - Prototype Split Groundwork (Alias/Morphology Module):
 - Preserve full frozen-reference and determinism gate stability after extraction.
 Status:
 - Completed on `main`.
+
+Cycle AO (`v0.047`) - Prototype Split Groundwork (Options/Policy Module):
+- Extract option parsing and mode/policy helper logic from `prototype/concept-candidates.js` into a dedicated module.
+- Keep behavior and exported prototype runtime contracts unchanged.
+- Preserve full frozen-reference and determinism gate stability after extraction.
+Status:
+- Completed on `main`.

@@ -124,3 +124,6 @@ All notable changes to this project are documented in this file.
 - v0.046 prototype split groundwork:
   - extracted alias/morphology helpers into `prototype/core/alias-morphology.js`
   - wired `prototype/concept-candidates.js` to import alias/morphology helpers with unchanged public behavior and contracts.
+- v0.047 prototype split groundwork:
+  - extracted options/policy helpers into `prototype/core/options-policy.js`
+  - wired `prototype/concept-candidates.js` to import option/policy helpers with unchanged public behavior and contracts.
