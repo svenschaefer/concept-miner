@@ -66,3 +66,7 @@ All notable changes to this project are documented in this file.
   - added hard-failure contract test for invalid `wiki_*_count` typing
   - added in-process and fresh-process replay determinism checks
   - added LF + single trailing newline serialization check for prototype CLI output.
+- v0.031 contract docs synchronization:
+  - added `docs/CONTRACT_ALIGNMENT.md` with canonical payload/no-envelope rule
+  - synchronized `openapi/README.md` and `schema/README.md` with contract mapping
+  - added contract-doc alignment checks in integration tests.

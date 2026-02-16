@@ -58,3 +58,20 @@ test("occurrence offsets are documented as UTF-16 in schema and openapi", () => 
   assert.match(String(occurrence.properties.start.description || ""), /UTF-16/i);
   assert.match(String(occurrence.properties.end.description || ""), /UTF-16/i);
 });
+
+test("contract docs describe canonical concepts document mapping without envelope wrappers", () => {
+  const contractDocPath = path.join(repoRoot, "docs", "CONTRACT_ALIGNMENT.md");
+  const contractDoc = fs.readFileSync(contractDocPath, "utf8");
+  assert.match(contractDoc, /schema\/concepts\.schema\.json/);
+  assert.match(contractDoc, /POST \/v1\/concepts\/extract/);
+  assert.match(contractDoc, /POST \/v1\/concepts\/validate/);
+  assert.match(contractDoc, /No additional transport envelope/i);
+
+  const openapiReadmePath = path.join(repoRoot, "openapi", "README.md");
+  const openapiReadme = fs.readFileSync(openapiReadmePath, "utf8");
+  assert.match(openapiReadme, /CONTRACT_ALIGNMENT\.md/);
+
+  const schemaReadmePath = path.join(repoRoot, "schema", "README.md");
+  const schemaReadme = fs.readFileSync(schemaReadmePath, "utf8");
+  assert.match(schemaReadme, /CONTRACT_ALIGNMENT\.md/);
+});

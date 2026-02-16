@@ -38,6 +38,7 @@ Status date: 2026-02-16
 - [x] `v0.028` PowerShell seed-runner persisted-mode contract covered via staged integration execution test.
 - [x] `v0.029` suggested execution-order phase status synced with completed sections.
 - [x] `v0.030` prototype hard-failure and replay determinism contracts added (in-process + fresh-process).
+- [x] `v0.031` contract docs synchronized with explicit no-envelope rule and OpenAPI/schema mapping checks.
 - [ ] Remaining roadmap cycles continue from current baseline (`main`).
 
 ## 0. Scope And Decisions (must be resolved first)
@@ -129,13 +130,13 @@ Status date: 2026-02-16
 
 ## 4. Public Contract Consolidation (OpenAPI + JSON Schema + Runtime)
 
-- [ ] Select one canonical persisted document format and make all interfaces consistent.
-- [ ] Align `openapi/openapi.yaml` with chosen schema contract and actual runtime output.
-- [ ] Keep and maintain `openapi/README.md` and `schema/README.md` in sync with implemented behavior.
+- [x] Select one canonical persisted document format and make all interfaces consistent.
+- [x] Align `openapi/openapi.yaml` with chosen schema contract and actual runtime output.
+- [x] Keep and maintain `openapi/README.md` and `schema/README.md` in sync with implemented behavior.
 - [x] Preserve and validate current REST endpoint contracts unless intentionally changed:
 - `POST /v1/concepts/extract`
 - `POST /v1/concepts/validate`
-- [ ] Remove or explicitly document envelope/document differences.
+- [x] Remove or explicitly document envelope/document differences.
 - [ ] Enforce missing invariants in schema validation (for example):
 - occurrence bounds (`end >= start`)
 - uniqueness constraints where required by contract

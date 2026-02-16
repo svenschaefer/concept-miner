@@ -405,3 +405,10 @@ Cycle X (`v0.030`) - Prototype Determinism And Hard-Failure Closure:
 - Verify serialization invariants (LF endings, single trailing newline) in replay checks.
 Status:
 - Completed on `main`.
+
+Cycle Y (`v0.031`) - Contract Docs Sync And Envelope Clarification:
+- Synchronize `openapi/README.md` and `schema/README.md` with canonical concepts-document contract.
+- Explicitly document REST vs persisted-document envelope behavior.
+- Add tests so contract-doc alignment and endpoint/schema mapping cannot silently drift.
+Status:
+- Completed on `main`.
