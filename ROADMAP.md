@@ -621,4 +621,11 @@ Cycle BB (`v0.060`) - Prototype Split Groundwork (Persisted Output Writer Helper
 - Keep behavior and exported prototype runtime contracts unchanged.
 - Preserve full frozen-reference and determinism gate stability after extraction.
 Status:
+- Completed on `main`.
+
+Cycle BC (`v0.061`) - Prototype Split Groundwork (Determinism Validation Helpers):
+- Extract deterministic output contract validation helper clusters from `prototype/concept-candidates.js` into dedicated modules.
+- Keep behavior and exported prototype runtime contracts unchanged.
+- Preserve full frozen-reference and determinism gate stability after extraction.
+Status:
 - Planned.

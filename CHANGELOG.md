@@ -163,3 +163,6 @@ All notable changes to this project are documented in this file.
 - v0.059 prototype split groundwork:
   - extracted diagnostics/sidecar assembly helpers into `prototype/core/diagnostics-assembly.js`
   - wired `prototype/concept-candidates.js` diagnostics materialization path to import helpers with unchanged sidecar contract shape.
+- v0.060 prototype split groundwork:
+  - extracted persisted output writer/meta-sidecar helper logic into `prototype/core/output-writers.js`
+  - wired `prototype/concept-candidates.js` CLI write path to import output writer helpers with unchanged persisted output and sidecar contracts.
