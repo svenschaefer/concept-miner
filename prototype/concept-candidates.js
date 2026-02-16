@@ -113,6 +113,7 @@ const { buildCliMainCatchDependencies } = require("./core/cli-main-catch-depende
 const { invokeCliEntrypoint } = require("./core/cli-entrypoint-invocation");
 const { assignCliMainExports } = require("./core/cli-main-export-assignment");
 const { buildCliEntrypointDependencies } = require("./core/cli-entrypoint-dependencies");
+const { buildCliEntrypointInvocationArgs } = require("./core/cli-entrypoint-invocation-args");
 const {
   loadConceptCandidatesSchema,
   validateSchema,
@@ -1091,10 +1092,7 @@ const cliEntrypointDependencies = buildCliEntrypointDependencies({
   main,
 });
 invokeCliEntrypoint(
-  cliEntrypointDependencies.runCliEntrypoint,
-  cliEntrypointDependencies.requireMain,
-  cliEntrypointDependencies.moduleObject,
-  cliEntrypointDependencies.main
+  ...buildCliEntrypointInvocationArgs(cliEntrypointDependencies)
 );
 
 assignCliMainExports(module, buildCliMainExports({

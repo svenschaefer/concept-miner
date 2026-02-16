@@ -873,4 +873,11 @@ Cycle CL (`v0.096`) - Prototype Split Groundwork (CLI Entrypoint Invocation-Args
 - Keep behavior and exported prototype runtime contracts unchanged.
 - Preserve full frozen-reference and determinism gate stability after extraction.
 Status:
+- Completed on `main`.
+
+Cycle CM (`v0.097`) - Prototype Split Groundwork (CLI Main Export Dependency Helper):
+- Extract CLI main export dependency helper logic from `prototype/concept-candidates.js` into dedicated modules.
+- Keep behavior and exported prototype runtime contracts unchanged.
+- Preserve full frozen-reference and determinism gate stability after extraction.
+Status:
 - Planned.
