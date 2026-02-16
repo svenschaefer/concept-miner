@@ -26,6 +26,7 @@ Status date: 2026-02-16
 - [x] `v0.016` metadata/diagnostics sidecar contracts added and enforced against frozen references.
 - [x] `v0.017` prototype benchmark/report tooling execution contracts added in bounded deterministic integration tests.
 - [x] `v0.018` README REST quick-start examples added with docs regression coverage.
+- [x] `v0.019` Step12 upstream dependency boundary documented and regression-tested in docs checks.
 - [ ] Remaining roadmap cycles continue from current baseline (`main`).
 
 ## 0. Scope And Decisions (must be resolved first)
@@ -264,7 +265,7 @@ Status date: 2026-02-16
 - and avoids `git add -A` in release guidance
 - [ ] Keep `CHANGELOG.md` with `Unreleased` section.
 - [ ] Document determinism guarantees, failure policy, and non-goals clearly.
-- [ ] Document upstream dependency boundary for Step 12 (`elementary-assertions`).
+- [x] Document upstream dependency boundary for Step 12 (`elementary-assertions`).
 
 ## 8. CI/CD And Release Workflow Setup
 

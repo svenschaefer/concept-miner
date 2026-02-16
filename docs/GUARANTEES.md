@@ -26,3 +26,15 @@ Template-based projects should not implicitly provide:
 
 Prefer small, explicit mechanics over broad abstractions.
 If behavior is important, make it contract-tested.
+
+## Step12 Boundary (`elementary-assertions`)
+
+- `concept-miner` consumes Step12 assertion artifacts as an upstream contract boundary.
+- Step12 generation logic is provided by upstream `elementary-assertions` and is out of scope for this repository.
+- In-scope for this repository:
+  - deterministic handling of valid Step12 artifacts
+  - explicit validation and failure behavior when Step12 artifacts are malformed or missing required fields
+  - regression checks against frozen reference artifacts
+- Out-of-scope for this repository:
+  - changing Step12 assertion extraction semantics in `elementary-assertions`
+  - silently mutating or repairing upstream Step12 content

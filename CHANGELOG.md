@@ -30,3 +30,6 @@ All notable changes to this project are documented in this file.
   - `POST /v1/concepts/extract`
   - `POST /v1/concepts/validate`
   plus docs contract coverage to prevent regression.
+- v0.019 documented Step12 upstream boundary in `docs/GUARANTEES.md`:
+  - `elementary-assertions` ownership is explicit
+  - in-scope vs out-of-scope behavior is now contract-tested in docs checks.

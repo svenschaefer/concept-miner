@@ -321,3 +321,10 @@ Cycle L (`v0.018`) - README REST Quick-Start Completion:
 - Add docs contract test coverage to prevent regression.
 Status:
 - Completed on `main`.
+
+Cycle M (`v0.019`) - Step12 Dependency Boundary Documentation:
+- Explicitly document the upstream `elementary-assertions` boundary for Step12 inputs.
+- Clarify what is in-scope vs out-of-scope for concept-miner when Step12 artifacts are malformed or changed upstream.
+- Add a docs consistency test for this boundary note.
+Status:
+- Completed on `main`.

@@ -56,3 +56,10 @@ test("release guide uses explicit staging paths for release commits", () => {
   );
   assert.doesNotMatch(releaseGuide, /\ngit add -A\n/);
 });
+
+test("guarantees doc states the upstream elementary-assertions Step12 boundary", () => {
+  const guarantees = read("docs/GUARANTEES.md");
+  assert.match(guarantees, /elementary-assertions/);
+  assert.match(guarantees, /Step12/i);
+  assert.match(guarantees, /out of scope/i);
+});
