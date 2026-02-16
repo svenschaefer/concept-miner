@@ -419,3 +419,10 @@ Cycle Z (`v0.032`) - Repository Layout Decision Closure:
 - Close repository-layout decision TODO items with traceable rationale.
 Status:
 - Completed on `main`.
+
+Cycle AA (`v0.033`) - Prototype Test Corpus Entrypoint Migration:
+- Make `prototype/concept-candidates.test.js` runnable in the productized repository layout.
+- Add product integration contract that executes the legacy prototype test corpus entrypoint.
+- Close remaining TODO test-governance items covered by that corpus (anti-regression guards and soft performance budget retention decision).
+Status:
+- Completed on `main`.

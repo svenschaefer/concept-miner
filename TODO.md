@@ -40,6 +40,7 @@ Status date: 2026-02-16
 - [x] `v0.030` prototype hard-failure and replay determinism contracts added (in-process + fresh-process).
 - [x] `v0.031` contract docs synchronized with explicit no-envelope rule and OpenAPI/schema mapping checks.
 - [x] `v0.032` repository layout decision documented: keep `prototype/` in-place for current phase.
+- [x] `v0.033` prototype test corpus entrypoint migrated into product integration contracts (including anti-regression and soft performance budget checks).
 - [ ] Remaining roadmap cycles continue from current baseline (`main`).
 
 ## 0. Scope And Decisions (must be resolved first)
@@ -190,7 +191,7 @@ Status date: 2026-02-16
 - exported schema file is non-empty and valid JSON
 - exported schema has top-level object type and `$schema` marker
 - [x] Create deterministic unit tests for extracted core modules.
-- [ ] Migrate prototype test coverage into `test/unit` and `test/integration`.
+- [x] Migrate prototype test coverage into `test/unit` and `test/integration`.
 - [x] Add tests for stable validation error codes (consumer-branchable errors).
 - [x] Add CLI contract tests:
 - help output
@@ -244,13 +245,14 @@ Status date: 2026-02-16
 - [x] Define controlled baseline-update workflow for frozen references:
 - when behavior intentionally changes, update `result-reference` with explicit rationale and changelog note
 - block silent drift of frozen references in CI
-- [ ] Migrate prototype unit/integration test corpus entrypoint:
-- `concept-candidates.test.js` -> product test layout with equivalent coverage
-- [ ] Port prototype anti-regression checks:
+- [x] Migrate prototype unit/integration test corpus entrypoint:
+- `prototype/concept-candidates.test.js` is executed via product integration contract test with productized artifact staging.
+- [x] Port prototype anti-regression checks:
 - generic mode must not activate legacy enrichment behavior by default
 - optional legacy/recovery controls remain explicitly gated
 - static tripwire for literal-string/domain rule leakage in generic path
-- [ ] Decide fate of prototype soft performance budget checks and keep/adapt if retained.
+- [x] Decide fate of prototype soft performance budget checks and keep/adapt if retained.
+- Decision: retained via the migrated prototype corpus entrypoint contract (`testSaasPerformanceSoftBudget`).
 - [x] Add tests that assert product-facing naming:
 - no `step13`/`13a`/`13b` terms in CLI help, OpenAPI descriptions, schema descriptions, or README
 - no `wiki`/`wti` abbreviations in product-facing fields and options

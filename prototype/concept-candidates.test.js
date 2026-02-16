@@ -14,8 +14,14 @@ const {
 } = require("./concept-candidates");
 
 const step13Dir = __dirname;
-const repoRoot = path.resolve(__dirname, "..", "..", "..", "..");
-const artifactsRoot = path.resolve(step13Dir, "..", "artifacts");
+const repoRoot = path.resolve(__dirname, "..");
+const configuredArtifactsRoot = process.env.CONCEPT_MINER_ARTIFACTS_ROOT
+  ? path.resolve(process.env.CONCEPT_MINER_ARTIFACTS_ROOT)
+  : null;
+const artifactsRoot = configuredArtifactsRoot
+  || (fs.existsSync(path.join(repoRoot, "test", "artifacts"))
+    ? path.join(repoRoot, "test", "artifacts")
+    : path.resolve(step13Dir, "..", "artifacts"));
 
 function listSeedIds() {
   return fs

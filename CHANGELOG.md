@@ -73,3 +73,7 @@ All notable changes to this project are documented in this file.
 - v0.032 repository layout decision:
   - retained `prototype/` as in-repo historical/governance reference for current phase
   - documented in `docs/REPO_LAYOUT_DECISION.md`.
+- v0.033 prototype test corpus entrypoint migration:
+  - made `prototype/concept-candidates.test.js` runnable against productized `test/artifacts` layout
+  - added integration contract test `test/integration/prototype-test-corpus-entrypoint.contract.test.js`
+  - retained anti-regression and soft performance budget checks by executing the legacy corpus runner in CI gates.
