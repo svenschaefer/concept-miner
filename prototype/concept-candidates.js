@@ -92,6 +92,7 @@ const { bindCliRuntimeInvocation } = require("./core/cli-runtime-binding");
 const { buildCliMainFlowDependencies } = require("./core/cli-flow-dependencies");
 const { parseCliMainExecutionContext } = require("./core/cli-parse-context");
 const { buildCliMainSetup } = require("./core/cli-main-setup");
+const { buildCliParseDependencies } = require("./core/cli-parse-dependencies");
 const {
   loadConceptCandidatesSchema,
   validateSchema,
@@ -1012,22 +1013,23 @@ function generateForStep12Path(step12Path, options = {}) {
 async function main() {
   try {
     const args = process.argv.slice(2);
+    const parseDependencies = buildCliParseDependencies({
+      env: process.env,
+      arg,
+      hasFlag,
+      parseStepMode,
+      parseNonNegativeNumberArg,
+      step13Modes: STEP13_MODES,
+      defaultArtifactsRoot: DEFAULT_ARTIFACTS_ROOT,
+      defaultWikipediaTitleIndexEndpoint: DEFAULT_WIKIPEDIA_TITLE_INDEX_ENDPOINT,
+      parseCliExecutionContext,
+    });
     const { context, cliMainFlowDependencies } = buildCliMainSetup(args, {
       parseCliMainExecutionContext,
       buildCliMainFlowContext,
       bindCliRuntimeInvocation,
       buildCliMainFlowDependencies,
-      parseDependencies: {
-        env: process.env,
-        arg,
-        hasFlag,
-        parseStepMode,
-        parseNonNegativeNumberArg,
-        step13Modes: STEP13_MODES,
-        defaultArtifactsRoot: DEFAULT_ARTIFACTS_ROOT,
-        defaultWikipediaTitleIndexEndpoint: DEFAULT_WIKIPEDIA_TITLE_INDEX_ENDPOINT,
-        parseCliExecutionContext,
-      },
+      parseDependencies,
       flowContextDependencies: {
         buildMetaSidecar,
         writePersistedOutputs,

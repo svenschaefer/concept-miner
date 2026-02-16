@@ -208,3 +208,6 @@ All notable changes to this project are documented in this file.
 - v0.074 prototype split groundwork:
   - extracted CLI main setup/orchestration helper logic into `prototype/core/cli-main-setup.js`
   - wired `prototype/concept-candidates.js` to delegate main setup composition with unchanged behavior.
+- v0.075 prototype split groundwork:
+  - extracted CLI parse-dependency assembly helper logic into `prototype/core/cli-parse-dependencies.js`
+  - wired `prototype/concept-candidates.js` to delegate parse-dependency object assembly with unchanged behavior.
