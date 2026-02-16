@@ -62,3 +62,7 @@ All notable changes to this project are documented in this file.
   - added staged integration execution check for `prototype/run-seed-concept-candidates.ps1` in persisted mode.
 - v0.029 TODO execution-order sync:
   - section-phase status now marks completed early phases (`Section 0`, `Sections 1-2`) explicitly.
+- v0.030 prototype determinism/hard-failure coverage:
+  - added hard-failure contract test for invalid `wiki_*_count` typing
+  - added in-process and fresh-process replay determinism checks
+  - added LF + single trailing newline serialization check for prototype CLI output.

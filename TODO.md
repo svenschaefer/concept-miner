@@ -37,6 +37,7 @@ Status date: 2026-02-16
 - [x] `v0.027` prototype documentation mined/migrated into product docs with backlog history mapping.
 - [x] `v0.028` PowerShell seed-runner persisted-mode contract covered via staged integration execution test.
 - [x] `v0.029` suggested execution-order phase status synced with completed sections.
+- [x] `v0.030` prototype hard-failure and replay determinism contracts added (in-process + fresh-process).
 - [ ] Remaining roadmap cycles continue from current baseline (`main`).
 
 ## 0. Scope And Decisions (must be resolved first)
@@ -131,7 +132,7 @@ Status date: 2026-02-16
 - [ ] Select one canonical persisted document format and make all interfaces consistent.
 - [ ] Align `openapi/openapi.yaml` with chosen schema contract and actual runtime output.
 - [ ] Keep and maintain `openapi/README.md` and `schema/README.md` in sync with implemented behavior.
-- [ ] Preserve and validate current REST endpoint contracts unless intentionally changed:
+- [x] Preserve and validate current REST endpoint contracts unless intentionally changed:
 - `POST /v1/concepts/extract`
 - `POST /v1/concepts/validate`
 - [ ] Remove or explicitly document envelope/document differences.
@@ -139,12 +140,12 @@ Status date: 2026-02-16
 - occurrence bounds (`end >= start`)
 - uniqueness constraints where required by contract
 - identifier/version format constraints if part of public contract
-- [ ] Add schema export file under `src/schema/` and wire it to package export.
+- [x] Add schema export file under `src/schema/` and wire it to package export.
 - [x] Ensure `validate` command validates against the canonical public schema.
 - Current behavior: canonical concepts schema is validated first; legacy template output validation remains as compatibility fallback.
 - [ ] Migrate/replace prototype persisted schema artifact:
 - `prototype/seed.concept-candidates.schema.json` -> product schema location and validator wiring
-- [ ] Preserve prototype deterministic serialization contracts where applicable:
+- [x] Preserve prototype deterministic serialization contracts where applicable:
 - stable top-level key order
 - stable per-candidate key order
 - UTF-8 + LF + exactly one trailing newline
@@ -153,11 +154,11 @@ Status date: 2026-02-16
 - deterministic concept identifier generation
 - role bucket materialization and non-negative counts
 - wikipedia-title-index signal typing (`*_count` integer, non-count boolean)
-- [ ] Preserve schema-level concepts-document invariants from `schema/concepts.schema.json`:
+- [x] Preserve schema-level concepts-document invariants from `schema/concepts.schema.json`:
 - required top-level `schema_version`
 - required top-level `concepts`
 - optional `input_id` non-empty when present
-- [ ] Preserve occurrence offset contract in schema/docs/runtime:
+- [x] Preserve occurrence offset contract in schema/docs/runtime:
 - offsets are UTF-16 code units (`occurrences[*].start`, `occurrences[*].end`)
 - [x] Define and validate sidecar contracts explicitly:
 - metadata sidecar schema/content (mode + thresholds + runtime context)
@@ -217,7 +218,7 @@ Status date: 2026-02-16
 - [x] Port prototype policy-governance tests/checks:
 - benchmark expected-set change requires `BENCHMARK_POLICY.md` update
 - legacy enrichment change requires `LEGACY_POLICY.md` update
-- [ ] Port prototype determinism and contract tests:
+- [x] Port prototype determinism and contract tests:
 - schema validation failures and hard-failure cases
 - deterministic replay across repeated runs and fresh process
 - deterministic YAML key-order checks

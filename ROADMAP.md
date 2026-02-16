@@ -398,3 +398,10 @@ Cycle W (`v0.029`) - Execution-Order Phase Sync:
 - Keep roadmap/status text aligned with this phase-state truth.
 Status:
 - Completed on `main`.
+
+Cycle X (`v0.030`) - Prototype Determinism And Hard-Failure Closure:
+- Add explicit tests for prototype hard-failure behavior on invalid Step12 wikipedia count typing.
+- Add deterministic replay checks for in-process and fresh-process executions.
+- Verify serialization invariants (LF endings, single trailing newline) in replay checks.
+Status:
+- Completed on `main`.
