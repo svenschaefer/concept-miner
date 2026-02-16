@@ -796,4 +796,11 @@ Cycle CA (`v0.085`) - Prototype Split Groundwork (CLI Error Exit Handling Helper
 - Keep behavior and exported prototype runtime contracts unchanged.
 - Preserve full frozen-reference and determinism gate stability after extraction.
 Status:
+- Completed on `main`.
+
+Cycle CB (`v0.086`) - Prototype Split Groundwork (CLI Main Execution Helper):
+- Extract CLI main execution helper logic from `prototype/concept-candidates.js` into dedicated modules.
+- Keep behavior and exported prototype runtime contracts unchanged.
+- Preserve full frozen-reference and determinism gate stability after extraction.
+Status:
 - Planned.

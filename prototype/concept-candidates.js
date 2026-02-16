@@ -102,6 +102,7 @@ const { buildCliMainFlowPipeline } = require("./core/cli-main-pipeline");
 const { buildCliMainPipelineInputs } = require("./core/cli-main-pipeline-inputs");
 const { buildCliMainPipelineDependencies } = require("./core/cli-main-pipeline-dependencies");
 const { handleCliUsageExit } = require("./core/cli-usage-exit");
+const { handleCliErrorExit } = require("./core/cli-error-exit");
 const {
   loadConceptCandidatesSchema,
   validateSchema,
@@ -1068,8 +1069,10 @@ async function main() {
       exit: process.exit,
     });
   } catch (err) {
-    console.error(err && err.message ? err.message : String(err));
-    process.exit(1);
+    handleCliErrorExit(err, {
+      stderr: console.error,
+      exit: process.exit,
+    });
   }
 }
 
