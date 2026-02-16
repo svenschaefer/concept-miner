@@ -262,3 +262,6 @@ All notable changes to this project are documented in this file.
 - v0.092 prototype split groundwork:
   - extracted CLI main catch dependency helper logic into `prototype/core/cli-main-catch-dependencies.js`
   - wired `prototype/concept-candidates.js` to delegate catch dependency assembly with unchanged behavior.
+- v0.093 prototype split groundwork:
+  - extracted CLI entrypoint invocation wrapper helper logic into `prototype/core/cli-entrypoint-invocation.js`
+  - wired `prototype/concept-candidates.js` to delegate entrypoint invocation wrapping with unchanged behavior.

@@ -852,4 +852,11 @@ Cycle CI (`v0.093`) - Prototype Split Groundwork (CLI Entrypoint Invocation Wrap
 - Keep behavior and exported prototype runtime contracts unchanged.
 - Preserve full frozen-reference and determinism gate stability after extraction.
 Status:
+- Completed on `main`.
+
+Cycle CJ (`v0.094`) - Prototype Split Groundwork (CLI Main Export Assignment Helper):
+- Extract CLI main export-assignment helper logic from `prototype/concept-candidates.js` into dedicated modules.
+- Keep behavior and exported prototype runtime contracts unchanged.
+- Preserve full frozen-reference and determinism gate stability after extraction.
+Status:
 - Planned.
