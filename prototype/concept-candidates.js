@@ -111,6 +111,7 @@ const { runCliEntrypoint } = require("./core/cli-entrypoint");
 const { buildCliMainExports } = require("./core/cli-main-export");
 const { buildCliMainCatchDependencies } = require("./core/cli-main-catch-dependencies");
 const { invokeCliEntrypoint } = require("./core/cli-entrypoint-invocation");
+const { assignCliMainExports } = require("./core/cli-main-export-assignment");
 const {
   loadConceptCandidatesSchema,
   validateSchema,
@@ -1084,7 +1085,7 @@ async function main() {
 
 invokeCliEntrypoint(runCliEntrypoint, require.main, module, main);
 
-module.exports = buildCliMainExports({
+assignCliMainExports(module, buildCliMainExports({
   ROLE_KEYS,
   TOP_LEVEL_KEYS,
   CANDIDATE_KEYS,
@@ -1098,4 +1099,4 @@ module.exports = buildCliMainExports({
   serializeDeterministicYaml,
   generateForSeed,
   generateForStep12Path,
-});
+}));

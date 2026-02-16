@@ -265,3 +265,6 @@ All notable changes to this project are documented in this file.
 - v0.093 prototype split groundwork:
   - extracted CLI entrypoint invocation wrapper helper logic into `prototype/core/cli-entrypoint-invocation.js`
   - wired `prototype/concept-candidates.js` to delegate entrypoint invocation wrapping with unchanged behavior.
+- v0.094 prototype split groundwork:
+  - extracted CLI main export-assignment helper logic into `prototype/core/cli-main-export-assignment.js`
+  - wired `prototype/concept-candidates.js` to delegate export assignment with unchanged behavior.

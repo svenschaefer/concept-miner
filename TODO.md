@@ -101,6 +101,7 @@ Status date: 2026-02-16
 - [x] `v0.091` prototype split groundwork continued by extracting CLI main function export helper into `prototype/core/cli-main-export.js` with behavior-preserving wiring.
 - [x] `v0.092` prototype split groundwork continued by extracting CLI main catch dependency helper into `prototype/core/cli-main-catch-dependencies.js` with behavior-preserving wiring.
 - [x] `v0.093` prototype split groundwork continued by extracting CLI entrypoint invocation wrapper helper into `prototype/core/cli-entrypoint-invocation.js` with behavior-preserving wiring.
+- [x] `v0.094` prototype split groundwork continued by extracting CLI main export-assignment helper into `prototype/core/cli-main-export-assignment.js` with behavior-preserving wiring.
 - [ ] Remaining roadmap cycles continue from current baseline (`main`).
 
 ## 0. Scope And Decisions (must be resolved first)
@@ -215,6 +216,7 @@ Status date: 2026-02-16
 - Progress: CLI main function export helper extracted from monolith to `prototype/core/cli-main-export.js` as the forty-eighth safe split step.
 - Progress: CLI main catch dependency helper extracted from monolith to `prototype/core/cli-main-catch-dependencies.js` as the forty-ninth safe split step.
 - Progress: CLI entrypoint invocation wrapper helper extracted from monolith to `prototype/core/cli-entrypoint-invocation.js` as the fiftieth safe split step.
+- Progress: CLI main export-assignment helper extracted from monolith to `prototype/core/cli-main-export-assignment.js` as the fifty-first safe split step.
 - [x] Remove business logic from CLI path; keep CLI as thin wrapper only.
 - [x] Convert current ad-hoc helpers into coherent modules:
 - argument parsing, IO, deterministic sorting, canonicalization, ID generation, policy parsing.
