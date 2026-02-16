@@ -136,3 +136,6 @@ All notable changes to this project are documented in this file.
 - v0.050 prototype split groundwork:
   - extracted wikipedia-title-index mapping helpers into `prototype/core/wikipedia-mapping.js`
   - wired `prototype/concept-candidates.js` to import wikipedia mapping helpers with unchanged public behavior and contracts.
+- v0.051 prototype split groundwork:
+  - extracted mention selection helpers into `prototype/core/mention-selection.js`
+  - wired `prototype/concept-candidates.js` to import mention selection helpers with unchanged public behavior and contracts.

@@ -558,4 +558,11 @@ Cycle AS (`v0.051`) - Prototype Split Groundwork (Mention Selection Helpers):
 - Keep behavior and exported prototype runtime contracts unchanged.
 - Preserve full frozen-reference and determinism gate stability after extraction.
 Status:
+- Completed on `main`.
+
+Cycle AT (`v0.052`) - Prototype Split Groundwork (Mention Lifting Helpers):
+- Extract mention lifting helper logic from `prototype/concept-candidates.js` into a dedicated module.
+- Keep behavior and exported prototype runtime contracts unchanged.
+- Preserve full frozen-reference and determinism gate stability after extraction.
+Status:
 - Planned.
