@@ -740,4 +740,11 @@ Cycle BS (`v0.077`) - Prototype Split Groundwork (CLI Runtime-Invocation Depende
 - Keep behavior and exported prototype runtime contracts unchanged.
 - Preserve full frozen-reference and determinism gate stability after extraction.
 Status:
+- Completed on `main`.
+
+Cycle BT (`v0.078`) - Prototype Split Groundwork (CLI Flow-Dependency Assembly Helper):
+- Extract CLI flow-dependency assembly helper logic from `prototype/concept-candidates.js` into dedicated modules.
+- Keep behavior and exported prototype runtime contracts unchanged.
+- Preserve full frozen-reference and determinism gate stability after extraction.
+Status:
 - Planned.
