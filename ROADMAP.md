@@ -334,4 +334,4 @@ Cycle N (`v0.020`) - First Annotated Tag And Tag Strategy Closure:
 - Run `release:check` on clean tree.
 - Create and push first annotated repository tag aligned to current package version.
 Status:
-- Planned.
+- Completed on `main`.

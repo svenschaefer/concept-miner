@@ -33,3 +33,6 @@ All notable changes to this project are documented in this file.
 - v0.019 documented Step12 upstream boundary in `docs/GUARANTEES.md`:
   - `elementary-assertions` ownership is explicit
   - in-scope vs out-of-scope behavior is now contract-tested in docs checks.
+- v0.020 pre-1.0 tag strategy closed:
+  - `docs/REPO_WORKFLOWS.md` documents `v0.x.y` annotated tag policy
+  - clean `npm run release:check` verified before first annotated tag creation.

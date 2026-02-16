@@ -27,6 +27,7 @@ Status date: 2026-02-16
 - [x] `v0.017` prototype benchmark/report tooling execution contracts added in bounded deterministic integration tests.
 - [x] `v0.018` README REST quick-start examples added with docs regression coverage.
 - [x] `v0.019` Step12 upstream dependency boundary documented and regression-tested in docs checks.
+- [x] `v0.020` first annotated pre-1.0 tag workflow closed with clean `release:check` gate.
 - [ ] Remaining roadmap cycles continue from current baseline (`main`).
 
 ## 0. Scope And Decisions (must be resolved first)
@@ -321,7 +322,7 @@ Status date: 2026-02-16
 
 ## 11. Post-Productization Follow-Up (after baseline is green)
 
-- [ ] Cut first productized version and tag strategy (`v0.x` or `v1.0.0` decision).
+- [x] Cut first productized version and tag strategy (`v0.x` or `v1.0.0` decision).
 - [ ] Run pre-publish and post-publish smoke flows from release docs.
 - [ ] Publish release notes using `docs/RELEASE_NOTES_TEMPLATE.md`.
 - [ ] Record operational snapshot in `docs/STATUSQUO.md`.
