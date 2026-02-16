@@ -49,3 +49,6 @@ All notable changes to this project are documented in this file.
   - release notes published at `docs/releases/v0.10.0.md`
   - operational snapshot refreshed in `docs/STATUSQUO.md`
   - upstream backlog documented at `docs/STEP12_UPSTREAM_BACKLOG.md`.
+- v0.025 operational/tooling closure:
+  - optional PowerShell wrapper flows documented in `docs/OPERATIONAL.md`
+  - integration contract added for `prototype/check-concept-candidates.js` execution.

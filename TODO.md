@@ -32,6 +32,7 @@ Status date: 2026-02-16
 - [x] `v0.022` release workflow contract checks added for tag/version match and tarball artifact publication steps.
 - [x] `v0.023` npm publish prerequisites docs and `npm ci` clean-install gate verified and test-covered.
 - [x] `v0.024` post-productization docs closed: release notes published, status snapshot refreshed, upstream Step12 backlog documented.
+- [x] `v0.025` optional PowerShell wrapper flows documented and `check-concept-candidates` execution contract added.
 - [ ] Remaining roadmap cycles continue from current baseline (`main`).
 
 ## 0. Scope And Decisions (must be resolved first)
@@ -170,7 +171,7 @@ Status date: 2026-02-16
 - Keep `run` generic and expose product modes via options, or
 - Add explicit subcommands while preserving template discipline.
 - [x] Add robust usage output and stable non-zero exit behavior on failures.
-- [ ] Move PowerShell helper flows into documented optional wrappers around core CLI.
+- [x] Move PowerShell helper flows into documented optional wrappers around core CLI.
 
 ## 6. Test Migration And Contract Coverage
 
@@ -323,6 +324,7 @@ Status date: 2026-02-16
 - wikipedia-title-index coverage report generation
 - concept-candidates schema + deterministic key-order checker (from `check-concept-candidates.js`) passes
 - batch seed runner flow (from `run-seed-concept-candidates.ps1`) passes in documented modes
+- Current status: all listed checks except the batch seed runner flow are covered by automated tests/gates.
 
 ## 11. Post-Productization Follow-Up (after baseline is green)
 

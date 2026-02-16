@@ -363,3 +363,10 @@ Cycle R (`v0.024`) - Post-Productization Documentation Closure:
 - Add and document an explicit backlog for upstream Step12 improvements that remain out of this repository.
 Status:
 - Completed on `main`.
+
+Cycle S (`v0.025`) - Operational Wrapper And Candidate-Checker Closure:
+- Document optional PowerShell helper wrapper flows around core CLI/prototype tools.
+- Add deterministic integration contract that executes `prototype/check-concept-candidates.js` on staged artifacts.
+- Close related TODO operational/tooling checks while leaving unresolved platform-dependent batch flows explicit.
+Status:
+- Completed on `main`.

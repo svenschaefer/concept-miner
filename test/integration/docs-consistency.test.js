@@ -77,3 +77,9 @@ test("npm release guide documents npm publish prerequisites", () => {
   assert.match(releaseGuide, /npm whoami/);
   assert.match(releaseGuide, /NPM_TOKEN/);
 });
+
+test("operational guide documents optional PowerShell wrappers", () => {
+  const operational = read("docs/OPERATIONAL.md");
+  assert.match(operational, /run-seed-concept-candidates\.ps1/);
+  assert.match(operational, /check-concept-candidates\.ps1/);
+});
