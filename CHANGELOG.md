@@ -268,3 +268,6 @@ All notable changes to this project are documented in this file.
 - v0.094 prototype split groundwork:
   - extracted CLI main export-assignment helper logic into `prototype/core/cli-main-export-assignment.js`
   - wired `prototype/concept-candidates.js` to delegate export assignment with unchanged behavior.
+- v0.095 prototype split groundwork:
+  - extracted CLI entrypoint dependency helper logic into `prototype/core/cli-entrypoint-dependencies.js`
+  - wired `prototype/concept-candidates.js` to delegate entrypoint dependency assembly with unchanged behavior.
