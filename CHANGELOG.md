@@ -52,3 +52,6 @@ All notable changes to this project are documented in this file.
 - v0.025 operational/tooling closure:
   - optional PowerShell wrapper flows documented in `docs/OPERATIONAL.md`
   - integration contract added for `prototype/check-concept-candidates.js` execution.
+- v0.026 generated report artifact governance:
+  - checked-in snapshot policy documented in `docs/GENERATED_REPORT_ARTIFACTS_POLICY.md`
+  - CI policy check added via `scripts/check-generated-report-artifacts-policy.js`.

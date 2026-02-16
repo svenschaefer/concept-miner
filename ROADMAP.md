@@ -370,3 +370,10 @@ Cycle S (`v0.025`) - Operational Wrapper And Candidate-Checker Closure:
 - Close related TODO operational/tooling checks while leaving unresolved platform-dependent batch flows explicit.
 Status:
 - Completed on `main`.
+
+Cycle T (`v0.026`) - Generated Report Artifact Policy Closure:
+- Decide and document governance for generated prototype report artifacts.
+- Enforce policy in CI when report snapshots change.
+- Align TODO status with explicit checked-in snapshot policy decision.
+Status:
+- Completed on `main`.

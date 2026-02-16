@@ -28,6 +28,8 @@ test("README documentation links reference existing files", () => {
     "docs/RELEASE_NOTES_TEMPLATE.md",
     "docs/releases/v0.10.0.md",
     "docs/BASELINE_TEST_RUN.md",
+    "docs/FROZEN_REFERENCES_POLICY.md",
+    "docs/GENERATED_REPORT_ARTIFACTS_POLICY.md",
     "docs/GUARANTEES.md",
     "docs/STEP12_UPSTREAM_BACKLOG.md",
     "docs/STATUSQUO.md",

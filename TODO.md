@@ -33,6 +33,7 @@ Status date: 2026-02-16
 - [x] `v0.023` npm publish prerequisites docs and `npm ci` clean-install gate verified and test-covered.
 - [x] `v0.024` post-productization docs closed: release notes published, status snapshot refreshed, upstream Step12 backlog documented.
 - [x] `v0.025` optional PowerShell wrapper flows documented and `check-concept-candidates` execution contract added.
+- [x] `v0.026` generated report artifact policy decided (checked-in snapshots) and enforced in CI.
 - [ ] Remaining roadmap cycles continue from current baseline (`main`).
 
 ## 0. Scope And Decisions (must be resolved first)
@@ -298,7 +299,7 @@ Status date: 2026-02-16
 - [x] Keep or document migration of per-seed reference layout:
 - `test/artifacts/<seed>/seed.txt`
 - `test/artifacts/<seed>/result-reference/*`
-- [ ] Define policy for generated prototype report artifacts:
+- [x] Define policy for generated prototype report artifacts:
 - `13b-threshold-sweep.report.json` (generated benchmark sweep report)
 - `step12-wikipedia-title-index.coverage.report.json` (generated coverage report)
 - decide: checked-in snapshot vs generated-on-demand, then enforce consistently
