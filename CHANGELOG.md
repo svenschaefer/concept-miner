@@ -274,3 +274,6 @@ All notable changes to this project are documented in this file.
 - v0.096 prototype split groundwork:
   - extracted CLI entrypoint invocation-args helper logic into `prototype/core/cli-entrypoint-invocation-args.js`
   - wired `prototype/concept-candidates.js` to delegate entrypoint invocation argument assembly with unchanged behavior.
+- v0.097 prototype split groundwork:
+  - extracted CLI main export dependency helper logic into `prototype/core/cli-main-export-dependencies.js`
+  - wired `prototype/concept-candidates.js` to delegate main export dependency assembly with unchanged behavior.

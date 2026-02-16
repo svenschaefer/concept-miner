@@ -114,6 +114,7 @@ const { invokeCliEntrypoint } = require("./core/cli-entrypoint-invocation");
 const { assignCliMainExports } = require("./core/cli-main-export-assignment");
 const { buildCliEntrypointDependencies } = require("./core/cli-entrypoint-dependencies");
 const { buildCliEntrypointInvocationArgs } = require("./core/cli-entrypoint-invocation-args");
+const { buildCliMainExportDependencies } = require("./core/cli-main-export-dependencies");
 const {
   loadConceptCandidatesSchema,
   validateSchema,
@@ -1096,17 +1097,19 @@ invokeCliEntrypoint(
 );
 
 assignCliMainExports(module, buildCliMainExports({
-  ROLE_KEYS,
-  TOP_LEVEL_KEYS,
-  CANDIDATE_KEYS,
-  CANDIDATE_KEYS_WITH_WIKIPEDIA_TITLE_INDEX_EVIDENCE,
-  COUNT_KEY_RE,
-  canonicalizeSurface,
-  conceptIdFromCanonical,
-  buildConceptCandidatesFromStep12,
-  validateConceptCandidatesDeterminism,
-  validateSchema,
-  serializeDeterministicYaml,
-  generateForSeed,
-  generateForStep12Path,
+  ...buildCliMainExportDependencies({
+    ROLE_KEYS,
+    TOP_LEVEL_KEYS,
+    CANDIDATE_KEYS,
+    CANDIDATE_KEYS_WITH_WIKIPEDIA_TITLE_INDEX_EVIDENCE,
+    COUNT_KEY_RE,
+    canonicalizeSurface,
+    conceptIdFromCanonical,
+    buildConceptCandidatesFromStep12,
+    validateConceptCandidatesDeterminism,
+    validateSchema,
+    serializeDeterministicYaml,
+    generateForSeed,
+    generateForStep12Path,
+  }),
 }));
