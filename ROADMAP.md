@@ -531,3 +531,10 @@ Cycle AO (`v0.047`) - Prototype Split Groundwork (Options/Policy Module):
 - Preserve full frozen-reference and determinism gate stability after extraction.
 Status:
 - Completed on `main`.
+
+Cycle AP (`v0.048`) - Prototype Split Groundwork (Step12 Contract Module):
+- Extract Step12 contract and index helper logic from `prototype/concept-candidates.js` into a dedicated module.
+- Keep behavior and exported prototype runtime contracts unchanged.
+- Preserve full frozen-reference and determinism gate stability after extraction.
+Status:
+- Completed on `main`.

@@ -127,3 +127,6 @@ All notable changes to this project are documented in this file.
 - v0.047 prototype split groundwork:
   - extracted options/policy helpers into `prototype/core/options-policy.js`
   - wired `prototype/concept-candidates.js` to import option/policy helpers with unchanged public behavior and contracts.
+- v0.048 prototype split groundwork:
+  - extracted Step12 contract/index helpers into `prototype/core/step12-contract.js`
+  - wired `prototype/concept-candidates.js` to import Step12 contract/index helpers with unchanged public behavior and contracts.
