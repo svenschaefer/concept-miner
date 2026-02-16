@@ -205,3 +205,6 @@ All notable changes to this project are documented in this file.
 - v0.073 prototype split groundwork:
   - extracted CLI parse-context wrapper helper logic into `prototype/core/cli-parse-context.js`
   - wired `prototype/concept-candidates.js` to delegate CLI parse-context assembly with unchanged behavior.
+- v0.074 prototype split groundwork:
+  - extracted CLI main setup/orchestration helper logic into `prototype/core/cli-main-setup.js`
+  - wired `prototype/concept-candidates.js` to delegate main setup composition with unchanged behavior.

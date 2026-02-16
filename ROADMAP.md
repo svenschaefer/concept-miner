@@ -719,4 +719,11 @@ Cycle BP (`v0.074`) - Prototype Split Groundwork (CLI Main Setup Orchestrator He
 - Keep behavior and exported prototype runtime contracts unchanged.
 - Preserve full frozen-reference and determinism gate stability after extraction.
 Status:
+- Completed on `main`.
+
+Cycle BQ (`v0.075`) - Prototype Split Groundwork (CLI Parse-Dependency Assembly Helper):
+- Extract CLI parse-dependency assembly helper logic from `prototype/concept-candidates.js` into dedicated modules.
+- Keep behavior and exported prototype runtime contracts unchanged.
+- Preserve full frozen-reference and determinism gate stability after extraction.
+Status:
 - Planned.
