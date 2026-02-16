@@ -464,3 +464,10 @@ Cycle AF (`v0.038`) - Persisted Candidate-Schema Migration:
 - Close TODO item for persisted schema artifact migration/replacement.
 Status:
 - Completed on `main`.
+
+Cycle AG (`v0.039`) - Golden Full-Artifact Diff Coverage:
+- Add integration coverage that regenerates per-seed persisted artifacts and compares them against `result-reference`.
+- Validate `*.yaml` and `*.json` golden artifacts for both `13a` and `13b` modes, with deterministic normalization for known runtime-variant diagnostics timing fields.
+- Close the TODO item for full frozen artifact diff validation.
+Status:
+- Completed on `main`.

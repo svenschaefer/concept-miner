@@ -46,6 +46,7 @@ Status date: 2026-02-16
 - [x] `v0.036` thin-CLI entrypoint contract enforced (`bin/cli.js` delegates only) with compatibility usage guards.
 - [x] `v0.037` compatibility command/alias positive-path contracts added (`run`, `validate`, underscore/kebab mode support).
 - [x] `v0.038` persisted concept-candidates schema migrated to `schema/` and wired via product-location-first resolution with legacy fallback.
+- [x] `v0.039` full per-seed frozen artifact regeneration diff coverage added for YAML/JSON golden references (diagnostics normalized for timing fields).
 - [ ] Remaining roadmap cycles continue from current baseline (`main`).
 
 ## 0. Scope And Decisions (must be resolved first)
@@ -247,6 +248,9 @@ Status date: 2026-02-16
 - [x] Add golden/frozen reference regression tests for each seed:
 - compare product outputs against `result-reference` baselines in agreed compatibility mode(s)
 - validate output YAML plus metadata and diagnostics sidecars against frozen references
+- [x] Add full frozen artifact diff test for every seed:
+- regenerate persisted artifacts for each seed and compare produced `*.yaml` and `*.json` files against `test/artifacts/<seed>/result-reference/*`
+- diagnostics compare is normalized for `stats.phase_ms.*` timing variance; all other fields remain exact.
 - [x] Define controlled baseline-update workflow for frozen references:
 - when behavior intentionally changes, update `result-reference` with explicit rationale and changelog note
 - block silent drift of frozen references in CI

@@ -96,3 +96,7 @@ All notable changes to this project are documented in this file.
 - v0.038 persisted candidate-schema migration:
   - added `schema/seed.concept-candidates.schema.json` as product-owned schema location
   - updated prototype generator/checker/tests to resolve the migrated schema first, with legacy fallback.
+- v0.039 full golden artifact diff coverage:
+  - added `test/integration/prototype-frozen-full-artifact.contract.test.js`
+  - regenerates per-seed persisted artifacts and compares all frozen YAML/JSON outputs against `result-reference`
+  - normalizes diagnostics `stats.phase_ms.*` timing values during comparison to avoid false drift from runtime timing variance.
