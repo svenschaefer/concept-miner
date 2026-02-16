@@ -87,3 +87,6 @@ All notable changes to this project are documented in this file.
   - extracted prototype bridge/mode mapping helpers into `src/core/prototype-bridge.js` and `src/core/mode.js`
   - extracted concept invariant checks into `src/validate/concepts-invariants.js`
   - simplified `src/concepts.js` to orchestration only.
+- v0.036 CLI entrypoint contract hardening:
+  - added `test/unit/cli-entrypoint.contract.test.js` to enforce thin `bin/cli.js` delegation
+  - strengthened CLI usage contract test to keep compatibility commands (`run`, `validate`) visible.

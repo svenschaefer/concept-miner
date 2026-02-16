@@ -443,3 +443,10 @@ Cycle AC (`v0.035`) - Concepts Runtime Modularization:
 - Close the TODO item on ad-hoc helper modularization in the current product runtime path.
 Status:
 - Completed on `main`.
+
+Cycle AD (`v0.036`) - CLI Thin-Entrypoint Contract:
+- Add explicit contract tests that `bin/cli.js` remains a thin entrypoint delegating to `src/tools/cli`.
+- Keep compatibility command surfaces (`run`, `validate`) intact in usage contract.
+- Close TODO item for removing business logic from CLI path.
+Status:
+- Completed on `main`.

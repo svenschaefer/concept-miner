@@ -43,6 +43,7 @@ Status date: 2026-02-16
 - [x] `v0.033` prototype test corpus entrypoint migrated into product integration contracts (including anti-regression and soft performance budget checks).
 - [x] `v0.034` concepts-document invariants enforced in validation (`end >= start`, unique concept ids, unique concept names) with unit contract tests.
 - [x] `v0.035` ad-hoc concepts runtime helpers modularized into focused `src/core` and `src/validate` modules.
+- [x] `v0.036` thin-CLI entrypoint contract enforced (`bin/cli.js` delegates only) with compatibility usage guards.
 - [ ] Remaining roadmap cycles continue from current baseline (`main`).
 
 ## 0. Scope And Decisions (must be resolved first)
@@ -107,7 +108,7 @@ Status date: 2026-02-16
 - `src/core/*` (deterministic extraction core)
 - `src/validate/*` (schema + integrity + stable errors)
 - `src/tools/*` (CLI/tool wrappers)
-- [ ] Remove business logic from CLI path; keep CLI as thin wrapper only.
+- [x] Remove business logic from CLI path; keep CLI as thin wrapper only.
 - [x] Convert current ad-hoc helpers into coherent modules:
 - argument parsing, IO, deterministic sorting, canonicalization, ID generation, policy parsing.
 - [ ] Preserve deterministic behavior and ordering guarantees during refactor.

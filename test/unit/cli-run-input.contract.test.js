@@ -22,6 +22,8 @@ test("CLI usage includes --config in run syntax", () => {
   assert.equal(result.status, 0);
   assert.match(String(result.stdout || ""), /--config <path>/);
   assert.match(String(result.stdout || ""), /extract --text <string>/);
+  assert.match(String(result.stdout || ""), /concept-miner run --text <string>/);
+  assert.match(String(result.stdout || ""), /concept-miner validate --in <path>/);
 });
 
 test("CLI run rejects when no run input source is provided", () => {
