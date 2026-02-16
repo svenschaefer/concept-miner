@@ -1,0 +1,193 @@
+{
+  "schema_version": 1,
+  "artifacts_root": "C:\\code\\Secos\\prototypes\\linguistics\\pipeline\\artifacts",
+  "wikipedia_title_index_policy": "assertion_then_lexicon_fallback",
+  "generated_at_utc": "2026-02-16T15:54:48.940Z",
+  "aggregate": {
+    "seeds": 6,
+    "mentions_total": 3087,
+    "assertions_total": 181,
+    "selected_nonzero_count_mentions": 2457,
+    "selected_any_signal_mentions": 2457,
+    "assertion_signal_mentions": 604,
+    "lexicon_signal_mentions": 2457,
+    "assertions_with_mention_evidence": 174,
+    "assertions_with_any_wikipedia_signal": 174,
+    "selected_count_buckets": {
+      "0": 630,
+      "1-9": 183,
+      "10-99": 379,
+      "100+": 1895
+    },
+    "selected_nonzero_count_pct": 79.6,
+    "selected_any_signal_pct": 79.6,
+    "assertion_signal_pct": 19.6,
+    "lexicon_signal_pct": 79.6,
+    "assertions_with_mention_evidence_pct": 96.1,
+    "assertions_with_any_wikipedia_signal_pct": 96.1
+  },
+  "seeds": [
+    {
+      "seed_id": "access_control",
+      "mentions_total": 118,
+      "assertions_total": 13,
+      "mention_signal_coverage": {
+        "selected_nonzero_count_mentions": 100,
+        "selected_nonzero_count_pct": 84.7,
+        "selected_any_signal_mentions": 100,
+        "selected_any_signal_pct": 84.7,
+        "assertion_signal_mentions": 30,
+        "assertion_signal_pct": 25.4,
+        "lexicon_signal_mentions": 100,
+        "lexicon_signal_pct": 84.7,
+        "selected_count_buckets": {
+          "0": 18,
+          "1-9": 3,
+          "10-99": 21,
+          "100+": 76
+        }
+      },
+      "assertion_signal_coverage": {
+        "assertions_with_mention_evidence": 13,
+        "assertions_with_mention_evidence_pct": 100,
+        "assertions_with_any_wikipedia_signal": 13,
+        "assertions_with_any_wikipedia_signal_pct": 100
+      }
+    },
+    {
+      "seed_id": "irs",
+      "mentions_total": 253,
+      "assertions_total": 15,
+      "mention_signal_coverage": {
+        "selected_nonzero_count_mentions": 182,
+        "selected_nonzero_count_pct": 71.9,
+        "selected_any_signal_mentions": 182,
+        "selected_any_signal_pct": 71.9,
+        "assertion_signal_mentions": 52,
+        "assertion_signal_pct": 20.6,
+        "lexicon_signal_mentions": 182,
+        "lexicon_signal_pct": 71.9,
+        "selected_count_buckets": {
+          "0": 71,
+          "1-9": 6,
+          "10-99": 33,
+          "100+": 143
+        }
+      },
+      "assertion_signal_coverage": {
+        "assertions_with_mention_evidence": 15,
+        "assertions_with_mention_evidence_pct": 100,
+        "assertions_with_any_wikipedia_signal": 15,
+        "assertions_with_any_wikipedia_signal_pct": 100
+      }
+    },
+    {
+      "seed_id": "prime_factors",
+      "mentions_total": 88,
+      "assertions_total": 7,
+      "mention_signal_coverage": {
+        "selected_nonzero_count_mentions": 77,
+        "selected_nonzero_count_pct": 87.5,
+        "selected_any_signal_mentions": 77,
+        "selected_any_signal_pct": 87.5,
+        "assertion_signal_mentions": 23,
+        "assertion_signal_pct": 26.1,
+        "lexicon_signal_mentions": 77,
+        "lexicon_signal_pct": 87.5,
+        "selected_count_buckets": {
+          "0": 11,
+          "1-9": 4,
+          "10-99": 10,
+          "100+": 63
+        }
+      },
+      "assertion_signal_coverage": {
+        "assertions_with_mention_evidence": 7,
+        "assertions_with_mention_evidence_pct": 100,
+        "assertions_with_any_wikipedia_signal": 7,
+        "assertions_with_any_wikipedia_signal_pct": 100
+      }
+    },
+    {
+      "seed_id": "prime_gen",
+      "mentions_total": 89,
+      "assertions_total": 6,
+      "mention_signal_coverage": {
+        "selected_nonzero_count_mentions": 78,
+        "selected_nonzero_count_pct": 87.6,
+        "selected_any_signal_mentions": 78,
+        "selected_any_signal_pct": 87.6,
+        "assertion_signal_mentions": 21,
+        "assertion_signal_pct": 23.6,
+        "lexicon_signal_mentions": 78,
+        "lexicon_signal_pct": 87.6,
+        "selected_count_buckets": {
+          "0": 11,
+          "1-9": 2,
+          "10-99": 13,
+          "100+": 63
+        }
+      },
+      "assertion_signal_coverage": {
+        "assertions_with_mention_evidence": 6,
+        "assertions_with_mention_evidence_pct": 100,
+        "assertions_with_any_wikipedia_signal": 6,
+        "assertions_with_any_wikipedia_signal_pct": 100
+      }
+    },
+    {
+      "seed_id": "saas",
+      "mentions_total": 2427,
+      "assertions_total": 130,
+      "mention_signal_coverage": {
+        "selected_nonzero_count_mentions": 1922,
+        "selected_nonzero_count_pct": 79.2,
+        "selected_any_signal_mentions": 1922,
+        "selected_any_signal_pct": 79.2,
+        "assertion_signal_mentions": 448,
+        "assertion_signal_pct": 18.5,
+        "lexicon_signal_mentions": 1922,
+        "lexicon_signal_pct": 79.2,
+        "selected_count_buckets": {
+          "0": 505,
+          "1-9": 166,
+          "10-99": 292,
+          "100+": 1464
+        }
+      },
+      "assertion_signal_coverage": {
+        "assertions_with_mention_evidence": 123,
+        "assertions_with_mention_evidence_pct": 94.6,
+        "assertions_with_any_wikipedia_signal": 123,
+        "assertions_with_any_wikipedia_signal_pct": 94.6
+      }
+    },
+    {
+      "seed_id": "webshop",
+      "mentions_total": 112,
+      "assertions_total": 10,
+      "mention_signal_coverage": {
+        "selected_nonzero_count_mentions": 98,
+        "selected_nonzero_count_pct": 87.5,
+        "selected_any_signal_mentions": 98,
+        "selected_any_signal_pct": 87.5,
+        "assertion_signal_mentions": 30,
+        "assertion_signal_pct": 26.8,
+        "lexicon_signal_mentions": 98,
+        "lexicon_signal_pct": 87.5,
+        "selected_count_buckets": {
+          "0": 14,
+          "1-9": 2,
+          "10-99": 10,
+          "100+": 86
+        }
+      },
+      "assertion_signal_coverage": {
+        "assertions_with_mention_evidence": 10,
+        "assertions_with_mention_evidence_pct": 100,
+        "assertions_with_any_wikipedia_signal": 10,
+        "assertions_with_any_wikipedia_signal_pct": 100
+      }
+    }
+  ]
+}

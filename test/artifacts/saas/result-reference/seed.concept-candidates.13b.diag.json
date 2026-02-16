@@ -1,0 +1,2490 @@
+{
+  "source_by_canonical": {
+    "abac": [
+      "supplemental"
+    ],
+    "abac_act": [
+      "alias"
+    ],
+    "abac_acts": [
+      "supplemental"
+    ],
+    "abac_complement": [
+      "alias"
+    ],
+    "abac_complements": [
+      "role",
+      "supplemental"
+    ],
+    "acceptance": [
+      "supplemental"
+    ],
+    "acceptance_history": [
+      "alias"
+    ],
+    "accepted_term": [
+      "alias"
+    ],
+    "accepted_terms": [
+      "supplemental"
+    ],
+    "access": [
+      "alias",
+      "supplemental"
+    ],
+    "access_level": [
+      "role"
+    ],
+    "access_mode": [
+      "supplemental"
+    ],
+    "access_scope": [
+      "role"
+    ],
+    "account": [
+      "alias",
+      "supplemental"
+    ],
+    "account_status": [
+      "role",
+      "supplemental"
+    ],
+    "accounts": [
+      "alias",
+      "supplemental"
+    ],
+    "acl": [
+      "alias"
+    ],
+    "acls": [
+      "role",
+      "supplemental"
+    ],
+    "act": [
+      "alias"
+    ],
+    "acting": [
+      "supplemental"
+    ],
+    "acting_identity": [
+      "supplemental"
+    ],
+    "action": [
+      "alias",
+      "role",
+      "supplemental"
+    ],
+    "actions": [
+      "alias",
+      "supplemental"
+    ],
+    "active_status": [
+      "role",
+      "supplemental"
+    ],
+    "activity": [
+      "alias",
+      "supplemental"
+    ],
+    "acts": [
+      "alias",
+      "supplemental"
+    ],
+    "additional_constraint": [
+      "alias"
+    ],
+    "additional_constraints": [
+      "role",
+      "supplemental"
+    ],
+    "additional_structuring_layer": [
+      "role"
+    ],
+    "address": [
+      "alias",
+      "supplemental"
+    ],
+    "administrator": [
+      "supplemental"
+    ],
+    "affected_entity": [
+      "supplemental"
+    ],
+    "affiliation": [
+      "role",
+      "supplemental"
+    ],
+    "agent": [
+      "alias",
+      "supplemental"
+    ],
+    "agreement": [
+      "alias"
+    ],
+    "agreements": [
+      "alias",
+      "supplemental"
+    ],
+    "allowed_action": [
+      "alias"
+    ],
+    "allowed_actions": [
+      "role",
+      "supplemental"
+    ],
+    "allowed_domain": [
+      "alias"
+    ],
+    "allowed_domains": [
+      "supplemental"
+    ],
+    "amount": [
+      "alias"
+    ],
+    "amounts": [
+      "supplemental"
+    ],
+    "api": [
+      "supplemental"
+    ],
+    "api_integration": [
+      "alias"
+    ],
+    "api_integrations": [
+      "supplemental"
+    ],
+    "api_key": [
+      "alias"
+    ],
+    "api_keys": [
+      "role",
+      "supplemental"
+    ],
+    "approval": [
+      "alias"
+    ],
+    "approvals": [
+      "role",
+      "supplemental"
+    ],
+    "are": [
+      "mode13b_promotion"
+    ],
+    "artifact": [
+      "alias"
+    ],
+    "artifacts": [
+      "alias",
+      "supplemental"
+    ],
+    "assignment": [
+      "alias"
+    ],
+    "assignment_bind_role": [
+      "alias"
+    ],
+    "assignments": [
+      "supplemental"
+    ],
+    "assignments_bind_roles": [
+      "role"
+    ],
+    "association": [
+      "alias"
+    ],
+    "associations": [
+      "alias",
+      "supplemental"
+    ],
+    "atomic_capabilities": [
+      "role",
+      "supplemental"
+    ],
+    "atomic_capability": [
+      "alias"
+    ],
+    "attachment": [
+      "alias"
+    ],
+    "attachments": [
+      "role",
+      "supplemental"
+    ],
+    "attempt": [
+      "alias"
+    ],
+    "attempts": [
+      "alias",
+      "supplemental"
+    ],
+    "attribute": [
+      "alias"
+    ],
+    "attributes": [
+      "alias",
+      "role",
+      "supplemental"
+    ],
+    "audit": [
+      "supplemental"
+    ],
+    "audit_event": [
+      "alias"
+    ],
+    "audit_events": [
+      "role",
+      "supplemental"
+    ],
+    "authorization": [
+      "role",
+      "supplemental"
+    ],
+    "authorization_artifact": [
+      "alias"
+    ],
+    "authorization_artifacts": [
+      "role",
+      "supplemental"
+    ],
+    "based_component": [
+      "alias"
+    ],
+    "based_components": [
+      "alias"
+    ],
+    "baseline": [
+      "alias",
+      "supplemental"
+    ],
+    "belong": [
+      "mode13b_promotion"
+    ],
+    "billing": [
+      "supplemental"
+    ],
+    "billing_account": [
+      "supplemental"
+    ],
+    "billing_address": [
+      "alias"
+    ],
+    "billing_data": [
+      "role",
+      "supplemental"
+    ],
+    "billing_period": [
+      "role",
+      "supplemental"
+    ],
+    "bind_role": [
+      "alias"
+    ],
+    "bind_roles": [
+      "alias"
+    ],
+    "binding": [
+      "alias",
+      "supplemental"
+    ],
+    "boundary": [
+      "alias",
+      "supplemental"
+    ],
+    "business": [
+      "supplemental"
+    ],
+    "business_attribute": [
+      "alias"
+    ],
+    "business_attributes": [
+      "role",
+      "supplemental"
+    ],
+    "business_object": [
+      "alias"
+    ],
+    "business_objects": [
+      "alias",
+      "role",
+      "supplemental"
+    ],
+    "business_work_object": [
+      "alias"
+    ],
+    "business_work_objects": [
+      "role",
+      "supplemental"
+    ],
+    "capabilities": [
+      "alias",
+      "supplemental"
+    ],
+    "capability": [
+      "alias"
+    ],
+    "case": [
+      "alias"
+    ],
+    "cases": [
+      "alias"
+    ],
+    "category": [
+      "role",
+      "supplemental"
+    ],
+    "certificate": [
+      "alias"
+    ],
+    "certificates": [
+      "role",
+      "supplemental"
+    ],
+    "change_record": [
+      "alias"
+    ],
+    "claim": [
+      "supplemental"
+    ],
+    "claim_mapping": [
+      "alias"
+    ],
+    "claim_mappings": [
+      "role",
+      "supplemental"
+    ],
+    "class": [
+      "alias"
+    ],
+    "classes": [
+      "alias",
+      "supplemental"
+    ],
+    "classic_saa_system": [
+      "alias"
+    ],
+    "classic_saas_system": [
+      "role",
+      "supplemental"
+    ],
+    "classification": [
+      "alias",
+      "role",
+      "supplemental"
+    ],
+    "classifications": [
+      "role",
+      "supplemental"
+    ],
+    "client": [
+      "supplemental"
+    ],
+    "client_configuration": [
+      "supplemental"
+    ],
+    "client_context": [
+      "alias",
+      "role",
+      "supplemental"
+    ],
+    "coarse": [
+      "supplemental"
+    ],
+    "coarse_baseline": [
+      "role"
+    ],
+    "collection": [
+      "alias"
+    ],
+    "collections": [
+      "mode13b_promotion"
+    ],
+    "comment": [
+      "alias"
+    ],
+    "comments": [
+      "role",
+      "supplemental"
+    ],
+    "commercial": [
+      "supplemental"
+    ],
+    "commercial_enablement": [
+      "role",
+      "supplemental"
+    ],
+    "common": [
+      "supplemental"
+    ],
+    "common_object": [
+      "alias"
+    ],
+    "common_objects": [
+      "role",
+      "supplemental"
+    ],
+    "common_organization_level_setting": [
+      "alias"
+    ],
+    "common_organization_level_settings": [
+      "role",
+      "supplemental"
+    ],
+    "complement": [
+      "alias",
+      "mode13b_promotion"
+    ],
+    "complemented": [
+      "role",
+      "supplemental"
+    ],
+    "complements": [
+      "alias",
+      "supplemental"
+    ],
+    "compliance": [
+      "supplemental"
+    ],
+    "component": [
+      "alias"
+    ],
+    "components": [
+      "alias",
+      "supplemental"
+    ],
+    "composition": [
+      "alias",
+      "supplemental"
+    ],
+    "concrete_instance": [
+      "role"
+    ],
+    "concrete_resource": [
+      "role",
+      "supplemental"
+    ],
+    "condition": [
+      "supplemental"
+    ],
+    "condition_layer": [
+      "role",
+      "supplemental"
+    ],
+    "configuration": [
+      "alias",
+      "supplemental"
+    ],
+    "configurations": [
+      "role",
+      "supplemental"
+    ],
+    "configured_mfa": [
+      "supplemental"
+    ],
+    "configured_mfa_method": [
+      "alias"
+    ],
+    "configured_mfa_methods": [
+      "role"
+    ],
+    "connection": [
+      "alias",
+      "supplemental"
+    ],
+    "connection_type": [
+      "role"
+    ],
+    "connections": [
+      "alias",
+      "supplemental"
+    ],
+    "constraint": [
+      "alias"
+    ],
+    "constraints": [
+      "alias",
+      "supplemental"
+    ],
+    "consumption": [
+      "supplemental"
+    ],
+    "consumption_based": [
+      "supplemental"
+    ],
+    "consumption_based_component": [
+      "alias"
+    ],
+    "consumption_based_components": [
+      "role",
+      "supplemental"
+    ],
+    "consumption_entries": [
+      "role",
+      "supplemental"
+    ],
+    "consumption_entry": [
+      "alias"
+    ],
+    "contact": [
+      "supplemental"
+    ],
+    "contact_email": [
+      "supplemental"
+    ],
+    "container": [
+      "alias",
+      "supplemental"
+    ],
+    "containers": [
+      "role"
+    ],
+    "content": [
+      "supplemental"
+    ],
+    "context": [
+      "alias",
+      "supplemental"
+    ],
+    "contractual_state": [
+      "alias"
+    ],
+    "contractual_states": [
+      "role",
+      "supplemental"
+    ],
+    "creation": [
+      "supplemental"
+    ],
+    "creation_time": [
+      "role",
+      "supplemental"
+    ],
+    "creator": [
+      "role",
+      "supplemental"
+    ],
+    "credential": [
+      "alias"
+    ],
+    "credentials": [
+      "supplemental"
+    ],
+    "currency": [
+      "supplemental"
+    ],
+    "custom": [
+      "supplemental"
+    ],
+    "custom_role": [
+      "alias"
+    ],
+    "customer": [
+      "supplemental"
+    ],
+    "data": [
+      "alias",
+      "supplemental"
+    ],
+    "data_access": [
+      "role"
+    ],
+    "data_processing_agreement": [
+      "alias"
+    ],
+    "data_processing_agreements": [
+      "role",
+      "supplemental"
+    ],
+    "data_residency": [
+      "role",
+      "supplemental"
+    ],
+    "date": [
+      "alias",
+      "supplemental"
+    ],
+    "decision": [
+      "supplemental"
+    ],
+    "default": [
+      "alias",
+      "supplemental"
+    ],
+    "default_association": [
+      "alias"
+    ],
+    "default_associations": [
+      "role",
+      "supplemental"
+    ],
+    "default_role": [
+      "role",
+      "supplemental"
+    ],
+    "default_team": [
+      "supplemental"
+    ],
+    "defaults": [
+      "alias",
+      "supplemental"
+    ],
+    "defined_case": [
+      "alias"
+    ],
+    "defined_cases": [
+      "supplemental"
+    ],
+    "delivery": [
+      "alias",
+      "supplemental"
+    ],
+    "delivery_attempt": [
+      "alias"
+    ],
+    "delivery_attempts": [
+      "role",
+      "supplemental"
+    ],
+    "delivery_log": [
+      "alias"
+    ],
+    "delivery_logs": [
+      "supplemental"
+    ],
+    "derived": [
+      "supplemental"
+    ],
+    "description": [
+      "role",
+      "supplemental"
+    ],
+    "designation": [
+      "alias",
+      "supplemental"
+    ],
+    "desired_role": [
+      "supplemental"
+    ],
+    "display": [
+      "supplemental"
+    ],
+    "display_name": [
+      "alias",
+      "role",
+      "supplemental"
+    ],
+    "display_names": [
+      "alias"
+    ],
+    "document": [
+      "alias",
+      "supplemental"
+    ],
+    "documents": [
+      "supplemental"
+    ],
+    "domain": [
+      "alias",
+      "role",
+      "supplemental"
+    ],
+    "domain_resource": [
+      "alias"
+    ],
+    "domain_resources": [
+      "role",
+      "supplemental"
+    ],
+    "domains": [
+      "alias"
+    ],
+    "downstream": [
+      "supplemental"
+    ],
+    "downstream_business_object": [
+      "alias"
+    ],
+    "downstream_business_objects": [
+      "role",
+      "supplemental"
+    ],
+    "due_date": [
+      "supplemental"
+    ],
+    "email": [
+      "alias",
+      "supplemental"
+    ],
+    "email_address": [
+      "role"
+    ],
+    "enablement": [
+      "alias",
+      "supplemental"
+    ],
+    "end": [
+      "supplemental"
+    ],
+    "entitlement": [
+      "alias"
+    ],
+    "entitlements": [
+      "role",
+      "supplemental"
+    ],
+    "entity": [
+      "alias"
+    ],
+    "entries": [
+      "alias",
+      "supplemental"
+    ],
+    "entry": [
+      "alias"
+    ],
+    "event": [
+      "alias",
+      "supplemental"
+    ],
+    "event_object": [
+      "alias"
+    ],
+    "event_objects": [
+      "supplemental"
+    ],
+    "event_type": [
+      "alias"
+    ],
+    "event_types": [
+      "role",
+      "supplemental"
+    ],
+    "events": [
+      "alias",
+      "supplemental"
+    ],
+    "example": [
+      "supplemental"
+    ],
+    "example_mfa": [
+      "role",
+      "supplemental"
+    ],
+    "exception": [
+      "alias"
+    ],
+    "exceptions": [
+      "alias",
+      "supplemental"
+    ],
+    "expiry": [
+      "alias",
+      "supplemental"
+    ],
+    "expiry_time": [
+      "role",
+      "supplemental"
+    ],
+    "extra_logic": [
+      "alias",
+      "supplemental"
+    ],
+    "failure": [
+      "supplemental"
+    ],
+    "failure_information": [
+      "supplemental"
+    ],
+    "feature": [
+      "alias",
+      "supplemental"
+    ],
+    "feature_switch": [
+      "alias"
+    ],
+    "feature_switches": [
+      "role",
+      "supplemental"
+    ],
+    "features": [
+      "role",
+      "supplemental"
+    ],
+    "field": [
+      "alias"
+    ],
+    "fields": [
+      "alias",
+      "supplemental"
+    ],
+    "file": [
+      "alias"
+    ],
+    "files": [
+      "role",
+      "supplemental"
+    ],
+    "flow": [
+      "alias"
+    ],
+    "flows": [
+      "alias",
+      "supplemental"
+    ],
+    "folder": [
+      "alias"
+    ],
+    "folders": [
+      "role"
+    ],
+    "further_resource": [
+      "alias"
+    ],
+    "further_resources": [
+      "role",
+      "supplemental"
+    ],
+    "grant": [
+      "alias",
+      "role"
+    ],
+    "grant_model": [
+      "alias"
+    ],
+    "grants": [
+      "mode13b_promotion",
+      "role",
+      "supplemental"
+    ],
+    "grants_model": [
+      "role",
+      "supplemental"
+    ],
+    "group": [
+      "alias"
+    ],
+    "groups": [
+      "supplemental"
+    ],
+    "has": [
+      "mode13b_promotion"
+    ],
+    "has_name": [
+      "alias"
+    ],
+    "hierarchical_structure": [
+      "supplemental"
+    ],
+    "hierarchical_structure_of_resource": [
+      "role"
+    ],
+    "history": [
+      "alias",
+      "supplemental"
+    ],
+    "i_e": [
+      "supplemental"
+    ],
+    "identity": [
+      "supplemental"
+    ],
+    "idp": [
+      "supplemental"
+    ],
+    "idp_metadata": [
+      "role",
+      "supplemental"
+    ],
+    "in_context": [
+      "alias"
+    ],
+    "include_security": [
+      "alias"
+    ],
+    "including": [
+      "supplemental"
+    ],
+    "including_billing": [
+      "supplemental"
+    ],
+    "including_billing_address": [
+      "role"
+    ],
+    "independent": [
+      "role",
+      "supplemental"
+    ],
+    "information": [
+      "alias",
+      "supplemental"
+    ],
+    "instance": [
+      "alias",
+      "supplemental"
+    ],
+    "instance_of_a_resource": [
+      "role"
+    ],
+    "integration": [
+      "alias"
+    ],
+    "integrations": [
+      "alias",
+      "supplemental"
+    ],
+    "invitation": [
+      "alias",
+      "supplemental"
+    ],
+    "invitation_object": [
+      "role"
+    ],
+    "invitation_rule": [
+      "alias"
+    ],
+    "invitation_rules": [
+      "supplemental"
+    ],
+    "invitations": [
+      "role",
+      "supplemental"
+    ],
+    "inviter": [
+      "supplemental"
+    ],
+    "invoice": [
+      "alias"
+    ],
+    "invoices": [
+      "role"
+    ],
+    "is": [
+      "mode13b_promotion"
+    ],
+    "isolation": [
+      "supplemental"
+    ],
+    "isolation_boundary": [
+      "role"
+    ],
+    "issuance": [
+      "supplemental"
+    ],
+    "issuance_time": [
+      "role",
+      "supplemental"
+    ],
+    "item": [
+      "alias"
+    ],
+    "items": [
+      "alias",
+      "role",
+      "supplemental"
+    ],
+    "job": [
+      "alias"
+    ],
+    "jobs": [
+      "role",
+      "supplemental"
+    ],
+    "key": [
+      "alias"
+    ],
+    "keys": [
+      "alias",
+      "supplemental"
+    ],
+    "label": [
+      "alias",
+      "supplemental"
+    ],
+    "language": [
+      "role",
+      "supplemental"
+    ],
+    "last_activity": [
+      "role",
+      "supplemental"
+    ],
+    "last_login": [
+      "role",
+      "supplemental"
+    ],
+    "last_successful_delivery": [
+      "role"
+    ],
+    "layer": [
+      "alias",
+      "supplemental"
+    ],
+    "leaf": [
+      "supplemental"
+    ],
+    "level": [
+      "alias",
+      "supplemental"
+    ],
+    "level_exception": [
+      "alias"
+    ],
+    "level_exceptions": [
+      "alias"
+    ],
+    "level_setting": [
+      "alias"
+    ],
+    "level_settings": [
+      "alias"
+    ],
+    "lifecycle": [
+      "supplemental"
+    ],
+    "lifecycle_state": [
+      "alias"
+    ],
+    "lifecycle_states": [
+      "supplemental"
+    ],
+    "limit": [
+      "alias",
+      "supplemental"
+    ],
+    "limit_value": [
+      "alias"
+    ],
+    "limit_values": [
+      "supplemental"
+    ],
+    "limits": [
+      "alias",
+      "role",
+      "supplemental"
+    ],
+    "line": [
+      "supplemental"
+    ],
+    "line_item": [
+      "alias"
+    ],
+    "line_items": [
+      "supplemental"
+    ],
+    "linkage": [
+      "alias",
+      "supplemental"
+    ],
+    "log": [
+      "alias"
+    ],
+    "logic": [
+      "alias",
+      "supplemental"
+    ],
+    "login": [
+      "alias",
+      "supplemental"
+    ],
+    "logs": [
+      "alias",
+      "supplemental"
+    ],
+    "making": [
+      "supplemental"
+    ],
+    "managed": [
+      "mode13b_promotion"
+    ],
+    "mapping": [
+      "alias"
+    ],
+    "mappings": [
+      "alias",
+      "supplemental"
+    ],
+    "member": [
+      "supplemental"
+    ],
+    "membership": [
+      "alias",
+      "role",
+      "supplemental"
+    ],
+    "membership_record": [
+      "alias"
+    ],
+    "membership_records": [
+      "alias"
+    ],
+    "memberships": [
+      "supplemental"
+    ],
+    "metadata": [
+      "alias",
+      "supplemental"
+    ],
+    "meter": [
+      "role"
+    ],
+    "metering": [
+      "supplemental"
+    ],
+    "method": [
+      "alias",
+      "supplemental"
+    ],
+    "methods": [
+      "alias",
+      "role"
+    ],
+    "mfa": [
+      "alias",
+      "supplemental"
+    ],
+    "mfa_method": [
+      "alias"
+    ],
+    "mfa_methods": [
+      "alias"
+    ],
+    "mode": [
+      "alias",
+      "supplemental"
+    ],
+    "model": [
+      "alias",
+      "supplemental"
+    ],
+    "modeled": [
+      "supplemental"
+    ],
+    "name": [
+      "alias",
+      "supplemental"
+    ],
+    "names": [
+      "alias",
+      "supplemental"
+    ],
+    "note": [
+      "alias"
+    ],
+    "notes": [
+      "supplemental"
+    ],
+    "notification": [
+      "supplemental"
+    ],
+    "notification_setting": [
+      "alias"
+    ],
+    "notification_settings": [
+      "supplemental"
+    ],
+    "object": [
+      "alias",
+      "supplemental"
+    ],
+    "object_level": [
+      "supplemental"
+    ],
+    "object_level_exception": [
+      "alias"
+    ],
+    "object_level_exceptions": [
+      "role",
+      "supplemental"
+    ],
+    "object_specific": [
+      "supplemental"
+    ],
+    "object_specific_exception": [
+      "alias"
+    ],
+    "object_specific_exceptions": [
+      "role",
+      "supplemental"
+    ],
+    "objects": [
+      "alias",
+      "supplemental"
+    ],
+    "of_recovery": [
+      "alias"
+    ],
+    "of_resource": [
+      "alias"
+    ],
+    "onboarding": [
+      "supplemental"
+    ],
+    "onboarding_default": [
+      "alias"
+    ],
+    "onboarding_defaults": [
+      "supplemental"
+    ],
+    "one_organization": [
+      "role"
+    ],
+    "operating": [
+      "supplemental"
+    ],
+    "operating_mode": [
+      "supplemental"
+    ],
+    "operation": [
+      "alias"
+    ],
+    "operations": [
+      "supplemental"
+    ],
+    "optional_classification": [
+      "role",
+      "supplemental"
+    ],
+    "optional_client_context": [
+      "role",
+      "supplemental"
+    ],
+    "optional_designation": [
+      "role",
+      "supplemental"
+    ],
+    "optional_display_name": [
+      "alias"
+    ],
+    "optional_display_names": [
+      "role",
+      "supplemental"
+    ],
+    "optional_expiry": [
+      "role",
+      "supplemental"
+    ],
+    "optional_label": [
+      "role",
+      "supplemental"
+    ],
+    "optional_limit": [
+      "role",
+      "supplemental"
+    ],
+    "optional_request": [
+      "role",
+      "supplemental"
+    ],
+    "optional_username": [
+      "role"
+    ],
+    "organization": [
+      "alias",
+      "role",
+      "supplemental"
+    ],
+    "organization_level": [
+      "role",
+      "supplemental"
+    ],
+    "other_product_specific_object": [
+      "alias"
+    ],
+    "other_product_specific_objects": [
+      "role",
+      "supplemental"
+    ],
+    "other_resource": [
+      "alias"
+    ],
+    "other_resources": [
+      "role",
+      "supplemental"
+    ],
+    "outcome": [
+      "supplemental"
+    ],
+    "outcome_status": [
+      "supplemental"
+    ],
+    "override": [
+      "alias"
+    ],
+    "overrides": [
+      "supplemental"
+    ],
+    "owner": [
+      "role",
+      "supplemental"
+    ],
+    "owner_rule": [
+      "alias"
+    ],
+    "owner_rules": [
+      "supplemental"
+    ],
+    "parameter": [
+      "alias"
+    ],
+    "parameters": [
+      "alias",
+      "supplemental"
+    ],
+    "payment": [
+      "alias",
+      "supplemental"
+    ],
+    "payment_method": [
+      "role",
+      "supplemental"
+    ],
+    "payment_provider_linkage": [
+      "supplemental"
+    ],
+    "payment_term": [
+      "alias"
+    ],
+    "payment_terms": [
+      "supplemental"
+    ],
+    "payments": [
+      "supplemental"
+    ],
+    "period": [
+      "alias",
+      "supplemental"
+    ],
+    "period_start": [
+      "role",
+      "supplemental"
+    ],
+    "permission": [
+      "alias"
+    ],
+    "permissions": [
+      "role",
+      "supplemental"
+    ],
+    "pipeline": [
+      "alias"
+    ],
+    "pipelines": [
+      "role",
+      "supplemental"
+    ],
+    "plan": [
+      "supplemental"
+    ],
+    "plan_binding": [
+      "supplemental"
+    ],
+    "plan_has_name": [
+      "role"
+    ],
+    "policies": [
+      "supplemental"
+    ],
+    "policy": [
+      "alias"
+    ],
+    "posture": [
+      "alias",
+      "supplemental"
+    ],
+    "preselection": [
+      "alias",
+      "supplemental"
+    ],
+    "pricing": [
+      "supplemental"
+    ],
+    "pricing_parameter": [
+      "alias"
+    ],
+    "pricing_parameters": [
+      "supplemental"
+    ],
+    "primary_tenant_scope": [
+      "role",
+      "supplemental"
+    ],
+    "principal": [
+      "alias"
+    ],
+    "principals": [
+      "supplemental"
+    ],
+    "privacy": [
+      "supplemental"
+    ],
+    "privacy_acceptance_history": [
+      "role",
+      "supplemental"
+    ],
+    "process": [
+      "supplemental"
+    ],
+    "processing": [
+      "supplemental"
+    ],
+    "processing_agreement": [
+      "alias"
+    ],
+    "processing_agreements": [
+      "alias"
+    ],
+    "product_specific": [
+      "supplemental"
+    ],
+    "profile": [
+      "supplemental"
+    ],
+    "profile_field": [
+      "alias"
+    ],
+    "profile_fields": [
+      "role",
+      "supplemental"
+    ],
+    "project": [
+      "alias",
+      "role",
+      "supplemental"
+    ],
+    "project_level": [
+      "supplemental"
+    ],
+    "project_level_setting": [
+      "alias"
+    ],
+    "project_level_settings": [
+      "supplemental"
+    ],
+    "project_status": [
+      "role",
+      "supplemental"
+    ],
+    "projects": [
+      "role",
+      "supplemental"
+    ],
+    "protected_object": [
+      "alias"
+    ],
+    "protected_objects": [
+      "role",
+      "supplemental"
+    ],
+    "provider": [
+      "supplemental"
+    ],
+    "provider_linkage": [
+      "alias"
+    ],
+    "purchased_quantities": [
+      "supplemental"
+    ],
+    "purchased_quantity": [
+      "alias"
+    ],
+    "quantities": [
+      "alias"
+    ],
+    "quantity": [
+      "alias"
+    ],
+    "rbac": [
+      "role",
+      "supplemental"
+    ],
+    "record": [
+      "alias",
+      "role",
+      "supplemental"
+    ],
+    "records": [
+      "alias",
+      "role",
+      "supplemental"
+    ],
+    "recovery": [
+      "alias",
+      "supplemental"
+    ],
+    "reference": [
+      "alias",
+      "supplemental"
+    ],
+    "references": [
+      "role",
+      "supplemental"
+    ],
+    "region": [
+      "role"
+    ],
+    "relationship": [
+      "alias",
+      "supplemental"
+    ],
+    "relationships": [
+      "supplemental"
+    ],
+    "renewal_parameter": [
+      "alias"
+    ],
+    "renewal_parameters": [
+      "role",
+      "supplemental"
+    ],
+    "represented": [
+      "supplemental"
+    ],
+    "request": [
+      "alias",
+      "supplemental"
+    ],
+    "requirement": [
+      "alias"
+    ],
+    "requirements": [
+      "alias",
+      "supplemental"
+    ],
+    "reset": [
+      "supplemental"
+    ],
+    "reset_flow": [
+      "alias"
+    ],
+    "reset_flows": [
+      "role",
+      "supplemental"
+    ],
+    "residency": [
+      "alias",
+      "supplemental"
+    ],
+    "resource": [
+      "alias",
+      "supplemental"
+    ],
+    "resource_level": [
+      "role",
+      "supplemental"
+    ],
+    "resource_of_that_type": [
+      "supplemental"
+    ],
+    "resource_type": [
+      "alias",
+      "role",
+      "supplemental"
+    ],
+    "resource_types": [
+      "role"
+    ],
+    "resources": [
+      "alias",
+      "supplemental"
+    ],
+    "responsibilities": [
+      "supplemental"
+    ],
+    "responsibility": [
+      "alias",
+      "role",
+      "supplemental"
+    ],
+    "retention": [
+      "supplemental"
+    ],
+    "retention_rule": [
+      "alias"
+    ],
+    "retention_rules": [
+      "supplemental"
+    ],
+    "retries": [
+      "supplemental"
+    ],
+    "retry": [
+      "alias"
+    ],
+    "review": [
+      "alias"
+    ],
+    "reviews": [
+      "supplemental"
+    ],
+    "revocation": [
+      "supplemental"
+    ],
+    "revocation_status": [
+      "role",
+      "supplemental"
+    ],
+    "role": [
+      "alias",
+      "supplemental"
+    ],
+    "roles": [
+      "alias",
+      "role",
+      "supplemental"
+    ],
+    "rotation": [
+      "supplemental"
+    ],
+    "rule": [
+      "alias"
+    ],
+    "rules": [
+      "alias",
+      "supplemental"
+    ],
+    "run": [
+      "alias"
+    ],
+    "runs": [
+      "mode13b_promotion"
+    ],
+    "saa_system": [
+      "alias"
+    ],
+    "saas": [
+      "supplemental"
+    ],
+    "saas_system": [
+      "alias"
+    ],
+    "scope": [
+      "alias",
+      "role",
+      "supplemental"
+    ],
+    "scope_role": [
+      "alias"
+    ],
+    "scope_roles": [
+      "role"
+    ],
+    "seat": [
+      "alias"
+    ],
+    "seats": [
+      "supplemental"
+    ],
+    "security": [
+      "alias",
+      "supplemental"
+    ],
+    "security_information": [
+      "role",
+      "supplemental"
+    ],
+    "security_posture": [
+      "role"
+    ],
+    "security_requirement": [
+      "alias"
+    ],
+    "security_requirements": [
+      "supplemental"
+    ],
+    "selective_extra_logic": [
+      "role"
+    ],
+    "sensitivity": [
+      "supplemental"
+    ],
+    "serve": [
+      "mode13b_promotion"
+    ],
+    "service": [
+      "supplemental"
+    ],
+    "service_account": [
+      "alias"
+    ],
+    "service_accounts": [
+      "role",
+      "supplemental"
+    ],
+    "session": [
+      "alias",
+      "supplemental"
+    ],
+    "sessions": [
+      "supplemental"
+    ],
+    "set": [
+      "role"
+    ],
+    "setting": [
+      "alias",
+      "supplemental"
+    ],
+    "setting_include_security": [
+      "alias"
+    ],
+    "settings": [
+      "alias",
+      "supplemental"
+    ],
+    "settings_include_security": [
+      "role"
+    ],
+    "sharing": [
+      "supplemental"
+    ],
+    "signed_in": [
+      "supplemental"
+    ],
+    "signed_in_context": [
+      "role"
+    ],
+    "specific_action": [
+      "alias"
+    ],
+    "specific_actions": [
+      "supplemental"
+    ],
+    "specific_exception": [
+      "alias"
+    ],
+    "specific_exceptions": [
+      "alias"
+    ],
+    "specific_object": [
+      "alias"
+    ],
+    "specific_objects": [
+      "alias"
+    ],
+    "specific_project": [
+      "supplemental"
+    ],
+    "sso": [
+      "supplemental"
+    ],
+    "sso_connection": [
+      "alias"
+    ],
+    "sso_connections": [
+      "role",
+      "supplemental"
+    ],
+    "standard_baseline": [
+      "role",
+      "supplemental"
+    ],
+    "standard_limit": [
+      "alias"
+    ],
+    "standard_limits": [
+      "role",
+      "supplemental"
+    ],
+    "start": [
+      "alias",
+      "supplemental"
+    ],
+    "state": [
+      "alias",
+      "supplemental"
+    ],
+    "state_of_recovery": [
+      "role"
+    ],
+    "states": [
+      "alias",
+      "supplemental"
+    ],
+    "status": [
+      "alias",
+      "role",
+      "supplemental"
+    ],
+    "status_timestamp": [
+      "alias"
+    ],
+    "status_timestamps": [
+      "role",
+      "supplemental"
+    ],
+    "structure": [
+      "alias",
+      "supplemental"
+    ],
+    "structured_change": [
+      "supplemental"
+    ],
+    "structured_change_record": [
+      "role"
+    ],
+    "structuring": [
+      "supplemental"
+    ],
+    "structuring_layer": [
+      "alias"
+    ],
+    "subject": [
+      "alias"
+    ],
+    "subjects": [
+      "supplemental"
+    ],
+    "subscription": [
+      "supplemental"
+    ],
+    "successful_delivery": [
+      "alias",
+      "supplemental"
+    ],
+    "switch": [
+      "alias"
+    ],
+    "switches": [
+      "alias",
+      "supplemental"
+    ],
+    "system": [
+      "alias",
+      "supplemental"
+    ],
+    "system_vs_custom": [
+      "supplemental"
+    ],
+    "system_vs_custom_role": [
+      "role"
+    ],
+    "target": [
+      "supplemental"
+    ],
+    "target_address": [
+      "supplemental"
+    ],
+    "target_email": [
+      "role",
+      "supplemental"
+    ],
+    "target_object": [
+      "supplemental"
+    ],
+    "task": [
+      "alias"
+    ],
+    "tasks": [
+      "role",
+      "supplemental"
+    ],
+    "tax": [
+      "supplemental"
+    ],
+    "tax_information": [
+      "supplemental"
+    ],
+    "team": [
+      "alias",
+      "supplemental"
+    ],
+    "team_context": [
+      "role",
+      "supplemental"
+    ],
+    "team_membership_record": [
+      "alias"
+    ],
+    "team_membership_records": [
+      "supplemental"
+    ],
+    "team_preselection": [
+      "supplemental"
+    ],
+    "teams": [
+      "role",
+      "supplemental"
+    ],
+    "template": [
+      "alias"
+    ],
+    "templates": [
+      "role",
+      "supplemental"
+    ],
+    "tenant": [
+      "supplemental"
+    ],
+    "tenant_scope": [
+      "alias"
+    ],
+    "term": [
+      "alias"
+    ],
+    "terms": [
+      "alias",
+      "supplemental"
+    ],
+    "that": [
+      "supplemental"
+    ],
+    "that_type": [
+      "alias"
+    ],
+    "three_class": [
+      "alias"
+    ],
+    "three_classes": [
+      "role"
+    ],
+    "ticket": [
+      "alias"
+    ],
+    "tickets": [
+      "supplemental"
+    ],
+    "time": [
+      "alias",
+      "supplemental"
+    ],
+    "time_window": [
+      "role",
+      "supplemental"
+    ],
+    "time_zone": [
+      "supplemental"
+    ],
+    "timestamp": [
+      "alias",
+      "supplemental"
+    ],
+    "timestamps": [
+      "alias",
+      "supplemental"
+    ],
+    "title": [
+      "supplemental"
+    ],
+    "token": [
+      "alias"
+    ],
+    "tokens": [
+      "role",
+      "supplemental"
+    ],
+    "trace": [
+      "supplemental"
+    ],
+    "trace_context": [
+      "supplemental"
+    ],
+    "transaction": [
+      "alias"
+    ],
+    "transactions": [
+      "supplemental"
+    ],
+    "type": [
+      "alias",
+      "supplemental"
+    ],
+    "types": [
+      "alias",
+      "supplemental"
+    ],
+    "typical_composition": [
+      "role",
+      "supplemental"
+    ],
+    "updated_timestamp": [
+      "alias"
+    ],
+    "updated_timestamps": [
+      "supplemental"
+    ],
+    "usage": [
+      "role",
+      "supplemental"
+    ],
+    "used_time": [
+      "supplemental"
+    ],
+    "user": [
+      "alias",
+      "supplemental"
+    ],
+    "user_agent": [
+      "supplemental"
+    ],
+    "username": [
+      "alias",
+      "supplemental"
+    ],
+    "users": [
+      "role",
+      "supplemental"
+    ],
+    "value": [
+      "alias"
+    ],
+    "values": [
+      "alias",
+      "supplemental"
+    ],
+    "visibility": [
+      "role",
+      "supplemental"
+    ],
+    "vs": [
+      "supplemental"
+    ],
+    "webhook": [
+      "alias"
+    ],
+    "webhooks": [
+      "supplemental"
+    ],
+    "which": [
+      "supplemental"
+    ],
+    "window": [
+      "alias",
+      "supplemental"
+    ],
+    "work": [
+      "supplemental"
+    ],
+    "work_object": [
+      "alias"
+    ],
+    "work_objects": [
+      "alias"
+    ],
+    "workflow": [
+      "alias"
+    ],
+    "workflows": [
+      "role",
+      "supplemental"
+    ],
+    "zone": [
+      "alias",
+      "supplemental"
+    ]
+  },
+  "mode13b_by_canonical": {
+    "acting": {
+      "policy_hits": [
+        "suppress_participial_fragment"
+      ],
+      "metrics": {
+        "role_total": 0,
+        "assertion_count": 0,
+        "mention_count": 1,
+        "avg_wikipedia_count": 114,
+        "non_nominal_share": 0
+      }
+    },
+    "acting_identity": {
+      "policy_hits": [
+        "suppress_two_token_participial_lift"
+      ],
+      "metrics": {
+        "role_total": 0,
+        "assertion_count": 0,
+        "mention_count": 2,
+        "avg_wikipedia_count": 438,
+        "non_nominal_share": 0
+      }
+    },
+    "are": {
+      "policy_hits": [
+        "promotion_unlinked_finite_verb_wikipedia_count"
+      ],
+      "metrics": {
+        "role_total": 0,
+        "assertion_count": 0,
+        "mention_count": 8,
+        "avg_wikipedia_count": 121,
+        "non_nominal_share": 1
+      }
+    },
+    "belong": {
+      "policy_hits": [
+        "promotion_unlinked_finite_verb_wikipedia_count"
+      ],
+      "metrics": {
+        "role_total": 0,
+        "assertion_count": 0,
+        "mention_count": 1,
+        "avg_wikipedia_count": 110,
+        "non_nominal_share": 1
+      }
+    },
+    "collections": {
+      "policy_hits": [
+        "promotion_unlinked_finite_verb_wikipedia_count"
+      ],
+      "metrics": {
+        "role_total": 0,
+        "assertion_count": 0,
+        "mention_count": 1,
+        "avg_wikipedia_count": 146,
+        "non_nominal_share": 1
+      }
+    },
+    "complement": {
+      "policy_hits": [
+        "promotion_unlinked_finite_verb_wikipedia_count"
+      ],
+      "metrics": {
+        "role_total": 0,
+        "assertion_count": 0,
+        "mention_count": 1,
+        "avg_wikipedia_count": 118,
+        "non_nominal_share": 1
+      }
+    },
+    "complemented": {
+      "policy_hits": [
+        "suppress_participial_chunk_reduction"
+      ],
+      "metrics": {
+        "role_total": 1,
+        "assertion_count": 1,
+        "mention_count": 3,
+        "avg_wikipedia_count": 119,
+        "non_nominal_share": 0
+      }
+    },
+    "configured_mfa": {
+      "policy_hits": [
+        "merge_into_stronger_host"
+      ],
+      "metrics": {
+        "role_total": 0,
+        "assertion_count": 0,
+        "mention_count": 1,
+        "avg_wikipedia_count": 105,
+        "non_nominal_share": 0
+      }
+    },
+    "consumption_based": {
+      "policy_hits": [
+        "merge_into_stronger_host"
+      ],
+      "metrics": {
+        "role_total": 0,
+        "assertion_count": 0,
+        "mention_count": 1,
+        "avg_wikipedia_count": 5,
+        "non_nominal_share": 0
+      }
+    },
+    "derived": {
+      "policy_hits": [
+        "suppress_participial_chunk_reduction"
+      ],
+      "metrics": {
+        "role_total": 0,
+        "assertion_count": 0,
+        "mention_count": 1,
+        "avg_wikipedia_count": 187,
+        "non_nominal_share": 0
+      }
+    },
+    "extra_logic": {
+      "policy_hits": [
+        "suppress_contained_stronger_host"
+      ],
+      "metrics": {
+        "role_total": 0,
+        "assertion_count": 0,
+        "mention_count": 1,
+        "avg_wikipedia_count": 526,
+        "non_nominal_share": 0
+      }
+    },
+    "grants": {
+      "policy_hits": [
+        "promotion_unlinked_finite_verb_wikipedia_count"
+      ],
+      "metrics": {
+        "role_total": 0,
+        "assertion_count": 0,
+        "mention_count": 4,
+        "avg_wikipedia_count": 222,
+        "non_nominal_share": 1
+      }
+    },
+    "has": {
+      "policy_hits": [
+        "promotion_unlinked_finite_verb_wikipedia_count"
+      ],
+      "metrics": {
+        "role_total": 0,
+        "assertion_count": 0,
+        "mention_count": 1,
+        "avg_wikipedia_count": 118,
+        "non_nominal_share": 1
+      }
+    },
+    "i_e": {
+      "policy_hits": [
+        "suppress_short_symbolic_token"
+      ],
+      "metrics": {
+        "role_total": 0,
+        "assertion_count": 0,
+        "mention_count": 2,
+        "avg_wikipedia_count": 56,
+        "non_nominal_share": 0
+      }
+    },
+    "including": {
+      "policy_hits": [
+        "suppress_participial_fragment"
+      ],
+      "metrics": {
+        "role_total": 0,
+        "assertion_count": 0,
+        "mention_count": 1,
+        "avg_wikipedia_count": 1,
+        "non_nominal_share": 0
+      }
+    },
+    "including_billing": {
+      "policy_hits": [
+        "suppress_two_token_participial_lift"
+      ],
+      "metrics": {
+        "role_total": 0,
+        "assertion_count": 0,
+        "mention_count": 1,
+        "avg_wikipedia_count": 114,
+        "non_nominal_share": 0
+      }
+    },
+    "is": {
+      "policy_hits": [
+        "promotion_unlinked_finite_verb_wikipedia_count",
+        "promotion_verb_wikipedia_count"
+      ],
+      "metrics": {
+        "role_total": 0,
+        "assertion_count": 0,
+        "mention_count": 15,
+        "avg_wikipedia_count": 105,
+        "non_nominal_share": 1
+      }
+    },
+    "making": {
+      "policy_hits": [
+        "suppress_participial_fragment"
+      ],
+      "metrics": {
+        "role_total": 0,
+        "assertion_count": 0,
+        "mention_count": 1,
+        "avg_wikipedia_count": 139,
+        "non_nominal_share": 0
+      }
+    },
+    "managed": {
+      "policy_hits": [
+        "promotion_verb_wikipedia_count",
+        "suppress_participial_fragment"
+      ],
+      "metrics": {
+        "role_total": 1,
+        "assertion_count": 1,
+        "mention_count": 1,
+        "avg_wikipedia_count": 101,
+        "non_nominal_share": 0
+      }
+    },
+    "modeled": {
+      "policy_hits": [
+        "suppress_participial_chunk_reduction"
+      ],
+      "metrics": {
+        "role_total": 0,
+        "assertion_count": 0,
+        "mention_count": 1,
+        "avg_wikipedia_count": 295,
+        "non_nominal_share": 0
+      }
+    },
+    "object_level": {
+      "policy_hits": [
+        "merge_into_stronger_host"
+      ],
+      "metrics": {
+        "role_total": 0,
+        "assertion_count": 0,
+        "mention_count": 1,
+        "avg_wikipedia_count": 2,
+        "non_nominal_share": 0
+      }
+    },
+    "object_specific": {
+      "policy_hits": [
+        "merge_into_stronger_host"
+      ],
+      "metrics": {
+        "role_total": 0,
+        "assertion_count": 0,
+        "mention_count": 1,
+        "avg_wikipedia_count": 0,
+        "non_nominal_share": 0
+      }
+    },
+    "operating": {
+      "policy_hits": [
+        "suppress_participial_fragment"
+      ],
+      "metrics": {
+        "role_total": 0,
+        "assertion_count": 0,
+        "mention_count": 1,
+        "avg_wikipedia_count": 103,
+        "non_nominal_share": 0
+      }
+    },
+    "operating_mode": {
+      "policy_hits": [
+        "suppress_two_token_participial_lift"
+      ],
+      "metrics": {
+        "role_total": 0,
+        "assertion_count": 0,
+        "mention_count": 2,
+        "avg_wikipedia_count": 292,
+        "non_nominal_share": 0
+      }
+    },
+    "product_specific": {
+      "policy_hits": [
+        "merge_into_stronger_host"
+      ],
+      "metrics": {
+        "role_total": 0,
+        "assertion_count": 0,
+        "mention_count": 1,
+        "avg_wikipedia_count": 0,
+        "non_nominal_share": 0
+      }
+    },
+    "represented": {
+      "policy_hits": [
+        "suppress_participial_chunk_reduction"
+      ],
+      "metrics": {
+        "role_total": 0,
+        "assertion_count": 0,
+        "mention_count": 1,
+        "avg_wikipedia_count": 475,
+        "non_nominal_share": 0
+      }
+    },
+    "runs": {
+      "policy_hits": [
+        "promotion_verb_wikipedia_count"
+      ],
+      "metrics": {
+        "role_total": 1,
+        "assertion_count": 1,
+        "mention_count": 1,
+        "avg_wikipedia_count": 106,
+        "non_nominal_share": 1
+      }
+    },
+    "serve": {
+      "policy_hits": [
+        "promotion_unlinked_finite_verb_wikipedia_count"
+      ],
+      "metrics": {
+        "role_total": 0,
+        "assertion_count": 0,
+        "mention_count": 1,
+        "avg_wikipedia_count": 123,
+        "non_nominal_share": 1
+      }
+    },
+    "signed_in": {
+      "policy_hits": [
+        "merge_into_stronger_host"
+      ],
+      "metrics": {
+        "role_total": 0,
+        "assertion_count": 0,
+        "mention_count": 1,
+        "avg_wikipedia_count": 0,
+        "non_nominal_share": 0
+      }
+    },
+    "structured_change": {
+      "policy_hits": [
+        "suppress_contained_stronger_host"
+      ],
+      "metrics": {
+        "role_total": 0,
+        "assertion_count": 0,
+        "mention_count": 1,
+        "avg_wikipedia_count": 606,
+        "non_nominal_share": 0
+      }
+    },
+    "successful_delivery": {
+      "policy_hits": [
+        "merge_into_stronger_host"
+      ],
+      "metrics": {
+        "role_total": 0,
+        "assertion_count": 0,
+        "mention_count": 1,
+        "avg_wikipedia_count": 326,
+        "non_nominal_share": 0
+      }
+    },
+    "system_vs_custom": {
+      "policy_hits": [
+        "merge_into_stronger_host"
+      ],
+      "metrics": {
+        "role_total": 0,
+        "assertion_count": 0,
+        "mention_count": 1,
+        "avg_wikipedia_count": 393,
+        "non_nominal_share": 0
+      }
+    }
+  },
+  "stats": {
+    "step13_mode": "13b",
+    "mentions_total": 2427,
+    "assertions_total": 130,
+    "role_mentions_scanned": 313,
+    "role_candidates_lifted": 206,
+    "supplemental_mentions_scanned": 2427,
+    "supplemental_candidates_lifted": 728,
+    "mode13b_suppressed_candidates": 23,
+    "mode13b_suppressed_low_wikipedia_count_unlinked": 0,
+    "mode13b_suppressed_non_nominal_bias": 0,
+    "mode13b_suppressed_contained_by_stronger_host": 2,
+    "mode13b_promoted_unlinked_finite_verb": 28,
+    "mode13b_suppressed_participial_fragment": 5,
+    "mode13b_suppressed_participial_chunk_reduction": 4,
+    "mode13b_suppressed_two_token_participial_lift": 3,
+    "mode13b_suppressed_short_symbolic_token": 1,
+    "mode13b_merged_into_stronger_host": 8,
+    "phase_ms": {
+      "role_lifting": 6,
+      "supplemental_lifting": 464,
+      "prune": 6,
+      "alias_and_legacy": 2,
+      "emit": 37,
+      "total": 545,
+      "mode13b_filter": 443
+    }
+  }
+}

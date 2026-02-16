@@ -1,0 +1,313 @@
+# concept-miner Productization TODO
+
+Goal: productize the current concept-miner prototype (`prototype/`) into a template-aligned Node.js package in this repository, based on `C:\code\.nodejs-project-template`.
+
+Status date: 2026-02-16
+
+## 0. Scope And Decisions (must be resolved first)
+
+- [ ] Confirm final packaging target:
+- Target A: publishable package at repository root (`C:\code\concept-miner`).
+- Target B: publishable package inside `prototype/` with root as meta-repo.
+- [ ] Confirm product contract boundary:
+- Option 1: product output contract is `schema/concepts.schema.json` (`concepts[]`).
+- Option 2: product output contract is prototype candidate schema (`concept_candidates[]`).
+- [ ] Define compatibility policy between current OpenAPI and prototype output:
+- Keep both with explicit transform, or
+- Consolidate onto one canonical public document.
+- [ ] Confirm final mode naming and defaults in all public interfaces:
+- `generic baseline mode` = extraction without wikipedia/wikipedia-title-index information (optional)
+- `default extended mode` = extraction with wikipedia/wikipedia-title-index information (default)
+- [ ] Enforce terminology policy in code/docs/contracts:
+- Use `wikipedia` and `wikipedia-title-index`
+- Do not expose `step13`, `13a`, `13b`, `wiki`, or `wti` in product-facing naming
+- [ ] Confirm Node baseline (template requires Node >=20) and npm baseline.
+- [ ] Confirm publish intent and timing:
+- Keep `"private": true` until first release-ready milestone.
+
+## 1. Template Baseline Adoption
+
+- [ ] Copy template repository skeleton (excluding `node_modules` and placeholder tokens) into product target.
+- [ ] Add/align root files from template:
+- `.editorconfig`, `.eslintrc.cjs`, `.gitattributes`, `.gitignore`, `.npmignore`
+- `package.json`, `package-lock.json`, `project.config.json`
+- `README.md`, `CHANGELOG.md`, `CONTRIBUTING.md`, `SECURITY.md`, `LICENSE`, `AGENTS.md`
+- [ ] Add template directories:
+- `bin/`, `src/`, `scripts/`, `docs/`, `test/`, `.github/workflows/`
+- [ ] Replace all placeholder tokens from template:
+- `__PROJECT_NAME__`, `__PACKAGE_NAME__`, `__DESCRIPTION__`, `__CLI_NAME__`
+- `__AUTHOR__`, `__GITHUB_OWNER__`, `__REPO_NAME__`, `__KEYWORD_1__`, `__KEYWORD_2__`
+- `__YEAR__`
+- [ ] Ensure line-ending and formatting policy matches template (`LF`, final newline, UTF-8).
+
+## 2. Package Contract And Metadata Hardening
+
+- [ ] Define final `package.json` identity fields (`name`, `description`, `keywords`, `author`, `repository`, `bugs`, `homepage`).
+- [ ] Adapt `project.config.json` to product runtime policies and CLI tool key namespace.
+- [ ] Configure stable public exports (`.`, `./validate`, `./tools`, `./schema`) and ensure files exist.
+- [ ] Match template export subpaths exactly unless intentionally versioned away:
+- `"." -> "./src/index.js"`
+- `"./validate" -> "./src/validate/index.js"`
+- `"./tools" -> "./src/tools/index.js"`
+- `"./schema" -> "./src/schema/output.schema.json"` (or documented equivalent with updated tests)
+- [ ] Configure CLI bin mapping for product command(s).
+- [ ] Add required scripts from template and adapt to project specifics:
+- `lint`, `test`, `test:unit`, `test:integration`
+- `dev:check`, `dev:report:metrics`, `dev:report:maturity`
+- `pack:check`, `smoke:release`, `ci:check`, `release:check`
+- [ ] Preserve template script wiring semantics:
+- `ci:check` includes `npm run lint` plus full gate chain
+- `release:check` fails on dirty worktree before running `ci:check`
+- [ ] Add runtime deps required by prototype code (`yaml`, `ajv`, `elementary-assertions`) and pin versions.
+- [ ] Verify package packlist includes docs/security files.
+
+## 3. Source Architecture Refactor (prototype -> library-first package)
+
+- [ ] Split `prototype/concept-candidates.js` into template-style modules:
+- `src/run.js` (public entrypoints)
+- `src/core/*` (deterministic extraction core)
+- `src/validate/*` (schema + integrity + stable errors)
+- `src/tools/*` (CLI/tool wrappers)
+- [ ] Remove business logic from CLI path; keep CLI as thin wrapper only.
+- [ ] Convert current ad-hoc helpers into coherent modules:
+- argument parsing, IO, deterministic sorting, canonicalization, ID generation, policy parsing.
+- [ ] Preserve deterministic behavior and ordering guarantees during refactor.
+- [ ] Keep backward-compatible aliases/flags where already documented (for controlled transition).
+- [ ] Replace internal mode names in API/CLI/config/meta from step labels to product mode labels.
+- [ ] Migrate prototype support modules and governance artifacts into product structure:
+- `legacy-enrichment.js`
+- `BENCHMARK_POLICY.md`
+- `LEGACY_POLICY.md`
+- `check-benchmark-policy.js`
+- `check-concept-candidates.js`
+- `check-concept-candidates.ps1`
+- `check-legacy-policy.js`
+- `concept-candidates.independent-benchmark.js`
+- `concept-candidates.13b-threshold-sweep.js`
+- `run-seed-concept-candidates.ps1`
+- `step12-wikipedia-title-index-coverage.js`
+- [ ] Preserve current runtime input paths and modes during transition:
+- persisted artifact input path
+- runtime seed-text input path with `elementary-assertions` integration
+- [ ] Replace prototype names in code and CLI while preserving behavior:
+- product mode names instead of `13a`/`13b`
+- `wikipedia`/`wikipedia-title-index` terms instead of `wiki`/`wti`
+
+## 4. Public Contract Consolidation (OpenAPI + JSON Schema + Runtime)
+
+- [ ] Select one canonical persisted document format and make all interfaces consistent.
+- [ ] Align `openapi/openapi.yaml` with chosen schema contract and actual runtime output.
+- [ ] Keep and maintain `openapi/README.md` and `schema/README.md` in sync with implemented behavior.
+- [ ] Preserve and validate current REST endpoint contracts unless intentionally changed:
+- `POST /v1/concepts/extract`
+- `POST /v1/concepts/validate`
+- [ ] Remove or explicitly document envelope/document differences.
+- [ ] Enforce missing invariants in schema validation (for example):
+- occurrence bounds (`end >= start`)
+- uniqueness constraints where required by contract
+- identifier/version format constraints if part of public contract
+- [ ] Add schema export file under `src/schema/` and wire it to package export.
+- [ ] Ensure `validate` command validates against the canonical public schema.
+- [ ] Migrate/replace prototype persisted schema artifact:
+- `prototype/seed.concept-candidates.schema.json` -> product schema location and validator wiring
+- [ ] Preserve prototype deterministic serialization contracts where applicable:
+- stable top-level key order
+- stable per-candidate key order
+- UTF-8 + LF + exactly one trailing newline
+- [ ] Preserve core extraction contract invariants from prototype:
+- canonicalization pipeline behavior
+- deterministic concept identifier generation
+- role bucket materialization and non-negative counts
+- wikipedia-title-index signal typing (`*_count` integer, non-count boolean)
+- [ ] Preserve schema-level concepts-document invariants from `schema/concepts.schema.json`:
+- required top-level `schema_version`
+- required top-level `concepts`
+- optional `input_id` non-empty when present
+- [ ] Preserve occurrence offset contract in schema/docs/runtime:
+- offsets are UTF-16 code units (`occurrences[*].start`, `occurrences[*].end`)
+- [ ] Define and validate sidecar contracts explicitly:
+- metadata sidecar schema/content (mode + thresholds + runtime context)
+- diagnostics sidecar schema/content (source-by-canonical + policy hits + stats)
+
+## 5. CLI And Tooling Productization
+
+- [ ] Implement template-compatible CLI:
+- `run` command (exactly one input source)
+- `validate` command
+- `--config` loading behavior (missing file error when explicitly requested)
+- [ ] Ensure CLI help contract includes `Usage:` and `--config <path>`.
+- [ ] Implement `bin/cli.js` as thin entrypoint with shebang and non-zero exit on command errors.
+- [ ] Decide and document concept-miner-specific commands/flags:
+- Keep `run` generic and expose product modes via options, or
+- Add explicit subcommands while preserving template discipline.
+- [ ] Add robust usage output and stable non-zero exit behavior on failures.
+- [ ] Move PowerShell helper flows into documented optional wrappers around core CLI.
+
+## 6. Test Migration And Contract Coverage
+
+- [ ] Port and adapt template contract tests to concept-miner domain.
+- [ ] Keep or intentionally replace template public API entrypoint contract:
+- `runFromInput(input, options)`
+- `runMain(text, options)`
+- [ ] Add package/schema contract tests mirroring template checks:
+- exported schema file is non-empty and valid JSON
+- exported schema has top-level object type and `$schema` marker
+- [ ] Create deterministic unit tests for extracted core modules.
+- [ ] Migrate prototype test coverage into `test/unit` and `test/integration`.
+- [ ] Add tests for stable validation error codes (consumer-branchable errors).
+- [ ] Add CLI contract tests:
+- help output
+- input-source exclusivity
+- missing config failure
+- [ ] Add config loader contract tests:
+- explicit config loads correctly
+- missing default config returns empty config object
+- invalid JSON and non-object config fail explicitly
+- [ ] Add integration tests for:
+- `scripts/dev-check.js`
+- `scripts/dev-report-metrics.js`
+- `scripts/dev-report-maturity.js`
+- `scripts/release-smoke-check.js`
+- [ ] Add required fixture contracts for script tests:
+- `test/fixtures/example-input.json`
+- `test/fixtures/example-output.json`
+- [ ] Assert dev script output shape contracts:
+- `dev:check` emits JSON with `mode`, `validated_count`, `ok`
+- report scripts emit JSON with `generated_at` and non-empty `rows`/`seeds`
+- [ ] Assert release smoke contract checks:
+- API exports are present
+- CLI help includes `Usage:`
+- `package.json` bin mapping exists
+- [ ] Keep prototype benchmark/policy tests and wire them into package scripts.
+- [ ] Ensure all artifact-based tests use stable fixtures and deterministic assertions.
+- [ ] Port prototype policy-governance tests/checks:
+- benchmark expected-set change requires `BENCHMARK_POLICY.md` update
+- legacy enrichment change requires `LEGACY_POLICY.md` update
+- [ ] Port prototype determinism and contract tests:
+- schema validation failures and hard-failure cases
+- deterministic replay across repeated runs and fresh process
+- deterministic YAML key-order checks
+- [ ] Port prototype mode/metadata/diagnostics tests:
+- mode-tagged output artifacts
+- mode-tagged metadata sidecars
+- diagnostics sidecars with expected top-level shape
+- [ ] Port prototype benchmark tooling tests:
+- independent benchmark scoring scripts and policy-intersection reporting
+- threshold sweep reproducibility and report generation
+- wikipedia-title-index coverage report generation
+- [ ] Migrate benchmark fixture assets and keep them version-controlled:
+- `independent.expected-concept-candidates.yaml`
+- representative seed fixtures under `test/artifacts/*`
+- [ ] Preserve realistic regression corpus structure under `test/artifacts/*`:
+- each seed keeps `seed.txt` as authoritative natural-language input fixture
+- each seed keeps `result-reference/*` as frozen prototype reference outputs
+- [ ] Add golden/frozen reference regression tests for each seed:
+- compare product outputs against `result-reference` baselines in agreed compatibility mode(s)
+- validate output YAML plus metadata and diagnostics sidecars against frozen references
+- [ ] Define controlled baseline-update workflow for frozen references:
+- when behavior intentionally changes, update `result-reference` with explicit rationale and changelog note
+- block silent drift of frozen references in CI
+- [ ] Migrate prototype unit/integration test corpus entrypoint:
+- `concept-candidates.test.js` -> product test layout with equivalent coverage
+- [ ] Port prototype anti-regression checks:
+- generic mode must not activate legacy enrichment behavior by default
+- optional legacy/recovery controls remain explicitly gated
+- static tripwire for literal-string/domain rule leakage in generic path
+- [ ] Decide fate of prototype soft performance budget checks and keep/adapt if retained.
+- [ ] Add tests that assert product-facing naming:
+- no `step13`/`13a`/`13b` terms in CLI help, OpenAPI descriptions, schema descriptions, or README
+- no `wiki`/`wti` abbreviations in product-facing fields and options
+
+## 7. Documentation And Governance Productization
+
+- [ ] Rewrite root `README.md` to match real runnable state and chosen contract.
+- [ ] Mine and migrate prototype documentation content:
+- `prototype/README.md` contract details into product docs
+- `prototype/TODO.md` open/closed governance items into product backlog/history notes
+- [ ] Add concrete quick-start examples for JS API, CLI, and REST.
+- [ ] Ensure README links to all required docs and that all linked docs exist.
+- [ ] Create/align docs from template:
+- `docs/NPM_RELEASE.md`
+- `docs/REPO_WORKFLOWS.md`
+- `docs/OPERATIONAL.md`
+- `docs/DEV_TOOLING.md`
+- `docs/RELEASE_NOTES_TEMPLATE.md`
+- `docs/BASELINE_TEST_RUN.md`
+- `docs/GUARANTEES.md`
+- `docs/STATUSQUO.md`
+- `docs/TEMPLATE_SETUP.md`
+- [ ] Ensure `docs/NPM_RELEASE.md` keeps explicit release staging command:
+- `git add CHANGELOG.md package.json package-lock.json src test docs scripts`
+- and avoids `git add -A` in release guidance
+- [ ] Keep `CHANGELOG.md` with `Unreleased` section.
+- [ ] Document determinism guarantees, failure policy, and non-goals clearly.
+- [ ] Document upstream dependency boundary for Step 12 (`elementary-assertions`).
+
+## 8. CI/CD And Release Workflow Setup
+
+- [ ] Add/adapt `.github/workflows/ci.yml` for Node matrix checks.
+- [ ] Add/adapt `.github/workflows/release.yml` with manual dispatch gate.
+- [ ] Ensure CI runs required gates:
+- `npm test`
+- `npm run pack:check`
+- `npm run smoke:release`
+- [ ] Ensure release workflow validates tag/version match and produces tarball artifact.
+- [ ] Document npm publish prerequisites (`NPM_TOKEN`, optional publish gate).
+- [ ] Add `scripts/ensure-clean-worktree.js` and wire `release:check`.
+
+## 9. Repository Layout Cleanup And Migration Operations
+
+- [ ] Decide long-term placement of prototype assets:
+- migrate into `src/` + `test/fixtures`, or
+- keep under `prototype/` as historical reference.
+- [ ] If migrating, create a traceable mapping table:
+- old file -> new file/module.
+- [ ] Decide how to handle current symlinked `prototype` dependency.
+- [ ] Ensure no runtime dependency on external symlink paths after productization.
+- [ ] Normalize artifact paths to repository-local, documented locations.
+- [ ] Keep or document migration of per-seed reference layout:
+- `test/artifacts/<seed>/seed.txt`
+- `test/artifacts/<seed>/result-reference/*`
+- [ ] Define policy for generated prototype report artifacts:
+- `13b-threshold-sweep.report.json` (generated benchmark sweep report)
+- `step12-wikipedia-title-index.coverage.report.json` (generated coverage report)
+- decide: checked-in snapshot vs generated-on-demand, then enforce consistently
+
+## 10. Quality Gates And Exit Criteria
+
+- [ ] `npm ci` succeeds on clean checkout.
+- [ ] `npm run lint` passes.
+- [ ] `npm test` passes.
+- [ ] `npm run dev:check` passes.
+- [ ] `npm run dev:report:metrics` emits valid JSON.
+- [ ] `npm run dev:report:maturity` emits valid JSON.
+- [ ] `npm run ci:check` passes locally.
+- [ ] `npm run release:check` passes on clean worktree.
+- [ ] `npm pack --dry-run` includes expected files only.
+- [ ] `npm run smoke:release` validates API exports + CLI help + bin mapping.
+- [ ] OpenAPI, schema, and runtime outputs are contract-consistent.
+- [ ] Prototype-derived product checks pass (renamed as needed):
+- benchmark policy guard
+- legacy policy guard
+- independent benchmark evaluation for both product modes
+- deterministic threshold-sweep report generation
+- wikipedia-title-index coverage report generation
+- concept-candidates schema + deterministic key-order checker (from `check-concept-candidates.js`) passes
+- batch seed runner flow (from `run-seed-concept-candidates.ps1`) passes in documented modes
+
+## 11. Post-Productization Follow-Up (after baseline is green)
+
+- [ ] Cut first productized version and tag strategy (`v0.x` or `v1.0.0` decision).
+- [ ] Run pre-publish and post-publish smoke flows from release docs.
+- [ ] Publish release notes using `docs/RELEASE_NOTES_TEMPLATE.md`.
+- [ ] Record operational snapshot in `docs/STATUSQUO.md`.
+- [ ] Plan backlog for upstream Step 12 improvements that remain out-of-repo.
+
+## 12. Suggested Execution Order
+
+- [ ] Phase 1: Scope decisions (Section 0)
+- [ ] Phase 2: Template scaffold + metadata (Sections 1-2)
+- [ ] Phase 3: Core refactor + contract consolidation (Sections 3-4)
+- [ ] Phase 4: CLI/tests/docs completion (Sections 5-7)
+- [ ] Phase 5: CI/release wiring + cleanup (Sections 8-9)
+- [ ] Phase 6: Full gate run and release readiness check (Sections 10-11)

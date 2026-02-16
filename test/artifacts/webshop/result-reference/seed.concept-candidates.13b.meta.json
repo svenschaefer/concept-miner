@@ -1,0 +1,27 @@
+{
+  "mode": "persisted_step12",
+  "seed_id": "seed",
+  "step13": {
+    "wikipedia_title_index_policy": "assertion_then_lexicon_fallback",
+    "step13_mode": "13b",
+    "enable_13b_mode": true,
+    "mode13b_policy": {
+      "verb_promotion_min_wikipedia_count": 1,
+      "unlinked_finite_verb_promotion_min_wikipedia_count": 80,
+      "low_wikipedia_count_unlinked_min_avg": 0.5,
+      "nonnominal_share_min": 0.5,
+      "nonnominal_weak_wikipedia_count_max": 1.5,
+      "merge_host_min_wikipedia_count_ratio": 1
+    },
+    "enable_supplemental": true,
+    "enable_alias_synthesis": true,
+    "enable_legacy_enrichment": false,
+    "enable_recovery_synthesis": false,
+    "emit_wikipedia_title_index_evidence": true
+  },
+  "runtime": {
+    "wikipedia_title_index_endpoint": null,
+    "timeout_ms": 120000,
+    "wikipedia_title_index_timeout_ms": 2000
+  }
+}

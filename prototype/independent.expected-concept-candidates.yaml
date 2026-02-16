@@ -1,0 +1,228 @@
+schema_version: 1
+description: >
+  Independent generic-compliance benchmark for Step 13 concept candidates.
+  Targets are authored for 13a/13b contract alignment (generic extraction + generic baseline plus optional generic Wikipedia Title Index extension),
+  not for domain-aware enrichment expectations. The benchmark is intentionally non-trivial:
+  it should remain a diagnostic pressure gauge, not a completion certificate.
+  Scoring uses must-have recall, should-have recall, and anti-target suppression.
+seeds:
+  access_control:
+    must_have:
+      - access_control_system
+      - users
+      - credentials
+      - roles
+      - permissions
+      - protected_resources
+      - required_permission
+      - access_decisions
+    should_have:
+      - specific_actions
+      - auditing
+      - security_analysis
+    neutral:
+      - system
+    anti_targets:
+      - using_credentials
+      - who_may_perform
+      - one_or_more
+      - such
+      - read
+      - write
+      - administer
+      - before_an_action
+      - executed
+      - must_verify
+      - user_holds
+  irs:
+    must_have:
+      - incident_reporting_system
+      - reports
+      - employees
+      - safety_issues
+      - policy_violations
+      - operational_incidents
+      - category
+      - severity
+      - location
+      - reporter
+      - mandatory_fields
+      - supervisors
+      - severity_level
+      - corrective_actions
+      - audit_purposes
+    should_have:
+      - structured_fields
+      - free_form_descriptions
+      - photos
+      - documents
+      - related_incidents
+      - selected_category
+      - clarification
+      - actions
+      - years
+    neutral:
+      - irs
+      - request_clarification
+    anti_targets:
+      - submit_reports_about
+      - reports_may_include
+      - as_well
+      - before_a_report
+      - report_is_accepted
+      - category_is_valid
+      - fields_are_present
+      - once_submitted
+      - change_the_severity
+      - assign_corrective
+      - at_least_10_years
+      - employee_leaves
+  prime_factors:
+    must_have:
+      - prime_factorization
+      - positive_integer
+      - prime_numbers
+      - product
+      - original_number
+      - smallest_prime_factor
+      - number_theory
+      - cryptography
+    should_have:
+      - factor
+      - set_of_prime_numbers
+      - process
+    anti_targets:
+      - decomposes
+      - must_equal
+      - starts_with
+      - continues_iteratively
+      - commonly_used
+      - into_a_set
+      - and_their_product
+      - process_typically
+      - is_commonly_used
+  prime_gen:
+    must_have:
+      - prime_number_generator
+      - prime_numbers
+      - ascending_order
+      - minimum_value
+      - successive_integer
+      - primality
+    should_have:
+      - numbers
+      - educational_purposes
+      - basic_numerical_experiments
+    neutral:
+      - generator
+      - generated_primes
+    anti_targets:
+      - starts_at
+      - given_minimum
+      - tests_each
+      - generator_must
+      - ensure
+      - only_numbers_greater
+      - are_considered
+  webshop:
+    must_have:
+      - webshop
+      - online_store
+      - products
+      - shopping_cart
+      - purchase
+      - record_of_the_order
+      - customer_s_payment
+    should_have:
+      - order
+      - items
+      - people
+      - shop
+    anti_targets:
+      - the_order
+      - while_doing_that
+      - make_sure
+      - actually
+      - actually_available
+      - take_the_customer_s
+      - keep_a_reliable
+      - reliable_record
+  saas:
+    must_have:
+      - organization
+      - user
+      - membership
+      - invitation
+      - team
+      - group
+      - resource_type
+      - resource
+      - project
+      - folders
+      - collections
+      - document
+      - items
+      - record
+      - entries
+      - files
+      - attachments
+      - templates
+      - workflows
+      - pipelines
+      - jobs
+      - runs
+      - comments
+      - notes
+      - tasks
+      - tickets
+      - approvals
+      - reviews
+      - activity
+      - event
+      - integrations
+      - webhooks
+      - api_integrations
+      - notification_settings
+      - delivery_logs
+      - principal
+      - permissions
+      - role
+      - scope
+      - rbac
+      - acls
+      - grant
+      - policies
+      - session
+      - tokens
+      - api_keys
+      - service_accounts
+      - mfa_methods
+      - sso_connections
+      - audit_events
+      - plan
+      - subscription
+      - entitlements
+      - billing_account
+      - invoices
+      - payment_method
+      - data_residency
+      - retention_rules
+    should_have:
+      - domain_resources
+      - usage
+      - metering
+      - payment
+      - transactions
+      - billing
+      - customer
+      - visibility
+    anti_targets:
+      - i_e
+      - represented
+      - modeled
+      - complemented
+      - derived
+      - making
+      - contextually_restricts
+      - clearly_defined_cases
+

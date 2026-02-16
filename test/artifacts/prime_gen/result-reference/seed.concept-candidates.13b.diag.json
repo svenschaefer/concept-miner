@@ -1,0 +1,185 @@
+{
+  "source_by_canonical": {
+    "are": [
+      "mode13b_promotion"
+    ],
+    "ascending": [
+      "supplemental"
+    ],
+    "ascending_order": [
+      "role",
+      "supplemental"
+    ],
+    "basic_numerical_experiment": [
+      "alias"
+    ],
+    "basic_numerical_experiments": [
+      "role"
+    ],
+    "educational_purpose": [
+      "alias"
+    ],
+    "educational_purposes": [
+      "role",
+      "supplemental"
+    ],
+    "experiment": [
+      "alias"
+    ],
+    "experiments": [
+      "alias",
+      "supplemental"
+    ],
+    "generated_prime": [
+      "alias"
+    ],
+    "generated_primes": [
+      "supplemental"
+    ],
+    "generator": [
+      "alias",
+      "supplemental"
+    ],
+    "given_minimum_value": [
+      "role"
+    ],
+    "integer": [
+      "alias",
+      "supplemental"
+    ],
+    "minimum_value": [
+      "alias",
+      "role"
+    ],
+    "number": [
+      "alias",
+      "supplemental"
+    ],
+    "number_generator": [
+      "alias"
+    ],
+    "numbers": [
+      "alias",
+      "supplemental"
+    ],
+    "numerical_experiment": [
+      "alias"
+    ],
+    "numerical_experiments": [
+      "alias",
+      "supplemental"
+    ],
+    "only_number": [
+      "alias"
+    ],
+    "only_numbers": [
+      "role",
+      "supplemental"
+    ],
+    "order": [
+      "alias",
+      "supplemental"
+    ],
+    "primality": [
+      "supplemental"
+    ],
+    "prime": [
+      "alias"
+    ],
+    "prime_number": [
+      "alias"
+    ],
+    "prime_number_generator": [
+      "role",
+      "supplemental"
+    ],
+    "prime_numbers": [
+      "role",
+      "supplemental"
+    ],
+    "primes": [
+      "alias"
+    ],
+    "purpose": [
+      "alias"
+    ],
+    "purposes": [
+      "alias",
+      "supplemental"
+    ],
+    "successive_integer": [
+      "role",
+      "supplemental"
+    ],
+    "value": [
+      "alias",
+      "supplemental"
+    ]
+  },
+  "mode13b_by_canonical": {
+    "are": {
+      "policy_hits": [
+        "promotion_unlinked_finite_verb_wikipedia_count"
+      ],
+      "metrics": {
+        "role_total": 0,
+        "assertion_count": 0,
+        "mention_count": 1,
+        "avg_wikipedia_count": 121,
+        "non_nominal_share": 1
+      }
+    },
+    "ascending": {
+      "policy_hits": [
+        "suppress_participial_fragment"
+      ],
+      "metrics": {
+        "role_total": 0,
+        "assertion_count": 0,
+        "mention_count": 1,
+        "avg_wikipedia_count": 78,
+        "non_nominal_share": 0
+      }
+    },
+    "numerical_experiments": {
+      "policy_hits": [
+        "merge_into_stronger_host"
+      ],
+      "metrics": {
+        "role_total": 0,
+        "assertion_count": 0,
+        "mention_count": 1,
+        "avg_wikipedia_count": 139,
+        "non_nominal_share": 0
+      }
+    }
+  },
+  "stats": {
+    "step13_mode": "13b",
+    "mentions_total": 89,
+    "assertions_total": 6,
+    "role_mentions_scanned": 13,
+    "role_candidates_lifted": 9,
+    "supplemental_mentions_scanned": 89,
+    "supplemental_candidates_lifted": 20,
+    "mode13b_suppressed_candidates": 2,
+    "mode13b_suppressed_low_wikipedia_count_unlinked": 0,
+    "mode13b_suppressed_non_nominal_bias": 0,
+    "mode13b_suppressed_contained_by_stronger_host": 0,
+    "mode13b_promoted_unlinked_finite_verb": 1,
+    "mode13b_suppressed_participial_fragment": 1,
+    "mode13b_suppressed_participial_chunk_reduction": 0,
+    "mode13b_suppressed_two_token_participial_lift": 0,
+    "mode13b_suppressed_short_symbolic_token": 0,
+    "mode13b_merged_into_stronger_host": 1,
+    "phase_ms": {
+      "role_lifting": 2,
+      "supplemental_lifting": 4,
+      "prune": 0,
+      "alias_and_legacy": 1,
+      "emit": 3,
+      "total": 12,
+      "mode13b_filter": 2
+    }
+  }
+}

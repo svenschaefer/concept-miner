@@ -1,0 +1,136 @@
+{
+  "source_by_canonical": {
+    "cryptography": [
+      "supplemental"
+    ],
+    "factor": [
+      "alias",
+      "supplemental"
+    ],
+    "factorization": [
+      "alias",
+      "supplemental"
+    ],
+    "integer": [
+      "alias",
+      "supplemental"
+    ],
+    "is": [
+      "mode13b_promotion"
+    ],
+    "number": [
+      "alias",
+      "supplemental"
+    ],
+    "number_theory": [
+      "role",
+      "supplemental"
+    ],
+    "numbers": [
+      "alias",
+      "supplemental"
+    ],
+    "original_number": [
+      "role",
+      "supplemental"
+    ],
+    "positive_integer": [
+      "role"
+    ],
+    "prime": [
+      "supplemental"
+    ],
+    "prime_factor": [
+      "alias",
+      "role"
+    ],
+    "prime_factorization": [
+      "role",
+      "supplemental"
+    ],
+    "prime_number": [
+      "alias"
+    ],
+    "prime_numbers": [
+      "alias",
+      "supplemental"
+    ],
+    "process": [
+      "supplemental"
+    ],
+    "product": [
+      "role",
+      "supplemental"
+    ],
+    "set": [
+      "supplemental"
+    ],
+    "set_of_prime_number": [
+      "alias"
+    ],
+    "set_of_prime_numbers": [
+      "role"
+    ],
+    "smallest_prime_factor": [
+      "supplemental"
+    ],
+    "theory": [
+      "alias",
+      "supplemental"
+    ]
+  },
+  "mode13b_by_canonical": {
+    "is": {
+      "policy_hits": [
+        "promotion_unlinked_finite_verb_wikipedia_count"
+      ],
+      "metrics": {
+        "role_total": 0,
+        "assertion_count": 0,
+        "mention_count": 1,
+        "avg_wikipedia_count": 105,
+        "non_nominal_share": 1
+      }
+    },
+    "prime_numbers": {
+      "policy_hits": [
+        "merge_into_stronger_host"
+      ],
+      "metrics": {
+        "role_total": 0,
+        "assertion_count": 0,
+        "mention_count": 1,
+        "avg_wikipedia_count": 412,
+        "non_nominal_share": 1
+      }
+    }
+  },
+  "stats": {
+    "step13_mode": "13b",
+    "mentions_total": 88,
+    "assertions_total": 7,
+    "role_mentions_scanned": 15,
+    "role_candidates_lifted": 8,
+    "supplemental_mentions_scanned": 88,
+    "supplemental_candidates_lifted": 22,
+    "mode13b_suppressed_candidates": 1,
+    "mode13b_suppressed_low_wikipedia_count_unlinked": 0,
+    "mode13b_suppressed_non_nominal_bias": 0,
+    "mode13b_suppressed_contained_by_stronger_host": 0,
+    "mode13b_promoted_unlinked_finite_verb": 1,
+    "mode13b_suppressed_participial_fragment": 0,
+    "mode13b_suppressed_participial_chunk_reduction": 0,
+    "mode13b_suppressed_two_token_participial_lift": 0,
+    "mode13b_suppressed_short_symbolic_token": 0,
+    "mode13b_merged_into_stronger_host": 1,
+    "phase_ms": {
+      "role_lifting": 2,
+      "supplemental_lifting": 4,
+      "prune": 0,
+      "alias_and_legacy": 1,
+      "emit": 3,
+      "total": 12,
+      "mode13b_filter": 3
+    }
+  }
+}

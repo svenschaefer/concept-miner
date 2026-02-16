@@ -1,0 +1,376 @@
+openapi: 3.0.3
+info:
+  title: concept-miner API
+  version: 1.0.0
+  description: >
+    Deterministic concept extraction from natural language text.
+    Given an input text, returns canonicalized concepts with optional evidence.
+    This API is product-oriented and does not expose internal pipeline stages.
+servers:
+  - url: http://127.0.0.1:32180
+    description: Local development
+tags:
+  - name: Concepts
+    description: Concept extraction and validation
+paths:
+  /v1/concepts/extract:
+    post:
+      tags: [Concepts]
+      operationId: extractConcepts
+      summary: Extract concepts from text
+      description: >
+        Extracts canonical concepts present in the given text. By default returns a compact
+        product view. Optional views can add evidence and diagnostics.
+      parameters:
+        - name: view
+          in: query
+          required: false
+          schema:
+            $ref: "#/components/schemas/ConceptView"
+          description: >
+            Controls response shape. "compact" returns product concepts only. "evidence"
+            adds occurrences. "diagnostic" adds deterministic diagnostics.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ExtractConceptsRequest"
+            examples:
+              minimal:
+                value:
+                  text: "A WebShop is an online store where people can place an order."
+              withOptions:
+                value:
+                  text: "A WebShop is an online store where people can place an order."
+                  input_id: "demo-1"
+                  options:
+                    language: "en"
+                    evidence: true
+                    limits:
+                      max_concepts: 200
+      responses:
+        "200":
+          description: Extraction result
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ExtractConceptsResponse"
+        "400":
+          description: Invalid request (malformed JSON, missing required fields)
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+        "422":
+          description: Unprocessable input (deterministic hard failure)
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+        "500":
+          description: Internal error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+  /v1/concepts/validate:
+    post:
+      tags: [Concepts]
+      operationId: validateConcepts
+      summary: Validate a concepts document
+      description: >
+        Validates a concepts document against the public product schema.
+        This is intended for integrations and CI checks.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ConceptsDocument"
+      responses:
+        "200":
+          description: Validation result
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ValidationResult"
+        "400":
+          description: Invalid request (malformed JSON)
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+        "500":
+          description: Internal error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+components:
+  schemas:
+    ConceptView:
+      type: string
+      enum: [compact, evidence, diagnostic]
+      default: compact
+    ExtractConceptsRequest:
+      type: object
+      additionalProperties: false
+      required: [text]
+      properties:
+        text:
+          type: string
+          minLength: 1
+          description: Raw input text.
+        input_id:
+          type: string
+          minLength: 1
+          description: Optional caller-provided identifier echoed into the response.
+        options:
+          $ref: "#/components/schemas/ExtractOptions"
+    ExtractOptions:
+      type: object
+      additionalProperties: false
+      properties:
+        language:
+          type: string
+          minLength: 2
+          maxLength: 16
+          description: >
+            Optional language hint (BCP-47 or short code). Used for tokenization and
+            deterministic normalization, not for probabilistic inference.
+          example: en
+        evidence:
+          type: boolean
+          default: false
+          description: >
+            If true, include occurrences and surface forms in the response (equivalent
+            to requesting view=evidence).
+        limits:
+          $ref: "#/components/schemas/ExtractLimits"
+        output:
+          $ref: "#/components/schemas/OutputOptions"
+    ExtractLimits:
+      type: object
+      additionalProperties: false
+      properties:
+        max_concepts:
+          type: integer
+          minimum: 1
+          maximum: 100000
+          default: 5000
+          description: Upper bound on number of returned concepts.
+    OutputOptions:
+      type: object
+      additionalProperties: false
+      properties:
+        stable_ids:
+          type: boolean
+          default: true
+          description: >
+            If true, concept ids are deterministically derived from canonical form and
+            the service versioned id scheme.
+        include_meta:
+          type: boolean
+          default: true
+          description: If true, include response meta.
+        include_diagnostics:
+          type: boolean
+          default: false
+          description: >
+            If true, include diagnostic fields (equivalent to view=diagnostic).
+    ExtractConceptsResponse:
+      type: object
+      additionalProperties: false
+      required: [concepts]
+      properties:
+        input_id:
+          type: string
+          description: Echo of request.input_id, if provided.
+        concepts:
+          type: array
+          items:
+            $ref: "#/components/schemas/Concept"
+        meta:
+          $ref: "#/components/schemas/ResponseMeta"
+        diagnostics:
+          $ref: "#/components/schemas/Diagnostics"
+    ConceptsDocument:
+      type: object
+      additionalProperties: false
+      required: [schema_version, concepts]
+      properties:
+        schema_version:
+          type: string
+          minLength: 1
+          description: Public schema version for the concepts document.
+          example: "1.0.0"
+        input_id:
+          type: string
+          description: Optional caller-provided identifier.
+        concepts:
+          type: array
+          items:
+            $ref: "#/components/schemas/Concept"
+        meta:
+          $ref: "#/components/schemas/ResponseMeta"
+    Concept:
+      type: object
+      additionalProperties: false
+      required: [id, name]
+      properties:
+        id:
+          type: string
+          minLength: 1
+          description: Deterministic concept identifier.
+          example: "c_8f3a91e2d4c1"
+        name:
+          type: string
+          minLength: 1
+          description: Canonical concept name.
+          example: "order"
+        surface_forms:
+          type: array
+          description: Unique surface forms observed in the text.
+          items:
+            type: string
+            minLength: 1
+        occurrences:
+          type: array
+          description: Evidence occurrences in the text (only when evidence is requested).
+          items:
+            $ref: "#/components/schemas/Occurrence"
+        signals:
+          $ref: "#/components/schemas/Signals"
+        properties:
+          type: object
+          description: Optional structured attributes derived deterministically.
+          additionalProperties: true
+    Occurrence:
+      type: object
+      additionalProperties: false
+      required: [start, end]
+      properties:
+        start:
+          type: integer
+          minimum: 0
+          description: Start offset in UTF-16 code units.
+        end:
+          type: integer
+          minimum: 0
+          description: End offset in UTF-16 code units (exclusive).
+        text:
+          type: string
+          description: Optional snippet of the matched surface.
+        source:
+          type: string
+          description: Optional source label (e.g., direct span, lifted mention).
+      description: >
+        Evidence span for a concept occurrence. Offsets are UTF-16 code units to align
+        with common JS string indexing.
+    Signals:
+      type: object
+      additionalProperties: false
+      properties:
+        confidence:
+          type: number
+          minimum: 0
+          maximum: 1
+          description: Optional normalized confidence score (deterministic).
+        strength:
+          type: string
+          enum: [low, medium, high]
+          description: Optional bucketed strength indicator.
+    ResponseMeta:
+      type: object
+      additionalProperties: false
+      properties:
+        concept_count:
+          type: integer
+          minimum: 0
+        service:
+          $ref: "#/components/schemas/ServiceMeta"
+    ServiceMeta:
+      type: object
+      additionalProperties: false
+      properties:
+        name:
+          type: string
+          example: concept-miner
+        version:
+          type: string
+          example: "1.0.0"
+        build:
+          type: string
+          description: Optional build identifier (git sha, build number).
+        deterministic:
+          type: boolean
+          default: true
+    Diagnostics:
+      type: object
+      additionalProperties: false
+      description: Diagnostic-only fields. Not required for normal product usage.
+      properties:
+        decisions:
+          type: array
+          items:
+            $ref: "#/components/schemas/Decision"
+        counters:
+          type: object
+          additionalProperties:
+            type: integer
+    Decision:
+      type: object
+      additionalProperties: false
+      required: [concept_id, kind]
+      properties:
+        concept_id:
+          type: string
+        kind:
+          type: string
+          description: Deterministic decision kind (e.g., suppressed, merged, promoted).
+        reason:
+          type: string
+          description: Optional deterministic reason label.
+        details:
+          type: object
+          additionalProperties: true
+    ValidationResult:
+      type: object
+      additionalProperties: false
+      required: [ok]
+      properties:
+        ok:
+          type: boolean
+        errors:
+          type: array
+          items:
+            $ref: "#/components/schemas/ValidationError"
+    ValidationError:
+      type: object
+      additionalProperties: false
+      required: [message]
+      properties:
+        message:
+          type: string
+        path:
+          type: string
+        keyword:
+          type: string
+        params:
+          type: object
+          additionalProperties: true
+    ApiError:
+      type: object
+      additionalProperties: false
+      required: [error, message]
+      properties:
+        error:
+          type: string
+          description: Stable error identifier.
+          example: invalid_request
+        message:
+          type: string
+        details:
+          type: object
+          additionalProperties: true

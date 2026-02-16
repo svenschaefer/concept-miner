@@ -1,0 +1,5176 @@
+schema_version: 1.0.0
+seed_id: seed
+stage: concept_candidates
+concept_candidates:
+  - concept_id: cc_bd938c688f49b77c
+    canonical: action
+    surfaces:
+      - actions
+      - corrective actions
+    mention_ids:
+      - m:s6:609-634:chunk
+      - m:s6:616-634:mwe
+      - m:s6:627-634:token_shadow
+      - m:s7:641-648:token
+    assertion_ids:
+      - a:s6:m:s6:609-615:token:c5122d3d0471
+    roles:
+      actor: 0
+      theme: 1
+      attr: 0
+      topic: 0
+      location: 0
+      other: 0
+    wikipedia_title_index:
+      wiki_any_signal: true
+      wiki_apostrophe_variant_match: false
+      wiki_exact_match: true
+      wiki_hyphen_space_variant_match: false
+      wiki_parenthetical_variant_count: 86
+      wiki_prefix_count: 502
+      wiki_singular_plural_variant_match: false
+    wikipedia_title_index_evidence:
+      wikipedia_title_index_policy: assertion_then_lexicon_fallback
+      mention_contributions:
+        - mention_id: m:s6:609-634:chunk
+          source: lexicon_fallback
+          assertion_signals: {}
+          lexicon_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 45
+            wiki_prefix_count: 230
+            wiki_singular_plural_variant_match: false
+          selected_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 45
+            wiki_prefix_count: 230
+            wiki_singular_plural_variant_match: false
+        - mention_id: m:s6:616-634:mwe
+          source: assertion_and_lexicon
+          assertion_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 21
+            wiki_prefix_count: 132
+            wiki_singular_plural_variant_match: false
+          lexicon_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 21
+            wiki_prefix_count: 132
+            wiki_singular_plural_variant_match: false
+          selected_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 21
+            wiki_prefix_count: 132
+            wiki_singular_plural_variant_match: false
+        - mention_id: m:s6:627-634:token_shadow
+          source: lexicon_fallback
+          assertion_signals: {}
+          lexicon_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 10
+            wiki_prefix_count: 70
+            wiki_singular_plural_variant_match: false
+          selected_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 10
+            wiki_prefix_count: 70
+            wiki_singular_plural_variant_match: false
+        - mention_id: m:s7:641-648:token
+          source: assertion_and_lexicon
+          assertion_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 10
+            wiki_prefix_count: 70
+            wiki_singular_plural_variant_match: false
+          lexicon_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 10
+            wiki_prefix_count: 70
+            wiki_singular_plural_variant_match: false
+          selected_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 10
+            wiki_prefix_count: 70
+            wiki_singular_plural_variant_match: false
+  - concept_id: cc_2b0dcdd40016096b
+    canonical: actions
+    surfaces:
+      - actions
+      - corrective actions
+    mention_ids:
+      - m:s6:609-634:chunk
+      - m:s6:616-634:mwe
+      - m:s6:627-634:token_shadow
+      - m:s7:641-648:token
+    assertion_ids:
+      - a:s6:m:s6:609-615:token:c5122d3d0471
+    roles:
+      actor: 0
+      theme: 1
+      attr: 0
+      topic: 0
+      location: 0
+      other: 0
+    wikipedia_title_index:
+      wiki_any_signal: true
+      wiki_apostrophe_variant_match: false
+      wiki_exact_match: true
+      wiki_hyphen_space_variant_match: false
+      wiki_parenthetical_variant_count: 86
+      wiki_prefix_count: 502
+      wiki_singular_plural_variant_match: false
+    wikipedia_title_index_evidence:
+      wikipedia_title_index_policy: assertion_then_lexicon_fallback
+      mention_contributions:
+        - mention_id: m:s6:609-634:chunk
+          source: lexicon_fallback
+          assertion_signals: {}
+          lexicon_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 45
+            wiki_prefix_count: 230
+            wiki_singular_plural_variant_match: false
+          selected_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 45
+            wiki_prefix_count: 230
+            wiki_singular_plural_variant_match: false
+        - mention_id: m:s6:616-634:mwe
+          source: assertion_and_lexicon
+          assertion_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 21
+            wiki_prefix_count: 132
+            wiki_singular_plural_variant_match: false
+          lexicon_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 21
+            wiki_prefix_count: 132
+            wiki_singular_plural_variant_match: false
+          selected_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 21
+            wiki_prefix_count: 132
+            wiki_singular_plural_variant_match: false
+        - mention_id: m:s6:627-634:token_shadow
+          source: lexicon_fallback
+          assertion_signals: {}
+          lexicon_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 10
+            wiki_prefix_count: 70
+            wiki_singular_plural_variant_match: false
+          selected_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 10
+            wiki_prefix_count: 70
+            wiki_singular_plural_variant_match: false
+        - mention_id: m:s7:641-648:token
+          source: assertion_and_lexicon
+          assertion_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 10
+            wiki_prefix_count: 70
+            wiki_singular_plural_variant_match: false
+          lexicon_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 10
+            wiki_prefix_count: 70
+            wiki_singular_plural_variant_match: false
+          selected_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 10
+            wiki_prefix_count: 70
+            wiki_singular_plural_variant_match: false
+  - concept_id: cc_ba78973ddcf98d4e
+    canonical: are
+    surfaces:
+      - are
+    mention_ids:
+      - m:s4:466-469:token
+      - m:s5:504-507:token
+    assertion_ids: []
+    roles:
+      actor: 0
+      theme: 0
+      attr: 0
+      topic: 0
+      location: 0
+      other: 0
+    wikipedia_title_index:
+      wiki_any_signal: true
+      wiki_apostrophe_variant_match: false
+      wiki_exact_match: true
+      wiki_hyphen_space_variant_match: false
+      wiki_parenthetical_variant_count: 42
+      wiki_prefix_count: 200
+      wiki_singular_plural_variant_match: false
+    wikipedia_title_index_evidence:
+      wikipedia_title_index_policy: assertion_then_lexicon_fallback
+      mention_contributions:
+        - mention_id: m:s4:466-469:token
+          source: assertion_and_lexicon
+          assertion_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 21
+            wiki_prefix_count: 100
+            wiki_singular_plural_variant_match: false
+          lexicon_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 21
+            wiki_prefix_count: 100
+            wiki_singular_plural_variant_match: false
+          selected_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 21
+            wiki_prefix_count: 100
+            wiki_singular_plural_variant_match: false
+        - mention_id: m:s5:504-507:token
+          source: lexicon_fallback
+          assertion_signals: {}
+          lexicon_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 21
+            wiki_prefix_count: 100
+            wiki_singular_plural_variant_match: false
+          selected_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 21
+            wiki_prefix_count: 100
+            wiki_singular_plural_variant_match: false
+  - concept_id: cc_3a421e23092773a2
+    canonical: audit_purpose
+    surfaces:
+      - audit purposes
+    mention_ids:
+      - m:s7:664-682:chunk
+      - m:s7:668-682:mwe
+    assertion_ids:
+      - a:s7:m:s7:657-663:token:3e60afbd0e84
+    roles:
+      actor: 0
+      theme: 0
+      attr: 0
+      topic: 0
+      location: 0
+      other: 1
+    wikipedia_title_index:
+      wiki_any_signal: true
+      wiki_apostrophe_variant_match: false
+      wiki_exact_match: true
+      wiki_hyphen_space_variant_match: false
+      wiki_parenthetical_variant_count: 50
+      wiki_prefix_count: 304
+      wiki_singular_plural_variant_match: false
+    wikipedia_title_index_evidence:
+      wikipedia_title_index_policy: assertion_then_lexicon_fallback
+      mention_contributions:
+        - mention_id: m:s7:664-682:chunk
+          source: lexicon_fallback
+          assertion_signals: {}
+          lexicon_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 36
+            wiki_prefix_count: 202
+            wiki_singular_plural_variant_match: false
+          selected_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 36
+            wiki_prefix_count: 202
+            wiki_singular_plural_variant_match: false
+        - mention_id: m:s7:668-682:mwe
+          source: assertion_and_lexicon
+          assertion_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 14
+            wiki_prefix_count: 102
+            wiki_singular_plural_variant_match: false
+          lexicon_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 14
+            wiki_prefix_count: 102
+            wiki_singular_plural_variant_match: false
+          selected_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 14
+            wiki_prefix_count: 102
+            wiki_singular_plural_variant_match: false
+  - concept_id: cc_2e53b4ed48650c91
+    canonical: audit_purposes
+    surfaces:
+      - audit purposes
+    mention_ids:
+      - m:s7:664-682:chunk
+      - m:s7:668-682:mwe
+    assertion_ids:
+      - a:s7:m:s7:657-663:token:3e60afbd0e84
+    roles:
+      actor: 0
+      theme: 0
+      attr: 0
+      topic: 0
+      location: 0
+      other: 1
+    wikipedia_title_index:
+      wiki_any_signal: true
+      wiki_apostrophe_variant_match: false
+      wiki_exact_match: true
+      wiki_hyphen_space_variant_match: false
+      wiki_parenthetical_variant_count: 50
+      wiki_prefix_count: 304
+      wiki_singular_plural_variant_match: false
+    wikipedia_title_index_evidence:
+      wikipedia_title_index_policy: assertion_then_lexicon_fallback
+      mention_contributions:
+        - mention_id: m:s7:664-682:chunk
+          source: lexicon_fallback
+          assertion_signals: {}
+          lexicon_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 36
+            wiki_prefix_count: 202
+            wiki_singular_plural_variant_match: false
+          selected_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 36
+            wiki_prefix_count: 202
+            wiki_singular_plural_variant_match: false
+        - mention_id: m:s7:668-682:mwe
+          source: assertion_and_lexicon
+          assertion_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 14
+            wiki_prefix_count: 102
+            wiki_singular_plural_variant_match: false
+          lexicon_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 14
+            wiki_prefix_count: 102
+            wiki_singular_plural_variant_match: false
+          selected_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 14
+            wiki_prefix_count: 102
+            wiki_singular_plural_variant_match: false
+  - concept_id: cc_edb2cd3b74c999af
+    canonical: category
+    surfaces:
+      - category
+      - selected category
+    mention_ids:
+      - m:s2:181-189:chunk
+      - m:s2:181-189:token
+      - m:s4:414-435:chunk
+      - m:s4:418-435:mwe
+    assertion_ids:
+      - a:s2:m:s2:154-161:token:37423e76a3a4
+      - a:s4:m:s4:396-409:token:15998198fc4d
+    roles:
+      actor: 0
+      theme: 2
+      attr: 0
+      topic: 0
+      location: 0
+      other: 0
+    wikipedia_title_index:
+      wiki_any_signal: true
+      wiki_apostrophe_variant_match: false
+      wiki_exact_match: true
+      wiki_hyphen_space_variant_match: false
+      wiki_parenthetical_variant_count: 195
+      wiki_prefix_count: 700
+      wiki_singular_plural_variant_match: false
+    wikipedia_title_index_evidence:
+      wikipedia_title_index_policy: assertion_then_lexicon_fallback
+      mention_contributions:
+        - mention_id: m:s2:181-189:chunk
+          source: lexicon_fallback
+          assertion_signals: {}
+          lexicon_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 27
+            wiki_prefix_count: 100
+            wiki_singular_plural_variant_match: false
+          selected_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 27
+            wiki_prefix_count: 100
+            wiki_singular_plural_variant_match: false
+        - mention_id: m:s2:181-189:token
+          source: assertion_and_lexicon
+          assertion_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 27
+            wiki_prefix_count: 100
+            wiki_singular_plural_variant_match: false
+          lexicon_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 27
+            wiki_prefix_count: 100
+            wiki_singular_plural_variant_match: false
+          selected_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 27
+            wiki_prefix_count: 100
+            wiki_singular_plural_variant_match: false
+        - mention_id: m:s4:414-435:chunk
+          source: lexicon_fallback
+          assertion_signals: {}
+          lexicon_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 80
+            wiki_prefix_count: 300
+            wiki_singular_plural_variant_match: false
+          selected_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 80
+            wiki_prefix_count: 300
+            wiki_singular_plural_variant_match: false
+        - mention_id: m:s4:418-435:mwe
+          source: assertion_and_lexicon
+          assertion_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 61
+            wiki_prefix_count: 200
+            wiki_singular_plural_variant_match: false
+          lexicon_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 61
+            wiki_prefix_count: 200
+            wiki_singular_plural_variant_match: false
+          selected_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 61
+            wiki_prefix_count: 200
+            wiki_singular_plural_variant_match: false
+  - concept_id: cc_12ea12eace7d655f
+    canonical: change
+    surfaces:
+      - change
+    mention_ids:
+      - m:s6:579-585:chunk
+      - m:s6:579-585:token
+    assertion_ids:
+      - a:s6:m:s6:609-615:token:c5122d3d0471
+    roles:
+      actor: 1
+      theme: 0
+      attr: 0
+      topic: 0
+      location: 0
+      other: 0
+    wikipedia_title_index:
+      wiki_any_signal: true
+      wiki_apostrophe_variant_match: false
+      wiki_exact_match: true
+      wiki_hyphen_space_variant_match: false
+      wiki_parenthetical_variant_count: 194
+      wiki_prefix_count: 200
+      wiki_singular_plural_variant_match: false
+    wikipedia_title_index_evidence:
+      wikipedia_title_index_policy: assertion_then_lexicon_fallback
+      mention_contributions:
+        - mention_id: m:s6:579-585:chunk
+          source: lexicon_fallback
+          assertion_signals: {}
+          lexicon_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 97
+            wiki_prefix_count: 100
+            wiki_singular_plural_variant_match: false
+          selected_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 97
+            wiki_prefix_count: 100
+            wiki_singular_plural_variant_match: false
+        - mention_id: m:s6:579-585:token
+          source: assertion_and_lexicon
+          assertion_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 97
+            wiki_prefix_count: 100
+            wiki_singular_plural_variant_match: false
+          lexicon_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 97
+            wiki_prefix_count: 100
+            wiki_singular_plural_variant_match: false
+          selected_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 97
+            wiki_prefix_count: 100
+            wiki_singular_plural_variant_match: false
+  - concept_id: cc_e2f97782f9dbe89f
+    canonical: clarification
+    surfaces:
+      - request clarification
+    mention_ids:
+      - m:s6:553-574:chunk
+      - m:s6:553-574:mwe
+    assertion_ids:
+      - a:s6:m:s6:609-615:token:c5122d3d0471
+    roles:
+      actor: 1
+      theme: 0
+      attr: 0
+      topic: 0
+      location: 0
+      other: 0
+    wikipedia_title_index:
+      wiki_any_signal: true
+      wiki_apostrophe_variant_match: false
+      wiki_exact_match: true
+      wiki_hyphen_space_variant_match: false
+      wiki_parenthetical_variant_count: 32
+      wiki_prefix_count: 234
+      wiki_singular_plural_variant_match: false
+    wikipedia_title_index_evidence:
+      wikipedia_title_index_policy: assertion_then_lexicon_fallback
+      mention_contributions:
+        - mention_id: m:s6:553-574:chunk
+          source: lexicon_fallback
+          assertion_signals: {}
+          lexicon_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 16
+            wiki_prefix_count: 117
+            wiki_singular_plural_variant_match: false
+          selected_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 16
+            wiki_prefix_count: 117
+            wiki_singular_plural_variant_match: false
+        - mention_id: m:s6:553-574:mwe
+          source: assertion_and_lexicon
+          assertion_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 16
+            wiki_prefix_count: 117
+            wiki_singular_plural_variant_match: false
+          lexicon_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 16
+            wiki_prefix_count: 117
+            wiki_singular_plural_variant_match: false
+          selected_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 16
+            wiki_prefix_count: 117
+            wiki_singular_plural_variant_match: false
+  - concept_id: cc_f168ccdd91548c5a
+    canonical: company
+    surfaces:
+      - company
+    mention_ids:
+      - m:s8:769-776:token_shadow
+    assertion_ids: []
+    roles:
+      actor: 0
+      theme: 0
+      attr: 0
+      topic: 0
+      location: 0
+      other: 0
+    wikipedia_title_index:
+      wiki_any_signal: true
+      wiki_apostrophe_variant_match: false
+      wiki_exact_match: true
+      wiki_hyphen_space_variant_match: false
+      wiki_parenthetical_variant_count: 52
+      wiki_prefix_count: 100
+      wiki_singular_plural_variant_match: false
+    wikipedia_title_index_evidence:
+      wikipedia_title_index_policy: assertion_then_lexicon_fallback
+      mention_contributions:
+        - mention_id: m:s8:769-776:token_shadow
+          source: lexicon_fallback
+          assertion_signals: {}
+          lexicon_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 52
+            wiki_prefix_count: 100
+            wiki_singular_plural_variant_match: false
+          selected_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 52
+            wiki_prefix_count: 100
+            wiki_singular_plural_variant_match: false
+  - concept_id: cc_efe0ef00784f8e8c
+    canonical: corrective_action
+    surfaces:
+      - corrective actions
+    mention_ids:
+      - m:s6:609-634:chunk
+      - m:s6:616-634:mwe
+    assertion_ids:
+      - a:s6:m:s6:609-615:token:c5122d3d0471
+    roles:
+      actor: 0
+      theme: 1
+      attr: 0
+      topic: 0
+      location: 0
+      other: 0
+    wikipedia_title_index:
+      wiki_any_signal: true
+      wiki_apostrophe_variant_match: false
+      wiki_exact_match: true
+      wiki_hyphen_space_variant_match: false
+      wiki_parenthetical_variant_count: 66
+      wiki_prefix_count: 362
+      wiki_singular_plural_variant_match: false
+    wikipedia_title_index_evidence:
+      wikipedia_title_index_policy: assertion_then_lexicon_fallback
+      mention_contributions:
+        - mention_id: m:s6:609-634:chunk
+          source: lexicon_fallback
+          assertion_signals: {}
+          lexicon_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 45
+            wiki_prefix_count: 230
+            wiki_singular_plural_variant_match: false
+          selected_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 45
+            wiki_prefix_count: 230
+            wiki_singular_plural_variant_match: false
+        - mention_id: m:s6:616-634:mwe
+          source: assertion_and_lexicon
+          assertion_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 21
+            wiki_prefix_count: 132
+            wiki_singular_plural_variant_match: false
+          lexicon_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 21
+            wiki_prefix_count: 132
+            wiki_singular_plural_variant_match: false
+          selected_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 21
+            wiki_prefix_count: 132
+            wiki_singular_plural_variant_match: false
+  - concept_id: cc_bbf1fc75c4f15afc
+    canonical: corrective_actions
+    surfaces:
+      - corrective actions
+    mention_ids:
+      - m:s6:609-634:chunk
+      - m:s6:616-634:mwe
+    assertion_ids:
+      - a:s6:m:s6:609-615:token:c5122d3d0471
+    roles:
+      actor: 0
+      theme: 1
+      attr: 0
+      topic: 0
+      location: 0
+      other: 0
+    wikipedia_title_index:
+      wiki_any_signal: true
+      wiki_apostrophe_variant_match: false
+      wiki_exact_match: true
+      wiki_hyphen_space_variant_match: false
+      wiki_parenthetical_variant_count: 66
+      wiki_prefix_count: 362
+      wiki_singular_plural_variant_match: false
+    wikipedia_title_index_evidence:
+      wikipedia_title_index_policy: assertion_then_lexicon_fallback
+      mention_contributions:
+        - mention_id: m:s6:609-634:chunk
+          source: lexicon_fallback
+          assertion_signals: {}
+          lexicon_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 45
+            wiki_prefix_count: 230
+            wiki_singular_plural_variant_match: false
+          selected_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 45
+            wiki_prefix_count: 230
+            wiki_singular_plural_variant_match: false
+        - mention_id: m:s6:616-634:mwe
+          source: assertion_and_lexicon
+          assertion_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 21
+            wiki_prefix_count: 132
+            wiki_singular_plural_variant_match: false
+          lexicon_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 21
+            wiki_prefix_count: 132
+            wiki_singular_plural_variant_match: false
+          selected_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 21
+            wiki_prefix_count: 132
+            wiki_singular_plural_variant_match: false
+  - concept_id: cc_c9046f7a37ad0ea7
+    canonical: description
+    surfaces:
+      - free-form
+      - free-form descriptions
+    mention_ids:
+      - m:s2:219-244:chunk
+      - m:s2:222-231:token_shadow
+      - m:s2:222-244:mwe
+    assertion_ids: []
+    roles:
+      actor: 0
+      theme: 0
+      attr: 0
+      topic: 0
+      location: 0
+      other: 0
+    wikipedia_title_index:
+      wiki_any_signal: true
+      wiki_apostrophe_variant_match: false
+      wiki_exact_match: true
+      wiki_hyphen_space_variant_match: false
+      wiki_parenthetical_variant_count: 15
+      wiki_prefix_count: 154
+      wiki_singular_plural_variant_match: false
+    wikipedia_title_index_evidence:
+      wikipedia_title_index_policy: assertion_then_lexicon_fallback
+      mention_contributions:
+        - mention_id: m:s2:219-244:chunk
+          source: lexicon_fallback
+          assertion_signals: {}
+          lexicon_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 13
+            wiki_prefix_count: 121
+            wiki_singular_plural_variant_match: false
+          selected_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 13
+            wiki_prefix_count: 121
+            wiki_singular_plural_variant_match: false
+        - mention_id: m:s2:222-231:token_shadow
+          source: lexicon_fallback
+          assertion_signals: {}
+          lexicon_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 1
+            wiki_prefix_count: 12
+            wiki_singular_plural_variant_match: false
+          selected_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 1
+            wiki_prefix_count: 12
+            wiki_singular_plural_variant_match: false
+        - mention_id: m:s2:222-244:mwe
+          source: lexicon_fallback
+          assertion_signals: {}
+          lexicon_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 1
+            wiki_prefix_count: 21
+            wiki_singular_plural_variant_match: false
+          selected_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 1
+            wiki_prefix_count: 21
+            wiki_singular_plural_variant_match: false
+  - concept_id: cc_a20a749658930819
+    canonical: descriptions
+    surfaces:
+      - free-form
+      - free-form descriptions
+    mention_ids:
+      - m:s2:219-244:chunk
+      - m:s2:222-231:token_shadow
+      - m:s2:222-244:mwe
+    assertion_ids: []
+    roles:
+      actor: 0
+      theme: 0
+      attr: 0
+      topic: 0
+      location: 0
+      other: 0
+    wikipedia_title_index:
+      wiki_any_signal: true
+      wiki_apostrophe_variant_match: false
+      wiki_exact_match: true
+      wiki_hyphen_space_variant_match: false
+      wiki_parenthetical_variant_count: 15
+      wiki_prefix_count: 154
+      wiki_singular_plural_variant_match: false
+    wikipedia_title_index_evidence:
+      wikipedia_title_index_policy: assertion_then_lexicon_fallback
+      mention_contributions:
+        - mention_id: m:s2:219-244:chunk
+          source: lexicon_fallback
+          assertion_signals: {}
+          lexicon_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 13
+            wiki_prefix_count: 121
+            wiki_singular_plural_variant_match: false
+          selected_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 13
+            wiki_prefix_count: 121
+            wiki_singular_plural_variant_match: false
+        - mention_id: m:s2:222-231:token_shadow
+          source: lexicon_fallback
+          assertion_signals: {}
+          lexicon_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 1
+            wiki_prefix_count: 12
+            wiki_singular_plural_variant_match: false
+          selected_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 1
+            wiki_prefix_count: 12
+            wiki_singular_plural_variant_match: false
+        - mention_id: m:s2:222-244:mwe
+          source: lexicon_fallback
+          assertion_signals: {}
+          lexicon_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 1
+            wiki_prefix_count: 21
+            wiki_singular_plural_variant_match: false
+          selected_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 1
+            wiki_prefix_count: 21
+            wiki_singular_plural_variant_match: false
+  - concept_id: cc_43cc23fa52b87b4c
+    canonical: document
+    surfaces:
+      - documents
+    mention_ids:
+      - m:s3:275-284:chunk
+      - m:s3:275-284:token
+    assertion_ids:
+      - a:s3:m:s3:256-273:chunk:f42ab42b1647
+    roles:
+      actor: 0
+      theme: 1
+      attr: 0
+      topic: 0
+      location: 0
+      other: 0
+    wikipedia_title_index:
+      wiki_any_signal: true
+      wiki_apostrophe_variant_match: false
+      wiki_exact_match: true
+      wiki_hyphen_space_variant_match: false
+      wiki_parenthetical_variant_count: 8
+      wiki_prefix_count: 44
+      wiki_singular_plural_variant_match: false
+    wikipedia_title_index_evidence:
+      wikipedia_title_index_policy: assertion_then_lexicon_fallback
+      mention_contributions:
+        - mention_id: m:s3:275-284:chunk
+          source: lexicon_fallback
+          assertion_signals: {}
+          lexicon_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 4
+            wiki_prefix_count: 22
+            wiki_singular_plural_variant_match: false
+          selected_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 4
+            wiki_prefix_count: 22
+            wiki_singular_plural_variant_match: false
+        - mention_id: m:s3:275-284:token
+          source: assertion_and_lexicon
+          assertion_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 4
+            wiki_prefix_count: 22
+            wiki_singular_plural_variant_match: false
+          lexicon_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 4
+            wiki_prefix_count: 22
+            wiki_singular_plural_variant_match: false
+          selected_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 4
+            wiki_prefix_count: 22
+            wiki_singular_plural_variant_match: false
+  - concept_id: cc_9b16b44d0e0a5cac
+    canonical: documents
+    surfaces:
+      - documents
+    mention_ids:
+      - m:s3:275-284:chunk
+      - m:s3:275-284:token
+    assertion_ids:
+      - a:s3:m:s3:256-273:chunk:f42ab42b1647
+    roles:
+      actor: 0
+      theme: 1
+      attr: 0
+      topic: 0
+      location: 0
+      other: 0
+    wikipedia_title_index:
+      wiki_any_signal: true
+      wiki_apostrophe_variant_match: false
+      wiki_exact_match: true
+      wiki_hyphen_space_variant_match: false
+      wiki_parenthetical_variant_count: 8
+      wiki_prefix_count: 44
+      wiki_singular_plural_variant_match: false
+    wikipedia_title_index_evidence:
+      wikipedia_title_index_policy: assertion_then_lexicon_fallback
+      mention_contributions:
+        - mention_id: m:s3:275-284:chunk
+          source: lexicon_fallback
+          assertion_signals: {}
+          lexicon_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 4
+            wiki_prefix_count: 22
+            wiki_singular_plural_variant_match: false
+          selected_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 4
+            wiki_prefix_count: 22
+            wiki_singular_plural_variant_match: false
+        - mention_id: m:s3:275-284:token
+          source: assertion_and_lexicon
+          assertion_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 4
+            wiki_prefix_count: 22
+            wiki_singular_plural_variant_match: false
+          lexicon_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 4
+            wiki_prefix_count: 22
+            wiki_singular_plural_variant_match: false
+          selected_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 4
+            wiki_prefix_count: 22
+            wiki_singular_plural_variant_match: false
+  - concept_id: cc_2fdc0177057d3a5c
+    canonical: employee
+    surfaces:
+      - Employees
+      - employees
+    mention_ids:
+      - m:s1:47-56:token
+      - m:s3:246-255:chunk
+      - m:s3:246-255:token
+    assertion_ids:
+      - a:s1:m:s1:39-43:token:65e568fe5657
+      - a:s3:m:s3:256-273:chunk:f42ab42b1647
+    roles:
+      actor: 2
+      theme: 0
+      attr: 0
+      topic: 0
+      location: 0
+      other: 0
+    wikipedia_title_index:
+      wiki_any_signal: true
+      wiki_apostrophe_variant_match: false
+      wiki_exact_match: true
+      wiki_hyphen_space_variant_match: false
+      wiki_parenthetical_variant_count: 18
+      wiki_prefix_count: 165
+      wiki_singular_plural_variant_match: false
+    wikipedia_title_index_evidence:
+      wikipedia_title_index_policy: assertion_then_lexicon_fallback
+      mention_contributions:
+        - mention_id: m:s1:47-56:token
+          source: assertion_and_lexicon
+          assertion_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 6
+            wiki_prefix_count: 55
+            wiki_singular_plural_variant_match: false
+          lexicon_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 6
+            wiki_prefix_count: 55
+            wiki_singular_plural_variant_match: false
+          selected_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 6
+            wiki_prefix_count: 55
+            wiki_singular_plural_variant_match: false
+        - mention_id: m:s3:246-255:chunk
+          source: lexicon_fallback
+          assertion_signals: {}
+          lexicon_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 6
+            wiki_prefix_count: 55
+            wiki_singular_plural_variant_match: false
+          selected_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 6
+            wiki_prefix_count: 55
+            wiki_singular_plural_variant_match: false
+        - mention_id: m:s3:246-255:token
+          source: assertion_and_lexicon
+          assertion_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 6
+            wiki_prefix_count: 55
+            wiki_singular_plural_variant_match: false
+          lexicon_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 6
+            wiki_prefix_count: 55
+            wiki_singular_plural_variant_match: false
+          selected_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 6
+            wiki_prefix_count: 55
+            wiki_singular_plural_variant_match: false
+  - concept_id: cc_c49de3d265fb1d97
+    canonical: employees
+    surfaces:
+      - Employees
+      - employees
+    mention_ids:
+      - m:s1:47-56:token
+      - m:s3:246-255:chunk
+      - m:s3:246-255:token
+    assertion_ids:
+      - a:s1:m:s1:39-43:token:65e568fe5657
+      - a:s3:m:s3:256-273:chunk:f42ab42b1647
+    roles:
+      actor: 2
+      theme: 0
+      attr: 0
+      topic: 0
+      location: 0
+      other: 0
+    wikipedia_title_index:
+      wiki_any_signal: true
+      wiki_apostrophe_variant_match: false
+      wiki_exact_match: true
+      wiki_hyphen_space_variant_match: false
+      wiki_parenthetical_variant_count: 18
+      wiki_prefix_count: 165
+      wiki_singular_plural_variant_match: false
+    wikipedia_title_index_evidence:
+      wikipedia_title_index_policy: assertion_then_lexicon_fallback
+      mention_contributions:
+        - mention_id: m:s1:47-56:token
+          source: assertion_and_lexicon
+          assertion_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 6
+            wiki_prefix_count: 55
+            wiki_singular_plural_variant_match: false
+          lexicon_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 6
+            wiki_prefix_count: 55
+            wiki_singular_plural_variant_match: false
+          selected_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 6
+            wiki_prefix_count: 55
+            wiki_singular_plural_variant_match: false
+        - mention_id: m:s3:246-255:chunk
+          source: lexicon_fallback
+          assertion_signals: {}
+          lexicon_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 6
+            wiki_prefix_count: 55
+            wiki_singular_plural_variant_match: false
+          selected_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 6
+            wiki_prefix_count: 55
+            wiki_singular_plural_variant_match: false
+        - mention_id: m:s3:246-255:token
+          source: assertion_and_lexicon
+          assertion_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 6
+            wiki_prefix_count: 55
+            wiki_singular_plural_variant_match: false
+          lexicon_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 6
+            wiki_prefix_count: 55
+            wiki_singular_plural_variant_match: false
+          selected_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 6
+            wiki_prefix_count: 55
+            wiki_singular_plural_variant_match: false
+  - concept_id: cc_c0d2856b74d0df05
+    canonical: field
+    surfaces:
+      - mandatory fields
+      - structured fields
+    mention_ids:
+      - m:s2:150-179:chunk
+      - m:s2:162-179:mwe
+      - m:s4:449-465:chunk
+      - m:s4:449-465:mwe
+    assertion_ids: []
+    roles:
+      actor: 0
+      theme: 0
+      attr: 0
+      topic: 0
+      location: 0
+      other: 0
+    wikipedia_title_index:
+      wiki_any_signal: true
+      wiki_apostrophe_variant_match: false
+      wiki_exact_match: true
+      wiki_hyphen_space_variant_match: false
+      wiki_parenthetical_variant_count: 175
+      wiki_prefix_count: 925
+      wiki_singular_plural_variant_match: false
+    wikipedia_title_index_evidence:
+      wikipedia_title_index_policy: assertion_then_lexicon_fallback
+      mention_contributions:
+        - mention_id: m:s2:150-179:chunk
+          source: lexicon_fallback
+          assertion_signals: {}
+          lexicon_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 82
+            wiki_prefix_count: 325
+            wiki_singular_plural_variant_match: false
+          selected_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 82
+            wiki_prefix_count: 325
+            wiki_singular_plural_variant_match: false
+        - mention_id: m:s2:162-179:mwe
+          source: assertion_and_lexicon
+          assertion_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 31
+            wiki_prefix_count: 200
+            wiki_singular_plural_variant_match: false
+          lexicon_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 31
+            wiki_prefix_count: 200
+            wiki_singular_plural_variant_match: false
+          selected_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 31
+            wiki_prefix_count: 200
+            wiki_singular_plural_variant_match: false
+        - mention_id: m:s4:449-465:chunk
+          source: lexicon_fallback
+          assertion_signals: {}
+          lexicon_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 31
+            wiki_prefix_count: 200
+            wiki_singular_plural_variant_match: false
+          selected_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 31
+            wiki_prefix_count: 200
+            wiki_singular_plural_variant_match: false
+        - mention_id: m:s4:449-465:mwe
+          source: assertion_and_lexicon
+          assertion_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 31
+            wiki_prefix_count: 200
+            wiki_singular_plural_variant_match: false
+          lexicon_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 31
+            wiki_prefix_count: 200
+            wiki_singular_plural_variant_match: false
+          selected_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 31
+            wiki_prefix_count: 200
+            wiki_singular_plural_variant_match: false
+  - concept_id: cc_bfe5d697162d9029
+    canonical: fields
+    surfaces:
+      - mandatory fields
+      - structured fields
+    mention_ids:
+      - m:s2:150-179:chunk
+      - m:s2:162-179:mwe
+      - m:s4:449-465:chunk
+      - m:s4:449-465:mwe
+    assertion_ids: []
+    roles:
+      actor: 0
+      theme: 0
+      attr: 0
+      topic: 0
+      location: 0
+      other: 0
+    wikipedia_title_index:
+      wiki_any_signal: true
+      wiki_apostrophe_variant_match: false
+      wiki_exact_match: true
+      wiki_hyphen_space_variant_match: false
+      wiki_parenthetical_variant_count: 175
+      wiki_prefix_count: 925
+      wiki_singular_plural_variant_match: false
+    wikipedia_title_index_evidence:
+      wikipedia_title_index_policy: assertion_then_lexicon_fallback
+      mention_contributions:
+        - mention_id: m:s2:150-179:chunk
+          source: lexicon_fallback
+          assertion_signals: {}
+          lexicon_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 82
+            wiki_prefix_count: 325
+            wiki_singular_plural_variant_match: false
+          selected_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 82
+            wiki_prefix_count: 325
+            wiki_singular_plural_variant_match: false
+        - mention_id: m:s2:162-179:mwe
+          source: assertion_and_lexicon
+          assertion_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 31
+            wiki_prefix_count: 200
+            wiki_singular_plural_variant_match: false
+          lexicon_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 31
+            wiki_prefix_count: 200
+            wiki_singular_plural_variant_match: false
+          selected_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 31
+            wiki_prefix_count: 200
+            wiki_singular_plural_variant_match: false
+        - mention_id: m:s4:449-465:chunk
+          source: lexicon_fallback
+          assertion_signals: {}
+          lexicon_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 31
+            wiki_prefix_count: 200
+            wiki_singular_plural_variant_match: false
+          selected_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 31
+            wiki_prefix_count: 200
+            wiki_singular_plural_variant_match: false
+        - mention_id: m:s4:449-465:mwe
+          source: assertion_and_lexicon
+          assertion_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 31
+            wiki_prefix_count: 200
+            wiki_singular_plural_variant_match: false
+          lexicon_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 31
+            wiki_prefix_count: 200
+            wiki_singular_plural_variant_match: false
+          selected_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 31
+            wiki_prefix_count: 200
+            wiki_singular_plural_variant_match: false
+  - concept_id: cc_7f18e4d2ab82e811
+    canonical: form_description
+    surfaces:
+      - free-form
+      - free-form descriptions
+    mention_ids:
+      - m:s2:219-244:chunk
+      - m:s2:222-231:token_shadow
+      - m:s2:222-244:mwe
+    assertion_ids: []
+    roles:
+      actor: 0
+      theme: 0
+      attr: 0
+      topic: 0
+      location: 0
+      other: 0
+    wikipedia_title_index:
+      wiki_any_signal: true
+      wiki_apostrophe_variant_match: false
+      wiki_exact_match: true
+      wiki_hyphen_space_variant_match: false
+      wiki_parenthetical_variant_count: 15
+      wiki_prefix_count: 154
+      wiki_singular_plural_variant_match: false
+    wikipedia_title_index_evidence:
+      wikipedia_title_index_policy: assertion_then_lexicon_fallback
+      mention_contributions:
+        - mention_id: m:s2:219-244:chunk
+          source: lexicon_fallback
+          assertion_signals: {}
+          lexicon_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 13
+            wiki_prefix_count: 121
+            wiki_singular_plural_variant_match: false
+          selected_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 13
+            wiki_prefix_count: 121
+            wiki_singular_plural_variant_match: false
+        - mention_id: m:s2:222-231:token_shadow
+          source: lexicon_fallback
+          assertion_signals: {}
+          lexicon_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 1
+            wiki_prefix_count: 12
+            wiki_singular_plural_variant_match: false
+          selected_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 1
+            wiki_prefix_count: 12
+            wiki_singular_plural_variant_match: false
+        - mention_id: m:s2:222-244:mwe
+          source: lexicon_fallback
+          assertion_signals: {}
+          lexicon_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 1
+            wiki_prefix_count: 21
+            wiki_singular_plural_variant_match: false
+          selected_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 1
+            wiki_prefix_count: 21
+            wiki_singular_plural_variant_match: false
+  - concept_id: cc_e6ddd8bb13c80676
+    canonical: form_descriptions
+    surfaces:
+      - free-form
+      - free-form descriptions
+    mention_ids:
+      - m:s2:219-244:chunk
+      - m:s2:222-231:token_shadow
+      - m:s2:222-244:mwe
+    assertion_ids: []
+    roles:
+      actor: 0
+      theme: 0
+      attr: 0
+      topic: 0
+      location: 0
+      other: 0
+    wikipedia_title_index:
+      wiki_any_signal: true
+      wiki_apostrophe_variant_match: false
+      wiki_exact_match: true
+      wiki_hyphen_space_variant_match: false
+      wiki_parenthetical_variant_count: 15
+      wiki_prefix_count: 154
+      wiki_singular_plural_variant_match: false
+    wikipedia_title_index_evidence:
+      wikipedia_title_index_policy: assertion_then_lexicon_fallback
+      mention_contributions:
+        - mention_id: m:s2:219-244:chunk
+          source: lexicon_fallback
+          assertion_signals: {}
+          lexicon_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 13
+            wiki_prefix_count: 121
+            wiki_singular_plural_variant_match: false
+          selected_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 13
+            wiki_prefix_count: 121
+            wiki_singular_plural_variant_match: false
+        - mention_id: m:s2:222-231:token_shadow
+          source: lexicon_fallback
+          assertion_signals: {}
+          lexicon_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 1
+            wiki_prefix_count: 12
+            wiki_singular_plural_variant_match: false
+          selected_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 1
+            wiki_prefix_count: 12
+            wiki_singular_plural_variant_match: false
+        - mention_id: m:s2:222-244:mwe
+          source: lexicon_fallback
+          assertion_signals: {}
+          lexicon_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 1
+            wiki_prefix_count: 21
+            wiki_singular_plural_variant_match: false
+          selected_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 1
+            wiki_prefix_count: 21
+            wiki_singular_plural_variant_match: false
+  - concept_id: cc_c186ed7d956d607b
+    canonical: free_form_description
+    surfaces:
+      - free-form
+      - free-form descriptions
+    mention_ids:
+      - m:s2:219-244:chunk
+      - m:s2:222-231:token_shadow
+      - m:s2:222-244:mwe
+    assertion_ids: []
+    roles:
+      actor: 0
+      theme: 0
+      attr: 0
+      topic: 0
+      location: 0
+      other: 0
+    wikipedia_title_index:
+      wiki_any_signal: true
+      wiki_apostrophe_variant_match: false
+      wiki_exact_match: true
+      wiki_hyphen_space_variant_match: false
+      wiki_parenthetical_variant_count: 15
+      wiki_prefix_count: 154
+      wiki_singular_plural_variant_match: false
+    wikipedia_title_index_evidence:
+      wikipedia_title_index_policy: assertion_then_lexicon_fallback
+      mention_contributions:
+        - mention_id: m:s2:219-244:chunk
+          source: lexicon_fallback
+          assertion_signals: {}
+          lexicon_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 13
+            wiki_prefix_count: 121
+            wiki_singular_plural_variant_match: false
+          selected_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 13
+            wiki_prefix_count: 121
+            wiki_singular_plural_variant_match: false
+        - mention_id: m:s2:222-231:token_shadow
+          source: lexicon_fallback
+          assertion_signals: {}
+          lexicon_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 1
+            wiki_prefix_count: 12
+            wiki_singular_plural_variant_match: false
+          selected_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 1
+            wiki_prefix_count: 12
+            wiki_singular_plural_variant_match: false
+        - mention_id: m:s2:222-244:mwe
+          source: lexicon_fallback
+          assertion_signals: {}
+          lexicon_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 1
+            wiki_prefix_count: 21
+            wiki_singular_plural_variant_match: false
+          selected_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 1
+            wiki_prefix_count: 21
+            wiki_singular_plural_variant_match: false
+  - concept_id: cc_230306f7e2a90d63
+    canonical: free_form_descriptions
+    surfaces:
+      - free-form
+      - free-form descriptions
+    mention_ids:
+      - m:s2:219-244:chunk
+      - m:s2:222-231:token_shadow
+      - m:s2:222-244:mwe
+    assertion_ids: []
+    roles:
+      actor: 0
+      theme: 0
+      attr: 0
+      topic: 0
+      location: 0
+      other: 0
+    wikipedia_title_index:
+      wiki_any_signal: true
+      wiki_apostrophe_variant_match: false
+      wiki_exact_match: true
+      wiki_hyphen_space_variant_match: false
+      wiki_parenthetical_variant_count: 15
+      wiki_prefix_count: 154
+      wiki_singular_plural_variant_match: false
+    wikipedia_title_index_evidence:
+      wikipedia_title_index_policy: assertion_then_lexicon_fallback
+      mention_contributions:
+        - mention_id: m:s2:219-244:chunk
+          source: lexicon_fallback
+          assertion_signals: {}
+          lexicon_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 13
+            wiki_prefix_count: 121
+            wiki_singular_plural_variant_match: false
+          selected_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 13
+            wiki_prefix_count: 121
+            wiki_singular_plural_variant_match: false
+        - mention_id: m:s2:222-231:token_shadow
+          source: lexicon_fallback
+          assertion_signals: {}
+          lexicon_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 1
+            wiki_prefix_count: 12
+            wiki_singular_plural_variant_match: false
+          selected_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 1
+            wiki_prefix_count: 12
+            wiki_singular_plural_variant_match: false
+        - mention_id: m:s2:222-244:mwe
+          source: lexicon_fallback
+          assertion_signals: {}
+          lexicon_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 1
+            wiki_prefix_count: 21
+            wiki_singular_plural_variant_match: false
+          selected_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 1
+            wiki_prefix_count: 21
+            wiki_singular_plural_variant_match: false
+  - concept_id: cc_d4191834714542dc
+    canonical: incident
+    surfaces:
+      - operational incidents
+      - reference related incidents
+    mention_ids:
+      - m:s1:118-139:chunk
+      - m:s1:118-139:mwe
+      - m:s3:289-316:mwe
+    assertion_ids: []
+    roles:
+      actor: 0
+      theme: 0
+      attr: 0
+      topic: 0
+      location: 0
+      other: 0
+    wikipedia_title_index:
+      wiki_any_signal: true
+      wiki_apostrophe_variant_match: false
+      wiki_exact_match: true
+      wiki_hyphen_space_variant_match: false
+      wiki_parenthetical_variant_count: 64
+      wiki_prefix_count: 540
+      wiki_singular_plural_variant_match: false
+    wikipedia_title_index_evidence:
+      wikipedia_title_index_policy: assertion_then_lexicon_fallback
+      mention_contributions:
+        - mention_id: m:s1:118-139:chunk
+          source: lexicon_fallback
+          assertion_signals: {}
+          lexicon_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 14
+            wiki_prefix_count: 169
+            wiki_singular_plural_variant_match: false
+          selected_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 14
+            wiki_prefix_count: 169
+            wiki_singular_plural_variant_match: false
+        - mention_id: m:s1:118-139:mwe
+          source: lexicon_fallback
+          assertion_signals: {}
+          lexicon_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 14
+            wiki_prefix_count: 169
+            wiki_singular_plural_variant_match: false
+          selected_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 14
+            wiki_prefix_count: 169
+            wiki_singular_plural_variant_match: false
+        - mention_id: m:s3:289-316:mwe
+          source: assertion_and_lexicon
+          assertion_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 36
+            wiki_prefix_count: 202
+            wiki_singular_plural_variant_match: false
+          lexicon_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 36
+            wiki_prefix_count: 202
+            wiki_singular_plural_variant_match: false
+          selected_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 36
+            wiki_prefix_count: 202
+            wiki_singular_plural_variant_match: false
+  - concept_id: cc_f542dbad9f7aef00
+    canonical: incident_reporting_system
+    surfaces:
+      - Incident Reporting System
+    mention_ids:
+      - m:s1:4-29:mwe
+    assertion_ids: []
+    roles:
+      actor: 0
+      theme: 0
+      attr: 0
+      topic: 0
+      location: 0
+      other: 0
+    wikipedia_title_index:
+      wiki_any_signal: true
+      wiki_apostrophe_variant_match: false
+      wiki_exact_match: true
+      wiki_hyphen_space_variant_match: false
+      wiki_parenthetical_variant_count: 77
+      wiki_prefix_count: 234
+      wiki_singular_plural_variant_match: false
+    wikipedia_title_index_evidence:
+      wikipedia_title_index_policy: assertion_then_lexicon_fallback
+      mention_contributions:
+        - mention_id: m:s1:4-29:mwe
+          source: assertion_and_lexicon
+          assertion_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 77
+            wiki_prefix_count: 234
+            wiki_singular_plural_variant_match: false
+          lexicon_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 77
+            wiki_prefix_count: 234
+            wiki_singular_plural_variant_match: false
+          selected_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 77
+            wiki_prefix_count: 234
+            wiki_singular_plural_variant_match: false
+  - concept_id: cc_a6d1765ab64d82a7
+    canonical: incidents
+    surfaces:
+      - operational incidents
+      - reference related incidents
+    mention_ids:
+      - m:s1:118-139:chunk
+      - m:s1:118-139:mwe
+      - m:s3:289-316:mwe
+    assertion_ids: []
+    roles:
+      actor: 0
+      theme: 0
+      attr: 0
+      topic: 0
+      location: 0
+      other: 0
+    wikipedia_title_index:
+      wiki_any_signal: true
+      wiki_apostrophe_variant_match: false
+      wiki_exact_match: true
+      wiki_hyphen_space_variant_match: false
+      wiki_parenthetical_variant_count: 64
+      wiki_prefix_count: 540
+      wiki_singular_plural_variant_match: false
+    wikipedia_title_index_evidence:
+      wikipedia_title_index_policy: assertion_then_lexicon_fallback
+      mention_contributions:
+        - mention_id: m:s1:118-139:chunk
+          source: lexicon_fallback
+          assertion_signals: {}
+          lexicon_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 14
+            wiki_prefix_count: 169
+            wiki_singular_plural_variant_match: false
+          selected_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 14
+            wiki_prefix_count: 169
+            wiki_singular_plural_variant_match: false
+        - mention_id: m:s1:118-139:mwe
+          source: lexicon_fallback
+          assertion_signals: {}
+          lexicon_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 14
+            wiki_prefix_count: 169
+            wiki_singular_plural_variant_match: false
+          selected_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 14
+            wiki_prefix_count: 169
+            wiki_singular_plural_variant_match: false
+        - mention_id: m:s3:289-316:mwe
+          source: assertion_and_lexicon
+          assertion_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 36
+            wiki_prefix_count: 202
+            wiki_singular_plural_variant_match: false
+          lexicon_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 36
+            wiki_prefix_count: 202
+            wiki_singular_plural_variant_match: false
+          selected_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 36
+            wiki_prefix_count: 202
+            wiki_singular_plural_variant_match: false
+  - concept_id: cc_384c0b6dc96e6cef
+    canonical: irs
+    surfaces:
+      - IRS
+    mention_ids:
+      - m:s1:31-34:chunk
+      - m:s1:31-34:token
+    assertion_ids:
+      - a:s1:m:s1:39-43:token:65e568fe5657
+    roles:
+      actor: 0
+      theme: 1
+      attr: 0
+      topic: 0
+      location: 0
+      other: 0
+    wikipedia_title_index:
+      wiki_any_signal: true
+      wiki_apostrophe_variant_match: false
+      wiki_exact_match: true
+      wiki_hyphen_space_variant_match: false
+      wiki_parenthetical_variant_count: 24
+      wiki_prefix_count: 200
+      wiki_singular_plural_variant_match: false
+    wikipedia_title_index_evidence:
+      wikipedia_title_index_policy: assertion_then_lexicon_fallback
+      mention_contributions:
+        - mention_id: m:s1:31-34:chunk
+          source: lexicon_fallback
+          assertion_signals: {}
+          lexicon_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 12
+            wiki_prefix_count: 100
+            wiki_singular_plural_variant_match: false
+          selected_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 12
+            wiki_prefix_count: 100
+            wiki_singular_plural_variant_match: false
+        - mention_id: m:s1:31-34:token
+          source: assertion_and_lexicon
+          assertion_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 12
+            wiki_prefix_count: 100
+            wiki_singular_plural_variant_match: false
+          lexicon_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 12
+            wiki_prefix_count: 100
+            wiki_singular_plural_variant_match: false
+          selected_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 12
+            wiki_prefix_count: 100
+            wiki_singular_plural_variant_match: false
+  - concept_id: cc_fa51fd49abf67705
+    canonical: is
+    surfaces:
+      - is
+    mention_ids:
+      - m:s1:36-38:token
+      - m:s4:335-337:token
+      - m:s4:393-395:token
+      - m:s4:436-438:token
+    assertion_ids: []
+    roles:
+      actor: 0
+      theme: 0
+      attr: 0
+      topic: 0
+      location: 0
+      other: 0
+    wikipedia_title_index:
+      wiki_any_signal: true
+      wiki_apostrophe_variant_match: false
+      wiki_exact_match: true
+      wiki_hyphen_space_variant_match: false
+      wiki_parenthetical_variant_count: 20
+      wiki_prefix_count: 400
+      wiki_singular_plural_variant_match: false
+    wikipedia_title_index_evidence:
+      wikipedia_title_index_policy: assertion_then_lexicon_fallback
+      mention_contributions:
+        - mention_id: m:s1:36-38:token
+          source: lexicon_fallback
+          assertion_signals: {}
+          lexicon_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 5
+            wiki_prefix_count: 100
+            wiki_singular_plural_variant_match: false
+          selected_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 5
+            wiki_prefix_count: 100
+            wiki_singular_plural_variant_match: false
+        - mention_id: m:s4:335-337:token
+          source: lexicon_fallback
+          assertion_signals: {}
+          lexicon_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 5
+            wiki_prefix_count: 100
+            wiki_singular_plural_variant_match: false
+          selected_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 5
+            wiki_prefix_count: 100
+            wiki_singular_plural_variant_match: false
+        - mention_id: m:s4:393-395:token
+          source: assertion_and_lexicon
+          assertion_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 5
+            wiki_prefix_count: 100
+            wiki_singular_plural_variant_match: false
+          lexicon_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 5
+            wiki_prefix_count: 100
+            wiki_singular_plural_variant_match: false
+          selected_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 5
+            wiki_prefix_count: 100
+            wiki_singular_plural_variant_match: false
+        - mention_id: m:s4:436-438:token
+          source: assertion_and_lexicon
+          assertion_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 5
+            wiki_prefix_count: 100
+            wiki_singular_plural_variant_match: false
+          lexicon_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 5
+            wiki_prefix_count: 100
+            wiki_singular_plural_variant_match: false
+          selected_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 5
+            wiki_prefix_count: 100
+            wiki_singular_plural_variant_match: false
+  - concept_id: cc_4a502846d070e208
+    canonical: issue
+    surfaces:
+      - safety issues
+    mention_ids:
+      - m:s1:60-94:chunk
+      - m:s1:81-94:mwe
+    assertion_ids:
+      - a:s1:m:s1:39-43:token:65e568fe5657
+    roles:
+      actor: 0
+      theme: 0
+      attr: 0
+      topic: 0
+      location: 0
+      other: 1
+    wikipedia_title_index:
+      wiki_any_signal: true
+      wiki_apostrophe_variant_match: false
+      wiki_exact_match: true
+      wiki_hyphen_space_variant_match: false
+      wiki_parenthetical_variant_count: 185
+      wiki_prefix_count: 587
+      wiki_singular_plural_variant_match: false
+    wikipedia_title_index_evidence:
+      wikipedia_title_index_policy: assertion_then_lexicon_fallback
+      mention_contributions:
+        - mention_id: m:s1:60-94:chunk
+          source: lexicon_fallback
+          assertion_signals: {}
+          lexicon_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 122
+            wiki_prefix_count: 387
+            wiki_singular_plural_variant_match: false
+          selected_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 122
+            wiki_prefix_count: 387
+            wiki_singular_plural_variant_match: false
+        - mention_id: m:s1:81-94:mwe
+          source: lexicon_fallback
+          assertion_signals: {}
+          lexicon_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 63
+            wiki_prefix_count: 200
+            wiki_singular_plural_variant_match: false
+          selected_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 63
+            wiki_prefix_count: 200
+            wiki_singular_plural_variant_match: false
+  - concept_id: cc_02e3fe5aad80ca85
+    canonical: issues
+    surfaces:
+      - safety issues
+    mention_ids:
+      - m:s1:60-94:chunk
+      - m:s1:81-94:mwe
+    assertion_ids:
+      - a:s1:m:s1:39-43:token:65e568fe5657
+    roles:
+      actor: 0
+      theme: 0
+      attr: 0
+      topic: 0
+      location: 0
+      other: 1
+    wikipedia_title_index:
+      wiki_any_signal: true
+      wiki_apostrophe_variant_match: false
+      wiki_exact_match: true
+      wiki_hyphen_space_variant_match: false
+      wiki_parenthetical_variant_count: 185
+      wiki_prefix_count: 587
+      wiki_singular_plural_variant_match: false
+    wikipedia_title_index_evidence:
+      wikipedia_title_index_policy: assertion_then_lexicon_fallback
+      mention_contributions:
+        - mention_id: m:s1:60-94:chunk
+          source: lexicon_fallback
+          assertion_signals: {}
+          lexicon_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 122
+            wiki_prefix_count: 387
+            wiki_singular_plural_variant_match: false
+          selected_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 122
+            wiki_prefix_count: 387
+            wiki_singular_plural_variant_match: false
+        - mention_id: m:s1:81-94:mwe
+          source: lexicon_fallback
+          assertion_signals: {}
+          lexicon_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 63
+            wiki_prefix_count: 200
+            wiki_singular_plural_variant_match: false
+          selected_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 63
+            wiki_prefix_count: 200
+            wiki_singular_plural_variant_match: false
+  - concept_id: cc_0081779c287d567d
+    canonical: level
+    surfaces:
+      - severity level
+    mention_ids:
+      - m:s6:586-604:chunk
+      - m:s6:590-604:mwe
+    assertion_ids:
+      - a:s6:m:s6:609-615:token:c5122d3d0471
+    roles:
+      actor: 1
+      theme: 0
+      attr: 0
+      topic: 0
+      location: 0
+      other: 0
+    wikipedia_title_index:
+      wiki_any_signal: true
+      wiki_apostrophe_variant_match: false
+      wiki_exact_match: true
+      wiki_hyphen_space_variant_match: false
+      wiki_parenthetical_variant_count: 129
+      wiki_prefix_count: 326
+      wiki_singular_plural_variant_match: false
+    wikipedia_title_index_evidence:
+      wikipedia_title_index_policy: assertion_then_lexicon_fallback
+      mention_contributions:
+        - mention_id: m:s6:586-604:chunk
+          source: lexicon_fallback
+          assertion_signals: {}
+          lexicon_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 74
+            wiki_prefix_count: 213
+            wiki_singular_plural_variant_match: false
+          selected_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 74
+            wiki_prefix_count: 213
+            wiki_singular_plural_variant_match: false
+        - mention_id: m:s6:590-604:mwe
+          source: assertion_and_lexicon
+          assertion_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 55
+            wiki_prefix_count: 113
+            wiki_singular_plural_variant_match: false
+          lexicon_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 55
+            wiki_prefix_count: 113
+            wiki_singular_plural_variant_match: false
+          selected_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 55
+            wiki_prefix_count: 113
+            wiki_singular_plural_variant_match: false
+  - concept_id: cc_e6eaea18e885e107
+    canonical: location
+    surfaces:
+      - location
+    mention_ids:
+      - m:s2:201-209:chunk
+      - m:s2:201-209:token
+    assertion_ids:
+      - a:s2:m:s2:154-161:token:37423e76a3a4
+    roles:
+      actor: 0
+      theme: 1
+      attr: 0
+      topic: 0
+      location: 0
+      other: 0
+    wikipedia_title_index:
+      wiki_any_signal: true
+      wiki_apostrophe_variant_match: false
+      wiki_exact_match: true
+      wiki_hyphen_space_variant_match: false
+      wiki_parenthetical_variant_count: 34
+      wiki_prefix_count: 200
+      wiki_singular_plural_variant_match: false
+    wikipedia_title_index_evidence:
+      wikipedia_title_index_policy: assertion_then_lexicon_fallback
+      mention_contributions:
+        - mention_id: m:s2:201-209:chunk
+          source: lexicon_fallback
+          assertion_signals: {}
+          lexicon_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 17
+            wiki_prefix_count: 100
+            wiki_singular_plural_variant_match: false
+          selected_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 17
+            wiki_prefix_count: 100
+            wiki_singular_plural_variant_match: false
+        - mention_id: m:s2:201-209:token
+          source: assertion_and_lexicon
+          assertion_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 17
+            wiki_prefix_count: 100
+            wiki_singular_plural_variant_match: false
+          lexicon_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 17
+            wiki_prefix_count: 100
+            wiki_singular_plural_variant_match: false
+          selected_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 17
+            wiki_prefix_count: 100
+            wiki_singular_plural_variant_match: false
+  - concept_id: cc_d0f4b442b89f037e
+    canonical: mandatory_field
+    surfaces:
+      - mandatory fields
+    mention_ids:
+      - m:s4:449-465:chunk
+      - m:s4:449-465:mwe
+    assertion_ids: []
+    roles:
+      actor: 0
+      theme: 0
+      attr: 0
+      topic: 0
+      location: 0
+      other: 0
+    wikipedia_title_index:
+      wiki_any_signal: true
+      wiki_apostrophe_variant_match: false
+      wiki_exact_match: true
+      wiki_hyphen_space_variant_match: false
+      wiki_parenthetical_variant_count: 62
+      wiki_prefix_count: 400
+      wiki_singular_plural_variant_match: false
+    wikipedia_title_index_evidence:
+      wikipedia_title_index_policy: assertion_then_lexicon_fallback
+      mention_contributions:
+        - mention_id: m:s4:449-465:chunk
+          source: lexicon_fallback
+          assertion_signals: {}
+          lexicon_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 31
+            wiki_prefix_count: 200
+            wiki_singular_plural_variant_match: false
+          selected_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 31
+            wiki_prefix_count: 200
+            wiki_singular_plural_variant_match: false
+        - mention_id: m:s4:449-465:mwe
+          source: assertion_and_lexicon
+          assertion_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 31
+            wiki_prefix_count: 200
+            wiki_singular_plural_variant_match: false
+          lexicon_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 31
+            wiki_prefix_count: 200
+            wiki_singular_plural_variant_match: false
+          selected_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 31
+            wiki_prefix_count: 200
+            wiki_singular_plural_variant_match: false
+  - concept_id: cc_1c75e7661d42eb62
+    canonical: mandatory_fields
+    surfaces:
+      - mandatory fields
+    mention_ids:
+      - m:s4:449-465:chunk
+      - m:s4:449-465:mwe
+    assertion_ids: []
+    roles:
+      actor: 0
+      theme: 0
+      attr: 0
+      topic: 0
+      location: 0
+      other: 0
+    wikipedia_title_index:
+      wiki_any_signal: true
+      wiki_apostrophe_variant_match: false
+      wiki_exact_match: true
+      wiki_hyphen_space_variant_match: false
+      wiki_parenthetical_variant_count: 62
+      wiki_prefix_count: 400
+      wiki_singular_plural_variant_match: false
+    wikipedia_title_index_evidence:
+      wikipedia_title_index_policy: assertion_then_lexicon_fallback
+      mention_contributions:
+        - mention_id: m:s4:449-465:chunk
+          source: lexicon_fallback
+          assertion_signals: {}
+          lexicon_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 31
+            wiki_prefix_count: 200
+            wiki_singular_plural_variant_match: false
+          selected_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 31
+            wiki_prefix_count: 200
+            wiki_singular_plural_variant_match: false
+        - mention_id: m:s4:449-465:mwe
+          source: assertion_and_lexicon
+          assertion_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 31
+            wiki_prefix_count: 200
+            wiki_singular_plural_variant_match: false
+          lexicon_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 31
+            wiki_prefix_count: 200
+            wiki_singular_plural_variant_match: false
+          selected_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 31
+            wiki_prefix_count: 200
+            wiki_singular_plural_variant_match: false
+  - concept_id: cc_31f32bcfdb345adb
+    canonical: operational_incident
+    surfaces:
+      - operational incidents
+    mention_ids:
+      - m:s1:118-139:chunk
+      - m:s1:118-139:mwe
+    assertion_ids: []
+    roles:
+      actor: 0
+      theme: 0
+      attr: 0
+      topic: 0
+      location: 0
+      other: 0
+    wikipedia_title_index:
+      wiki_any_signal: true
+      wiki_apostrophe_variant_match: false
+      wiki_exact_match: true
+      wiki_hyphen_space_variant_match: false
+      wiki_parenthetical_variant_count: 28
+      wiki_prefix_count: 338
+      wiki_singular_plural_variant_match: false
+    wikipedia_title_index_evidence:
+      wikipedia_title_index_policy: assertion_then_lexicon_fallback
+      mention_contributions:
+        - mention_id: m:s1:118-139:chunk
+          source: lexicon_fallback
+          assertion_signals: {}
+          lexicon_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 14
+            wiki_prefix_count: 169
+            wiki_singular_plural_variant_match: false
+          selected_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 14
+            wiki_prefix_count: 169
+            wiki_singular_plural_variant_match: false
+        - mention_id: m:s1:118-139:mwe
+          source: lexicon_fallback
+          assertion_signals: {}
+          lexicon_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 14
+            wiki_prefix_count: 169
+            wiki_singular_plural_variant_match: false
+          selected_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 14
+            wiki_prefix_count: 169
+            wiki_singular_plural_variant_match: false
+  - concept_id: cc_b67ab7d4d47c501b
+    canonical: operational_incidents
+    surfaces:
+      - operational incidents
+    mention_ids:
+      - m:s1:118-139:chunk
+      - m:s1:118-139:mwe
+    assertion_ids: []
+    roles:
+      actor: 0
+      theme: 0
+      attr: 0
+      topic: 0
+      location: 0
+      other: 0
+    wikipedia_title_index:
+      wiki_any_signal: true
+      wiki_apostrophe_variant_match: false
+      wiki_exact_match: true
+      wiki_hyphen_space_variant_match: false
+      wiki_parenthetical_variant_count: 28
+      wiki_prefix_count: 338
+      wiki_singular_plural_variant_match: false
+    wikipedia_title_index_evidence:
+      wikipedia_title_index_policy: assertion_then_lexicon_fallback
+      mention_contributions:
+        - mention_id: m:s1:118-139:chunk
+          source: lexicon_fallback
+          assertion_signals: {}
+          lexicon_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 14
+            wiki_prefix_count: 169
+            wiki_singular_plural_variant_match: false
+          selected_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 14
+            wiki_prefix_count: 169
+            wiki_singular_plural_variant_match: false
+        - mention_id: m:s1:118-139:mwe
+          source: lexicon_fallback
+          assertion_signals: {}
+          lexicon_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 14
+            wiki_prefix_count: 169
+            wiki_singular_plural_variant_match: false
+          selected_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 14
+            wiki_prefix_count: 169
+            wiki_singular_plural_variant_match: false
+  - concept_id: cc_55c64d0fcd6f9d5f
+    canonical: photo
+    surfaces:
+      - photos
+    mention_ids:
+      - m:s3:267-273:token_shadow
+    assertion_ids: []
+    roles:
+      actor: 0
+      theme: 0
+      attr: 0
+      topic: 0
+      location: 0
+      other: 0
+    wikipedia_title_index:
+      wiki_any_signal: true
+      wiki_apostrophe_variant_match: false
+      wiki_exact_match: true
+      wiki_hyphen_space_variant_match: false
+      wiki_parenthetical_variant_count: 10
+      wiki_prefix_count: 100
+      wiki_singular_plural_variant_match: false
+    wikipedia_title_index_evidence:
+      wikipedia_title_index_policy: assertion_then_lexicon_fallback
+      mention_contributions:
+        - mention_id: m:s3:267-273:token_shadow
+          source: assertion_and_lexicon
+          assertion_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 10
+            wiki_prefix_count: 100
+            wiki_singular_plural_variant_match: false
+          lexicon_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 10
+            wiki_prefix_count: 100
+            wiki_singular_plural_variant_match: false
+          selected_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 10
+            wiki_prefix_count: 100
+            wiki_singular_plural_variant_match: false
+  - concept_id: cc_84a6dae49cf04812
+    canonical: photos
+    surfaces:
+      - photos
+    mention_ids:
+      - m:s3:267-273:token_shadow
+    assertion_ids: []
+    roles:
+      actor: 0
+      theme: 0
+      attr: 0
+      topic: 0
+      location: 0
+      other: 0
+    wikipedia_title_index:
+      wiki_any_signal: true
+      wiki_apostrophe_variant_match: false
+      wiki_exact_match: true
+      wiki_hyphen_space_variant_match: false
+      wiki_parenthetical_variant_count: 10
+      wiki_prefix_count: 100
+      wiki_singular_plural_variant_match: false
+    wikipedia_title_index_evidence:
+      wikipedia_title_index_policy: assertion_then_lexicon_fallback
+      mention_contributions:
+        - mention_id: m:s3:267-273:token_shadow
+          source: assertion_and_lexicon
+          assertion_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 10
+            wiki_prefix_count: 100
+            wiki_singular_plural_variant_match: false
+          lexicon_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 10
+            wiki_prefix_count: 100
+            wiki_singular_plural_variant_match: false
+          selected_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 10
+            wiki_prefix_count: 100
+            wiki_singular_plural_variant_match: false
+  - concept_id: cc_3cb4e49f44d4899d
+    canonical: policy_violation
+    surfaces:
+      - policy violations
+    mention_ids:
+      - m:s1:96-113:chunk
+      - m:s1:96-113:mwe
+    assertion_ids: []
+    roles:
+      actor: 0
+      theme: 0
+      attr: 0
+      topic: 0
+      location: 0
+      other: 0
+    wikipedia_title_index:
+      wiki_any_signal: true
+      wiki_apostrophe_variant_match: false
+      wiki_exact_match: true
+      wiki_hyphen_space_variant_match: false
+      wiki_parenthetical_variant_count: 40
+      wiki_prefix_count: 236
+      wiki_singular_plural_variant_match: false
+    wikipedia_title_index_evidence:
+      wikipedia_title_index_policy: assertion_then_lexicon_fallback
+      mention_contributions:
+        - mention_id: m:s1:96-113:chunk
+          source: lexicon_fallback
+          assertion_signals: {}
+          lexicon_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 20
+            wiki_prefix_count: 118
+            wiki_singular_plural_variant_match: false
+          selected_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 20
+            wiki_prefix_count: 118
+            wiki_singular_plural_variant_match: false
+        - mention_id: m:s1:96-113:mwe
+          source: lexicon_fallback
+          assertion_signals: {}
+          lexicon_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 20
+            wiki_prefix_count: 118
+            wiki_singular_plural_variant_match: false
+          selected_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 20
+            wiki_prefix_count: 118
+            wiki_singular_plural_variant_match: false
+  - concept_id: cc_ce8959afcda76d3e
+    canonical: policy_violations
+    surfaces:
+      - policy violations
+    mention_ids:
+      - m:s1:96-113:chunk
+      - m:s1:96-113:mwe
+    assertion_ids: []
+    roles:
+      actor: 0
+      theme: 0
+      attr: 0
+      topic: 0
+      location: 0
+      other: 0
+    wikipedia_title_index:
+      wiki_any_signal: true
+      wiki_apostrophe_variant_match: false
+      wiki_exact_match: true
+      wiki_hyphen_space_variant_match: false
+      wiki_parenthetical_variant_count: 40
+      wiki_prefix_count: 236
+      wiki_singular_plural_variant_match: false
+    wikipedia_title_index_evidence:
+      wikipedia_title_index_policy: assertion_then_lexicon_fallback
+      mention_contributions:
+        - mention_id: m:s1:96-113:chunk
+          source: lexicon_fallback
+          assertion_signals: {}
+          lexicon_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 20
+            wiki_prefix_count: 118
+            wiki_singular_plural_variant_match: false
+          selected_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 20
+            wiki_prefix_count: 118
+            wiki_singular_plural_variant_match: false
+        - mention_id: m:s1:96-113:mwe
+          source: lexicon_fallback
+          assertion_signals: {}
+          lexicon_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 20
+            wiki_prefix_count: 118
+            wiki_singular_plural_variant_match: false
+          selected_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 20
+            wiki_prefix_count: 118
+            wiki_singular_plural_variant_match: false
+  - concept_id: cc_81b06df4303e6581
+    canonical: purpose
+    surfaces:
+      - audit purposes
+    mention_ids:
+      - m:s7:664-682:chunk
+      - m:s7:668-682:mwe
+    assertion_ids:
+      - a:s7:m:s7:657-663:token:3e60afbd0e84
+    roles:
+      actor: 0
+      theme: 0
+      attr: 0
+      topic: 0
+      location: 0
+      other: 1
+    wikipedia_title_index:
+      wiki_any_signal: true
+      wiki_apostrophe_variant_match: false
+      wiki_exact_match: true
+      wiki_hyphen_space_variant_match: false
+      wiki_parenthetical_variant_count: 50
+      wiki_prefix_count: 304
+      wiki_singular_plural_variant_match: false
+    wikipedia_title_index_evidence:
+      wikipedia_title_index_policy: assertion_then_lexicon_fallback
+      mention_contributions:
+        - mention_id: m:s7:664-682:chunk
+          source: lexicon_fallback
+          assertion_signals: {}
+          lexicon_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 36
+            wiki_prefix_count: 202
+            wiki_singular_plural_variant_match: false
+          selected_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 36
+            wiki_prefix_count: 202
+            wiki_singular_plural_variant_match: false
+        - mention_id: m:s7:668-682:mwe
+          source: assertion_and_lexicon
+          assertion_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 14
+            wiki_prefix_count: 102
+            wiki_singular_plural_variant_match: false
+          lexicon_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 14
+            wiki_prefix_count: 102
+            wiki_singular_plural_variant_match: false
+          selected_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 14
+            wiki_prefix_count: 102
+            wiki_singular_plural_variant_match: false
+  - concept_id: cc_5e5df1bbcffe1cf0
+    canonical: purposes
+    surfaces:
+      - audit purposes
+    mention_ids:
+      - m:s7:664-682:chunk
+      - m:s7:668-682:mwe
+    assertion_ids:
+      - a:s7:m:s7:657-663:token:3e60afbd0e84
+    roles:
+      actor: 0
+      theme: 0
+      attr: 0
+      topic: 0
+      location: 0
+      other: 1
+    wikipedia_title_index:
+      wiki_any_signal: true
+      wiki_apostrophe_variant_match: false
+      wiki_exact_match: true
+      wiki_hyphen_space_variant_match: false
+      wiki_parenthetical_variant_count: 50
+      wiki_prefix_count: 304
+      wiki_singular_plural_variant_match: false
+    wikipedia_title_index_evidence:
+      wikipedia_title_index_policy: assertion_then_lexicon_fallback
+      mention_contributions:
+        - mention_id: m:s7:664-682:chunk
+          source: lexicon_fallback
+          assertion_signals: {}
+          lexicon_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 36
+            wiki_prefix_count: 202
+            wiki_singular_plural_variant_match: false
+          selected_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 36
+            wiki_prefix_count: 202
+            wiki_singular_plural_variant_match: false
+        - mention_id: m:s7:668-682:mwe
+          source: assertion_and_lexicon
+          assertion_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 14
+            wiki_prefix_count: 102
+            wiki_singular_plural_variant_match: false
+          lexicon_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 14
+            wiki_prefix_count: 102
+            wiki_singular_plural_variant_match: false
+          selected_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 14
+            wiki_prefix_count: 102
+            wiki_singular_plural_variant_match: false
+  - concept_id: cc_52367a6622b19f08
+    canonical: reference
+    surfaces:
+      - reference
+    mention_ids:
+      - m:s3:289-298:chunk
+      - m:s3:289-298:token_shadow
+    assertion_ids:
+      - a:s3:m:s3:289-316:mwe:4e288877d5e2
+    roles:
+      actor: 1
+      theme: 0
+      attr: 0
+      topic: 0
+      location: 0
+      other: 0
+    wikipedia_title_index:
+      wiki_any_signal: true
+      wiki_apostrophe_variant_match: false
+      wiki_exact_match: true
+      wiki_hyphen_space_variant_match: false
+      wiki_parenthetical_variant_count: 58
+      wiki_prefix_count: 200
+      wiki_singular_plural_variant_match: false
+    wikipedia_title_index_evidence:
+      wikipedia_title_index_policy: assertion_then_lexicon_fallback
+      mention_contributions:
+        - mention_id: m:s3:289-298:chunk
+          source: lexicon_fallback
+          assertion_signals: {}
+          lexicon_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 29
+            wiki_prefix_count: 100
+            wiki_singular_plural_variant_match: false
+          selected_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 29
+            wiki_prefix_count: 100
+            wiki_singular_plural_variant_match: false
+        - mention_id: m:s3:289-298:token_shadow
+          source: assertion_and_lexicon
+          assertion_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 29
+            wiki_prefix_count: 100
+            wiki_singular_plural_variant_match: false
+          lexicon_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 29
+            wiki_prefix_count: 100
+            wiki_singular_plural_variant_match: false
+          selected_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 29
+            wiki_prefix_count: 100
+            wiki_singular_plural_variant_match: false
+  - concept_id: cc_5ff3c9f2342cf9c3
+    canonical: reference_related_incident
+    surfaces:
+      - reference related incidents
+    mention_ids:
+      - m:s3:289-316:mwe
+    assertion_ids: []
+    roles:
+      actor: 0
+      theme: 0
+      attr: 0
+      topic: 0
+      location: 0
+      other: 0
+    wikipedia_title_index:
+      wiki_any_signal: true
+      wiki_apostrophe_variant_match: false
+      wiki_exact_match: true
+      wiki_hyphen_space_variant_match: false
+      wiki_parenthetical_variant_count: 36
+      wiki_prefix_count: 202
+      wiki_singular_plural_variant_match: false
+    wikipedia_title_index_evidence:
+      wikipedia_title_index_policy: assertion_then_lexicon_fallback
+      mention_contributions:
+        - mention_id: m:s3:289-316:mwe
+          source: assertion_and_lexicon
+          assertion_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 36
+            wiki_prefix_count: 202
+            wiki_singular_plural_variant_match: false
+          lexicon_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 36
+            wiki_prefix_count: 202
+            wiki_singular_plural_variant_match: false
+          selected_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 36
+            wiki_prefix_count: 202
+            wiki_singular_plural_variant_match: false
+  - concept_id: cc_b5ef2710e767edfe
+    canonical: reference_related_incidents
+    surfaces:
+      - reference related incidents
+    mention_ids:
+      - m:s3:289-316:mwe
+    assertion_ids: []
+    roles:
+      actor: 0
+      theme: 0
+      attr: 0
+      topic: 0
+      location: 0
+      other: 0
+    wikipedia_title_index:
+      wiki_any_signal: true
+      wiki_apostrophe_variant_match: false
+      wiki_exact_match: true
+      wiki_hyphen_space_variant_match: false
+      wiki_parenthetical_variant_count: 36
+      wiki_prefix_count: 202
+      wiki_singular_plural_variant_match: false
+    wikipedia_title_index_evidence:
+      wikipedia_title_index_policy: assertion_then_lexicon_fallback
+      mention_contributions:
+        - mention_id: m:s3:289-316:mwe
+          source: assertion_and_lexicon
+          assertion_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 36
+            wiki_prefix_count: 202
+            wiki_singular_plural_variant_match: false
+          lexicon_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 36
+            wiki_prefix_count: 202
+            wiki_singular_plural_variant_match: false
+          selected_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 36
+            wiki_prefix_count: 202
+            wiki_singular_plural_variant_match: false
+  - concept_id: cc_aa9f2f63a68cbf8e
+    canonical: related_incident
+    surfaces:
+      - reference related incidents
+    mention_ids:
+      - m:s3:289-316:mwe
+    assertion_ids: []
+    roles:
+      actor: 0
+      theme: 0
+      attr: 0
+      topic: 0
+      location: 0
+      other: 0
+    wikipedia_title_index:
+      wiki_any_signal: true
+      wiki_apostrophe_variant_match: false
+      wiki_exact_match: true
+      wiki_hyphen_space_variant_match: false
+      wiki_parenthetical_variant_count: 36
+      wiki_prefix_count: 202
+      wiki_singular_plural_variant_match: false
+    wikipedia_title_index_evidence:
+      wikipedia_title_index_policy: assertion_then_lexicon_fallback
+      mention_contributions:
+        - mention_id: m:s3:289-316:mwe
+          source: assertion_and_lexicon
+          assertion_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 36
+            wiki_prefix_count: 202
+            wiki_singular_plural_variant_match: false
+          lexicon_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 36
+            wiki_prefix_count: 202
+            wiki_singular_plural_variant_match: false
+          selected_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 36
+            wiki_prefix_count: 202
+            wiki_singular_plural_variant_match: false
+  - concept_id: cc_bd64e1be5ed9e708
+    canonical: related_incidents
+    surfaces:
+      - reference related incidents
+    mention_ids:
+      - m:s3:289-316:mwe
+    assertion_ids: []
+    roles:
+      actor: 0
+      theme: 0
+      attr: 0
+      topic: 0
+      location: 0
+      other: 0
+    wikipedia_title_index:
+      wiki_any_signal: true
+      wiki_apostrophe_variant_match: false
+      wiki_exact_match: true
+      wiki_hyphen_space_variant_match: false
+      wiki_parenthetical_variant_count: 36
+      wiki_prefix_count: 202
+      wiki_singular_plural_variant_match: false
+    wikipedia_title_index_evidence:
+      wikipedia_title_index_policy: assertion_then_lexicon_fallback
+      mention_contributions:
+        - mention_id: m:s3:289-316:mwe
+          source: assertion_and_lexicon
+          assertion_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 36
+            wiki_prefix_count: 202
+            wiki_singular_plural_variant_match: false
+          lexicon_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 36
+            wiki_prefix_count: 202
+            wiki_singular_plural_variant_match: false
+          selected_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 36
+            wiki_prefix_count: 202
+            wiki_singular_plural_variant_match: false
+  - concept_id: cc_845e91831319e89c
+    canonical: report
+    surfaces:
+      - Reports
+      - reports
+    mention_ids:
+      - m:s1:67-74:token_shadow
+      - m:s2:142-149:chunk
+      - m:s2:142-149:token
+      - m:s5:496-503:chunk
+      - m:s5:496-503:token
+      - m:s8:707-714:token_shadow
+    assertion_ids:
+      - a:s2:m:s2:154-161:token:37423e76a3a4
+      - a:s5:m:s5:485-494:token:bb96095ba875
+      - a:s5:m:s5:508-516:token:a246fa9cf68e
+    roles:
+      actor: 1
+      theme: 2
+      attr: 0
+      topic: 0
+      location: 0
+      other: 0
+    wikipedia_title_index:
+      wiki_any_signal: true
+      wiki_apostrophe_variant_match: false
+      wiki_exact_match: true
+      wiki_hyphen_space_variant_match: false
+      wiki_parenthetical_variant_count: 36
+      wiki_prefix_count: 378
+      wiki_singular_plural_variant_match: false
+    wikipedia_title_index_evidence:
+      wikipedia_title_index_policy: assertion_then_lexicon_fallback
+      mention_contributions:
+        - mention_id: m:s1:67-74:token_shadow
+          source: lexicon_fallback
+          assertion_signals: {}
+          lexicon_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 6
+            wiki_prefix_count: 63
+            wiki_singular_plural_variant_match: false
+          selected_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 6
+            wiki_prefix_count: 63
+            wiki_singular_plural_variant_match: false
+        - mention_id: m:s2:142-149:chunk
+          source: lexicon_fallback
+          assertion_signals: {}
+          lexicon_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 6
+            wiki_prefix_count: 63
+            wiki_singular_plural_variant_match: false
+          selected_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 6
+            wiki_prefix_count: 63
+            wiki_singular_plural_variant_match: false
+        - mention_id: m:s2:142-149:token
+          source: assertion_and_lexicon
+          assertion_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 6
+            wiki_prefix_count: 63
+            wiki_singular_plural_variant_match: false
+          lexicon_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 6
+            wiki_prefix_count: 63
+            wiki_singular_plural_variant_match: false
+          selected_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 6
+            wiki_prefix_count: 63
+            wiki_singular_plural_variant_match: false
+        - mention_id: m:s5:496-503:chunk
+          source: lexicon_fallback
+          assertion_signals: {}
+          lexicon_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 6
+            wiki_prefix_count: 63
+            wiki_singular_plural_variant_match: false
+          selected_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 6
+            wiki_prefix_count: 63
+            wiki_singular_plural_variant_match: false
+        - mention_id: m:s5:496-503:token
+          source: assertion_and_lexicon
+          assertion_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 6
+            wiki_prefix_count: 63
+            wiki_singular_plural_variant_match: false
+          lexicon_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 6
+            wiki_prefix_count: 63
+            wiki_singular_plural_variant_match: false
+          selected_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 6
+            wiki_prefix_count: 63
+            wiki_singular_plural_variant_match: false
+        - mention_id: m:s8:707-714:token_shadow
+          source: assertion_and_lexicon
+          assertion_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 6
+            wiki_prefix_count: 63
+            wiki_singular_plural_variant_match: false
+          lexicon_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 6
+            wiki_prefix_count: 63
+            wiki_singular_plural_variant_match: false
+          selected_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 6
+            wiki_prefix_count: 63
+            wiki_singular_plural_variant_match: false
+  - concept_id: cc_41d6d5322a9b546a
+    canonical: reporter
+    surfaces:
+      - reporter
+    mention_ids:
+      - m:s4:384-392:token
+    assertion_ids:
+      - a:s4:m:s4:364-370:token:dea74e7c1de9
+    roles:
+      actor: 0
+      theme: 1
+      attr: 0
+      topic: 0
+      location: 0
+      other: 0
+    wikipedia_title_index:
+      wiki_any_signal: true
+      wiki_apostrophe_variant_match: false
+      wiki_exact_match: true
+      wiki_hyphen_space_variant_match: false
+      wiki_parenthetical_variant_count: 36
+      wiki_prefix_count: 150
+      wiki_singular_plural_variant_match: false
+    wikipedia_title_index_evidence:
+      wikipedia_title_index_policy: assertion_then_lexicon_fallback
+      mention_contributions:
+        - mention_id: m:s4:384-392:token
+          source: assertion_and_lexicon
+          assertion_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 36
+            wiki_prefix_count: 150
+            wiki_singular_plural_variant_match: false
+          lexicon_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 18
+            wiki_prefix_count: 75
+            wiki_singular_plural_variant_match: false
+          selected_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 36
+            wiki_prefix_count: 150
+            wiki_singular_plural_variant_match: false
+  - concept_id: cc_83f1e47bbd774cbe
+    canonical: reporting_system
+    surfaces:
+      - Incident Reporting System
+    mention_ids:
+      - m:s1:4-29:mwe
+    assertion_ids: []
+    roles:
+      actor: 0
+      theme: 0
+      attr: 0
+      topic: 0
+      location: 0
+      other: 0
+    wikipedia_title_index:
+      wiki_any_signal: true
+      wiki_apostrophe_variant_match: false
+      wiki_exact_match: true
+      wiki_hyphen_space_variant_match: false
+      wiki_parenthetical_variant_count: 77
+      wiki_prefix_count: 234
+      wiki_singular_plural_variant_match: false
+    wikipedia_title_index_evidence:
+      wikipedia_title_index_policy: assertion_then_lexicon_fallback
+      mention_contributions:
+        - mention_id: m:s1:4-29:mwe
+          source: assertion_and_lexicon
+          assertion_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 77
+            wiki_prefix_count: 234
+            wiki_singular_plural_variant_match: false
+          lexicon_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 77
+            wiki_prefix_count: 234
+            wiki_singular_plural_variant_match: false
+          selected_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 77
+            wiki_prefix_count: 234
+            wiki_singular_plural_variant_match: false
+  - concept_id: cc_7f26104f77a7ce47
+    canonical: reports
+    surfaces:
+      - Reports
+      - reports
+    mention_ids:
+      - m:s1:67-74:token_shadow
+      - m:s2:142-149:chunk
+      - m:s2:142-149:token
+      - m:s5:496-503:chunk
+      - m:s5:496-503:token
+      - m:s8:707-714:token_shadow
+    assertion_ids:
+      - a:s2:m:s2:154-161:token:37423e76a3a4
+      - a:s5:m:s5:485-494:token:bb96095ba875
+      - a:s5:m:s5:508-516:token:a246fa9cf68e
+    roles:
+      actor: 1
+      theme: 2
+      attr: 0
+      topic: 0
+      location: 0
+      other: 0
+    wikipedia_title_index:
+      wiki_any_signal: true
+      wiki_apostrophe_variant_match: false
+      wiki_exact_match: true
+      wiki_hyphen_space_variant_match: false
+      wiki_parenthetical_variant_count: 36
+      wiki_prefix_count: 378
+      wiki_singular_plural_variant_match: false
+    wikipedia_title_index_evidence:
+      wikipedia_title_index_policy: assertion_then_lexicon_fallback
+      mention_contributions:
+        - mention_id: m:s1:67-74:token_shadow
+          source: lexicon_fallback
+          assertion_signals: {}
+          lexicon_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 6
+            wiki_prefix_count: 63
+            wiki_singular_plural_variant_match: false
+          selected_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 6
+            wiki_prefix_count: 63
+            wiki_singular_plural_variant_match: false
+        - mention_id: m:s2:142-149:chunk
+          source: lexicon_fallback
+          assertion_signals: {}
+          lexicon_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 6
+            wiki_prefix_count: 63
+            wiki_singular_plural_variant_match: false
+          selected_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 6
+            wiki_prefix_count: 63
+            wiki_singular_plural_variant_match: false
+        - mention_id: m:s2:142-149:token
+          source: assertion_and_lexicon
+          assertion_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 6
+            wiki_prefix_count: 63
+            wiki_singular_plural_variant_match: false
+          lexicon_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 6
+            wiki_prefix_count: 63
+            wiki_singular_plural_variant_match: false
+          selected_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 6
+            wiki_prefix_count: 63
+            wiki_singular_plural_variant_match: false
+        - mention_id: m:s5:496-503:chunk
+          source: lexicon_fallback
+          assertion_signals: {}
+          lexicon_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 6
+            wiki_prefix_count: 63
+            wiki_singular_plural_variant_match: false
+          selected_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 6
+            wiki_prefix_count: 63
+            wiki_singular_plural_variant_match: false
+        - mention_id: m:s5:496-503:token
+          source: assertion_and_lexicon
+          assertion_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 6
+            wiki_prefix_count: 63
+            wiki_singular_plural_variant_match: false
+          lexicon_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 6
+            wiki_prefix_count: 63
+            wiki_singular_plural_variant_match: false
+          selected_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 6
+            wiki_prefix_count: 63
+            wiki_singular_plural_variant_match: false
+        - mention_id: m:s8:707-714:token_shadow
+          source: assertion_and_lexicon
+          assertion_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 6
+            wiki_prefix_count: 63
+            wiki_singular_plural_variant_match: false
+          lexicon_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 6
+            wiki_prefix_count: 63
+            wiki_singular_plural_variant_match: false
+          selected_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 6
+            wiki_prefix_count: 63
+            wiki_singular_plural_variant_match: false
+  - concept_id: cc_ce9f6509ec3d5488
+    canonical: request_clarification
+    surfaces:
+      - request clarification
+    mention_ids:
+      - m:s6:553-574:chunk
+      - m:s6:553-574:mwe
+    assertion_ids:
+      - a:s6:m:s6:609-615:token:c5122d3d0471
+    roles:
+      actor: 1
+      theme: 0
+      attr: 0
+      topic: 0
+      location: 0
+      other: 0
+    wikipedia_title_index:
+      wiki_any_signal: true
+      wiki_apostrophe_variant_match: false
+      wiki_exact_match: true
+      wiki_hyphen_space_variant_match: false
+      wiki_parenthetical_variant_count: 32
+      wiki_prefix_count: 234
+      wiki_singular_plural_variant_match: false
+    wikipedia_title_index_evidence:
+      wikipedia_title_index_policy: assertion_then_lexicon_fallback
+      mention_contributions:
+        - mention_id: m:s6:553-574:chunk
+          source: lexicon_fallback
+          assertion_signals: {}
+          lexicon_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 16
+            wiki_prefix_count: 117
+            wiki_singular_plural_variant_match: false
+          selected_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 16
+            wiki_prefix_count: 117
+            wiki_singular_plural_variant_match: false
+        - mention_id: m:s6:553-574:mwe
+          source: assertion_and_lexicon
+          assertion_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 16
+            wiki_prefix_count: 117
+            wiki_singular_plural_variant_match: false
+          lexicon_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 16
+            wiki_prefix_count: 117
+            wiki_singular_plural_variant_match: false
+          selected_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 16
+            wiki_prefix_count: 117
+            wiki_singular_plural_variant_match: false
+  - concept_id: cc_227d6c5ae68ddceb
+    canonical: safety_issue
+    surfaces:
+      - safety issues
+    mention_ids:
+      - m:s1:60-94:chunk
+      - m:s1:81-94:mwe
+    assertion_ids:
+      - a:s1:m:s1:39-43:token:65e568fe5657
+    roles:
+      actor: 0
+      theme: 0
+      attr: 0
+      topic: 0
+      location: 0
+      other: 1
+    wikipedia_title_index:
+      wiki_any_signal: true
+      wiki_apostrophe_variant_match: false
+      wiki_exact_match: true
+      wiki_hyphen_space_variant_match: false
+      wiki_parenthetical_variant_count: 185
+      wiki_prefix_count: 587
+      wiki_singular_plural_variant_match: false
+    wikipedia_title_index_evidence:
+      wikipedia_title_index_policy: assertion_then_lexicon_fallback
+      mention_contributions:
+        - mention_id: m:s1:60-94:chunk
+          source: lexicon_fallback
+          assertion_signals: {}
+          lexicon_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 122
+            wiki_prefix_count: 387
+            wiki_singular_plural_variant_match: false
+          selected_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 122
+            wiki_prefix_count: 387
+            wiki_singular_plural_variant_match: false
+        - mention_id: m:s1:81-94:mwe
+          source: lexicon_fallback
+          assertion_signals: {}
+          lexicon_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 63
+            wiki_prefix_count: 200
+            wiki_singular_plural_variant_match: false
+          selected_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 63
+            wiki_prefix_count: 200
+            wiki_singular_plural_variant_match: false
+  - concept_id: cc_9ed019e67f2a0825
+    canonical: safety_issues
+    surfaces:
+      - safety issues
+    mention_ids:
+      - m:s1:60-94:chunk
+      - m:s1:81-94:mwe
+    assertion_ids:
+      - a:s1:m:s1:39-43:token:65e568fe5657
+    roles:
+      actor: 0
+      theme: 0
+      attr: 0
+      topic: 0
+      location: 0
+      other: 1
+    wikipedia_title_index:
+      wiki_any_signal: true
+      wiki_apostrophe_variant_match: false
+      wiki_exact_match: true
+      wiki_hyphen_space_variant_match: false
+      wiki_parenthetical_variant_count: 185
+      wiki_prefix_count: 587
+      wiki_singular_plural_variant_match: false
+    wikipedia_title_index_evidence:
+      wikipedia_title_index_policy: assertion_then_lexicon_fallback
+      mention_contributions:
+        - mention_id: m:s1:60-94:chunk
+          source: lexicon_fallback
+          assertion_signals: {}
+          lexicon_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 122
+            wiki_prefix_count: 387
+            wiki_singular_plural_variant_match: false
+          selected_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 122
+            wiki_prefix_count: 387
+            wiki_singular_plural_variant_match: false
+        - mention_id: m:s1:81-94:mwe
+          source: lexicon_fallback
+          assertion_signals: {}
+          lexicon_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 63
+            wiki_prefix_count: 200
+            wiki_singular_plural_variant_match: false
+          selected_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 63
+            wiki_prefix_count: 200
+            wiki_singular_plural_variant_match: false
+  - concept_id: cc_d09c88da9c5e4eda
+    canonical: selected_category
+    surfaces:
+      - selected category
+    mention_ids:
+      - m:s4:414-435:chunk
+      - m:s4:418-435:mwe
+    assertion_ids:
+      - a:s4:m:s4:396-409:token:15998198fc4d
+    roles:
+      actor: 0
+      theme: 1
+      attr: 0
+      topic: 0
+      location: 0
+      other: 0
+    wikipedia_title_index:
+      wiki_any_signal: true
+      wiki_apostrophe_variant_match: false
+      wiki_exact_match: true
+      wiki_hyphen_space_variant_match: false
+      wiki_parenthetical_variant_count: 141
+      wiki_prefix_count: 500
+      wiki_singular_plural_variant_match: false
+    wikipedia_title_index_evidence:
+      wikipedia_title_index_policy: assertion_then_lexicon_fallback
+      mention_contributions:
+        - mention_id: m:s4:414-435:chunk
+          source: lexicon_fallback
+          assertion_signals: {}
+          lexicon_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 80
+            wiki_prefix_count: 300
+            wiki_singular_plural_variant_match: false
+          selected_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 80
+            wiki_prefix_count: 300
+            wiki_singular_plural_variant_match: false
+        - mention_id: m:s4:418-435:mwe
+          source: assertion_and_lexicon
+          assertion_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 61
+            wiki_prefix_count: 200
+            wiki_singular_plural_variant_match: false
+          lexicon_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 61
+            wiki_prefix_count: 200
+            wiki_singular_plural_variant_match: false
+          selected_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 61
+            wiki_prefix_count: 200
+            wiki_singular_plural_variant_match: false
+  - concept_id: cc_c98f54e5559a9568
+    canonical: severity
+    surfaces:
+      - severity
+    mention_ids:
+      - m:s2:191-199:chunk
+      - m:s2:191-199:token
+      - m:s6:590-598:token_shadow
+    assertion_ids:
+      - a:s2:m:s2:154-161:token:37423e76a3a4
+    roles:
+      actor: 0
+      theme: 1
+      attr: 0
+      topic: 0
+      location: 0
+      other: 0
+    wikipedia_title_index:
+      wiki_any_signal: true
+      wiki_apostrophe_variant_match: false
+      wiki_exact_match: true
+      wiki_hyphen_space_variant_match: false
+      wiki_parenthetical_variant_count: 9
+      wiki_prefix_count: 39
+      wiki_singular_plural_variant_match: false
+    wikipedia_title_index_evidence:
+      wikipedia_title_index_policy: assertion_then_lexicon_fallback
+      mention_contributions:
+        - mention_id: m:s2:191-199:chunk
+          source: lexicon_fallback
+          assertion_signals: {}
+          lexicon_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 3
+            wiki_prefix_count: 13
+            wiki_singular_plural_variant_match: false
+          selected_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 3
+            wiki_prefix_count: 13
+            wiki_singular_plural_variant_match: false
+        - mention_id: m:s2:191-199:token
+          source: assertion_and_lexicon
+          assertion_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 3
+            wiki_prefix_count: 13
+            wiki_singular_plural_variant_match: false
+          lexicon_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 3
+            wiki_prefix_count: 13
+            wiki_singular_plural_variant_match: false
+          selected_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 3
+            wiki_prefix_count: 13
+            wiki_singular_plural_variant_match: false
+        - mention_id: m:s6:590-598:token_shadow
+          source: lexicon_fallback
+          assertion_signals: {}
+          lexicon_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 3
+            wiki_prefix_count: 13
+            wiki_singular_plural_variant_match: false
+          selected_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 3
+            wiki_prefix_count: 13
+            wiki_singular_plural_variant_match: false
+  - concept_id: cc_b5ed425773620185
+    canonical: severity_level
+    surfaces:
+      - severity level
+    mention_ids:
+      - m:s6:586-604:chunk
+      - m:s6:590-604:mwe
+    assertion_ids:
+      - a:s6:m:s6:609-615:token:c5122d3d0471
+    roles:
+      actor: 1
+      theme: 0
+      attr: 0
+      topic: 0
+      location: 0
+      other: 0
+    wikipedia_title_index:
+      wiki_any_signal: true
+      wiki_apostrophe_variant_match: false
+      wiki_exact_match: true
+      wiki_hyphen_space_variant_match: false
+      wiki_parenthetical_variant_count: 129
+      wiki_prefix_count: 326
+      wiki_singular_plural_variant_match: false
+    wikipedia_title_index_evidence:
+      wikipedia_title_index_policy: assertion_then_lexicon_fallback
+      mention_contributions:
+        - mention_id: m:s6:586-604:chunk
+          source: lexicon_fallback
+          assertion_signals: {}
+          lexicon_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 74
+            wiki_prefix_count: 213
+            wiki_singular_plural_variant_match: false
+          selected_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 74
+            wiki_prefix_count: 213
+            wiki_singular_plural_variant_match: false
+        - mention_id: m:s6:590-604:mwe
+          source: assertion_and_lexicon
+          assertion_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 55
+            wiki_prefix_count: 113
+            wiki_singular_plural_variant_match: false
+          lexicon_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 55
+            wiki_prefix_count: 113
+            wiki_singular_plural_variant_match: false
+          selected_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 55
+            wiki_prefix_count: 113
+            wiki_singular_plural_variant_match: false
+  - concept_id: cc_d189e59072b3d95a
+    canonical: structured_field
+    surfaces:
+      - structured fields
+    mention_ids:
+      - m:s2:150-179:chunk
+      - m:s2:162-179:mwe
+    assertion_ids: []
+    roles:
+      actor: 0
+      theme: 0
+      attr: 0
+      topic: 0
+      location: 0
+      other: 0
+    wikipedia_title_index:
+      wiki_any_signal: true
+      wiki_apostrophe_variant_match: false
+      wiki_exact_match: true
+      wiki_hyphen_space_variant_match: false
+      wiki_parenthetical_variant_count: 113
+      wiki_prefix_count: 525
+      wiki_singular_plural_variant_match: false
+    wikipedia_title_index_evidence:
+      wikipedia_title_index_policy: assertion_then_lexicon_fallback
+      mention_contributions:
+        - mention_id: m:s2:150-179:chunk
+          source: lexicon_fallback
+          assertion_signals: {}
+          lexicon_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 82
+            wiki_prefix_count: 325
+            wiki_singular_plural_variant_match: false
+          selected_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 82
+            wiki_prefix_count: 325
+            wiki_singular_plural_variant_match: false
+        - mention_id: m:s2:162-179:mwe
+          source: assertion_and_lexicon
+          assertion_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 31
+            wiki_prefix_count: 200
+            wiki_singular_plural_variant_match: false
+          lexicon_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 31
+            wiki_prefix_count: 200
+            wiki_singular_plural_variant_match: false
+          selected_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 31
+            wiki_prefix_count: 200
+            wiki_singular_plural_variant_match: false
+  - concept_id: cc_4c5c29f5cb5a7b6b
+    canonical: structured_fields
+    surfaces:
+      - structured fields
+    mention_ids:
+      - m:s2:150-179:chunk
+      - m:s2:162-179:mwe
+    assertion_ids: []
+    roles:
+      actor: 0
+      theme: 0
+      attr: 0
+      topic: 0
+      location: 0
+      other: 0
+    wikipedia_title_index:
+      wiki_any_signal: true
+      wiki_apostrophe_variant_match: false
+      wiki_exact_match: true
+      wiki_hyphen_space_variant_match: false
+      wiki_parenthetical_variant_count: 113
+      wiki_prefix_count: 525
+      wiki_singular_plural_variant_match: false
+    wikipedia_title_index_evidence:
+      wikipedia_title_index_policy: assertion_then_lexicon_fallback
+      mention_contributions:
+        - mention_id: m:s2:150-179:chunk
+          source: lexicon_fallback
+          assertion_signals: {}
+          lexicon_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 82
+            wiki_prefix_count: 325
+            wiki_singular_plural_variant_match: false
+          selected_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 82
+            wiki_prefix_count: 325
+            wiki_singular_plural_variant_match: false
+        - mention_id: m:s2:162-179:mwe
+          source: assertion_and_lexicon
+          assertion_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 31
+            wiki_prefix_count: 200
+            wiki_singular_plural_variant_match: false
+          lexicon_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 31
+            wiki_prefix_count: 200
+            wiki_singular_plural_variant_match: false
+          selected_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 31
+            wiki_prefix_count: 200
+            wiki_singular_plural_variant_match: false
+  - concept_id: cc_0834c2d60725ac59
+    canonical: supervisor
+    surfaces:
+      - Supervisors
+      - supervisors
+    mention_ids:
+      - m:s5:520-531:token
+      - m:s6:533-544:chunk
+      - m:s6:533-544:token
+    assertion_ids:
+      - a:s5:m:s5:508-516:token:a246fa9cf68e
+      - a:s6:m:s6:609-615:token:c5122d3d0471
+    roles:
+      actor: 2
+      theme: 0
+      attr: 0
+      topic: 0
+      location: 0
+      other: 0
+    wikipedia_title_index:
+      wiki_any_signal: false
+      wiki_apostrophe_variant_match: false
+      wiki_exact_match: false
+      wiki_hyphen_space_variant_match: false
+      wiki_parenthetical_variant_count: 0
+      wiki_prefix_count: 0
+      wiki_singular_plural_variant_match: false
+    wikipedia_title_index_evidence:
+      wikipedia_title_index_policy: assertion_then_lexicon_fallback
+      mention_contributions:
+        - mention_id: m:s5:520-531:token
+          source: none
+          assertion_signals: {}
+          lexicon_signals: {}
+          selected_signals: {}
+        - mention_id: m:s6:533-544:chunk
+          source: none
+          assertion_signals: {}
+          lexicon_signals: {}
+          selected_signals: {}
+        - mention_id: m:s6:533-544:token
+          source: none
+          assertion_signals: {}
+          lexicon_signals: {}
+          selected_signals: {}
+  - concept_id: cc_14bd3fb643f37776
+    canonical: supervisors
+    surfaces:
+      - Supervisors
+      - supervisors
+    mention_ids:
+      - m:s5:520-531:token
+      - m:s6:533-544:chunk
+      - m:s6:533-544:token
+    assertion_ids:
+      - a:s5:m:s5:508-516:token:a246fa9cf68e
+      - a:s6:m:s6:609-615:token:c5122d3d0471
+    roles:
+      actor: 2
+      theme: 0
+      attr: 0
+      topic: 0
+      location: 0
+      other: 0
+    wikipedia_title_index:
+      wiki_any_signal: false
+      wiki_apostrophe_variant_match: false
+      wiki_exact_match: false
+      wiki_hyphen_space_variant_match: false
+      wiki_parenthetical_variant_count: 0
+      wiki_prefix_count: 0
+      wiki_singular_plural_variant_match: false
+    wikipedia_title_index_evidence:
+      wikipedia_title_index_policy: assertion_then_lexicon_fallback
+      mention_contributions:
+        - mention_id: m:s5:520-531:token
+          source: none
+          assertion_signals: {}
+          lexicon_signals: {}
+          selected_signals: {}
+        - mention_id: m:s6:533-544:chunk
+          source: none
+          assertion_signals: {}
+          lexicon_signals: {}
+          selected_signals: {}
+        - mention_id: m:s6:533-544:token
+          source: none
+          assertion_signals: {}
+          lexicon_signals: {}
+          selected_signals: {}
+  - concept_id: cc_bbc5e661e106c6dc
+    canonical: system
+    surfaces:
+      - Incident Reporting System
+      - System
+      - system
+    mention_ids:
+      - m:s1:23-29:token_shadow
+      - m:s1:4-29:mwe
+      - m:s4:352-358:token
+      - m:s8:688-694:token
+    assertion_ids:
+      - a:s4:m:s4:338-346:token:8a959eaedb2d
+    roles:
+      actor: 0
+      theme: 1
+      attr: 0
+      topic: 0
+      location: 0
+      other: 0
+    wikipedia_title_index:
+      wiki_any_signal: true
+      wiki_apostrophe_variant_match: false
+      wiki_exact_match: true
+      wiki_hyphen_space_variant_match: false
+      wiki_parenthetical_variant_count: 242
+      wiki_prefix_count: 534
+      wiki_singular_plural_variant_match: false
+    wikipedia_title_index_evidence:
+      wikipedia_title_index_policy: assertion_then_lexicon_fallback
+      mention_contributions:
+        - mention_id: m:s1:23-29:token_shadow
+          source: lexicon_fallback
+          assertion_signals: {}
+          lexicon_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 55
+            wiki_prefix_count: 100
+            wiki_singular_plural_variant_match: false
+          selected_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 55
+            wiki_prefix_count: 100
+            wiki_singular_plural_variant_match: false
+        - mention_id: m:s1:4-29:mwe
+          source: assertion_and_lexicon
+          assertion_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 77
+            wiki_prefix_count: 234
+            wiki_singular_plural_variant_match: false
+          lexicon_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 77
+            wiki_prefix_count: 234
+            wiki_singular_plural_variant_match: false
+          selected_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 77
+            wiki_prefix_count: 234
+            wiki_singular_plural_variant_match: false
+        - mention_id: m:s4:352-358:token
+          source: assertion_and_lexicon
+          assertion_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 55
+            wiki_prefix_count: 100
+            wiki_singular_plural_variant_match: false
+          lexicon_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 55
+            wiki_prefix_count: 100
+            wiki_singular_plural_variant_match: false
+          selected_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 55
+            wiki_prefix_count: 100
+            wiki_singular_plural_variant_match: false
+        - mention_id: m:s8:688-694:token
+          source: assertion_and_lexicon
+          assertion_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 55
+            wiki_prefix_count: 100
+            wiki_singular_plural_variant_match: false
+          lexicon_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 55
+            wiki_prefix_count: 100
+            wiki_singular_plural_variant_match: false
+          selected_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 55
+            wiki_prefix_count: 100
+            wiki_singular_plural_variant_match: false
+  - concept_id: cc_f904a6b30a01bfb8
+    canonical: violation
+    surfaces:
+      - policy violations
+    mention_ids:
+      - m:s1:96-113:chunk
+      - m:s1:96-113:mwe
+    assertion_ids: []
+    roles:
+      actor: 0
+      theme: 0
+      attr: 0
+      topic: 0
+      location: 0
+      other: 0
+    wikipedia_title_index:
+      wiki_any_signal: true
+      wiki_apostrophe_variant_match: false
+      wiki_exact_match: true
+      wiki_hyphen_space_variant_match: false
+      wiki_parenthetical_variant_count: 40
+      wiki_prefix_count: 236
+      wiki_singular_plural_variant_match: false
+    wikipedia_title_index_evidence:
+      wikipedia_title_index_policy: assertion_then_lexicon_fallback
+      mention_contributions:
+        - mention_id: m:s1:96-113:chunk
+          source: lexicon_fallback
+          assertion_signals: {}
+          lexicon_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 20
+            wiki_prefix_count: 118
+            wiki_singular_plural_variant_match: false
+          selected_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 20
+            wiki_prefix_count: 118
+            wiki_singular_plural_variant_match: false
+        - mention_id: m:s1:96-113:mwe
+          source: lexicon_fallback
+          assertion_signals: {}
+          lexicon_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 20
+            wiki_prefix_count: 118
+            wiki_singular_plural_variant_match: false
+          selected_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 20
+            wiki_prefix_count: 118
+            wiki_singular_plural_variant_match: false
+  - concept_id: cc_c6ba710e0c094515
+    canonical: violations
+    surfaces:
+      - policy violations
+    mention_ids:
+      - m:s1:96-113:chunk
+      - m:s1:96-113:mwe
+    assertion_ids: []
+    roles:
+      actor: 0
+      theme: 0
+      attr: 0
+      topic: 0
+      location: 0
+      other: 0
+    wikipedia_title_index:
+      wiki_any_signal: true
+      wiki_apostrophe_variant_match: false
+      wiki_exact_match: true
+      wiki_hyphen_space_variant_match: false
+      wiki_parenthetical_variant_count: 40
+      wiki_prefix_count: 236
+      wiki_singular_plural_variant_match: false
+    wikipedia_title_index_evidence:
+      wikipedia_title_index_policy: assertion_then_lexicon_fallback
+      mention_contributions:
+        - mention_id: m:s1:96-113:chunk
+          source: lexicon_fallback
+          assertion_signals: {}
+          lexicon_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 20
+            wiki_prefix_count: 118
+            wiki_singular_plural_variant_match: false
+          selected_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 20
+            wiki_prefix_count: 118
+            wiki_singular_plural_variant_match: false
+        - mention_id: m:s1:96-113:mwe
+          source: lexicon_fallback
+          assertion_signals: {}
+          lexicon_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 20
+            wiki_prefix_count: 118
+            wiki_singular_plural_variant_match: false
+          selected_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 20
+            wiki_prefix_count: 118
+            wiki_singular_plural_variant_match: false
+  - concept_id: cc_4cb4ea25583c2564
+    canonical: year
+    surfaces:
+      - years
+    mention_ids:
+      - m:s8:728-736:mwe
+      - m:s8:731-736:chunk
+      - m:s8:731-736:token_shadow
+    assertion_ids:
+      - a:s8:m:s8:695-714:chunk:ecb5fc95f004
+    roles:
+      actor: 0
+      theme: 0
+      attr: 0
+      topic: 0
+      location: 1
+      other: 0
+    wikipedia_title_index:
+      wiki_any_signal: true
+      wiki_apostrophe_variant_match: false
+      wiki_exact_match: true
+      wiki_hyphen_space_variant_match: false
+      wiki_parenthetical_variant_count: 88
+      wiki_prefix_count: 372
+      wiki_singular_plural_variant_match: false
+    wikipedia_title_index_evidence:
+      wikipedia_title_index_policy: assertion_then_lexicon_fallback
+      mention_contributions:
+        - mention_id: m:s8:728-736:mwe
+          source: assertion_and_lexicon
+          assertion_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 48
+            wiki_prefix_count: 172
+            wiki_singular_plural_variant_match: false
+          lexicon_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 48
+            wiki_prefix_count: 172
+            wiki_singular_plural_variant_match: false
+          selected_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 48
+            wiki_prefix_count: 172
+            wiki_singular_plural_variant_match: false
+        - mention_id: m:s8:731-736:chunk
+          source: lexicon_fallback
+          assertion_signals: {}
+          lexicon_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 20
+            wiki_prefix_count: 100
+            wiki_singular_plural_variant_match: false
+          selected_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 20
+            wiki_prefix_count: 100
+            wiki_singular_plural_variant_match: false
+        - mention_id: m:s8:731-736:token_shadow
+          source: lexicon_fallback
+          assertion_signals: {}
+          lexicon_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 20
+            wiki_prefix_count: 100
+            wiki_singular_plural_variant_match: false
+          selected_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 20
+            wiki_prefix_count: 100
+            wiki_singular_plural_variant_match: false
+  - concept_id: cc_1c50993b009c62dd
+    canonical: years
+    surfaces:
+      - years
+    mention_ids:
+      - m:s8:728-736:mwe
+      - m:s8:731-736:chunk
+      - m:s8:731-736:token_shadow
+    assertion_ids:
+      - a:s8:m:s8:695-714:chunk:ecb5fc95f004
+    roles:
+      actor: 0
+      theme: 0
+      attr: 0
+      topic: 0
+      location: 1
+      other: 0
+    wikipedia_title_index:
+      wiki_any_signal: true
+      wiki_apostrophe_variant_match: false
+      wiki_exact_match: true
+      wiki_hyphen_space_variant_match: false
+      wiki_parenthetical_variant_count: 88
+      wiki_prefix_count: 372
+      wiki_singular_plural_variant_match: false
+    wikipedia_title_index_evidence:
+      wikipedia_title_index_policy: assertion_then_lexicon_fallback
+      mention_contributions:
+        - mention_id: m:s8:728-736:mwe
+          source: assertion_and_lexicon
+          assertion_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 48
+            wiki_prefix_count: 172
+            wiki_singular_plural_variant_match: false
+          lexicon_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 48
+            wiki_prefix_count: 172
+            wiki_singular_plural_variant_match: false
+          selected_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 48
+            wiki_prefix_count: 172
+            wiki_singular_plural_variant_match: false
+        - mention_id: m:s8:731-736:chunk
+          source: lexicon_fallback
+          assertion_signals: {}
+          lexicon_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 20
+            wiki_prefix_count: 100
+            wiki_singular_plural_variant_match: false
+          selected_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 20
+            wiki_prefix_count: 100
+            wiki_singular_plural_variant_match: false
+        - mention_id: m:s8:731-736:token_shadow
+          source: lexicon_fallback
+          assertion_signals: {}
+          lexicon_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 20
+            wiki_prefix_count: 100
+            wiki_singular_plural_variant_match: false
+          selected_signals:
+            wiki_any_signal: true
+            wiki_apostrophe_variant_match: false
+            wiki_exact_match: true
+            wiki_hyphen_space_variant_match: false
+            wiki_parenthetical_variant_count: 20
+            wiki_prefix_count: 100
+            wiki_singular_plural_variant_match: false
