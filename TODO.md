@@ -35,6 +35,7 @@ Status date: 2026-02-16
 - [x] `v0.025` optional PowerShell wrapper flows documented and `check-concept-candidates` execution contract added.
 - [x] `v0.026` generated report artifact policy decided (checked-in snapshots) and enforced in CI.
 - [x] `v0.027` prototype documentation mined/migrated into product docs with backlog history mapping.
+- [x] `v0.028` PowerShell seed-runner persisted-mode contract covered via staged integration execution test.
 - [ ] Remaining roadmap cycles continue from current baseline (`main`).
 
 ## 0. Scope And Decisions (must be resolved first)
@@ -318,7 +319,7 @@ Status date: 2026-02-16
 - [x] `npm pack --dry-run` includes expected files only.
 - [x] `npm run smoke:release` validates API exports + CLI help + bin mapping.
 - [x] OpenAPI, schema, and runtime outputs are contract-consistent.
-- [ ] Prototype-derived product checks pass (renamed as needed):
+- [x] Prototype-derived product checks pass (renamed as needed):
 - benchmark policy guard
 - legacy policy guard
 - independent benchmark evaluation for both product modes
@@ -326,7 +327,7 @@ Status date: 2026-02-16
 - wikipedia-title-index coverage report generation
 - concept-candidates schema + deterministic key-order checker (from `check-concept-candidates.js`) passes
 - batch seed runner flow (from `run-seed-concept-candidates.ps1`) passes in documented modes
-- Current status: all listed checks except the batch seed runner flow are covered by automated tests/gates.
+- Current status: listed checks are covered; batch runner coverage is validated in persisted mode (default documented mode).
 
 ## 11. Post-Productization Follow-Up (after baseline is green)
 

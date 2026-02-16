@@ -384,3 +384,10 @@ Cycle U (`v0.027`) - Prototype Documentation Migration Closure:
 - Keep prototype specifics explicit while preserving product naming in primary docs.
 Status:
 - Completed on `main`.
+
+Cycle V (`v0.028`) - Batch Seed Runner Contract Closure:
+- Add integration coverage for `prototype/run-seed-concept-candidates.ps1` in persisted mode.
+- Use staged artifact fixtures and platform-safe skipping when PowerShell is unavailable.
+- Close remaining prototype-derived product check item for documented batch runner flow.
+Status:
+- Completed on `main`.

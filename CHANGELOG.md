@@ -58,3 +58,5 @@ All notable changes to this project are documented in this file.
 - v0.027 prototype documentation migration:
   - contract/governance summary migrated into `docs/PROTOTYPE_MIGRATION_NOTES.md`
   - prototype TODO open/closed history mapped into product backlog context.
+- v0.028 batch runner contract coverage:
+  - added staged integration execution check for `prototype/run-seed-concept-candidates.ps1` in persisted mode.
