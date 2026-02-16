@@ -538,3 +538,17 @@ Cycle AP (`v0.048`) - Prototype Split Groundwork (Step12 Contract Module):
 - Preserve full frozen-reference and determinism gate stability after extraction.
 Status:
 - Completed on `main`.
+
+Cycle AQ (`v0.049`) - Prototype Split Groundwork (Wikipedia-Signal Module):
+- Extract wikipedia-signal regex/constants and helper logic from `prototype/concept-candidates.js` into a dedicated module.
+- Keep behavior and exported prototype runtime contracts unchanged.
+- Preserve full frozen-reference and determinism gate stability after extraction.
+Status:
+- Completed on `main`.
+
+Cycle AR (`v0.050`) - Prototype Split Groundwork (Wikipedia Mapping Helpers):
+- Extract wikipedia-title-index mapping helpers from `prototype/concept-candidates.js` into a dedicated module.
+- Keep behavior and exported prototype runtime contracts unchanged.
+- Preserve full frozen-reference and determinism gate stability after extraction.
+Status:
+- Planned.

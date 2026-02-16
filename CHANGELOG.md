@@ -130,3 +130,6 @@ All notable changes to this project are documented in this file.
 - v0.048 prototype split groundwork:
   - extracted Step12 contract/index helpers into `prototype/core/step12-contract.js`
   - wired `prototype/concept-candidates.js` to import Step12 contract/index helpers with unchanged public behavior and contracts.
+- v0.049 prototype split groundwork:
+  - extracted wikipedia-signal regex/constants/helpers into `prototype/core/wikipedia-signals.js`
+  - wired `prototype/concept-candidates.js` to import wikipedia-signal helpers with unchanged public behavior and contracts.

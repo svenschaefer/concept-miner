@@ -5,7 +5,7 @@
 - Branch: `main`
 - Sync: tracking `origin/main` (kept in sync via stable phase commits)
 - Current annotated release tag: `v0.10.0`
-- Latest stable phase: `v0.048` (prototype split groundwork)
+- Latest stable phase: `v0.049` (prototype split groundwork)
 - Major completed workstreams:
   - template baseline scaffold + CI/release workflow
   - transition product API (`extractConcepts`, `validateConcepts`)
@@ -24,6 +24,7 @@
   - third safe prototype monolith split step (alias/morphology helper extraction)
   - fourth safe prototype monolith split step (options/policy helper extraction)
   - fifth safe prototype monolith split step (Step12 contract/index helper extraction)
+  - sixth safe prototype monolith split step (wikipedia-signal helper extraction)
 
 ## Implementation status
 
@@ -40,7 +41,6 @@ Remaining open implementation items:
 - Preserve deterministic behavior and ordering guarantees during that refactor.
 - Replace internal `13a`/`13b` step labels with product mode naming in internal config/meta surfaces.
 - Migrate remaining prototype support/governance assets into product structure.
-- Complete pre-publish and post-publish smoke flow execution from release docs.
 
 ## Runtime status
 
