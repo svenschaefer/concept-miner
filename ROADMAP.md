@@ -782,4 +782,11 @@ Cycle BY (`v0.083`) - Prototype Split Groundwork (CLI Main Pipeline Dependency B
 - Keep behavior and exported prototype runtime contracts unchanged.
 - Preserve full frozen-reference and determinism gate stability after extraction.
 Status:
+- Completed on `main`.
+
+Cycle BZ (`v0.084`) - Prototype Split Groundwork (CLI Usage Exit Handling Helper):
+- Extract CLI usage-exit handling helper logic from `prototype/concept-candidates.js` into dedicated modules.
+- Keep behavior and exported prototype runtime contracts unchanged.
+- Preserve full frozen-reference and determinism gate stability after extraction.
+Status:
 - Planned.

@@ -100,6 +100,7 @@ const { buildCliMainSetupDependencies } = require("./core/cli-main-setup-depende
 const { invokeCliMainSetup } = require("./core/cli-main-setup-invocation");
 const { buildCliMainFlowPipeline } = require("./core/cli-main-pipeline");
 const { buildCliMainPipelineInputs } = require("./core/cli-main-pipeline-inputs");
+const { buildCliMainPipelineDependencies } = require("./core/cli-main-pipeline-dependencies");
 const {
   loadConceptCandidatesSchema,
   validateSchema,
@@ -1043,13 +1044,16 @@ async function main() {
       buildCliMainFlowDependencies,
       buildCliMainSetup,
     });
-    const { context, cliMainFlowDependencies } = buildCliMainFlowPipeline(args, {
+    const pipelineDependencies = buildCliMainPipelineDependencies({
       buildCliParseDependencies,
       buildCliFlowContextDependencies,
       buildCliRuntimeInvocationDependencies,
       buildCliFlowDependencies,
       buildCliMainSetupDependencies,
       invokeCliMainSetup,
+    });
+    const { context, cliMainFlowDependencies } = buildCliMainFlowPipeline(args, {
+      ...pipelineDependencies,
       ...pipelineInputs,
     });
 
