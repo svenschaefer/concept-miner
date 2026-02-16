@@ -57,6 +57,11 @@ const {
   deriveLiftedSurface,
 } = require("./core/mention-lifting");
 const {
+  ensureCandidate,
+  addRoleCounts,
+  mergeCandidateIntoTarget,
+} = require("./core/candidate-accumulator");
+const {
   LEGACY_GENERIC_DROP,
   LEGACY_NOMINAL_VERB_WHITELIST,
   applyLegacyStringRules,
@@ -332,16 +337,7 @@ function buildConceptCandidatesFromStep12(step12, options = {}) {
         if (info.skipSingle) continue;
         const { mention, liftedSurface } = info;
         const canonical = canonicalizeSurface(liftedSurface);
-        if (!byCanonical.has(canonical)) {
-          byCanonical.set(canonical, {
-            canonical,
-            surfaces: new Set(),
-            mention_ids: new Set(),
-            assertion_ids: new Set(),
-            roles: { actor: 0, theme: 0, attr: 0, topic: 0, location: 0, other: 0 },
-          });
-        }
-        const candidate = byCanonical.get(canonical);
+        const candidate = ensureCandidate(byCanonical, canonical);
         candidate.surfaces.add(liftedSurface);
         candidate.mention_ids.add(mentionId);
         candidate.assertion_ids.add(assertionId);
@@ -444,16 +440,7 @@ function buildConceptCandidatesFromStep12(step12, options = {}) {
     if (!info.hasAlnum) continue;
     const canonical = canonicalizeSurface(liftedSurface);
 
-    if (!byCanonical.has(canonical)) {
-      byCanonical.set(canonical, {
-        canonical,
-        surfaces: new Set(),
-        mention_ids: new Set(),
-        assertion_ids: new Set(),
-        roles: { actor: 0, theme: 0, attr: 0, topic: 0, location: 0, other: 0 },
-      });
-    }
-    const candidate = byCanonical.get(canonical);
+    const candidate = ensureCandidate(byCanonical, canonical);
     candidate.surfaces.add(liftedSurface);
     candidate.mention_ids.add(mention.id);
     markSource(canonical, "supplemental");
@@ -519,25 +506,11 @@ function buildConceptCandidatesFromStep12(step12, options = {}) {
       if (mentionWikipediaCountTotal < mode13bVerbPromotionMinWti) continue;
 
       const canonical = canonicalizeSurface(info.liftedSurface);
-      if (!byCanonical.has(canonical)) {
-        byCanonical.set(canonical, {
-          canonical,
-          surfaces: new Set(),
-          mention_ids: new Set(),
-          assertion_ids: new Set(),
-          roles: { actor: 0, theme: 0, attr: 0, topic: 0, location: 0, other: 0 },
-        });
-      }
-      const candidate = byCanonical.get(canonical);
+      const candidate = ensureCandidate(byCanonical, canonical);
       candidate.surfaces.add(info.liftedSurface);
       candidate.mention_ids.add(mentionId);
       for (const assertionId of linkInfo.assertionIds) candidate.assertion_ids.add(assertionId);
-      candidate.roles.actor += linkInfo.roleCounts.actor;
-      candidate.roles.theme += linkInfo.roleCounts.theme;
-      candidate.roles.attr += linkInfo.roleCounts.attr;
-      candidate.roles.topic += linkInfo.roleCounts.topic;
-      candidate.roles.location += linkInfo.roleCounts.location;
-      candidate.roles.other += linkInfo.roleCounts.other;
+      addRoleCounts(candidate.roles, linkInfo.roleCounts);
       markSource(canonical, "mode13b_promotion");
       markMode13bDecision(canonical, "promotion_verb_wikipedia_count", {
         roleTotal:
@@ -588,16 +561,7 @@ function buildConceptCandidatesFromStep12(step12, options = {}) {
       if (mentionWikipediaCountTotal < mode13bUnlinkedFiniteVerbPromotionMinWti) continue;
 
       const canonical = canonicalizeSurface(info.liftedSurface);
-      if (!byCanonical.has(canonical)) {
-        byCanonical.set(canonical, {
-          canonical,
-          surfaces: new Set(),
-          mention_ids: new Set(),
-          assertion_ids: new Set(),
-          roles: { actor: 0, theme: 0, attr: 0, topic: 0, location: 0, other: 0 },
-        });
-      }
-      const candidate = byCanonical.get(canonical);
+      const candidate = ensureCandidate(byCanonical, canonical);
       candidate.surfaces.add(info.liftedSurface);
       candidate.mention_ids.add(mention.id);
       markSource(canonical, "mode13b_promotion");
@@ -937,15 +901,7 @@ function buildConceptCandidatesFromStep12(step12, options = {}) {
         if (bestHostCanonical) {
           const hostItem = byCanonical.get(bestHostCanonical);
           if (hostItem) {
-            for (const v of item.surfaces) hostItem.surfaces.add(v);
-            for (const v of item.mention_ids) hostItem.mention_ids.add(v);
-            for (const v of item.assertion_ids) hostItem.assertion_ids.add(v);
-            hostItem.roles.actor += item.roles.actor || 0;
-            hostItem.roles.theme += item.roles.theme || 0;
-            hostItem.roles.attr += item.roles.attr || 0;
-            hostItem.roles.topic += item.roles.topic || 0;
-            hostItem.roles.location += item.roles.location || 0;
-            hostItem.roles.other += item.roles.other || 0;
+            mergeCandidateIntoTarget(hostItem, item);
             markMode13bDecision(canonical, "merge_into_stronger_host", metrics);
             byCanonical.delete(canonical);
             stats.mode13b_suppressed_candidates += 1;
@@ -1102,25 +1058,8 @@ function buildConceptCandidatesFromStep12(step12, options = {}) {
     if (!singular || singular === canonical) continue;
     const source = byCanonical.get(canonical);
     if (!source) continue;
-    if (!byCanonical.has(singular)) {
-      byCanonical.set(singular, {
-        canonical: singular,
-        surfaces: new Set(),
-        mention_ids: new Set(),
-        assertion_ids: new Set(),
-        roles: { actor: 0, theme: 0, attr: 0, topic: 0, location: 0, other: 0 },
-      });
-    }
-    const target = byCanonical.get(singular);
-    for (const s of source.surfaces) target.surfaces.add(s);
-    for (const m of source.mention_ids) target.mention_ids.add(m);
-    for (const a of source.assertion_ids) target.assertion_ids.add(a);
-    target.roles.actor += source.roles.actor || 0;
-    target.roles.theme += source.roles.theme || 0;
-    target.roles.attr += source.roles.attr || 0;
-    target.roles.topic += source.roles.topic || 0;
-    target.roles.location += source.roles.location || 0;
-    target.roles.other += source.roles.other || 0;
+    const target = ensureCandidate(byCanonical, singular);
+    mergeCandidateIntoTarget(target, source);
     markSource(singular, "alias");
   }
 
@@ -1128,28 +1067,11 @@ function buildConceptCandidatesFromStep12(step12, options = {}) {
     const t = String(targetCanonical || "");
     if (!t) return;
     if (shouldRejectAliasCanonical(t)) return;
-    if (!byCanonical.has(t)) {
-      byCanonical.set(t, {
-        canonical: t,
-        surfaces: new Set(),
-        mention_ids: new Set(),
-        assertion_ids: new Set(),
-        roles: { actor: 0, theme: 0, attr: 0, topic: 0, location: 0, other: 0 },
-      });
-    }
-    const target = byCanonical.get(t);
+    const target = ensureCandidate(byCanonical, t);
     for (const sourceCanonical of sourceCanonicals || []) {
       const source = byCanonical.get(String(sourceCanonical || ""));
       if (!source) continue;
-      for (const s of source.surfaces) target.surfaces.add(s);
-      for (const m of source.mention_ids) target.mention_ids.add(m);
-      for (const a of source.assertion_ids) target.assertion_ids.add(a);
-      target.roles.actor += source.roles.actor || 0;
-      target.roles.theme += source.roles.theme || 0;
-      target.roles.attr += source.roles.attr || 0;
-      target.roles.topic += source.roles.topic || 0;
-      target.roles.location += source.roles.location || 0;
-      target.roles.other += source.roles.other || 0;
+      mergeCandidateIntoTarget(target, source);
     }
       markSource(t, "alias");
     };

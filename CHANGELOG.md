@@ -142,3 +142,6 @@ All notable changes to this project are documented in this file.
 - v0.052 prototype split groundwork:
   - extracted mention lifting helpers into `prototype/core/mention-lifting.js`
   - wired `prototype/concept-candidates.js` to import mention lifting helpers with unchanged public behavior and contracts.
+- v0.053 prototype split groundwork:
+  - extracted candidate accumulator helpers into `prototype/core/candidate-accumulator.js`
+  - wired `prototype/concept-candidates.js` to import accumulator/merge helpers with unchanged public behavior and contracts.
