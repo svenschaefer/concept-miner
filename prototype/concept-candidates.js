@@ -87,6 +87,7 @@ const { hasCliInputSource } = require("./core/cli-guards");
 const { handleCliResultIO } = require("./core/cli-write-emit");
 const { executeCliMainFlow } = require("./core/cli-main-flow");
 const { invokeCliRuntimeGeneration } = require("./core/cli-runtime-invocation");
+const { buildCliMainFlowContext } = require("./core/cli-context-assembly");
 const {
   loadConceptCandidatesSchema,
   validateSchema,
@@ -1007,31 +1008,7 @@ function generateForStep12Path(step12Path, options = {}) {
 async function main() {
   try {
     const args = process.argv.slice(2);
-    const {
-      seedId,
-      step12In,
-      outPathArg,
-      diagOutPathArg,
-      metaOutPathArg,
-      wikipediaTitleIndexEndpoint,
-      timeoutMs,
-      wikipediaTitleIndexTimeoutMs,
-      wikipediaTitleIndexPolicy,
-      step13Mode,
-      mode13bVerbPromotionMinWti,
-      mode13bUnlinkedFiniteVerbPromotionMinWti,
-      mode13bLowWtiUnlinkedMinAvg,
-      mode13bNonnominalShareMin,
-      mode13bNonnominalWeakWtiMax,
-      mode13bMergeHostMinWtiRatio,
-      enableSupplemental,
-      enableAliasSynthesis,
-      enableLegacyEnrichment,
-      enableRecoverySynthesis,
-      emitWikipediaTitleIndexEvidence,
-      printOnly,
-      runOptions,
-    } = parseCliExecutionContext({
+    const parsed = parseCliExecutionContext({
       args,
       env: process.env,
       arg,
@@ -1042,35 +1019,13 @@ async function main() {
       defaultArtifactsRoot: DEFAULT_ARTIFACTS_ROOT,
       defaultWikipediaTitleIndexEndpoint: DEFAULT_WIKIPEDIA_TITLE_INDEX_ENDPOINT,
     });
+    const context = buildCliMainFlowContext(parsed, {
+      buildMetaSidecar,
+      writePersistedOutputs,
+    });
 
     const flow = await executeCliMainFlow({
-      context: {
-        seedId,
-        step12In,
-        runOptions,
-        printOnly,
-        outPathArg,
-        diagOutPathArg,
-        metaOutPathArg,
-        wikipediaTitleIndexPolicy,
-        step13Mode,
-        mode13bVerbPromotionMinWti,
-        mode13bUnlinkedFiniteVerbPromotionMinWti,
-        mode13bLowWtiUnlinkedMinAvg,
-        mode13bNonnominalShareMin,
-        mode13bNonnominalWeakWtiMax,
-        mode13bMergeHostMinWtiRatio,
-        enableSupplemental,
-        enableAliasSynthesis,
-        enableLegacyEnrichment,
-        enableRecoverySynthesis,
-        emitWikipediaTitleIndexEvidence,
-        wikipediaTitleIndexEndpoint,
-        timeoutMs,
-        wikipediaTitleIndexTimeoutMs,
-        buildMetaSidecar,
-        writePersistedOutputs,
-      },
+      context,
       hasCliInputSource,
       invokeCliRuntimeGeneration: ({ seedId: invokeSeedId, step12In: invokeStep12In, runOptions: invokeRunOptions }) =>
         invokeCliRuntimeGeneration({

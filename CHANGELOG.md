@@ -193,3 +193,6 @@ All notable changes to this project are documented in this file.
 - v0.069 prototype split groundwork:
   - extracted CLI runtime generation invocation helper logic into `prototype/core/cli-runtime-invocation.js`
   - wired `prototype/core/cli-main-flow.js` and `prototype/concept-candidates.js` to delegate runtime/persisted invocation branching with unchanged output behavior.
+- v0.070 prototype split groundwork:
+  - extracted CLI main-flow context assembly helper logic into `prototype/core/cli-context-assembly.js`
+  - wired `prototype/concept-candidates.js` to build the high-level CLI flow context via helper delegation with unchanged behavior.

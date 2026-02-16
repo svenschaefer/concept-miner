@@ -1,0 +1,60 @@
+function buildCliMainFlowContext(parsed, dependencies) {
+  const {
+    seedId,
+    step12In,
+    runOptions,
+    printOnly,
+    outPathArg,
+    diagOutPathArg,
+    metaOutPathArg,
+    wikipediaTitleIndexPolicy,
+    step13Mode,
+    mode13bVerbPromotionMinWti,
+    mode13bUnlinkedFiniteVerbPromotionMinWti,
+    mode13bLowWtiUnlinkedMinAvg,
+    mode13bNonnominalShareMin,
+    mode13bNonnominalWeakWtiMax,
+    mode13bMergeHostMinWtiRatio,
+    enableSupplemental,
+    enableAliasSynthesis,
+    enableLegacyEnrichment,
+    enableRecoverySynthesis,
+    emitWikipediaTitleIndexEvidence,
+    wikipediaTitleIndexEndpoint,
+    timeoutMs,
+    wikipediaTitleIndexTimeoutMs,
+  } = parsed;
+
+  const { buildMetaSidecar, writePersistedOutputs } = dependencies;
+  return {
+    seedId,
+    step12In,
+    runOptions,
+    printOnly,
+    outPathArg,
+    diagOutPathArg,
+    metaOutPathArg,
+    wikipediaTitleIndexPolicy,
+    step13Mode,
+    mode13bVerbPromotionMinWti,
+    mode13bUnlinkedFiniteVerbPromotionMinWti,
+    mode13bLowWtiUnlinkedMinAvg,
+    mode13bNonnominalShareMin,
+    mode13bNonnominalWeakWtiMax,
+    mode13bMergeHostMinWtiRatio,
+    enableSupplemental,
+    enableAliasSynthesis,
+    enableLegacyEnrichment,
+    enableRecoverySynthesis,
+    emitWikipediaTitleIndexEvidence,
+    wikipediaTitleIndexEndpoint,
+    timeoutMs,
+    wikipediaTitleIndexTimeoutMs,
+    buildMetaSidecar,
+    writePersistedOutputs,
+  };
+}
+
+module.exports = {
+  buildCliMainFlowContext,
+};
