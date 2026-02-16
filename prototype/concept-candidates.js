@@ -105,6 +105,7 @@ const { handleCliUsageExit } = require("./core/cli-usage-exit");
 const { handleCliErrorExit } = require("./core/cli-error-exit");
 const { executeCliMainExecution } = require("./core/cli-main-execution");
 const { buildCliMainDependencySources } = require("./core/cli-main-dependency-sources");
+const { invokeCliMainExecution } = require("./core/cli-main-invocation");
 const {
   loadConceptCandidatesSchema,
   validateSchema,
@@ -1057,13 +1058,14 @@ async function main() {
       buildCliMainSetupDependencies,
       invokeCliMainSetup,
     });
-    await executeCliMainExecution(args, {
+    await invokeCliMainExecution(args, {
+      executeCliMainExecution,
       buildCliMainPipelineInputs,
       buildCliMainPipelineDependencies,
       buildCliMainFlowPipeline,
       executeCliMainFlow,
       handleCliUsageExit,
-      ...dependencySources,
+      dependencySources,
     });
   } catch (err) {
     handleCliErrorExit(err, {
