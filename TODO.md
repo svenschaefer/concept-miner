@@ -28,6 +28,7 @@ Status date: 2026-02-16
 - [x] `v0.018` README REST quick-start examples added with docs regression coverage.
 - [x] `v0.019` Step12 upstream dependency boundary documented and regression-tested in docs checks.
 - [x] `v0.020` first annotated pre-1.0 tag workflow closed with clean `release:check` gate.
+- [x] `v0.021` TODO checklist truth-synced to completed template/CLI/tests/docs/CI work.
 - [ ] Remaining roadmap cycles continue from current baseline (`main`).
 
 ## 0. Scope And Decisions (must be resolved first)
@@ -51,39 +52,39 @@ Status date: 2026-02-16
 
 ## 1. Template Baseline Adoption
 
-- [ ] Copy template repository skeleton (excluding `node_modules` and placeholder tokens) into product target.
-- [ ] Add/align root files from template:
+- [x] Copy template repository skeleton (excluding `node_modules` and placeholder tokens) into product target.
+- [x] Add/align root files from template:
 - `.editorconfig`, `.eslintrc.cjs`, `.gitattributes`, `.gitignore`, `.npmignore`
 - `package.json`, `package-lock.json`, `project.config.json`
 - `README.md`, `CHANGELOG.md`, `CONTRIBUTING.md`, `SECURITY.md`, `LICENSE`, `AGENTS.md`
-- [ ] Add template directories:
+- [x] Add template directories:
 - `bin/`, `src/`, `scripts/`, `docs/`, `test/`, `.github/workflows/`
-- [ ] Replace all placeholder tokens from template:
+- [x] Replace all placeholder tokens from template:
 - `__PROJECT_NAME__`, `__PACKAGE_NAME__`, `__DESCRIPTION__`, `__CLI_NAME__`
 - `__AUTHOR__`, `__GITHUB_OWNER__`, `__REPO_NAME__`, `__KEYWORD_1__`, `__KEYWORD_2__`
 - `__YEAR__`
-- [ ] Ensure line-ending and formatting policy matches template (`LF`, final newline, UTF-8).
+- [x] Ensure line-ending and formatting policy matches template (`LF`, final newline, UTF-8).
 
 ## 2. Package Contract And Metadata Hardening
 
-- [ ] Define final `package.json` identity fields (`name`, `description`, `keywords`, `author`, `repository`, `bugs`, `homepage`).
-- [ ] Adapt `project.config.json` to product runtime policies and CLI tool key namespace.
-- [ ] Configure stable public exports (`.`, `./validate`, `./tools`, `./schema`) and ensure files exist.
-- [ ] Match template export subpaths exactly unless intentionally versioned away:
+- [x] Define final `package.json` identity fields (`name`, `description`, `keywords`, `author`, `repository`, `bugs`, `homepage`).
+- [x] Adapt `project.config.json` to product runtime policies and CLI tool key namespace.
+- [x] Configure stable public exports (`.`, `./validate`, `./tools`, `./schema`) and ensure files exist.
+- [x] Match template export subpaths exactly unless intentionally versioned away:
 - `"." -> "./src/index.js"`
 - `"./validate" -> "./src/validate/index.js"`
 - `"./tools" -> "./src/tools/index.js"`
 - `"./schema" -> "./src/schema/output.schema.json"` (or documented equivalent with updated tests)
-- [ ] Configure CLI bin mapping for product command(s).
-- [ ] Add required scripts from template and adapt to project specifics:
+- [x] Configure CLI bin mapping for product command(s).
+- [x] Add required scripts from template and adapt to project specifics:
 - `lint`, `test`, `test:unit`, `test:integration`
 - `dev:check`, `dev:report:metrics`, `dev:report:maturity`
 - `pack:check`, `smoke:release`, `ci:check`, `release:check`
-- [ ] Preserve template script wiring semantics:
+- [x] Preserve template script wiring semantics:
 - `ci:check` includes `npm run lint` plus full gate chain
 - `release:check` fails on dirty worktree before running `ci:check`
-- [ ] Add runtime deps required by prototype code (`yaml`, `ajv`, `elementary-assertions`) and pin versions.
-- [ ] Verify package packlist includes docs/security files.
+- [x] Add runtime deps required by prototype code (`yaml`, `ajv`, `elementary-assertions`) and pin versions.
+- [x] Verify package packlist includes docs/security files.
 
 ## 3. Source Architecture Refactor (prototype -> library-first package)
 
@@ -156,63 +157,63 @@ Status date: 2026-02-16
 
 ## 5. CLI And Tooling Productization
 
-- [ ] Implement template-compatible CLI:
+- [x] Implement template-compatible CLI:
 - `run` command (exactly one input source)
 - `validate` command
 - `--config` loading behavior (missing file error when explicitly requested)
-- [ ] Ensure CLI help contract includes `Usage:` and `--config <path>`.
-- [ ] Implement `bin/cli.js` as thin entrypoint with shebang and non-zero exit on command errors.
-- [ ] Decide and document concept-miner-specific commands/flags:
+- [x] Ensure CLI help contract includes `Usage:` and `--config <path>`.
+- [x] Implement `bin/cli.js` as thin entrypoint with shebang and non-zero exit on command errors.
+- [x] Decide and document concept-miner-specific commands/flags:
 - Keep `run` generic and expose product modes via options, or
 - Add explicit subcommands while preserving template discipline.
-- [ ] Add robust usage output and stable non-zero exit behavior on failures.
+- [x] Add robust usage output and stable non-zero exit behavior on failures.
 - [ ] Move PowerShell helper flows into documented optional wrappers around core CLI.
 
 ## 6. Test Migration And Contract Coverage
 
-- [ ] Port and adapt template contract tests to concept-miner domain.
-- [ ] Keep or intentionally replace template public API entrypoint contract:
+- [x] Port and adapt template contract tests to concept-miner domain.
+- [x] Keep or intentionally replace template public API entrypoint contract:
 - `runFromInput(input, options)`
 - `runMain(text, options)`
-- [ ] Add package/schema contract tests mirroring template checks:
+- [x] Add package/schema contract tests mirroring template checks:
 - exported schema file is non-empty and valid JSON
 - exported schema has top-level object type and `$schema` marker
-- [ ] Create deterministic unit tests for extracted core modules.
+- [x] Create deterministic unit tests for extracted core modules.
 - [ ] Migrate prototype test coverage into `test/unit` and `test/integration`.
-- [ ] Add tests for stable validation error codes (consumer-branchable errors).
-- [ ] Add CLI contract tests:
+- [x] Add tests for stable validation error codes (consumer-branchable errors).
+- [x] Add CLI contract tests:
 - help output
 - input-source exclusivity
 - missing config failure
-- [ ] Add config loader contract tests:
+- [x] Add config loader contract tests:
 - explicit config loads correctly
 - missing default config returns empty config object
 - invalid JSON and non-object config fail explicitly
-- [ ] Add integration tests for:
+- [x] Add integration tests for:
 - `scripts/dev-check.js`
 - `scripts/dev-report-metrics.js`
 - `scripts/dev-report-maturity.js`
 - `scripts/release-smoke-check.js`
-- [ ] Add required fixture contracts for script tests:
+- [x] Add required fixture contracts for script tests:
 - `test/fixtures/example-input.json`
 - `test/fixtures/example-output.json`
-- [ ] Assert dev script output shape contracts:
+- [x] Assert dev script output shape contracts:
 - `dev:check` emits JSON with `mode`, `validated_count`, `ok`
 - report scripts emit JSON with `generated_at` and non-empty `rows`/`seeds`
-- [ ] Assert release smoke contract checks:
+- [x] Assert release smoke contract checks:
 - API exports are present
 - CLI help includes `Usage:`
 - `package.json` bin mapping exists
-- [ ] Keep prototype benchmark/policy tests and wire them into package scripts.
-- [ ] Ensure all artifact-based tests use stable fixtures and deterministic assertions.
-- [ ] Port prototype policy-governance tests/checks:
+- [x] Keep prototype benchmark/policy tests and wire them into package scripts.
+- [x] Ensure all artifact-based tests use stable fixtures and deterministic assertions.
+- [x] Port prototype policy-governance tests/checks:
 - benchmark expected-set change requires `BENCHMARK_POLICY.md` update
 - legacy enrichment change requires `LEGACY_POLICY.md` update
 - [ ] Port prototype determinism and contract tests:
 - schema validation failures and hard-failure cases
 - deterministic replay across repeated runs and fresh process
 - deterministic YAML key-order checks
-- [ ] Port prototype mode/metadata/diagnostics tests:
+- [x] Port prototype mode/metadata/diagnostics tests:
 - mode-tagged output artifacts
 - mode-tagged metadata sidecars
 - diagnostics sidecars with expected top-level shape
@@ -220,16 +221,16 @@ Status date: 2026-02-16
 - independent benchmark scoring scripts and policy-intersection reporting
 - threshold sweep reproducibility and report generation
 - wikipedia-title-index coverage report generation
-- [ ] Migrate benchmark fixture assets and keep them version-controlled:
+- [x] Migrate benchmark fixture assets and keep them version-controlled:
 - `independent.expected-concept-candidates.yaml`
 - representative seed fixtures under `test/artifacts/*`
-- [ ] Preserve realistic regression corpus structure under `test/artifacts/*`:
+- [x] Preserve realistic regression corpus structure under `test/artifacts/*`:
 - each seed keeps `seed.txt` as authoritative natural-language input fixture
 - each seed keeps `result-reference/*` as frozen prototype reference outputs
-- [ ] Add golden/frozen reference regression tests for each seed:
+- [x] Add golden/frozen reference regression tests for each seed:
 - compare product outputs against `result-reference` baselines in agreed compatibility mode(s)
 - validate output YAML plus metadata and diagnostics sidecars against frozen references
-- [ ] Define controlled baseline-update workflow for frozen references:
+- [x] Define controlled baseline-update workflow for frozen references:
 - when behavior intentionally changes, update `result-reference` with explicit rationale and changelog note
 - block silent drift of frozen references in CI
 - [ ] Migrate prototype unit/integration test corpus entrypoint:
@@ -239,19 +240,19 @@ Status date: 2026-02-16
 - optional legacy/recovery controls remain explicitly gated
 - static tripwire for literal-string/domain rule leakage in generic path
 - [ ] Decide fate of prototype soft performance budget checks and keep/adapt if retained.
-- [ ] Add tests that assert product-facing naming:
+- [x] Add tests that assert product-facing naming:
 - no `step13`/`13a`/`13b` terms in CLI help, OpenAPI descriptions, schema descriptions, or README
 - no `wiki`/`wti` abbreviations in product-facing fields and options
 
 ## 7. Documentation And Governance Productization
 
-- [ ] Rewrite root `README.md` to match real runnable state and chosen contract.
+- [x] Rewrite root `README.md` to match real runnable state and chosen contract.
 - [ ] Mine and migrate prototype documentation content:
 - `prototype/README.md` contract details into product docs
 - `prototype/TODO.md` open/closed governance items into product backlog/history notes
 - [x] Add concrete quick-start examples for JS API, CLI, and REST.
-- [ ] Ensure README links to all required docs and that all linked docs exist.
-- [ ] Create/align docs from template:
+- [x] Ensure README links to all required docs and that all linked docs exist.
+- [x] Create/align docs from template:
 - `docs/NPM_RELEASE.md`
 - `docs/REPO_WORKFLOWS.md`
 - `docs/OPERATIONAL.md`
@@ -261,24 +262,24 @@ Status date: 2026-02-16
 - `docs/GUARANTEES.md`
 - `docs/STATUSQUO.md`
 - `docs/TEMPLATE_SETUP.md`
-- [ ] Ensure `docs/NPM_RELEASE.md` keeps explicit release staging command:
+- [x] Ensure `docs/NPM_RELEASE.md` keeps explicit release staging command:
 - `git add CHANGELOG.md package.json package-lock.json src test docs scripts`
 - and avoids `git add -A` in release guidance
-- [ ] Keep `CHANGELOG.md` with `Unreleased` section.
-- [ ] Document determinism guarantees, failure policy, and non-goals clearly.
+- [x] Keep `CHANGELOG.md` with `Unreleased` section.
+- [x] Document determinism guarantees, failure policy, and non-goals clearly.
 - [x] Document upstream dependency boundary for Step 12 (`elementary-assertions`).
 
 ## 8. CI/CD And Release Workflow Setup
 
-- [ ] Add/adapt `.github/workflows/ci.yml` for Node matrix checks.
-- [ ] Add/adapt `.github/workflows/release.yml` with manual dispatch gate.
-- [ ] Ensure CI runs required gates:
+- [x] Add/adapt `.github/workflows/ci.yml` for Node matrix checks.
+- [x] Add/adapt `.github/workflows/release.yml` with manual dispatch gate.
+- [x] Ensure CI runs required gates:
 - `npm test`
 - `npm run pack:check`
 - `npm run smoke:release`
 - [ ] Ensure release workflow validates tag/version match and produces tarball artifact.
 - [ ] Document npm publish prerequisites (`NPM_TOKEN`, optional publish gate).
-- [ ] Add `scripts/ensure-clean-worktree.js` and wire `release:check`.
+- [x] Add `scripts/ensure-clean-worktree.js` and wire `release:check`.
 
 ## 9. Repository Layout Cleanup And Migration Operations
 
@@ -287,10 +288,10 @@ Status date: 2026-02-16
 - keep under `prototype/` as historical reference.
 - [ ] If migrating, create a traceable mapping table:
 - old file -> new file/module.
-- [ ] Decide how to handle current symlinked `prototype` dependency.
-- [ ] Ensure no runtime dependency on external symlink paths after productization.
-- [ ] Normalize artifact paths to repository-local, documented locations.
-- [ ] Keep or document migration of per-seed reference layout:
+- [x] Decide how to handle current symlinked `prototype` dependency.
+- [x] Ensure no runtime dependency on external symlink paths after productization.
+- [x] Normalize artifact paths to repository-local, documented locations.
+- [x] Keep or document migration of per-seed reference layout:
 - `test/artifacts/<seed>/seed.txt`
 - `test/artifacts/<seed>/result-reference/*`
 - [ ] Define policy for generated prototype report artifacts:
@@ -301,16 +302,16 @@ Status date: 2026-02-16
 ## 10. Quality Gates And Exit Criteria
 
 - [ ] `npm ci` succeeds on clean checkout.
-- [ ] `npm run lint` passes.
-- [ ] `npm test` passes.
-- [ ] `npm run dev:check` passes.
-- [ ] `npm run dev:report:metrics` emits valid JSON.
-- [ ] `npm run dev:report:maturity` emits valid JSON.
-- [ ] `npm run ci:check` passes locally.
-- [ ] `npm run release:check` passes on clean worktree.
-- [ ] `npm pack --dry-run` includes expected files only.
-- [ ] `npm run smoke:release` validates API exports + CLI help + bin mapping.
-- [ ] OpenAPI, schema, and runtime outputs are contract-consistent.
+- [x] `npm run lint` passes.
+- [x] `npm test` passes.
+- [x] `npm run dev:check` passes.
+- [x] `npm run dev:report:metrics` emits valid JSON.
+- [x] `npm run dev:report:maturity` emits valid JSON.
+- [x] `npm run ci:check` passes locally.
+- [x] `npm run release:check` passes on clean worktree.
+- [x] `npm pack --dry-run` includes expected files only.
+- [x] `npm run smoke:release` validates API exports + CLI help + bin mapping.
+- [x] OpenAPI, schema, and runtime outputs are contract-consistent.
 - [ ] Prototype-derived product checks pass (renamed as needed):
 - benchmark policy guard
 - legacy policy guard

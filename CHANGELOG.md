@@ -36,3 +36,6 @@ All notable changes to this project are documented in this file.
 - v0.020 pre-1.0 tag strategy closed:
   - `docs/REPO_WORKFLOWS.md` documents `v0.x.y` annotated tag policy
   - clean `npm run release:check` verified before first annotated tag creation.
+- v0.021 `TODO.md` truth-sync:
+  - completed template/package/CLI/test/docs/CI checklist items marked done
+  - remaining unchecked items narrowed to genuinely open engineering scope.

@@ -335,3 +335,10 @@ Cycle N (`v0.020`) - First Annotated Tag And Tag Strategy Closure:
 - Create and push first annotated repository tag aligned to current package version.
 Status:
 - Completed on `main`.
+
+Cycle O (`v0.021`) - TODO Truth-Sync Pass:
+- Reconcile `TODO.md` checkbox state with work already completed on `main`.
+- Mark completed template/CLI/CI/doc items that are already verified by tests and gates.
+- Leave genuinely open engineering items unchecked with explicit remaining scope.
+Status:
+- Completed on `main`.
