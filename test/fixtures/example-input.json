@@ -1,0 +1,7 @@
+{
+  "source_text": "alpha beta alpha",
+  "items": [
+    { "id": "i:2", "value": "beta", "tags": ["b", "a"] },
+    { "id": "i:1", "value": "alpha", "tags": ["a", "a"] }
+  ]
+}

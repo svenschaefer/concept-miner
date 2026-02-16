@@ -1,0 +1,9 @@
+{
+  "stage": "output",
+  "schema_version": "1.0.0",
+  "source_text": "alpha beta alpha",
+  "records": [
+    { "id": "i:1", "value": "alpha", "tags": ["a"] },
+    { "id": "i:2", "value": "beta", "tags": ["a", "b"] }
+  ]
+}

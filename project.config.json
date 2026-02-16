@@ -1,0 +1,18 @@
+{
+  "paths": {
+    "workspace": "./workspace",
+    "artifacts": "./artifacts"
+  },
+  "policies": {
+    "output": {
+      "console": true
+    }
+  },
+  "tools": {
+    "concept-miner": {
+      "output": {
+        "format": "json"
+      }
+    }
+  }
+}

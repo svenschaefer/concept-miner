@@ -1,0 +1,72 @@
+{
+  "name": "concept-miner",
+  "version": "0.001.0",
+  "description": "Deterministic concept extraction from natural language.",
+  "keywords": [
+    "concept-extraction",
+    "deterministic"
+  ],
+  "author": "svenschaefer",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/svenschaefer/concept-miner.git"
+  },
+  "bugs": {
+    "url": "https://github.com/svenschaefer/concept-miner/issues"
+  },
+  "homepage": "https://github.com/svenschaefer/concept-miner#readme",
+  "private": true,
+  "type": "commonjs",
+  "main": "./src/index.js",
+  "exports": {
+    ".": "./src/index.js",
+    "./validate": "./src/validate/index.js",
+    "./tools": "./src/tools/index.js",
+    "./schema": "./src/schema/output.schema.json"
+  },
+  "bin": {
+    "concept-miner": "./bin/cli.js"
+  },
+  "files": [
+    "bin/",
+    "src/",
+    "docs/",
+    "README.md",
+    "CHANGELOG.md",
+    "SECURITY.md"
+  ],
+  "engines": {
+    "node": ">=20.0.0"
+  },
+  "license": "MIT",
+  "scripts": {
+    "lint": "eslint src bin test scripts",
+    "test": "node --test \"test/**/*.test.js\"",
+    "test:unit": "node --test \"test/unit/**/*.test.js\"",
+    "test:integration": "node --test \"test/integration/**/*.test.js\"",
+    "dev:check": "node scripts/dev-check.js",
+    "dev:report:metrics": "node scripts/dev-report-metrics.js",
+    "dev:report:maturity": "node scripts/dev-report-maturity.js",
+    "pack:check": "npm pack --dry-run",
+    "smoke:release": "node scripts/release-smoke-check.js",
+    "ci:check": "npm run lint && npm test && npm run dev:report:metrics && npm run dev:report:maturity && npm run pack:check && npm run smoke:release",
+    "release:check": "node scripts/ensure-clean-worktree.js && npm run ci:check",
+    "check:concept-candidates": "node prototype/check-concept-candidates.js",
+    "check:concept-candidates:benchmark-policy": "node prototype/check-benchmark-policy.js",
+    "check:concept-candidates:legacy-policy": "node prototype/check-legacy-policy.js",
+    "eval:concept-candidates:independent:13a": "node prototype/concept-candidates.independent-benchmark.js --artifacts-root ./test/artifacts --step13-mode 13a",
+    "eval:concept-candidates:independent:13b": "node prototype/concept-candidates.independent-benchmark.js --artifacts-root ./test/artifacts --step13-mode 13b",
+    "eval:concept-candidates:independent:13b:policy": "node prototype/concept-candidates.independent-benchmark.js --artifacts-root ./test/artifacts --step13-mode 13b --report-policy-intersections",
+    "eval:concept-candidates:13b:sweep": "node prototype/concept-candidates.13b-threshold-sweep.js --artifacts-root ./test/artifacts",
+    "report:step12:wikipedia-title-index-coverage": "node prototype/step12-wikipedia-title-index-coverage.js --artifacts-root ./test/artifacts"
+  },
+  "dependencies": {
+    "ajv": "^8.17.1",
+    "elementary-assertions": "^1.0.2",
+    "yaml": "^2.8.1"
+  },
+  "devDependencies": {
+    "eslint": "^8.57.0"
+  }
+}
+

@@ -1,0 +1,10 @@
+node_modules/
+coverage/
+.nyc_output/
+*.log
+.env
+.env.*
+dist/
+build/
+.DS_Store
+Thumbs.db

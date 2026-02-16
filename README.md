@@ -2,66 +2,90 @@
 
 Deterministic concept extraction from natural language.
 
-## Current Repository State
+## Purpose
 
-This repository is currently in a **productization transition** state.
+`concept-miner` is being productized as a CommonJS Node.js package for deterministic, contract-driven concept extraction.
 
-Available today:
+Given text input, it extracts explicit concepts in canonical, deduplicated, traceable form.
 
-- product-facing contract assets:
+## Current State
+
+This repository currently contains:
+
+- product-facing contracts:
   - `openapi/openapi.yaml`
   - `schema/concepts.schema.json`
-- realistic regression corpus:
-  - `test/artifacts/*/seed.txt`
-  - `test/artifacts/*/result-reference/*`
-- prototype implementation source under:
+- prototype implementation and governance assets:
   - `prototype/`
+- realistic frozen regression corpus:
+  - `test/artifacts/<seed>/seed.txt`
+  - `test/artifacts/<seed>/result-reference/*`
 
-Not yet available at repository root:
+The full productization backlog is tracked in `TODO.md`, and staged milestones are in `ROADMAP.md`.
 
-- `package.json`
-- finalized library API package wiring
-- finalized CLI wiring
-- finalized service/runtime wiring
-- release workflow/docs scaffolding
+## Target Mode Model
 
-## Productization Goal
+- `generic baseline mode` (optional): extraction without wikipedia/wikipedia-title-index information.
+- `default extended mode` (default): extraction with wikipedia/wikipedia-title-index information.
 
-`concept-miner` is being productized as a standalone concept extraction product with:
+## Development
 
-- deterministic output
-- schema-validated contracts
-- library-first architecture with CLI and REST access layers
+```bash
+npm ci
+npm run lint
+npm test
+npm run dev:check
+npm run dev:report:metrics
+npm run dev:report:maturity
+npm run ci:check
+npm run release:check
+```
 
-Target mode model:
+Prototype-oriented checks and reports:
 
-- `generic baseline mode` (optional): extraction without wikipedia/wikipedia-title-index information
-- `default extended mode` (default): extraction with wikipedia/wikipedia-title-index information
+```bash
+npm run check:concept-candidates:benchmark-policy
+npm run check:concept-candidates:legacy-policy
+npm run eval:concept-candidates:independent:13a
+npm run eval:concept-candidates:independent:13b
+npm run eval:concept-candidates:independent:13b:policy
+npm run eval:concept-candidates:13b:sweep
+npm run report:step12:wikipedia-title-index-coverage
+```
 
-## Contracts
+## Release
 
-Current public contract artifacts:
+This repository follows a dual-stream release model:
 
-- REST/OpenAPI contract: `openapi/openapi.yaml`
-- Concepts document schema: `schema/concepts.schema.json`
+- Git stream:
+  - versioned commits
+  - annotated tags
+  - optional GitHub Releases
+- npm stream:
+  - `npm publish`
+  - registry propagation checks
+  - post-publish smoke tests
 
-These are the integration boundary while productization is in progress.
+Relevant documentation:
 
-## Regression Corpus
+- `docs/NPM_RELEASE.md`
+- `docs/REPO_WORKFLOWS.md`
+- `docs/OPERATIONAL.md`
+- `docs/DEV_TOOLING.md`
+- `docs/RELEASE_NOTES_TEMPLATE.md`
+- `docs/BASELINE_TEST_RUN.md`
+- `docs/GUARANTEES.md`
+- `docs/STATUSQUO.md`
+- `docs/TEMPLATE_SETUP.md`
+- `CONTRIBUTING.md`
+- `SECURITY.md`
+- `CHANGELOG.md`
+- `project.config.json`
 
-The repository includes frozen reference data for realistic seeds:
+Release automation:
 
-- input seeds: `test/artifacts/<seed>/seed.txt`
-- frozen prototype outputs: `test/artifacts/<seed>/result-reference/*`
-
-These references are used to preserve deterministic behavior and detect regressions during migration.
-
-## Plan
-
-The full migration and hardening backlog is tracked in:
-
-- `TODO.md`
+- `.github/workflows/release.yml` provides a manual `workflow_dispatch` release check.
 
 ## License
 
-License file is not yet present at repository root in this transition state.
+See `LICENSE`.
