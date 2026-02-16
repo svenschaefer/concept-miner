@@ -184,3 +184,6 @@ All notable changes to this project are documented in this file.
 - v0.066 prototype split groundwork:
   - extracted CLI usage text and input-source guard helpers into `prototype/core/cli-usage.js` and `prototype/core/cli-guards.js`
   - wired `prototype/concept-candidates.js` main execution usage/guard path to consume these helpers with unchanged CLI exit semantics.
+- v0.067 prototype split groundwork:
+  - extracted CLI output write/emit orchestration helper logic into `prototype/core/cli-write-emit.js`
+  - wired `prototype/concept-candidates.js` main execution output path to consume the helper with unchanged persisted output behavior.

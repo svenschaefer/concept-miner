@@ -84,6 +84,7 @@ const { resolveSeedTextInputPaths, loadStep12Yaml } = require("./core/step12-inp
 const { parseCliExecutionContext } = require("./core/cli-option-assembly");
 const { buildUsageText } = require("./core/cli-usage");
 const { hasCliInputSource } = require("./core/cli-guards");
+const { handleCliResultIO } = require("./core/cli-write-emit");
 const {
   loadConceptCandidatesSchema,
   validateSchema,
@@ -1046,18 +1047,13 @@ async function main() {
     }
 
     const result = step12In ? generateForStep12Path(step12In, runOptions) : await generateForSeed(seedId, runOptions);
-    const { yamlText, seedDir, outputDoc, diagnostics, mode } = result;
-
-    if (printOnly) {
-      process.stdout.write(yamlText);
-      return;
-    }
-
-    const outPath = outPathArg || path.join(seedDir, "seed.concept-candidates.yaml");
-    const meta = buildMetaSidecar({
-      mode,
-      outputDoc,
+    await handleCliResultIO({
+      result,
+      printOnly,
+      outPathArg,
       step12In,
+      diagOutPathArg,
+      metaOutPathArg,
       wikipediaTitleIndexPolicy,
       step13Mode,
       mode13bVerbPromotionMinWti,
@@ -1074,18 +1070,9 @@ async function main() {
       wikipediaTitleIndexEndpoint,
       timeoutMs,
       wikipediaTitleIndexTimeoutMs,
+      buildMetaSidecar,
+      writePersistedOutputs,
     });
-    writePersistedOutputs({
-      outPath,
-      yamlText,
-      diagOutPathArg,
-      diagnostics,
-      metaOutPathArg,
-      meta,
-    });
-    process.stdout.write(
-      `Wrote ${outPath} (${outputDoc.concept_candidates.length} candidates, mode=${mode})\n`
-    );
   } catch (err) {
     console.error(err && err.message ? err.message : String(err));
     process.exit(1);

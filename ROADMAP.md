@@ -670,4 +670,11 @@ Cycle BI (`v0.067`) - Prototype Split Groundwork (CLI Write/Emit Orchestration H
 - Keep behavior and exported prototype runtime contracts unchanged.
 - Preserve full frozen-reference and determinism gate stability after extraction.
 Status:
+- Completed on `main`.
+
+Cycle BJ (`v0.068`) - Prototype Split Groundwork (CLI Main Flow Orchestration Helper):
+- Extract high-level CLI main flow orchestration helper logic from `prototype/concept-candidates.js` into dedicated modules.
+- Keep behavior and exported prototype runtime contracts unchanged.
+- Preserve full frozen-reference and determinism gate stability after extraction.
+Status:
 - Planned.

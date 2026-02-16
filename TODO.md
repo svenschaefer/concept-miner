@@ -74,6 +74,7 @@ Status date: 2026-02-16
 - [x] `v0.064` prototype split groundwork continued by extracting Step12 input loading helpers into `prototype/core/step12-input.js` with behavior-preserving wiring.
 - [x] `v0.065` prototype split groundwork continued by extracting CLI option assembly helpers into `prototype/core/cli-option-assembly.js` with behavior-preserving wiring.
 - [x] `v0.066` prototype split groundwork continued by extracting CLI usage/validation guard helpers into `prototype/core/cli-usage.js` and `prototype/core/cli-guards.js` with behavior-preserving wiring.
+- [x] `v0.067` prototype split groundwork continued by extracting CLI write/emit orchestration helpers into `prototype/core/cli-write-emit.js` with behavior-preserving wiring.
 - [ ] Remaining roadmap cycles continue from current baseline (`main`).
 
 ## 0. Scope And Decisions (must be resolved first)
@@ -161,6 +162,7 @@ Status date: 2026-02-16
 - Progress: Step12 input loading helpers extracted from monolith to `prototype/core/step12-input.js` as the twenty-first safe split step.
 - Progress: CLI option assembly helpers extracted from monolith to `prototype/core/cli-option-assembly.js` as the twenty-second safe split step.
 - Progress: CLI usage/validation guard helpers extracted from monolith to `prototype/core/cli-usage.js` and `prototype/core/cli-guards.js` as the twenty-third safe split step.
+- Progress: CLI write/emit orchestration helpers extracted from monolith to `prototype/core/cli-write-emit.js` as the twenty-fourth safe split step.
 - [x] Remove business logic from CLI path; keep CLI as thin wrapper only.
 - [x] Convert current ad-hoc helpers into coherent modules:
 - argument parsing, IO, deterministic sorting, canonicalization, ID generation, policy parsing.
