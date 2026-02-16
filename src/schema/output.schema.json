@@ -1,36 +1,146 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://example.com/schemas/output.schema.json",
-  "title": "Generic Output",
+  "$id": "https://concept-miner.example/schema/concepts.schema.json",
+  "title": "Concepts Document",
   "type": "object",
-  "required": ["stage", "records"],
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "concepts"
+  ],
   "properties": {
-    "stage": {
-      "type": "string",
-      "const": "output"
-    },
     "schema_version": {
-      "type": "string"
+      "type": "string",
+      "minLength": 1
     },
-    "source_text": {
-      "type": "string"
+    "input_id": {
+      "type": "string",
+      "minLength": 1
     },
-    "records": {
+    "concepts": {
       "type": "array",
       "items": {
-        "type": "object",
-        "required": ["id", "value", "tags"],
-        "properties": {
-          "id": { "type": "string" },
-          "value": { "type": "string" },
-          "tags": {
-            "type": "array",
-            "items": { "type": "string" }
-          }
-        },
-        "additionalProperties": true
+        "$ref": "#/$defs/concept"
       }
+    },
+    "meta": {
+      "$ref": "#/$defs/responseMeta"
     }
   },
-  "additionalProperties": true
+  "$defs": {
+    "concept": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "name"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "name": {
+          "type": "string",
+          "minLength": 1
+        },
+        "surface_forms": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "occurrences": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/occurrence"
+          }
+        },
+        "signals": {
+          "$ref": "#/$defs/signals"
+        },
+        "properties": {
+          "type": "object",
+          "additionalProperties": true
+        }
+      }
+    },
+    "occurrence": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "start",
+        "end"
+      ],
+      "properties": {
+        "start": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Start offset in UTF-16 code units."
+        },
+        "end": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "End offset in UTF-16 code units (exclusive)."
+        },
+        "text": {
+          "type": "string"
+        },
+        "source": {
+          "type": "string"
+        }
+      }
+    },
+    "signals": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "confidence": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "strength": {
+          "type": "string",
+          "enum": [
+            "low",
+            "medium",
+            "high"
+          ]
+        }
+      }
+    },
+    "responseMeta": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "concept_count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "service": {
+          "$ref": "#/$defs/serviceMeta"
+        }
+      }
+    },
+    "serviceMeta": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "version": {
+          "type": "string"
+        },
+        "build": {
+          "type": "string"
+        },
+        "deterministic": {
+          "type": "boolean"
+        }
+      }
+    }
+  }
 }

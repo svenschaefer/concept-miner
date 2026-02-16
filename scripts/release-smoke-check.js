@@ -21,8 +21,14 @@ function main() {
   const api = require(path.join(root, "src", "index.js"));
   const cliEntry = path.join(root, "bin", "cli.js");
 
-  if (!api || typeof api.runFromInput !== "function" || typeof api.runMain !== "function") {
-    fail("API smoke failed: expected runFromInput and runMain exports.");
+  if (
+    !api ||
+    typeof api.runFromInput !== "function" ||
+    typeof api.runMain !== "function" ||
+    typeof api.extractConcepts !== "function" ||
+    typeof api.validateConcepts !== "function"
+  ) {
+    fail("API smoke failed: expected runFromInput, runMain, extractConcepts, and validateConcepts exports.");
   }
 
   const cliOut = run(process.execPath, [cliEntry, "--help"], root);
