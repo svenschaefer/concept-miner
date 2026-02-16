@@ -85,6 +85,7 @@ const { parseCliExecutionContext } = require("./core/cli-option-assembly");
 const { buildUsageText } = require("./core/cli-usage");
 const { hasCliInputSource } = require("./core/cli-guards");
 const { handleCliResultIO } = require("./core/cli-write-emit");
+const { executeCliMainFlow } = require("./core/cli-main-flow");
 const {
   loadConceptCandidatesSchema,
   validateSchema,
@@ -1041,38 +1042,43 @@ async function main() {
       defaultWikipediaTitleIndexEndpoint: DEFAULT_WIKIPEDIA_TITLE_INDEX_ENDPOINT,
     });
 
-    if (!hasCliInputSource(seedId, step12In)) {
+    const flow = await executeCliMainFlow({
+      context: {
+        seedId,
+        step12In,
+        runOptions,
+        printOnly,
+        outPathArg,
+        diagOutPathArg,
+        metaOutPathArg,
+        wikipediaTitleIndexPolicy,
+        step13Mode,
+        mode13bVerbPromotionMinWti,
+        mode13bUnlinkedFiniteVerbPromotionMinWti,
+        mode13bLowWtiUnlinkedMinAvg,
+        mode13bNonnominalShareMin,
+        mode13bNonnominalWeakWtiMax,
+        mode13bMergeHostMinWtiRatio,
+        enableSupplemental,
+        enableAliasSynthesis,
+        enableLegacyEnrichment,
+        enableRecoverySynthesis,
+        emitWikipediaTitleIndexEvidence,
+        wikipediaTitleIndexEndpoint,
+        timeoutMs,
+        wikipediaTitleIndexTimeoutMs,
+        buildMetaSidecar,
+        writePersistedOutputs,
+      },
+      hasCliInputSource,
+      generateForStep12Path,
+      generateForSeed,
+      handleCliResultIO,
+    });
+    if (flow.usage) {
       console.error(usage());
       process.exit(2);
     }
-
-    const result = step12In ? generateForStep12Path(step12In, runOptions) : await generateForSeed(seedId, runOptions);
-    await handleCliResultIO({
-      result,
-      printOnly,
-      outPathArg,
-      step12In,
-      diagOutPathArg,
-      metaOutPathArg,
-      wikipediaTitleIndexPolicy,
-      step13Mode,
-      mode13bVerbPromotionMinWti,
-      mode13bUnlinkedFiniteVerbPromotionMinWti,
-      mode13bLowWtiUnlinkedMinAvg,
-      mode13bNonnominalShareMin,
-      mode13bNonnominalWeakWtiMax,
-      mode13bMergeHostMinWtiRatio,
-      enableSupplemental,
-      enableAliasSynthesis,
-      enableLegacyEnrichment,
-      enableRecoverySynthesis,
-      emitWikipediaTitleIndexEvidence,
-      wikipediaTitleIndexEndpoint,
-      timeoutMs,
-      wikipediaTitleIndexTimeoutMs,
-      buildMetaSidecar,
-      writePersistedOutputs,
-    });
   } catch (err) {
     console.error(err && err.message ? err.message : String(err));
     process.exit(1);

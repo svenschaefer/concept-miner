@@ -187,3 +187,6 @@ All notable changes to this project are documented in this file.
 - v0.067 prototype split groundwork:
   - extracted CLI output write/emit orchestration helper logic into `prototype/core/cli-write-emit.js`
   - wired `prototype/concept-candidates.js` main execution output path to consume the helper with unchanged persisted output behavior.
+- v0.068 prototype split groundwork:
+  - extracted high-level CLI main-flow orchestration helper logic into `prototype/core/cli-main-flow.js`
+  - wired `prototype/concept-candidates.js` main execution path to delegate orchestration with unchanged CLI behavior and exit semantics.
