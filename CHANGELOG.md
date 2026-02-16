@@ -235,3 +235,6 @@ All notable changes to this project are documented in this file.
 - v0.083 prototype split groundwork:
   - extracted CLI main pipeline dependency-bundle helper logic into `prototype/core/cli-main-pipeline-dependencies.js`
   - wired `prototype/concept-candidates.js` to delegate pipeline dependency assembly with unchanged behavior.
+- v0.084 prototype split groundwork:
+  - extracted CLI usage-exit handling helper logic into `prototype/core/cli-usage-exit.js`
+  - wired `prototype/concept-candidates.js` to delegate usage exit handling with unchanged behavior.
