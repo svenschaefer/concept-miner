@@ -2,7 +2,6 @@
 const fs = require("fs");
 const path = require("path");
 const YAML = require("yaml");
-const Ajv2020 = require("ajv/dist/2020");
 const { runElementaryAssertions } = require("elementary-assertions");
 const {
   canonicalizeSurface,
@@ -82,6 +81,11 @@ const { buildDiagnosticsDocument } = require("./core/diagnostics-assembly");
 const { buildMetaSidecar, writePersistedOutputs } = require("./core/output-writers");
 const { validateDeterministicCandidateRecord } = require("./core/determinism-validation");
 const { finalizeGeneratedOutput } = require("./core/generation-orchestration");
+const {
+  loadConceptCandidatesSchema,
+  validateSchema,
+  serializeDeterministicYaml,
+} = require("./core/schema-serialization-io");
 const {
   LEGACY_GENERIC_DROP,
   LEGACY_NOMINAL_VERB_WHITELIST,
@@ -939,33 +943,6 @@ function validateConceptCandidatesDeterminism(doc) {
   }
 }
 
-function loadConceptCandidatesSchema() {
-  const migratedSchemaPath = path.resolve(STEP13_DIR, "..", "schema", "seed.concept-candidates.schema.json");
-  const legacySchemaPath = path.join(STEP13_DIR, "seed.concept-candidates.schema.json");
-  const schemaPath = fs.existsSync(migratedSchemaPath) ? migratedSchemaPath : legacySchemaPath;
-  return JSON.parse(fs.readFileSync(schemaPath, "utf8"));
-}
-
-function validateSchema(schema, doc) {
-  const ajv = new Ajv2020({ allErrors: true, strict: false });
-  const validate = ajv.compile(schema);
-  if (!validate(doc)) {
-    const lines = (validate.errors || []).map((e) => `${e.instancePath || "/"} ${e.message || "schema error"}`);
-    throw new Error(`Schema validation failed:\n${lines.join("\n")}`);
-  }
-}
-
-function serializeDeterministicYaml(doc) {
-  let text = YAML.stringify(doc, {
-    lineWidth: 0,
-    indent: 2,
-    sortMapEntries: false,
-    aliasDuplicateObjects: false,
-  });
-  text = text.replace(/\r\n/g, "\n").replace(/\n*$/, "\n");
-  return text;
-}
-
 async function generateForSeed(seedId, options = {}) {
   const artifactsRoot = options.artifactsRoot || DEFAULT_ARTIFACTS_ROOT;
   const wikipediaTitleIndexEndpoint =
@@ -1014,7 +991,7 @@ async function generateForSeed(seedId, options = {}) {
     outputDoc,
     seedDir,
     mode: "runtime_step12",
-    loadConceptCandidatesSchema,
+    loadConceptCandidatesSchema: () => loadConceptCandidatesSchema(STEP13_DIR),
     validateSchema,
     validateConceptCandidatesDeterminism,
     serializeDeterministicYaml,
@@ -1056,7 +1033,7 @@ function generateForStep12Path(step12Path, options = {}) {
     seedDir,
     mode: "persisted_step12",
     step12Path: inputPath,
-    loadConceptCandidatesSchema,
+    loadConceptCandidatesSchema: () => loadConceptCandidatesSchema(STEP13_DIR),
     validateSchema,
     validateConceptCandidatesDeterminism,
     serializeDeterministicYaml,

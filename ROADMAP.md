@@ -642,4 +642,11 @@ Cycle BE (`v0.063`) - Prototype Split Groundwork (Schema/Serialization IO Helper
 - Keep behavior and exported prototype runtime contracts unchanged.
 - Preserve full frozen-reference and determinism gate stability after extraction.
 Status:
+- Completed on `main`.
+
+Cycle BF (`v0.064`) - Prototype Split Groundwork (Step12 Input Loading Helpers):
+- Extract Step12 artifact loading and seed-path resolution helper logic from `prototype/concept-candidates.js` into dedicated modules.
+- Keep behavior and exported prototype runtime contracts unchanged.
+- Preserve full frozen-reference and determinism gate stability after extraction.
+Status:
 - Planned.

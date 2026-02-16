@@ -172,3 +172,6 @@ All notable changes to this project are documented in this file.
 - v0.062 prototype split groundwork:
   - extracted runtime/persisted generation finalization helper logic into `prototype/core/generation-orchestration.js`
   - wired `prototype/concept-candidates.js` runtime and persisted generation paths to use shared finalization helper behavior.
+- v0.063 prototype split groundwork:
+  - extracted schema loading/validation and deterministic YAML serialization helpers into `prototype/core/schema-serialization-io.js`
+  - wired `prototype/concept-candidates.js` generation paths to consume the extracted schema/serialization IO helpers.
