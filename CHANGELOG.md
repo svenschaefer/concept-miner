@@ -259,3 +259,6 @@ All notable changes to this project are documented in this file.
 - v0.091 prototype split groundwork:
   - extracted CLI main function export helper logic into `prototype/core/cli-main-export.js`
   - wired `prototype/concept-candidates.js` to delegate exported API object assembly with unchanged behavior.
+- v0.092 prototype split groundwork:
+  - extracted CLI main catch dependency helper logic into `prototype/core/cli-main-catch-dependencies.js`
+  - wired `prototype/concept-candidates.js` to delegate catch dependency assembly with unchanged behavior.

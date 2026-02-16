@@ -109,6 +109,7 @@ const { invokeCliMainExecution } = require("./core/cli-main-invocation");
 const { handleCliMainCatch } = require("./core/cli-main-catch-handler");
 const { runCliEntrypoint } = require("./core/cli-entrypoint");
 const { buildCliMainExports } = require("./core/cli-main-export");
+const { buildCliMainCatchDependencies } = require("./core/cli-main-catch-dependencies");
 const {
   loadConceptCandidatesSchema,
   validateSchema,
@@ -1071,11 +1072,12 @@ async function main() {
       dependencySources,
     });
   } catch (err) {
-    handleCliMainCatch(err, {
+    const catchDependencies = buildCliMainCatchDependencies({
       handleCliErrorExit,
       stderr: console.error,
       exit: process.exit,
     });
+    handleCliMainCatch(err, catchDependencies);
   }
 }
 

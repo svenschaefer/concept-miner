@@ -845,4 +845,11 @@ Cycle CH (`v0.092`) - Prototype Split Groundwork (CLI Main Catch Dependency Help
 - Keep behavior and exported prototype runtime contracts unchanged.
 - Preserve full frozen-reference and determinism gate stability after extraction.
 Status:
+- Completed on `main`.
+
+Cycle CI (`v0.093`) - Prototype Split Groundwork (CLI Entrypoint Invocation Wrapper Helper):
+- Extract CLI entrypoint invocation wrapper helper logic from `prototype/concept-candidates.js` into dedicated modules.
+- Keep behavior and exported prototype runtime contracts unchanged.
+- Preserve full frozen-reference and determinism gate stability after extraction.
+Status:
 - Planned.
