@@ -586,4 +586,11 @@ Cycle AW (`v0.055`) - Prototype Split Groundwork (Mode13b Host-Selection Helpers
 - Keep behavior and exported prototype runtime contracts unchanged.
 - Preserve full frozen-reference and determinism gate stability after extraction.
 Status:
+- Completed on `main`.
+
+Cycle AX (`v0.056`) - Prototype Split Groundwork (Prune-Preparation Helpers):
+- Extract prune-phase preparation/index helper logic from `prototype/concept-candidates.js` into a dedicated module.
+- Keep behavior and exported prototype runtime contracts unchanged.
+- Preserve full frozen-reference and determinism gate stability after extraction.
+Status:
 - Planned.

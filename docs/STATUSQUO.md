@@ -5,7 +5,7 @@
 - Branch: `main`
 - Sync: tracking `origin/main` (kept in sync via stable phase commits)
 - Current annotated release tag: `v0.10.0`
-- Latest stable phase: `v0.054` (prototype split groundwork)
+- Latest stable phase: `v0.055` (prototype split groundwork)
 - Major completed workstreams:
   - template baseline scaffold + CI/release workflow
   - transition product API (`extractConcepts`, `validateConcepts`)
@@ -30,6 +30,7 @@
   - ninth safe prototype monolith split step (mention lifting helper extraction)
   - tenth safe prototype monolith split step (candidate accumulator helper extraction)
   - eleventh safe prototype monolith split step (mode13b metrics/host-evaluation helper extraction)
+  - twelfth safe prototype monolith split step (mode13b host-selection helper extraction)
 
 ## Implementation status
 
