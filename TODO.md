@@ -66,6 +66,7 @@ Status date: 2026-02-16
 - [x] `v0.056` prototype split groundwork continued by extracting prune-preparation helpers into `prototype/core/prune-preparation.js` with behavior-preserving wiring.
 - [x] `v0.057` prototype split groundwork continued by extracting alias-merge helpers into `prototype/core/alias-merge.js` with behavior-preserving wiring.
 - [x] `v0.058` prototype split groundwork continued by extracting emission assembly helpers into `prototype/core/emission-assembly.js` with behavior-preserving wiring.
+- [x] `v0.059` prototype split groundwork continued by extracting diagnostics assembly helpers into `prototype/core/diagnostics-assembly.js` with behavior-preserving wiring.
 - [ ] Remaining roadmap cycles continue from current baseline (`main`).
 
 ## 0. Scope And Decisions (must be resolved first)
@@ -145,6 +146,7 @@ Status date: 2026-02-16
 - Progress: prune-preparation helpers extracted from monolith to `prototype/core/prune-preparation.js` as the thirteenth safe split step.
 - Progress: alias-merge helpers extracted from monolith to `prototype/core/alias-merge.js` as the fourteenth safe split step.
 - Progress: emission assembly helpers extracted from monolith to `prototype/core/emission-assembly.js` as the fifteenth safe split step.
+- Progress: diagnostics assembly helpers extracted from monolith to `prototype/core/diagnostics-assembly.js` as the sixteenth safe split step.
 - [x] Remove business logic from CLI path; keep CLI as thin wrapper only.
 - [x] Convert current ad-hoc helpers into coherent modules:
 - argument parsing, IO, deterministic sorting, canonicalization, ID generation, policy parsing.

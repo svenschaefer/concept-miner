@@ -160,3 +160,6 @@ All notable changes to this project are documented in this file.
 - v0.058 prototype split groundwork:
   - extracted emission-phase candidate assembly and wikipedia-title-index evidence materialization helpers into `prototype/core/emission-assembly.js`
   - wired `prototype/concept-candidates.js` emission path to import helpers with unchanged output contracts.
+- v0.059 prototype split groundwork:
+  - extracted diagnostics/sidecar assembly helpers into `prototype/core/diagnostics-assembly.js`
+  - wired `prototype/concept-candidates.js` diagnostics materialization path to import helpers with unchanged sidecar contract shape.
