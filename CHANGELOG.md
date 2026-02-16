@@ -145,3 +145,6 @@ All notable changes to this project are documented in this file.
 - v0.053 prototype split groundwork:
   - extracted candidate accumulator helpers into `prototype/core/candidate-accumulator.js`
   - wired `prototype/concept-candidates.js` to import accumulator/merge helpers with unchanged public behavior and contracts.
+- v0.054 prototype split groundwork:
+  - extracted mode13b metrics and host-evaluation helpers into `prototype/core/mode13b-metrics.js`
+  - wired `prototype/concept-candidates.js` to import mode13b metrics/containment helper functions with unchanged public behavior and contracts.
