@@ -54,9 +54,9 @@ Status date: 2026-02-17
 - [x] `v0.042` repeat-run determinism and ordering contracts enforced across realistic persisted Step12 seeds and both modes.
 - [x] `v0.043` runtime seed-text input-path transition compatibility enforced for both legacy and flattened artifact layouts with deterministic product API contracts.
 - [x] `v0.102` product runtime decoupled from `prototype/*` modules; extraction now runs product-native paths without prototype runtime imports (`30fc53f`).
-- [ ] `v0.103` prototype read-only enforcement in planning and execution remains the active next cycle.
 - [x] `v0.104` consolidate product schema export path by moving `src/schema/output.schema.json` to `schema/output.schema.json` and rewiring runtime/package references.
-- [ ] Remaining roadmap cycles continue from current baseline (`main`) in product-owned code only (`src/`, `bin/`, `test/`, `docs/`, `schema/`, `openapi/`, `scripts/`).
+- [ ] `v0.105` schema hardening: add useful product-contract constraints from prototype learnings without reintroducing prototype artifact shape.
+- [ ] `v0.106` REST API runtime implementation: host the product REST extract endpoint in-repo (currently contract-only).
 
 ## 0. Scope And Decisions (must be resolved first)
 
@@ -163,6 +163,13 @@ Status date: 2026-02-17
 - [x] Define and validate sidecar contracts explicitly:
 - metadata sidecar schema/content (mode + thresholds + runtime context)
 - diagnostics sidecar schema/content (source-by-canonical + policy hits + stats)
+- [ ] Tighten product schema constraints where behavior is already deterministic:
+- add explicit `concept.id` format constraint (product-owned pattern)
+- enforce `surface_forms` uniqueness (`uniqueItems: true`)
+- promote currently code-only invariants into schema where feasible
+- [ ] Evaluate optional product-safe extension fields for default extended mode:
+- structured wikipedia-title-index signal block under product naming
+- optional diagnostics/traceability block (e.g. mention/assertion provenance) without exposing prototype `concept_candidates` artifact contract.
 
 ## 5. CLI And Tooling Productization
 
@@ -177,6 +184,13 @@ Status date: 2026-02-17
 - Add explicit subcommands while preserving template discipline.
 - [x] Add robust usage output and stable non-zero exit behavior on failures.
 - [x] Move PowerShell helper flows into documented optional wrappers around core CLI.
+- [ ] Implement REST server runtime in-repo as a thin wrapper over product library:
+- expose `POST /v1/concepts/extract`
+- align deterministic error mapping to OpenAPI response classes (`400`, `422`, `500`)
+- [ ] Add REST integration tests (real HTTP calls) that verify:
+- endpoint availability and response contract shape
+- deterministic output for identical request payloads
+- parity with core extraction behavior for canonical inputs
 
 ## 6. Test Migration And Contract Coverage
 
