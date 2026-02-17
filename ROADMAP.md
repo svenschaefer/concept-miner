@@ -607,7 +607,7 @@ Cycle DD (`v0.114`) - Release And Publish Readiness Closure:
 - Run full `release:check` + smoke rehearsal on clean workspace.
 - Prepare `v1.000` release notes draft and changelog cut.
 Status:
-- In progress.
+- Completed on `main` (decision: remain `private` until explicit `v1.000` publish transition approval).
 
 Cycle DE (`v1.000`) - First Stable Product Release:
 - Tag and publish first stable `1.0.0` release.
