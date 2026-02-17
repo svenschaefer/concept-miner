@@ -161,4 +161,4 @@ Behavior:
 
 - Repository/package posture is publishable (`"private": false`).
 - Public npm release can be executed using this guide (`npm whoami`, `npm publish`, propagation checks, post-publish smoke).
-- Current published package state: `concept-miner@1.0.1` with `latest` dist-tag.
+- Current published package state: `concept-miner@1.0.2` with `latest` dist-tag.
