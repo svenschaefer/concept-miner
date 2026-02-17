@@ -150,3 +150,8 @@ Behavior:
 - npm package is live with expected `latest`.
 - post-publish smoke check passed.
 - repo is clean (`git status`).
+
+## Current Posture (v0.114)
+
+- Current repository posture remains `"private": true`.
+- `v1.0.0` publish cut requires an explicit transition decision to publishable posture.

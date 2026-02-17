@@ -5,7 +5,7 @@
 - Branch: `main`
 - Sync: tracking `origin/main` (kept in sync via stable phase commits)
 - Current annotated release tag: `v0.10.0`
-- Latest stable phase: `v0.113` (default-extended enrichment contract formalized, compatibility policy closed, API runtime hardening checks added)
+- Latest stable phase: `v0.114` (release/publish readiness closure documented with draft `v1.0.0` notes and posture decision)
 - Planning state: `TODO.md` and `ROADMAP.md` are synchronized through `v0.109`; no additional preplanned execution cycles are currently open.
 - Major completed workstreams:
   - template baseline scaffold + CI/release workflow
@@ -36,7 +36,12 @@ Implemented and stable:
 Remaining open implementation items:
 
 - Keep prototype governance assets operational while maintaining prototype read-only policy.
-- Close publish/release posture gates for first stable `v1.000` cut.
+- Execute final `v1.000` cut (tag/changelog/final publish posture switch if approved).
+
+Release/publish posture:
+
+- Current package posture remains `"private": true`.
+- Publish transition decision for `v1.0.0` is documented and still required before public npm release.
 
 Current next-step planning:
 

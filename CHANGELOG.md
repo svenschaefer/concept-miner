@@ -139,3 +139,24 @@ All notable changes to this project are documented in this file.
     - `options.wikipedia_title_index_endpoint`
     - `options.wikipedia_title_index_timeout_ms`
   - added integration tests covering runtime lookup behavior and REST option passthrough.
+- v0.110 default-extended contract formalization:
+  - schema/OpenAPI/docs now explicitly type `concepts[*].properties.wikipedia_title_index`
+  - required enrichment fields when present:
+    - `exact_match` (`boolean`)
+    - `prefix_count` (`integer`, `>= 0`)
+  - added schema contract tests for valid/invalid enrichment typing.
+- v0.111 REST/CLI runtime stabilization:
+  - added CLI options:
+    - `--wikipedia-title-index-endpoint`
+    - `--wikipedia-title-index-timeout-ms`
+  - documented and test-enforced deterministic fallback behavior when wikipedia-title-index is unavailable.
+- v0.112 compatibility policy closure:
+  - compatibility commands `run` and `validate` are explicitly retained as supported 1.x surfaces
+  - docs consistency tests enforce the stated policy.
+- v0.113 API runtime hardening:
+  - added explicit request-size guard (1 MiB) and error mapping checks (`400`, `404`, `500`)
+  - `createApiServer` now supports extractor injection for deterministic server error-path tests.
+- v0.114 release/publish readiness closure:
+  - documented current publish posture (`private: true`) in release docs
+  - added `docs/releases/v1.0.0-draft.md` with stable-release gating checklist
+  - revalidated smoke rehearsal flow for clean-workspace pre/post publish simulation.
