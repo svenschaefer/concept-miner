@@ -65,8 +65,8 @@ Status date: 2026-02-17
 - [x] `v0.111` stabilize REST/CLI runtime behavior for wikipedia-title-index failure and timeout semantics with explicit tests.
 - [x] `v0.112` close compatibility-surface decision for `run`/`validate` with docs/tests alignment (decision: keep supported in 1.x).
 - [x] `v0.113` complete API runtime production-hardening checks and explicit error contract coverage.
-- [x] `v0.114` close publish posture and release-readiness gates for first stable release (current decision: remain `private` pending explicit `v1.000` publish transition approval).
-- [ ] `v1.000` first stable release gate closure.
+- [x] `v0.114` close publish posture and release-readiness gates for first stable release (decision carried into `v1.000`: stable release remains `private`).
+- [x] `v1.000` first stable release gate closure.
 
 ## 0. Scope And Decisions (must be resolved first)
 

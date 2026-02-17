@@ -4,9 +4,9 @@
 
 - Branch: `main`
 - Sync: tracking `origin/main` (kept in sync via stable phase commits)
-- Current annotated release tag: `v0.10.0`
-- Latest stable phase: `v0.114` (release/publish readiness closure documented with draft `v1.0.0` notes and posture decision)
-- Planning state: `TODO.md` and `ROADMAP.md` are synchronized through `v0.109`; no additional preplanned execution cycles are currently open.
+- Current annotated release tag: `v1.0.0`
+- Latest stable phase: `v1.000` (first stable product release cut at package version `1.0.0`)
+- Planning state: `TODO.md` and `ROADMAP.md` are synchronized through `v1.000`.
 - Major completed workstreams:
   - template baseline scaffold + CI/release workflow
   - transition product API (`extractConcepts`, `validateConcepts`)
@@ -37,16 +37,16 @@ Implemented and stable:
 Remaining open implementation items:
 
 - Keep prototype governance assets operational while maintaining prototype read-only policy.
-- Execute final `v1.000` cut (tag/changelog/final publish posture switch if approved).
+- Evaluate future 1.x backlog items; no open pre-`v1.000` gate items remain.
 
 Release/publish posture:
 
 - Current package posture remains `"private": true`.
-- Publish transition decision for `v1.0.0` is documented and still required before public npm release.
+- `v1.0.0` is cut as a stable private release; public npm publication remains a separate explicit decision.
 
 Current next-step planning:
 
-- Define the next cycle explicitly in `ROADMAP.md` before implementation when the deferred default-extended extension-field scope is ready.
+- Continue post-`v1.000` 1.x backlog execution under the documented stability policy.
 
 ## Runtime status
 
@@ -89,4 +89,5 @@ Recently updated:
 - `docs/FROZEN_REFERENCES_POLICY.md`
 - `docs/STATUSQUO.md`
 - `docs/releases/v0.10.0.md`
+- `docs/releases/v1.0.0.md`
 - `docs/STEP12_UPSTREAM_BACKLOG.md`

@@ -621,4 +621,4 @@ Exit criteria:
 - Compatibility command policy (`run`, `validate`) is finalized and documented.
 - Publish posture decision (`private` vs publishable) is finalized with reproducible release evidence.
 Status:
-- Planned.
+- Completed on `main` (stable `1.0.0` cut completed with private-package posture retained).

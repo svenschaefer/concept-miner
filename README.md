@@ -4,7 +4,7 @@ Deterministic concept extraction from natural language.
 
 ## Purpose
 
-`concept-miner` is being productized as a CommonJS Node.js package for deterministic, contract-driven concept extraction.
+`concept-miner` is productized as a CommonJS Node.js package for deterministic, contract-driven concept extraction.
 
 Given text input, it extracts explicit concepts in canonical, deduplicated, traceable form.
 
@@ -150,7 +150,7 @@ Relevant documentation:
 - `docs/DEV_TOOLING.md`
 - `docs/RELEASE_NOTES_TEMPLATE.md`
 - `docs/releases/v0.10.0.md`
-- `docs/releases/v1.0.0-draft.md`
+- `docs/releases/v1.0.0.md`
 - `docs/BASELINE_TEST_RUN.md`
 - `docs/FROZEN_REFERENCES_POLICY.md`
 - `docs/GENERATED_REPORT_ARTIFACTS_POLICY.md`

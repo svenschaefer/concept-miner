@@ -151,7 +151,7 @@ Behavior:
 - post-publish smoke check passed.
 - repo is clean (`git status`).
 
-## Current Posture (v0.114)
+## Current Posture (v1.000)
 
-- Current repository posture remains `"private": true`.
-- `v1.0.0` publish cut requires an explicit transition decision to publishable posture.
+- Stable release `v1.0.0` is cut with repository posture `"private": true`.
+- Public npm publication remains an explicit, separate transition decision.

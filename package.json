@@ -1,6 +1,6 @@
 {
   "name": "concept-miner",
-  "version": "0.10.0",
+  "version": "1.0.0",
   "description": "Deterministic concept extraction from natural language.",
   "keywords": [
     "concept-extraction",

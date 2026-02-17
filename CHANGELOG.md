@@ -4,6 +4,10 @@ All notable changes to this project are documented in this file.
 
 ## [Unreleased]
 
+- No unreleased changes.
+
+## [1.0.0] - 2026-02-17
+
 - v0.102 product runtime decoupling:
   - removed runtime bridge import path to `prototype/*` (`src/core/prototype-bridge.js` removed)
   - `extractConcepts` now uses product-native extraction paths for seed runtime and Step12 inputs
@@ -158,5 +162,5 @@ All notable changes to this project are documented in this file.
   - `createApiServer` now supports extractor injection for deterministic server error-path tests.
 - v0.114 release/publish readiness closure:
   - documented current publish posture (`private: true`) in release docs
-  - added `docs/releases/v1.0.0-draft.md` with stable-release gating checklist
+  - added initial `v1.0.0` release-notes checklist (finalized at `docs/releases/v1.0.0.md`)
   - revalidated smoke rehearsal flow for clean-workspace pre/post publish simulation.
