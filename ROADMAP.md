@@ -92,7 +92,7 @@ Exit criteria:
 - Contract tests pass for schema/API shape consistency.
 
 Status:
-- In progress.
+- Completed on `main`.
 
 ## v0.005 - CLI Productization
 

@@ -7,6 +7,7 @@ Status date: 2026-02-17
 ## Progress Snapshot
 
 - [x] `v0.001` scaffold baseline integrated and green gates (`28c7c0a`).
+- [x] `v0.002` template scaffold integration completed and runnable in product root.
 - [x] `v0.003` transition `extractConcepts` / `validateConcepts` API added (`ac5711a`).
 - [x] `v0.004` product CLI commands `extract` and `validate-concepts` added (`9e08f3b`).
 - [x] `v0.005` realistic artifacts corpus layout contract test added (`077d9cf`).
@@ -18,6 +19,7 @@ Status date: 2026-02-17
 - [x] `v0.010-b` OpenAPI/schema constraint alignment tightened (`73efa3a`).
 - [x] `v0.010-c` operational docs/changelog refreshed and release check re-verified (`ab2671f`).
 - [x] `v0.010-d` release-candidate baseline finalized at `0.10.0` (`efab0a1`).
+- [x] `v0.010` first productized pre-1.0 release baseline completed (`0.10.0`).
 - [x] `v0.011` product-facing script/readme mode terminology normalized (generic-baseline/default-extended).
 - [x] `v0.012` product-facing terminology guardrails added (no `step13`/`13a`/`13b`/`wiki`/`wti` in primary surfaces).
 - [x] `v0.013` mode ergonomics aligned: kebab-case and underscore mode values both supported in API/CLI.
@@ -52,6 +54,7 @@ Status date: 2026-02-17
 - [x] `v0.042` repeat-run determinism and ordering contracts enforced across realistic persisted Step12 seeds and both modes.
 - [x] `v0.043` runtime seed-text input-path transition compatibility enforced for both legacy and flattened artifact layouts with deterministic product API contracts.
 - [x] `v0.102` product runtime decoupled from `prototype/*` modules; extraction now runs product-native paths without prototype runtime imports (`30fc53f`).
+- [ ] `v0.103` prototype read-only enforcement in planning and execution remains the active next cycle.
 - [ ] Remaining roadmap cycles continue from current baseline (`main`) in product-owned code only (`src/`, `bin/`, `test/`, `docs/`, `schema/`, `openapi/`, `scripts/`).
 
 ## 0. Scope And Decisions (must be resolved first)
@@ -348,6 +351,6 @@ Status date: 2026-02-17
 - [x] Phase 1: Scope decisions (Section 0)
 - [x] Phase 2: Template scaffold + metadata (Sections 1-2)
 - [ ] Phase 3: Core refactor + contract consolidation (Sections 3-4)
-- [ ] Phase 4: CLI/tests/docs completion (Sections 5-7)
-- [ ] Phase 5: CI/release wiring + cleanup (Sections 8-9)
-- [ ] Phase 6: Full gate run and release readiness check (Sections 10-11)
+- [x] Phase 4: CLI/tests/docs completion (Sections 5-7)
+- [x] Phase 5: CI/release wiring + cleanup (Sections 8-9)
+- [x] Phase 6: Full gate run and release readiness check (Sections 10-11)
