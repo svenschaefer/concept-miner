@@ -6,6 +6,16 @@ All notable changes to this project are documented in this file.
 
 - No unreleased changes.
 
+## [1.0.1] - 2026-02-17
+
+- release packaging guard:
+  - reaffirmed that `prototype/` is excluded from npm package payloads.
+  - added explicit ignore hardening (`.npmignore`, `.gitignore`) and release docs notes.
+- release correction:
+  - supersedes `1.0.0` for consumers due to packaging-policy correction.
+  - published to npmjs with `latest` dist-tag updated to `1.0.1`.
+  - deprecation of `1.0.0` is pending npm 2FA confirmation.
+
 ## [1.0.0] - 2026-02-17
 
 - v0.102 product runtime decoupling:

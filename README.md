@@ -27,6 +27,7 @@ Runtime boundary:
 
 - product runtime does not load `prototype/*` modules.
 - `prototype/` is maintained as reference/governance material only.
+- npm package payload excludes `prototype/` (package `files` allowlist + `.npmignore`).
 
 ## Target Mode Model
 
@@ -151,6 +152,8 @@ Relevant documentation:
 - `docs/RELEASE_NOTES_TEMPLATE.md`
 - `docs/releases/v0.10.0.md`
 - `docs/releases/v1.0.0.md`
+- `docs/releases/v1.0.1.md`
+- `docs/releases/v1.0.1.md`
 - `docs/BASELINE_TEST_RUN.md`
 - `docs/FROZEN_REFERENCES_POLICY.md`
 - `docs/GENERATED_REPORT_ARTIFACTS_POLICY.md`

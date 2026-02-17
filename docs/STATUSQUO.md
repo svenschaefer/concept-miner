@@ -4,8 +4,8 @@
 
 - Branch: `main`
 - Sync: tracking `origin/main` (kept in sync via stable phase commits)
-- Current annotated release tag: `v1.0.0`
-- npm package status: `concept-miner@1.0.0` published (`latest` -> `1.0.0`)
+- Current annotated release tag: `v1.0.1`
+- npm package status: `concept-miner@1.0.1` published (`latest` -> `1.0.1`)
 - Latest stable phase: `v1.000` (first stable product release cut at package version `1.0.0`)
 - Planning state: `TODO.md` and `ROADMAP.md` are synchronized through `v1.000`.
 - Major completed workstreams:
@@ -45,6 +45,7 @@ Release/publish posture:
 - Package posture is publishable (`"private": false`).
 - Repository is public and npm public-release flow is enabled via `docs/NPM_RELEASE.md`.
 - Public npm publication has been executed and propagation checks are green.
+- npm deprecation for `1.0.0` is pending 2FA confirmation.
 
 Current next-step planning:
 

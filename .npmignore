@@ -1,5 +1,6 @@
 test/
 scripts/
+## keep prototype reference assets out of npm package
 prototype/
 .github/
 .obsidian/
