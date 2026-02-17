@@ -524,3 +524,17 @@ Cycle CT (`v0.104`) - Product Schema Export Consolidation:
 - Keep schema contract behavior unchanged and validated by existing tests.
 Status:
 - Completed on `main`.
+
+Cycle CU (`v0.105`) - Product Schema Hardening:
+- Add product-safe schema constraints learned from prototype without adopting prototype artifact shape.
+- Tighten `concept.id` format and `surface_forms` uniqueness constraints.
+- Keep existing runtime determinism and public concepts contract compatibility.
+Status:
+- Completed on `main`.
+
+Cycle CV (`v0.106`) - REST Extract Runtime Implementation:
+- Implement in-repo hosted REST endpoint for `POST /v1/concepts/extract` as a thin wrapper over core extraction.
+- Add deterministic HTTP integration tests for shape/behavior parity and error mapping.
+- Keep CLI/library behavior unchanged and prototype runtime decoupling intact.
+Status:
+- Completed on `main`.

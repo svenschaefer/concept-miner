@@ -68,7 +68,8 @@
     "report:step12:wikipedia-title-index-coverage": "npm run report:wikipedia-title-index:coverage",
     "check:concept-candidates:policies": "npm run check:concept-candidates:benchmark-policy && npm run check:concept-candidates:legacy-policy",
     "check:frozen-references-policy": "node scripts/check-frozen-references-policy.js",
-    "check:generated-report-artifacts-policy": "node scripts/check-generated-report-artifacts-policy.js"
+    "check:generated-report-artifacts-policy": "node scripts/check-generated-report-artifacts-policy.js",
+    "serve:api": "node bin/api-server.js"
   },
   "dependencies": {
     "ajv": "^8.17.1",

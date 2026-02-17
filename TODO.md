@@ -55,8 +55,8 @@ Status date: 2026-02-17
 - [x] `v0.043` runtime seed-text input-path transition compatibility enforced for both legacy and flattened artifact layouts with deterministic product API contracts.
 - [x] `v0.102` product runtime decoupled from `prototype/*` modules; extraction now runs product-native paths without prototype runtime imports (`30fc53f`).
 - [x] `v0.104` consolidate product schema export path by moving `src/schema/output.schema.json` to `schema/output.schema.json` and rewiring runtime/package references.
-- [ ] `v0.105` schema hardening: add useful product-contract constraints from prototype learnings without reintroducing prototype artifact shape.
-- [ ] `v0.106` REST API runtime implementation: host the product REST extract endpoint in-repo (currently contract-only).
+- [x] `v0.105` schema hardening completed: `concept.id` pattern and `surface_forms` uniqueness constraints are now enforced in schema and OpenAPI with alignment tests.
+- [x] `v0.106` REST API runtime implementation completed: in-repo HTTP server now hosts `POST /v1/concepts/extract` with deterministic behavior and integration coverage.
 
 ## 0. Scope And Decisions (must be resolved first)
 
@@ -163,7 +163,7 @@ Status date: 2026-02-17
 - [x] Define and validate sidecar contracts explicitly:
 - metadata sidecar schema/content (mode + thresholds + runtime context)
 - diagnostics sidecar schema/content (source-by-canonical + policy hits + stats)
-- [ ] Tighten product schema constraints where behavior is already deterministic:
+- [x] Tighten product schema constraints where behavior is already deterministic:
 - add explicit `concept.id` format constraint (product-owned pattern)
 - enforce `surface_forms` uniqueness (`uniqueItems: true`)
 - promote currently code-only invariants into schema where feasible
@@ -184,10 +184,10 @@ Status date: 2026-02-17
 - Add explicit subcommands while preserving template discipline.
 - [x] Add robust usage output and stable non-zero exit behavior on failures.
 - [x] Move PowerShell helper flows into documented optional wrappers around core CLI.
-- [ ] Implement REST server runtime in-repo as a thin wrapper over product library:
+- [x] Implement REST server runtime in-repo as a thin wrapper over product library:
 - expose `POST /v1/concepts/extract`
 - align deterministic error mapping to OpenAPI response classes (`400`, `422`, `500`)
-- [ ] Add REST integration tests (real HTTP calls) that verify:
+- [x] Add REST integration tests (real HTTP calls) that verify:
 - endpoint availability and response contract shape
 - deterministic output for identical request payloads
 - parity with core extraction behavior for canonical inputs

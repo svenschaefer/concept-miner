@@ -228,7 +228,7 @@ components:
       properties:
         id:
           type: string
-          minLength: 1
+          pattern: "^(c_[0-9a-f]{12}|cc_[0-9a-f]{16})$"
           description: Deterministic concept identifier.
           example: "c_8f3a91e2d4c1"
         name:
@@ -239,6 +239,7 @@ components:
         surface_forms:
           type: array
           description: Unique surface forms observed in the text.
+          uniqueItems: true
           items:
             type: string
             minLength: 1
