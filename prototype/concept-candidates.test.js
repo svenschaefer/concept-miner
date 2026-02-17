@@ -14,14 +14,8 @@ const {
 } = require("./concept-candidates");
 
 const step13Dir = __dirname;
-const repoRoot = path.resolve(__dirname, "..");
-const configuredArtifactsRoot = process.env.CONCEPT_MINER_ARTIFACTS_ROOT
-  ? path.resolve(process.env.CONCEPT_MINER_ARTIFACTS_ROOT)
-  : null;
-const artifactsRoot = configuredArtifactsRoot
-  || (fs.existsSync(path.join(repoRoot, "test", "artifacts"))
-    ? path.join(repoRoot, "test", "artifacts")
-    : path.resolve(step13Dir, "..", "artifacts"));
+const repoRoot = path.resolve(__dirname, "..", "..", "..", "..");
+const artifactsRoot = path.resolve(step13Dir, "..", "artifacts");
 
 function listSeedIds() {
   return fs
@@ -427,10 +421,7 @@ function test13bModeContractGuard() {
   assert.equal(set13a.has("gamma"), true, "Fixture sanity: 13a must include supplemental gamma candidate.");
   assert.equal(set13b.has("gamma"), true, "Fixture sanity: 13b remains structurally valid for supplemental candidate.");
 
-  const schemaPath = fs.existsSync(path.join(repoRoot, "schema", "seed.concept-candidates.schema.json"))
-    ? path.join(repoRoot, "schema", "seed.concept-candidates.schema.json")
-    : path.join(step13Dir, "seed.concept-candidates.schema.json");
-  const schema = JSON.parse(fs.readFileSync(schemaPath, "utf8"));
+  const schema = JSON.parse(fs.readFileSync(path.join(step13Dir, "seed.concept-candidates.schema.json"), "utf8"));
   validateSchema(schema, out13a);
   validateSchema(schema, out13b);
 
