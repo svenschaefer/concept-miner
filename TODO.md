@@ -2,7 +2,7 @@
 
 Goal: productize the current concept-miner prototype (`prototype/`) into a template-aligned Node.js package in this repository, based on `C:\code\.nodejs-project-template`.
 
-Status date: 2026-02-16
+Status date: 2026-02-17
 
 ## Progress Snapshot
 
@@ -40,7 +40,7 @@ Status date: 2026-02-16
 - [x] `v0.030` prototype hard-failure and replay determinism contracts added (in-process + fresh-process).
 - [x] `v0.031` contract docs synchronized with explicit no-envelope rule and OpenAPI/schema mapping checks.
 - [x] `v0.032` repository layout decision documented: keep `prototype/` in-place for current phase.
-- [x] `v0.033` prototype test corpus entrypoint migrated into product integration contracts (including anti-regression and soft performance budget checks).
+- [x] `v0.033` product runtime contract hardened to avoid prototype runtime dependency in extraction paths.
 - [x] `v0.034` concepts-document invariants enforced in validation (`end >= start`, unique concept ids, unique concept names) with unit contract tests.
 - [x] `v0.035` ad-hoc concepts runtime helpers modularized into focused `src/core` and `src/validate` modules.
 - [x] `v0.036` thin-CLI entrypoint contract enforced (`bin/cli.js` delegates only) with compatibility usage guards.
@@ -51,65 +51,8 @@ Status date: 2026-02-16
 - [x] `v0.041` pre/post publish smoke rehearsal flow executed via clean-workspace tarball installs (postpublish simulated for private-package phase).
 - [x] `v0.042` repeat-run determinism and ordering contracts enforced across realistic persisted Step12 seeds and both modes.
 - [x] `v0.043` runtime seed-text input-path transition compatibility enforced for both legacy and flattened artifact layouts with deterministic product API contracts.
-- [x] `v0.044` prototype split groundwork started by extracting canonicalization/concept-id utilities into `prototype/core/canonicalization.js` with behavior-preserving wiring.
-- [x] `v0.045` prototype split groundwork continued by extracting shared utility helpers into `prototype/core/shared-utils.js` with behavior-preserving wiring.
-- [x] `v0.046` prototype split groundwork continued by extracting alias/morphology helpers into `prototype/core/alias-morphology.js` with behavior-preserving wiring.
-- [x] `v0.047` prototype split groundwork continued by extracting options/policy helpers into `prototype/core/options-policy.js` with behavior-preserving wiring.
-- [x] `v0.048` prototype split groundwork continued by extracting Step12 contract/index helpers into `prototype/core/step12-contract.js` with behavior-preserving wiring.
-- [x] `v0.049` prototype split groundwork continued by extracting wikipedia-signal helpers into `prototype/core/wikipedia-signals.js` with behavior-preserving wiring.
-- [x] `v0.050` prototype split groundwork continued by extracting wikipedia-title-index mapping helpers into `prototype/core/wikipedia-mapping.js` with behavior-preserving wiring.
-- [x] `v0.051` prototype split groundwork continued by extracting mention selection helpers into `prototype/core/mention-selection.js` with behavior-preserving wiring.
-- [x] `v0.052` prototype split groundwork continued by extracting mention lifting helpers into `prototype/core/mention-lifting.js` with behavior-preserving wiring.
-- [x] `v0.053` prototype split groundwork continued by extracting candidate accumulator helpers into `prototype/core/candidate-accumulator.js` with behavior-preserving wiring.
-- [x] `v0.054` prototype split groundwork continued by extracting mode13b metrics/host-evaluation helpers into `prototype/core/mode13b-metrics.js` with behavior-preserving wiring.
-- [x] `v0.055` prototype split groundwork continued by extracting mode13b host-selection helpers into `prototype/core/mode13b-host-selection.js` with behavior-preserving wiring.
-- [x] `v0.056` prototype split groundwork continued by extracting prune-preparation helpers into `prototype/core/prune-preparation.js` with behavior-preserving wiring.
-- [x] `v0.057` prototype split groundwork continued by extracting alias-merge helpers into `prototype/core/alias-merge.js` with behavior-preserving wiring.
-- [x] `v0.058` prototype split groundwork continued by extracting emission assembly helpers into `prototype/core/emission-assembly.js` with behavior-preserving wiring.
-- [x] `v0.059` prototype split groundwork continued by extracting diagnostics assembly helpers into `prototype/core/diagnostics-assembly.js` with behavior-preserving wiring.
-- [x] `v0.060` prototype split groundwork continued by extracting persisted output writer helpers into `prototype/core/output-writers.js` with behavior-preserving wiring.
-- [x] `v0.061` prototype split groundwork continued by extracting determinism validation helpers into `prototype/core/determinism-validation.js` with behavior-preserving wiring.
-- [x] `v0.062` prototype split groundwork continued by extracting runtime/persisted generation orchestration helpers into `prototype/core/generation-orchestration.js` with behavior-preserving wiring.
-- [x] `v0.063` prototype split groundwork continued by extracting schema/serialization IO helpers into `prototype/core/schema-serialization-io.js` with behavior-preserving wiring.
-- [x] `v0.064` prototype split groundwork continued by extracting Step12 input loading helpers into `prototype/core/step12-input.js` with behavior-preserving wiring.
-- [x] `v0.065` prototype split groundwork continued by extracting CLI option assembly helpers into `prototype/core/cli-option-assembly.js` with behavior-preserving wiring.
-- [x] `v0.066` prototype split groundwork continued by extracting CLI usage/validation guard helpers into `prototype/core/cli-usage.js` and `prototype/core/cli-guards.js` with behavior-preserving wiring.
-- [x] `v0.067` prototype split groundwork continued by extracting CLI write/emit orchestration helpers into `prototype/core/cli-write-emit.js` with behavior-preserving wiring.
-- [x] `v0.068` prototype split groundwork continued by extracting CLI main-flow orchestration helper into `prototype/core/cli-main-flow.js` with behavior-preserving wiring.
-- [x] `v0.069` prototype split groundwork continued by extracting CLI runtime invocation helper into `prototype/core/cli-runtime-invocation.js` with behavior-preserving wiring.
-- [x] `v0.070` prototype split groundwork continued by extracting CLI context assembly helper into `prototype/core/cli-context-assembly.js` with behavior-preserving wiring.
-- [x] `v0.071` prototype split groundwork continued by extracting CLI runtime invocation binding helper into `prototype/core/cli-runtime-binding.js` with behavior-preserving wiring.
-- [x] `v0.072` prototype split groundwork continued by extracting CLI flow dependency assembly helper into `prototype/core/cli-flow-dependencies.js` with behavior-preserving wiring.
-- [x] `v0.073` prototype split groundwork continued by extracting CLI parse-context wrapper helper into `prototype/core/cli-parse-context.js` with behavior-preserving wiring.
-- [x] `v0.074` prototype split groundwork continued by extracting CLI main setup orchestrator helper into `prototype/core/cli-main-setup.js` with behavior-preserving wiring.
-- [x] `v0.075` prototype split groundwork continued by extracting CLI parse-dependency assembly helper into `prototype/core/cli-parse-dependencies.js` with behavior-preserving wiring.
-- [x] `v0.076` prototype split groundwork continued by extracting CLI flow-context dependency assembly helper into `prototype/core/cli-flow-context-dependencies.js` with behavior-preserving wiring.
-- [x] `v0.077` prototype split groundwork continued by extracting CLI runtime-invocation dependency assembly helper into `prototype/core/cli-runtime-invocation-dependencies.js` with behavior-preserving wiring.
-- [x] `v0.078` prototype split groundwork continued by extracting CLI flow-dependency assembly helper into `prototype/core/cli-flow-dependency-assembly.js` with behavior-preserving wiring.
-- [x] `v0.079` prototype split groundwork continued by extracting CLI main-setup dependency bundle helper into `prototype/core/cli-main-setup-dependencies.js` with behavior-preserving wiring.
-- [x] `v0.080` prototype split groundwork continued by extracting CLI main-setup invocation helper into `prototype/core/cli-main-setup-invocation.js` with behavior-preserving wiring.
-- [x] `v0.081` prototype split groundwork continued by extracting CLI main-setup pipeline helper into `prototype/core/cli-main-pipeline.js` with behavior-preserving wiring.
-- [x] `v0.082` prototype split groundwork continued by extracting CLI main pipeline input-assembly helper into `prototype/core/cli-main-pipeline-inputs.js` with behavior-preserving wiring.
-- [x] `v0.083` prototype split groundwork continued by extracting CLI main pipeline dependency-bundle helper into `prototype/core/cli-main-pipeline-dependencies.js` with behavior-preserving wiring.
-- [x] `v0.084` prototype split groundwork continued by extracting CLI usage-exit handling helper into `prototype/core/cli-usage-exit.js` with behavior-preserving wiring.
-- [x] `v0.085` prototype split groundwork continued by extracting CLI error-exit handling helper into `prototype/core/cli-error-exit.js` with behavior-preserving wiring.
-- [x] `v0.086` prototype split groundwork continued by extracting CLI main execution helper into `prototype/core/cli-main-execution.js` with behavior-preserving wiring.
-- [x] `v0.087` prototype split groundwork continued by extracting CLI main dependency-source helper into `prototype/core/cli-main-dependency-sources.js` with behavior-preserving wiring.
-- [x] `v0.088` prototype split groundwork continued by extracting CLI main invocation-wrapper helper into `prototype/core/cli-main-invocation.js` with behavior-preserving wiring.
-- [x] `v0.089` prototype split groundwork continued by extracting CLI main catch-handler helper into `prototype/core/cli-main-catch-handler.js` with behavior-preserving wiring.
-- [x] `v0.090` prototype split groundwork continued by extracting CLI main entrypoint-wrapper helper into `prototype/core/cli-entrypoint.js` with behavior-preserving wiring.
-- [x] `v0.091` prototype split groundwork continued by extracting CLI main function export helper into `prototype/core/cli-main-export.js` with behavior-preserving wiring.
-- [x] `v0.092` prototype split groundwork continued by extracting CLI main catch dependency helper into `prototype/core/cli-main-catch-dependencies.js` with behavior-preserving wiring.
-- [x] `v0.093` prototype split groundwork continued by extracting CLI entrypoint invocation wrapper helper into `prototype/core/cli-entrypoint-invocation.js` with behavior-preserving wiring.
-- [x] `v0.094` prototype split groundwork continued by extracting CLI main export-assignment helper into `prototype/core/cli-main-export-assignment.js` with behavior-preserving wiring.
-- [x] `v0.095` prototype split groundwork continued by extracting CLI entrypoint dependency helper into `prototype/core/cli-entrypoint-dependencies.js` with behavior-preserving wiring.
-- [x] `v0.096` prototype split groundwork continued by extracting CLI entrypoint invocation-args helper into `prototype/core/cli-entrypoint-invocation-args.js` with behavior-preserving wiring.
-- [x] `v0.097` prototype split groundwork continued by extracting CLI main export dependency helper into `prototype/core/cli-main-export-dependencies.js` with behavior-preserving wiring.
-- [x] `v0.098` prototype split groundwork continued by extracting CLI main export invocation-args helper into `prototype/core/cli-main-export-invocation-args.js` with behavior-preserving wiring.
-- [x] `v0.099` prototype split groundwork continued by extracting CLI main export-assignment dependency helper into `prototype/core/cli-main-export-assignment-dependencies.js` with behavior-preserving wiring.
-- [x] `v0.100` prototype split groundwork continued by extracting CLI main catch invocation-args helper into `prototype/core/cli-main-catch-invocation-args.js` with behavior-preserving wiring.
-- [x] `v0.101` prototype split groundwork continued by extracting CLI main catch-block helper into `prototype/core/cli-main-catch-block.js` with behavior-preserving wiring.
-- [ ] Remaining roadmap cycles continue from current baseline (`main`).
+- [x] `v0.102` product runtime decoupled from `prototype/*` modules; extraction now runs product-native paths without prototype runtime imports (`30fc53f`).
+- [ ] Remaining roadmap cycles continue from current baseline (`main`) in product-owned code only (`src/`, `bin/`, `test/`, `docs/`, `schema/`, `openapi/`, `scripts/`).
 
 ## 0. Scope And Decisions (must be resolved first)
 
@@ -168,87 +111,12 @@ Status date: 2026-02-16
 
 ## 3. Source Architecture Refactor (prototype -> library-first package)
 
-- [ ] Split `prototype/concept-candidates.js` into template-style modules:
-- `src/run.js` (public entrypoints)
-- `src/core/*` (deterministic extraction core)
-- `src/validate/*` (schema + integrity + stable errors)
-- `src/tools/*` (CLI/tool wrappers)
-- Progress: canonicalization and concept-id utilities extracted from monolith to `prototype/core/canonicalization.js` as the first safe split step.
-- Progress: shared utility helpers extracted from monolith to `prototype/core/shared-utils.js` as the second safe split step.
-- Progress: alias/morphology helpers extracted from monolith to `prototype/core/alias-morphology.js` as the third safe split step.
-- Progress: options/policy helpers extracted from monolith to `prototype/core/options-policy.js` as the fourth safe split step.
-- Progress: Step12 contract/index helpers extracted from monolith to `prototype/core/step12-contract.js` as the fifth safe split step.
-- Progress: wikipedia-signal regex/constants/helpers extracted from monolith to `prototype/core/wikipedia-signals.js` as the sixth safe split step.
-- Progress: wikipedia-title-index mapping helpers extracted from monolith to `prototype/core/wikipedia-mapping.js` as the seventh safe split step.
-- Progress: mention selection helpers extracted from monolith to `prototype/core/mention-selection.js` as the eighth safe split step.
-- Progress: mention lifting helpers extracted from monolith to `prototype/core/mention-lifting.js` as the ninth safe split step.
-- Progress: candidate accumulator helpers extracted from monolith to `prototype/core/candidate-accumulator.js` as the tenth safe split step.
-- Progress: mode13b metrics/host-evaluation helpers extracted from monolith to `prototype/core/mode13b-metrics.js` as the eleventh safe split step.
-- Progress: mode13b host-selection helpers extracted from monolith to `prototype/core/mode13b-host-selection.js` as the twelfth safe split step.
-- Progress: prune-preparation helpers extracted from monolith to `prototype/core/prune-preparation.js` as the thirteenth safe split step.
-- Progress: alias-merge helpers extracted from monolith to `prototype/core/alias-merge.js` as the fourteenth safe split step.
-- Progress: emission assembly helpers extracted from monolith to `prototype/core/emission-assembly.js` as the fifteenth safe split step.
-- Progress: diagnostics assembly helpers extracted from monolith to `prototype/core/diagnostics-assembly.js` as the sixteenth safe split step.
-- Progress: persisted output writer helpers extracted from monolith to `prototype/core/output-writers.js` as the seventeenth safe split step.
-- Progress: determinism validation helpers extracted from monolith to `prototype/core/determinism-validation.js` as the eighteenth safe split step.
-- Progress: runtime/persisted generation orchestration helpers extracted from monolith to `prototype/core/generation-orchestration.js` as the nineteenth safe split step.
-- Progress: schema/serialization IO helpers extracted from monolith to `prototype/core/schema-serialization-io.js` as the twentieth safe split step.
-- Progress: Step12 input loading helpers extracted from monolith to `prototype/core/step12-input.js` as the twenty-first safe split step.
-- Progress: CLI option assembly helpers extracted from monolith to `prototype/core/cli-option-assembly.js` as the twenty-second safe split step.
-- Progress: CLI usage/validation guard helpers extracted from monolith to `prototype/core/cli-usage.js` and `prototype/core/cli-guards.js` as the twenty-third safe split step.
-- Progress: CLI write/emit orchestration helpers extracted from monolith to `prototype/core/cli-write-emit.js` as the twenty-fourth safe split step.
-- Progress: CLI main-flow orchestration helper extracted from monolith to `prototype/core/cli-main-flow.js` as the twenty-fifth safe split step.
-- Progress: CLI runtime invocation helper extracted from monolith to `prototype/core/cli-runtime-invocation.js` as the twenty-sixth safe split step.
-- Progress: CLI context assembly helper extracted from monolith to `prototype/core/cli-context-assembly.js` as the twenty-seventh safe split step.
-- Progress: CLI runtime invocation binding helper extracted from monolith to `prototype/core/cli-runtime-binding.js` as the twenty-eighth safe split step.
-- Progress: CLI flow dependency assembly helper extracted from monolith to `prototype/core/cli-flow-dependencies.js` as the twenty-ninth safe split step.
-- Progress: CLI parse-context wrapper helper extracted from monolith to `prototype/core/cli-parse-context.js` as the thirtieth safe split step.
-- Progress: CLI main setup orchestrator helper extracted from monolith to `prototype/core/cli-main-setup.js` as the thirty-first safe split step.
-- Progress: CLI parse-dependency assembly helper extracted from monolith to `prototype/core/cli-parse-dependencies.js` as the thirty-second safe split step.
-- Progress: CLI flow-context dependency assembly helper extracted from monolith to `prototype/core/cli-flow-context-dependencies.js` as the thirty-third safe split step.
-- Progress: CLI runtime-invocation dependency assembly helper extracted from monolith to `prototype/core/cli-runtime-invocation-dependencies.js` as the thirty-fourth safe split step.
-- Progress: CLI flow-dependency assembly helper extracted from monolith to `prototype/core/cli-flow-dependency-assembly.js` as the thirty-fifth safe split step.
-- Progress: CLI main-setup dependency bundle helper extracted from monolith to `prototype/core/cli-main-setup-dependencies.js` as the thirty-sixth safe split step.
-- Progress: CLI main-setup invocation helper extracted from monolith to `prototype/core/cli-main-setup-invocation.js` as the thirty-seventh safe split step.
-- Progress: CLI main-setup pipeline helper extracted from monolith to `prototype/core/cli-main-pipeline.js` as the thirty-eighth safe split step.
-- Progress: CLI main pipeline input-assembly helper extracted from monolith to `prototype/core/cli-main-pipeline-inputs.js` as the thirty-ninth safe split step.
-- Progress: CLI main pipeline dependency-bundle helper extracted from monolith to `prototype/core/cli-main-pipeline-dependencies.js` as the fortieth safe split step.
-- Progress: CLI usage-exit handling helper extracted from monolith to `prototype/core/cli-usage-exit.js` as the forty-first safe split step.
-- Progress: CLI error-exit handling helper extracted from monolith to `prototype/core/cli-error-exit.js` as the forty-second safe split step.
-- Progress: CLI main execution helper extracted from monolith to `prototype/core/cli-main-execution.js` as the forty-third safe split step.
-- Progress: CLI main dependency-source helper extracted from monolith to `prototype/core/cli-main-dependency-sources.js` as the forty-fourth safe split step.
-- Progress: CLI main invocation-wrapper helper extracted from monolith to `prototype/core/cli-main-invocation.js` as the forty-fifth safe split step.
-- Progress: CLI main catch-handler helper extracted from monolith to `prototype/core/cli-main-catch-handler.js` as the forty-sixth safe split step.
-- Progress: CLI main entrypoint-wrapper helper extracted from monolith to `prototype/core/cli-entrypoint.js` as the forty-seventh safe split step.
-- Progress: CLI main function export helper extracted from monolith to `prototype/core/cli-main-export.js` as the forty-eighth safe split step.
-- Progress: CLI main catch dependency helper extracted from monolith to `prototype/core/cli-main-catch-dependencies.js` as the forty-ninth safe split step.
-- Progress: CLI entrypoint invocation wrapper helper extracted from monolith to `prototype/core/cli-entrypoint-invocation.js` as the fiftieth safe split step.
-- Progress: CLI main export-assignment helper extracted from monolith to `prototype/core/cli-main-export-assignment.js` as the fifty-first safe split step.
-- Progress: CLI entrypoint dependency helper extracted from monolith to `prototype/core/cli-entrypoint-dependencies.js` as the fifty-second safe split step.
-- Progress: CLI entrypoint invocation-args helper extracted from monolith to `prototype/core/cli-entrypoint-invocation-args.js` as the fifty-third safe split step.
-- Progress: CLI main export dependency helper extracted from monolith to `prototype/core/cli-main-export-dependencies.js` as the fifty-fourth safe split step.
-- Progress: CLI main export invocation-args helper extracted from monolith to `prototype/core/cli-main-export-invocation-args.js` as the fifty-fifth safe split step.
-- Progress: CLI main export-assignment dependency helper extracted from monolith to `prototype/core/cli-main-export-assignment-dependencies.js` as the fifty-sixth safe split step.
-- Progress: CLI main catch invocation-args helper extracted from monolith to `prototype/core/cli-main-catch-invocation-args.js` as the fifty-seventh safe split step.
-- Progress: CLI main catch-block helper extracted from monolith to `prototype/core/cli-main-catch-block.js` as the fifty-eighth safe split step.
 - [x] Remove business logic from CLI path; keep CLI as thin wrapper only.
 - [x] Convert current ad-hoc helpers into coherent modules:
 - argument parsing, IO, deterministic sorting, canonicalization, ID generation, policy parsing.
 - [x] Preserve deterministic behavior and ordering guarantees during refactor.
 - [x] Keep backward-compatible aliases/flags where already documented (for controlled transition).
 - [ ] Replace internal mode names in API/CLI/config/meta from step labels to product mode labels.
-- [ ] Migrate prototype support modules and governance artifacts into product structure:
-- `legacy-enrichment.js`
-- `BENCHMARK_POLICY.md`
-- `LEGACY_POLICY.md`
-- `check-benchmark-policy.js`
-- `check-concept-candidates.js`
-- `check-concept-candidates.ps1`
-- `check-legacy-policy.js`
-- `concept-candidates.independent-benchmark.js`
-- `concept-candidates.13b-threshold-sweep.js`
-- `run-seed-concept-candidates.ps1`
-- `step12-wikipedia-title-index-coverage.js`
 - [x] Preserve current runtime input paths and modes during transition:
 - persisted artifact input path
 - runtime seed-text input path with `elementary-assertions` integration
@@ -375,13 +243,13 @@ Status date: 2026-02-16
 - when behavior intentionally changes, update `result-reference` with explicit rationale and changelog note
 - block silent drift of frozen references in CI
 - [x] Migrate prototype unit/integration test corpus entrypoint:
-- `prototype/concept-candidates.test.js` is executed via product integration contract test with productized artifact staging.
+- `test/integration/prototype-test-corpus-entrypoint.contract.test.js` now enforces that product runtime does not load `prototype/*` modules.
 - [x] Port prototype anti-regression checks:
 - generic mode must not activate legacy enrichment behavior by default
 - optional legacy/recovery controls remain explicitly gated
 - static tripwire for literal-string/domain rule leakage in generic path
 - [x] Decide fate of prototype soft performance budget checks and keep/adapt if retained.
-- Decision: retained via the migrated prototype corpus entrypoint contract (`testSaasPerformanceSoftBudget`).
+- Decision: legacy prototype soft-budget checks are no longer part of product runtime contracts; prototype remains reference/governance only.
 - [x] Add tests that assert product-facing naming:
 - no `step13`/`13a`/`13b` terms in CLI help, OpenAPI descriptions, schema descriptions, or README
 - no `wiki`/`wti` abbreviations in product-facing fields and options
@@ -433,6 +301,7 @@ Status date: 2026-02-16
 - Current decision: no migration in this phase, therefore mapping table is not yet applicable.
 - [x] Decide how to handle current symlinked `prototype` dependency.
 - [x] Ensure no runtime dependency on external symlink paths after productization.
+- [x] Ensure no runtime dependency on `prototype/*` modules in product API/CLI execution paths.
 - [x] Normalize artifact paths to repository-local, documented locations.
 - [x] Keep or document migration of per-seed reference layout:
 - `test/artifacts/<seed>/seed.txt`

@@ -23,6 +23,11 @@ This repository currently contains:
 
 The full productization backlog is tracked in `TODO.md`, and staged milestones are in `ROADMAP.md`.
 
+Runtime boundary:
+
+- product runtime does not load `prototype/*` modules.
+- `prototype/` is maintained as reference/governance material only.
+
 ## Target Mode Model
 
 - `generic baseline mode` (optional): extraction without wikipedia/wikipedia-title-index information.

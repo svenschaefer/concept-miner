@@ -58,6 +58,7 @@ From `prototype/TODO.md`:
 ## Mapping Notes
 
 - Prototype file `prototype/README.md` remains authoritative for prototype internals.
+- Product runtime must not depend on `prototype/*` modules.
 - Product-facing contracts are authoritative in:
   - `README.md`
   - `schema/concepts.schema.json`

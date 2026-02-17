@@ -5,7 +5,7 @@
 - Branch: `main`
 - Sync: tracking `origin/main` (kept in sync via stable phase commits)
 - Current annotated release tag: `v0.10.0`
-- Latest stable phase: `v0.101` (prototype split groundwork)
+- Latest stable phase: `v0.102` (product runtime decoupled from `prototype/*`)
 - Major completed workstreams:
   - template baseline scaffold + CI/release workflow
   - transition product API (`extractConcepts`, `validateConcepts`)
@@ -19,64 +19,6 @@
   - pre/post publish smoke rehearsal flow for private-package phase (`smoke:release:rehearsal`)
   - repeat-run deterministic persisted-step12 output contracts across all seed fixtures and both modes
   - runtime seed-text extraction compatibility for both legacy and flattened artifact layouts
-  - first safe prototype monolith split step (canonicalization/concept-id utility extraction)
-  - second safe prototype monolith split step (shared utility helper extraction)
-  - third safe prototype monolith split step (alias/morphology helper extraction)
-  - fourth safe prototype monolith split step (options/policy helper extraction)
-  - fifth safe prototype monolith split step (Step12 contract/index helper extraction)
-  - sixth safe prototype monolith split step (wikipedia-signal helper extraction)
-  - seventh safe prototype monolith split step (wikipedia-title-index mapping helper extraction)
-  - eighth safe prototype monolith split step (mention selection helper extraction)
-  - ninth safe prototype monolith split step (mention lifting helper extraction)
-  - tenth safe prototype monolith split step (candidate accumulator helper extraction)
-  - eleventh safe prototype monolith split step (mode13b metrics/host-evaluation helper extraction)
-  - twelfth safe prototype monolith split step (mode13b host-selection helper extraction)
-  - thirteenth safe prototype monolith split step (prune-preparation helper extraction)
-  - fourteenth safe prototype monolith split step (alias-merge helper extraction)
-  - fifteenth safe prototype monolith split step (emission assembly helper extraction)
-  - sixteenth safe prototype monolith split step (diagnostics assembly helper extraction)
-  - seventeenth safe prototype monolith split step (persisted output writer helper extraction)
-  - eighteenth safe prototype monolith split step (determinism validation helper extraction)
-  - nineteenth safe prototype monolith split step (runtime/persisted generation orchestration helper extraction)
-  - twentieth safe prototype monolith split step (schema/serialization IO helper extraction)
-  - twenty-first safe prototype monolith split step (Step12 input loading helper extraction)
-  - twenty-second safe prototype monolith split step (CLI option assembly helper extraction)
-  - twenty-third safe prototype monolith split step (CLI usage/validation guard helper extraction)
-  - twenty-fourth safe prototype monolith split step (CLI write/emit orchestration helper extraction)
-  - twenty-fifth safe prototype monolith split step (CLI main-flow orchestration helper extraction)
-  - twenty-sixth safe prototype monolith split step (CLI runtime invocation helper extraction)
-  - twenty-seventh safe prototype monolith split step (CLI context assembly helper extraction)
-  - twenty-eighth safe prototype monolith split step (CLI runtime invocation binding helper extraction)
-  - twenty-ninth safe prototype monolith split step (CLI flow dependency assembly helper extraction)
-  - thirtieth safe prototype monolith split step (CLI parse-context wrapper helper extraction)
-  - thirty-first safe prototype monolith split step (CLI main setup orchestrator helper extraction)
-  - thirty-second safe prototype monolith split step (CLI parse-dependency assembly helper extraction)
-  - thirty-third safe prototype monolith split step (CLI flow-context dependency assembly helper extraction)
-  - thirty-fourth safe prototype monolith split step (CLI runtime-invocation dependency assembly helper extraction)
-  - thirty-fifth safe prototype monolith split step (CLI flow-dependency assembly helper extraction)
-  - thirty-sixth safe prototype monolith split step (CLI main-setup dependency bundle helper extraction)
-  - thirty-seventh safe prototype monolith split step (CLI main-setup invocation helper extraction)
-  - thirty-eighth safe prototype monolith split step (CLI main-setup pipeline helper extraction)
-  - thirty-ninth safe prototype monolith split step (CLI main pipeline input-assembly helper extraction)
-  - fortieth safe prototype monolith split step (CLI main pipeline dependency-bundle helper extraction)
-  - forty-first safe prototype monolith split step (CLI usage-exit handling helper extraction)
-  - forty-second safe prototype monolith split step (CLI error-exit handling helper extraction)
-  - forty-third safe prototype monolith split step (CLI main execution helper extraction)
-  - forty-fourth safe prototype monolith split step (CLI main dependency-source helper extraction)
-  - forty-fifth safe prototype monolith split step (CLI main invocation-wrapper helper extraction)
-  - forty-sixth safe prototype monolith split step (CLI main catch-handler helper extraction)
-  - forty-seventh safe prototype monolith split step (CLI main entrypoint-wrapper helper extraction)
-  - forty-eighth safe prototype monolith split step (CLI main function export helper extraction)
-  - forty-ninth safe prototype monolith split step (CLI main catch dependency helper extraction)
-  - fiftieth safe prototype monolith split step (CLI entrypoint invocation wrapper helper extraction)
-  - fifty-first safe prototype monolith split step (CLI main export-assignment helper extraction)
-  - fifty-second safe prototype monolith split step (CLI entrypoint dependency helper extraction)
-  - fifty-third safe prototype monolith split step (CLI entrypoint invocation-args helper extraction)
-  - fifty-fourth safe prototype monolith split step (CLI main export dependency helper extraction)
-  - fifty-fifth safe prototype monolith split step (CLI main export invocation-args helper extraction)
-  - fifty-sixth safe prototype monolith split step (CLI main export-assignment dependency helper extraction)
-  - fifty-seventh safe prototype monolith split step (CLI main catch invocation-args helper extraction)
-  - fifty-eighth safe prototype monolith split step (CLI main catch-block helper extraction)
 
 ## Implementation status
 
@@ -89,10 +31,10 @@ Implemented and stable:
 
 Remaining open implementation items:
 
-- Split `prototype/concept-candidates.js` into product-style modules under `src/`.
-- Preserve deterministic behavior and ordering guarantees during that refactor.
-- Replace internal `13a`/`13b` step labels with product mode naming in internal config/meta surfaces.
-- Migrate remaining prototype support/governance assets into product structure.
+- Continue replacing prototype-derived internal contracts with product-owned modules under `src/`.
+- Preserve deterministic behavior and ordering guarantees during ongoing refactors.
+- Replace remaining internal `13a`/`13b` labels with product mode naming in product-owned config/meta surfaces.
+- Keep prototype governance assets operational while maintaining prototype read-only policy.
 
 ## Runtime status
 
@@ -110,7 +52,7 @@ Working commands:
 Known setup constraints:
 
 - Node.js `>=20` is required.
-- Prototype benchmark/policy scripts rely on in-repo `prototype/` paths.
+- Prototype benchmark/policy scripts rely on in-repo `prototype/` paths, but product runtime must not import `prototype/*`.
 
 ## Quality status
 
