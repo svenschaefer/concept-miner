@@ -134,7 +134,6 @@ Status date: 2026-02-17
 - [x] Keep and maintain `openapi/README.md` and `schema/README.md` in sync with implemented behavior.
 - [x] Preserve and validate current REST endpoint contracts unless intentionally changed:
 - `POST /v1/concepts/extract`
-- `POST /v1/concepts/validate`
 - [x] Remove or explicitly document envelope/document differences.
 - [x] Enforce missing invariants in schema validation (for example):
 - occurrence bounds (`end >= start`)

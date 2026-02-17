@@ -6,13 +6,11 @@ This directory contains the product-oriented OpenAPI contract for the concept-mi
 - API base: `/v1`
 - Primary endpoints:
   - `POST /v1/concepts/extract`
-  - `POST /v1/concepts/validate`
 
 Canonical contract mapping:
 - Persisted/public document contract: `schema/concepts.schema.json`
 - REST response/request schema references:
   - `ExtractConceptsResponse` aligns with canonical `ConceptsDocument` core fields
-  - `ConceptsDocument` is used directly for `POST /v1/concepts/validate`
 
 Envelope note:
 - concept-miner does not define an additional transport envelope (`data`, `payload`, etc.).

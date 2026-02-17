@@ -48,10 +48,9 @@ test("README documentation links reference existing files", () => {
   }
 });
 
-test("README includes REST quick-start examples for extract and validate endpoints", () => {
+test("README includes REST quick-start examples for extract endpoint", () => {
   const readme = read("README.md");
   assert.match(readme, /\/v1\/concepts\/extract/);
-  assert.match(readme, /\/v1\/concepts\/validate/);
   assert.match(readme, /curl -sS -X POST/);
 });
 

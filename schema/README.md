@@ -17,5 +17,4 @@ Contract mapping:
 - Canonical persisted document contract is `concepts.schema.json`.
 - REST contract in `openapi/openapi.yaml` maps:
   - `ExtractConceptsResponse` to canonical concepts-document fields.
-  - `POST /v1/concepts/validate` request body directly to `ConceptsDocument`.
 - See `docs/CONTRACT_ALIGNMENT.md` for explicit envelope/compatibility notes.

@@ -64,7 +64,6 @@ test("contract docs describe canonical concepts document mapping without envelop
   const contractDoc = fs.readFileSync(contractDocPath, "utf8");
   assert.match(contractDoc, /schema\/concepts\.schema\.json/);
   assert.match(contractDoc, /POST \/v1\/concepts\/extract/);
-  assert.match(contractDoc, /POST \/v1\/concepts\/validate/);
   assert.match(contractDoc, /No additional transport envelope/i);
 
   const openapiReadmePath = path.join(repoRoot, "openapi", "README.md");

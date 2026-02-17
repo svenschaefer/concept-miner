@@ -16,8 +16,6 @@ This document defines the canonical contract alignment between runtime output, J
 
 - `POST /v1/concepts/extract`
   - response shape `ExtractConceptsResponse` aligns to canonical concepts-document core fields.
-- `POST /v1/concepts/validate`
-  - request body is `ConceptsDocument`.
 
 ## Envelope Rule
 

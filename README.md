@@ -98,19 +98,6 @@ curl -sS -X POST "http://127.0.0.1:32180/v1/concepts/extract?view=compact" \
   }'
 ```
 
-`POST /v1/concepts/validate`:
-
-```bash
-curl -sS -X POST "http://127.0.0.1:32180/v1/concepts/validate" \
-  -H "Content-Type: application/json" \
-  -d '{
-    "schema_version": "1.0.0",
-    "concepts": [
-      { "id": "c_aaaaaaaaaaaa", "name": "order" }
-    ]
-  }'
-```
-
 ## Release
 
 This repository follows a dual-stream release model:
