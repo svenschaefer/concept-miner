@@ -286,3 +286,6 @@ All notable changes to this project are documented in this file.
 - v0.100 prototype split groundwork:
   - extracted CLI main catch invocation-args helper logic into `prototype/core/cli-main-catch-invocation-args.js`
   - wired `prototype/concept-candidates.js` to delegate catch invocation-argument assembly with unchanged behavior.
+- v0.101 prototype split groundwork:
+  - extracted CLI main catch-block helper logic into `prototype/core/cli-main-catch-block.js`
+  - wired `prototype/concept-candidates.js` to delegate catch-block orchestration with unchanged behavior.

@@ -118,6 +118,7 @@ const { buildCliMainExportDependencies } = require("./core/cli-main-export-depen
 const { buildCliMainExportInvocationArgs } = require("./core/cli-main-export-invocation-args");
 const { buildCliMainExportAssignmentDependencies } = require("./core/cli-main-export-assignment-dependencies");
 const { buildCliMainCatchInvocationArgs } = require("./core/cli-main-catch-invocation-args");
+const { handleCliMainCatchBlock } = require("./core/cli-main-catch-block");
 const {
   loadConceptCandidatesSchema,
   validateSchema,
@@ -1080,14 +1081,16 @@ async function main() {
       dependencySources,
     });
   } catch (err) {
-    const catchDependencies = buildCliMainCatchDependencies({
-      handleCliErrorExit,
-      stderr: console.error,
-      exit: process.exit,
+    handleCliMainCatchBlock(err, {
+      buildCliMainCatchDependencies,
+      handleCliMainCatch,
+      buildCliMainCatchInvocationArgs,
+      catchDependencySources: {
+        handleCliErrorExit,
+        stderr: console.error,
+        exit: process.exit,
+      },
     });
-    handleCliMainCatch(
-      ...buildCliMainCatchInvocationArgs(err, catchDependencies)
-    );
   }
 }
 
