@@ -47,7 +47,17 @@ function mapCandidateDocToConceptsDocument(candidateDoc, options = {}) {
 function loadSeedCandidateDoc(seedId, options = {}) {
   const artifactsRoot = path.resolve(options.artifactsRoot || path.join(process.cwd(), "test", "artifacts"));
   const mode = normalizeModeValue(options.mode);
-  const modeTag = mode === "generic_baseline" ? "13a" : "13b";
+  const modeSuffixByProductMode = {
+    "generic-baseline": {
+      product: "generic-baseline",
+      legacy: "13a",
+    },
+    "default-extended": {
+      product: "default-extended",
+      legacy: "13b",
+    },
+  };
+  const modeSuffixes = modeSuffixByProductMode[mode] || modeSuffixByProductMode["default-extended"];
   const baseDir = path.join(artifactsRoot, seedId);
   const searchDirs = [
     path.join(baseDir, "result-reference"),
@@ -55,7 +65,8 @@ function loadSeedCandidateDoc(seedId, options = {}) {
     baseDir,
   ];
   const searchFiles = [
-    `seed.concept-candidates.${modeTag}.yaml`,
+    `seed.concept-candidates.${modeSuffixes.product}.yaml`,
+    `seed.concept-candidates.${modeSuffixes.legacy}.yaml`,
     "seed.concept-candidates.yaml",
   ];
 

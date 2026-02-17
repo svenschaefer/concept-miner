@@ -538,3 +538,17 @@ Cycle CV (`v0.106`) - REST Extract Runtime Implementation:
 - Keep CLI/library behavior unchanged and prototype runtime decoupling intact.
 Status:
 - Completed on `main`.
+
+Cycle CW (`v0.107`) - Internal Mode Terminology Closure:
+- Remove remaining `13a`/`13b` step-label naming from product-owned runtime internals while preserving artifact compatibility behavior.
+- Keep API/CLI mode handling centered on product mode names (`generic-baseline`, `default-extended`), with underscore compatibility aliases retained.
+- Add/adjust contracts to prevent regression of step-label naming in product-owned runtime internals.
+Status:
+- Completed on `main`.
+
+Cycle CX (`v0.108`) - Default-Extended Extension Field Decision Closure:
+- Evaluate optional product-safe extension fields for default extended mode and record explicit decision in product docs/TODO.
+- If deferred, document non-goal/deferral rationale and keep public concepts contract unchanged.
+- Close outstanding TODO items for Section 3/4 terminology/contract decision completion.
+Status:
+- Completed on `main` (decision: deferred; public concepts contract unchanged in this phase).

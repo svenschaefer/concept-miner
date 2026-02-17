@@ -5,7 +5,7 @@
 - Branch: `main`
 - Sync: tracking `origin/main` (kept in sync via stable phase commits)
 - Current annotated release tag: `v0.10.0`
-- Latest stable phase: `v0.102` (product runtime decoupled from `prototype/*`)
+- Latest stable phase: `v0.108` (internal mode terminology closure complete; default-extended extension-field decision documented as deferred)
 - Major completed workstreams:
   - template baseline scaffold + CI/release workflow
   - transition product API (`extractConcepts`, `validateConcepts`)
@@ -31,10 +31,8 @@ Implemented and stable:
 
 Remaining open implementation items:
 
-- Continue replacing prototype-derived internal contracts with product-owned modules under `src/`.
-- Preserve deterministic behavior and ordering guarantees during ongoing refactors.
-- Replace remaining internal `13a`/`13b` labels with product mode naming in product-owned config/meta surfaces.
 - Keep prototype governance assets operational while maintaining prototype read-only policy.
+- Revisit optional default-extended extension fields in a future pre-1.0 cycle when field semantics are finalized.
 
 ## Runtime status
 
@@ -64,7 +62,7 @@ Known setup constraints:
   - pack dry-run
   - release smoke
 - Deterministic frozen-reference checks are active for persisted-mode outputs.
-- Golden artifact regeneration checks are active for all seeds and both modes (`13a`, `13b`), plus default output.
+- Golden artifact regeneration checks are active for all seeds and both legacy artifact modes (`13a`, `13b`) plus default output; product runtime mode APIs remain `generic-baseline` and `default-extended`.
 
 ## Documentation status
 

@@ -1,5 +1,6 @@
 const { runMain, runFromInput } = require("../run");
 const { extractConcepts, validateConcepts } = require("../concepts");
+const { normalizeModeValue } = require("../core/mode");
 const { validateOutput } = require("../validate");
 const { arg, readUtf8, writeUtf8 } = require("./io");
 const { loadProjectConfig } = require("./config");
@@ -16,16 +17,6 @@ function usage() {
     "  concept-miner run --text <string> | --in <path> [--out <path>] [--config <path>]",
     "  concept-miner validate --in <path>",
   ].join("\n");
-}
-
-function normalizeModeValue(modeRaw) {
-  if (modeRaw === "generic_baseline" || modeRaw === "generic-baseline") {
-    return "generic_baseline";
-  }
-  if (modeRaw === "default_extended" || modeRaw === "default-extended") {
-    return "default_extended";
-  }
-  return "default_extended";
 }
 
 async function runCommand(args) {

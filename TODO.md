@@ -57,6 +57,8 @@ Status date: 2026-02-17
 - [x] `v0.104` consolidate product schema export path by moving `src/schema/output.schema.json` to `schema/output.schema.json` and rewiring runtime/package references.
 - [x] `v0.105` schema hardening completed: `concept.id` pattern and `surface_forms` uniqueness constraints are now enforced in schema and OpenAPI with alignment tests.
 - [x] `v0.106` REST API runtime implementation completed: in-repo HTTP server now hosts `POST /v1/concepts/extract` with deterministic behavior and integration coverage.
+- [x] `v0.107` internal mode terminology closure completed: product-owned runtime internals now normalize on product mode names with artifact compatibility fallback retained.
+- [x] `v0.108` default-extended extension-field decision closed: no new response fields added in this phase to preserve the stable public concepts contract.
 
 ## 0. Scope And Decisions (must be resolved first)
 
@@ -120,11 +122,11 @@ Status date: 2026-02-17
 - argument parsing, IO, deterministic sorting, canonicalization, ID generation, policy parsing.
 - [x] Preserve deterministic behavior and ordering guarantees during refactor.
 - [x] Keep backward-compatible aliases/flags where already documented (for controlled transition).
-- [ ] Replace internal mode names in API/CLI/config/meta from step labels to product mode labels.
+- [x] Replace internal mode names in API/CLI/config/meta from step labels to product mode labels.
 - [x] Preserve current runtime input paths and modes during transition:
 - persisted artifact input path
 - runtime seed-text input path with `elementary-assertions` integration
-- [ ] Replace prototype names in code and CLI while preserving behavior:
+- [x] Replace prototype names in code and CLI while preserving behavior:
 - product mode names instead of `13a`/`13b`
 - `wikipedia`/`wikipedia-title-index` terms instead of `wiki`/`wti`
 
@@ -167,9 +169,10 @@ Status date: 2026-02-17
 - add explicit `concept.id` format constraint (product-owned pattern)
 - enforce `surface_forms` uniqueness (`uniqueItems: true`)
 - promote currently code-only invariants into schema where feasible
-- [ ] Evaluate optional product-safe extension fields for default extended mode:
+- [x] Evaluate optional product-safe extension fields for default extended mode:
 - structured wikipedia-title-index signal block under product naming
 - optional diagnostics/traceability block (e.g. mention/assertion provenance) without exposing prototype `concept_candidates` artifact contract.
+- Decision: deferred in current phase to keep `schema/concepts.schema.json` and REST response shape stable; revisit in a future minor pre-1.0 cycle when extension semantics are finalized.
 
 ## 5. CLI And Tooling Productization
 
@@ -364,7 +367,7 @@ Status date: 2026-02-17
 
 - [x] Phase 1: Scope decisions (Section 0)
 - [x] Phase 2: Template scaffold + metadata (Sections 1-2)
-- [ ] Phase 3: Core refactor + contract consolidation (Sections 3-4)
+- [x] Phase 3: Core refactor + contract consolidation (Sections 3-4)
 - [x] Phase 4: CLI/tests/docs completion (Sections 5-7)
 - [x] Phase 5: CI/release wiring + cleanup (Sections 8-9)
 - [x] Phase 6: Full gate run and release readiness check (Sections 10-11)
