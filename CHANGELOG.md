@@ -116,3 +116,26 @@ All notable changes to this project are documented in this file.
 - v0.043 runtime seed-path transition closure:
   - enforced product API runtime seed-path extraction compatibility for both legacy and flattened artifact layouts
   - added `test/integration/runtime-seed-path.contract.test.js` to enforce product API runtime seed-path extraction in both product modes.
+- v0.104 schema export consolidation:
+  - moved runtime/package schema export path to `schema/output.schema.json`
+  - rewired runtime and package export references from `src/schema/output.schema.json`.
+- v0.105 product schema hardening:
+  - `concept.id` now enforces pattern `^(c_[0-9a-f]{12}|cc_[0-9a-f]{16})$`
+  - `surface_forms` now enforces `uniqueItems: true`
+  - OpenAPI/schema alignment checks extended for these constraints.
+- v0.106 REST extract runtime implementation:
+  - added in-repo HTTP server (`bin/api-server.js`, `src/server/http.js`)
+  - exposed `POST /v1/concepts/extract` at runtime
+  - added HTTP integration contracts for deterministic behavior and request validation.
+- v0.107 internal mode terminology closure:
+  - product runtime internals now normalize on product mode names (`generic-baseline`, `default-extended`)
+  - seed artifact resolution prefers product-mode filenames first with legacy `13a`/`13b` fallback.
+- v0.108 default-extended extension-field decision closure:
+  - documented decision to defer broader schema-level extension block changes in this phase.
+- v0.109 default-extended wikipedia runtime wiring:
+  - default-extended runtime now queries `wikipedia-title-index` (`/v1/titles/query`) when reachable/configured
+  - enrichment is exposed deterministically under `concepts[*].properties.wikipedia_title_index`
+  - REST options added for runtime wiring:
+    - `options.wikipedia_title_index_endpoint`
+    - `options.wikipedia_title_index_timeout_ms`
+  - added integration tests covering runtime lookup behavior and REST option passthrough.

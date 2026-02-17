@@ -84,9 +84,16 @@ concept-miner run --text "alpha beta alpha"
 concept-miner validate --in output.json
 ```
 
-## REST API (Contract)
+## REST API
 
-The REST contract is specified in `openapi/openapi.yaml`.
+The REST contract is specified in `openapi/openapi.yaml`, and an in-repo runtime server is available:
+
+```bash
+npm run serve:api
+```
+
+Default server bind:
+- `http://127.0.0.1:32180`
 
 `POST /v1/concepts/extract`:
 
@@ -96,6 +103,19 @@ curl -sS -X POST "http://127.0.0.1:32180/v1/concepts/extract?view=compact" \
   -d '{
     "text": "A webshop accepts orders."
   }'
+```
+
+Default-extended runtime enrichment options:
+
+```json
+{
+  "text": "The quick brown fox jumps over the lazy dog.",
+  "options": {
+    "mode": "default-extended",
+    "wikipedia_title_index_endpoint": "http://127.0.0.1:32123",
+    "wikipedia_title_index_timeout_ms": 1500
+  }
+}
 ```
 
 ## Release

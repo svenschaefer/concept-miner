@@ -173,7 +173,7 @@ Status date: 2026-02-17
 - [x] Evaluate optional product-safe extension fields for default extended mode:
 - structured wikipedia-title-index signal block under product naming
 - optional diagnostics/traceability block (e.g. mention/assertion provenance) without exposing prototype `concept_candidates` artifact contract.
-- Decision: deferred in current phase to keep `schema/concepts.schema.json` and REST response shape stable; revisit in a future minor pre-1.0 cycle when extension semantics are finalized.
+- Decision: broad schema-level extension block remains deferred; `v0.109` introduced runtime enrichment under existing `concepts[*].properties` without changing required schema shape.
 
 ## 5. CLI And Tooling Productization
 
