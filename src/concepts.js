@@ -120,7 +120,7 @@ async function extractConcepts(text, options = {}) {
 }
 
 function validateConcepts(document) {
-  const schemaPath = path.resolve(__dirname, "schema", "output.schema.json");
+  const schemaPath = path.resolve(__dirname, "..", "schema", "output.schema.json");
   const schema = JSON.parse(fs.readFileSync(schemaPath, "utf8"));
   const ajv = new Ajv2020({ allErrors: true, strict: false });
   const validate = ajv.compile(schema);

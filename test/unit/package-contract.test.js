@@ -13,7 +13,7 @@ test("package.json defines stable public export subpaths", () => {
   assert.equal(pkg.exports["."], "./src/index.js");
   assert.equal(pkg.exports["./validate"], "./src/validate/index.js");
   assert.equal(pkg.exports["./tools"], "./src/tools/index.js");
-  assert.equal(pkg.exports["./schema"], "./src/schema/output.schema.json");
+  assert.equal(pkg.exports["./schema"], "./schema/output.schema.json");
 });
 
 test("package packlist includes docs and security files", () => {

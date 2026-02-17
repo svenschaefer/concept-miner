@@ -517,3 +517,10 @@ Cycle CS (`v0.103`) - Prototype Read-Only Enforcement In Planning:
 - Keep prototype usage limited to reference/governance tooling, not product runtime.
 Status:
 - Planned.
+
+Cycle CT (`v0.104`) - Product Schema Export Consolidation:
+- Move runtime/package schema export from `src/schema/output.schema.json` to `schema/output.schema.json`.
+- Rewire product validation path and package export path to the moved schema.
+- Keep schema contract behavior unchanged and validated by existing tests.
+Status:
+- Completed on `main`.

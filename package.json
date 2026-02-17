@@ -22,7 +22,7 @@
     ".": "./src/index.js",
     "./validate": "./src/validate/index.js",
     "./tools": "./src/tools/index.js",
-    "./schema": "./src/schema/output.schema.json"
+    "./schema": "./schema/output.schema.json"
   },
   "bin": {
     "concept-miner": "./bin/cli.js"
@@ -30,6 +30,7 @@
   "files": [
     "bin/",
     "src/",
+    "schema/",
     "docs/",
     "README.md",
     "CHANGELOG.md",

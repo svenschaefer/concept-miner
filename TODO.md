@@ -55,6 +55,7 @@ Status date: 2026-02-17
 - [x] `v0.043` runtime seed-text input-path transition compatibility enforced for both legacy and flattened artifact layouts with deterministic product API contracts.
 - [x] `v0.102` product runtime decoupled from `prototype/*` modules; extraction now runs product-native paths without prototype runtime imports (`30fc53f`).
 - [ ] `v0.103` prototype read-only enforcement in planning and execution remains the active next cycle.
+- [x] `v0.104` consolidate product schema export path by moving `src/schema/output.schema.json` to `schema/output.schema.json` and rewiring runtime/package references.
 - [ ] Remaining roadmap cycles continue from current baseline (`main`) in product-owned code only (`src/`, `bin/`, `test/`, `docs/`, `schema/`, `openapi/`, `scripts/`).
 
 ## 0. Scope And Decisions (must be resolved first)
@@ -100,7 +101,7 @@ Status date: 2026-02-17
 - `"." -> "./src/index.js"`
 - `"./validate" -> "./src/validate/index.js"`
 - `"./tools" -> "./src/tools/index.js"`
-- `"./schema" -> "./src/schema/output.schema.json"` (or documented equivalent with updated tests)
+- `"./schema" -> "./schema/output.schema.json"` (or documented equivalent with updated tests)
 - [x] Configure CLI bin mapping for product command(s).
 - [x] Add required scripts from template and adapt to project specifics:
 - `lint`, `test`, `test:unit`, `test:integration`
@@ -139,7 +140,7 @@ Status date: 2026-02-17
 - occurrence bounds (`end >= start`)
 - uniqueness constraints where required by contract
 - identifier/version format constraints if part of public contract
-- [x] Add schema export file under `src/schema/` and wire it to package export.
+- [x] Add schema export file under `schema/` and wire it to package export.
 - [x] Ensure `validate` command validates against the canonical public schema.
 - Current behavior: canonical concepts schema is validated first; legacy template output validation remains as compatibility fallback.
 - [x] Migrate/replace prototype persisted schema artifact:
