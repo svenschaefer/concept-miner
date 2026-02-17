@@ -559,3 +559,66 @@ Cycle CY (`v0.109`) - Default-Extended Wikipedia Runtime Wiring:
 - Add integration tests proving request flow and deterministic enrichment shape, and document REST option fields.
 Status:
 - Completed on `main`.
+
+## v1.000 Readiness Roadmap (Post-v0.109)
+
+v1.000 gate intent:
+- Public contract is explicit and test-enforced (schema/OpenAPI/runtime/docs aligned).
+- Runtime behavior under dependency failure is deterministic and documented.
+- Compatibility policy is explicit.
+- Release/publish posture is fully closed and reproducible.
+
+Cycle CZ (`v0.110`) - Default-Extended Contract Formalization:
+- Decide and document which `concepts[*].properties.wikipedia_title_index` fields are part of the stable public contract.
+- Promote selected fields into explicit schema/OpenAPI documentation (or explicitly mark them non-contractual).
+- Add contract tests for finalized default-extended enrichment guarantees.
+Status:
+- Planned.
+
+Cycle DA (`v0.111`) - REST And CLI Contract Stabilization:
+- Align CLI/API/REST option naming and defaults for wikipedia-title-index integration.
+- Add explicit negative-path tests for unavailable wikipedia-title-index service behavior (deterministic fallback semantics).
+- Ensure runtime behavior is stable and documented for both:
+  - `generic baseline mode`
+  - `default extended mode`
+Status:
+- Planned.
+
+Cycle DB (`v0.112`) - Compatibility Surface Decision:
+- Decide final policy for compatibility commands:
+  - keep `run` / `validate` as supported compatibility surfaces, or
+  - deprecate with timeline and migration notice.
+- Implement selected policy in CLI help/docs/tests.
+- Ensure release notes and migration docs are consistent with selected direction.
+Status:
+- Planned.
+
+Cycle DC (`v0.113`) - Production Hardening For API Runtime:
+- Add operational hardening for API server wrapper:
+  - request size/timeout/validation behavior documentation
+  - explicit 4xx/5xx error contract checks
+  - deterministic logging/error payload expectations where applicable
+- Re-verify OpenAPI/runtime conformance after hardening.
+Status:
+- Planned.
+
+Cycle DD (`v0.114`) - Release And Publish Readiness Closure:
+- Confirm package publish posture transition (`private` decision) and npm release checklist completion.
+- Run full `release:check` + smoke rehearsal on clean workspace.
+- Prepare `v1.000` release notes draft and changelog cut.
+Status:
+- Planned.
+
+Cycle DE (`v1.000`) - First Stable Product Release:
+- Tag and publish first stable `1.0.0` release.
+- Freeze public contract guarantees for 1.x line.
+- Update `docs/STATUSQUO.md`, `README.md`, and release docs to reflect stable status.
+Exit criteria:
+- All quality gates green.
+- Contract docs/schema/OpenAPI/runtime fully aligned.
+- Migration/deprecation policy published and test-covered.
+- Field-level default-extended enrichment guarantees are explicit and validated.
+- Compatibility command policy (`run`, `validate`) is finalized and documented.
+- Publish posture decision (`private` vs publishable) is finalized with reproducible release evidence.
+Status:
+- Planned.

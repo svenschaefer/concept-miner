@@ -61,6 +61,12 @@ Status date: 2026-02-17
 - [x] `v0.107` internal mode terminology closure completed: product-owned runtime internals now normalize on product mode names with artifact compatibility fallback retained.
 - [x] `v0.108` default-extended extension-field decision closed: no new response fields added in this phase to preserve the stable public concepts contract.
 - [x] `v0.109` default-extended wikipedia runtime wiring completed: runtime extraction now queries `wikipedia-title-index` (when reachable/configured) and exposes deterministic enrichment in concept properties.
+- [ ] `v0.110` formalize stable default-extended enrichment contract in schema/OpenAPI/docs (field-level guarantees).
+- [ ] `v0.111` stabilize REST/CLI runtime behavior for wikipedia-title-index failure and timeout semantics with explicit tests.
+- [ ] `v0.112` close compatibility-surface decision for `run`/`validate` (keep vs deprecate) with docs/tests alignment.
+- [ ] `v0.113` complete API runtime production-hardening checks and explicit error contract coverage.
+- [ ] `v0.114` close publish posture and release-readiness gates for first stable release.
+- [ ] `v1.000` first stable release gate closure.
 
 ## 0. Scope And Decisions (must be resolved first)
 
@@ -373,3 +379,21 @@ Status date: 2026-02-17
 - [x] Phase 4: CLI/tests/docs completion (Sections 5-7)
 - [x] Phase 5: CI/release wiring + cleanup (Sections 8-9)
 - [x] Phase 6: Full gate run and release readiness check (Sections 10-11)
+
+## 13. v1.000 Gate Checklist
+
+- [ ] Freeze field-level public contract for `default extended mode` enrichment:
+- explicitly define stable keys/types under `concepts[*].properties.wikipedia_title_index`
+- reflect guarantees in `schema/concepts.schema.json`, `openapi/openapi.yaml`, and docs
+- [ ] Finalize compatibility command policy (`run`, `validate`):
+- explicitly keep as supported 1.x surfaces, or deprecate with migration guidance
+- enforce selected policy via CLI/docs tests
+- [ ] Harden REST runtime operational behavior:
+- deterministic behavior when wikipedia-title-index is unavailable or slow
+- explicit response-class contract checks for `400` / `422` / `500`
+- [ ] Close release/publish posture:
+- explicit decision for `"private"` vs publishable package posture
+- final clean `npm run release:check` and smoke rehearsal evidence
+- [ ] Publish 1.x stability policy:
+- document what constitutes breaking vs non-breaking change for API/schema/CLI
+- ensure roadmap/todo/status docs reflect stable-release state at cut time
