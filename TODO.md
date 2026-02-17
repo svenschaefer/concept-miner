@@ -59,6 +59,7 @@ Status date: 2026-02-17
 - [x] `v0.106` REST API runtime implementation completed: in-repo HTTP server now hosts `POST /v1/concepts/extract` with deterministic behavior and integration coverage.
 - [x] `v0.107` internal mode terminology closure completed: product-owned runtime internals now normalize on product mode names with artifact compatibility fallback retained.
 - [x] `v0.108` default-extended extension-field decision closed: no new response fields added in this phase to preserve the stable public concepts contract.
+- [x] `v0.109` default-extended wikipedia runtime wiring completed: runtime extraction now queries `wikipedia-title-index` (when reachable/configured) and exposes deterministic enrichment in concept properties.
 
 ## 0. Scope And Decisions (must be resolved first)
 

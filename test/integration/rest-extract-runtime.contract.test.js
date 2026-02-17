@@ -46,6 +46,34 @@ function requestJson(port, path, payloadText) {
   });
 }
 
+function createMockWikipediaTitleIndexServer() {
+  const calls = [];
+  const server = http.createServer(async (req, res) => {
+    if (req.method !== "POST" || req.url !== "/v1/titles/query") {
+      res.statusCode = 404;
+      res.end("not found");
+      return;
+    }
+    let raw = "";
+    req.setEncoding("utf8");
+    for await (const chunk of req) raw += chunk;
+    const body = JSON.parse(raw || "{}");
+    calls.push(body);
+    const payload = {
+      columns: ["prefix_count", "exact_count"],
+      rows: [[9, 1]],
+      row_count: 1,
+      truncated: false,
+    };
+    const out = `${JSON.stringify(payload)}\n`;
+    res.statusCode = 200;
+    res.setHeader("content-type", "application/json; charset=utf-8");
+    res.setHeader("content-length", Buffer.byteLength(out, "utf8"));
+    res.end(out);
+  });
+  return { server, calls };
+}
+
 test("REST extract endpoint returns concepts document", async (t) => {
   const server = createApiServer();
   t.after(() => server.close());
@@ -95,4 +123,36 @@ test("REST extract endpoint rejects malformed JSON with 400", async (t) => {
   const response = await requestJson(port, "/v1/concepts/extract", "{not-json");
   assert.equal(response.statusCode, 400);
   assert.equal(response.body.error, "invalid_request");
+});
+
+test("REST extract default-extended mode forwards wikipedia-title-index endpoint options", async (t) => {
+  const mock = createMockWikipediaTitleIndexServer();
+  t.after(() => mock.server.close());
+  const wtiPort = await listen(mock.server);
+
+  const api = createApiServer();
+  t.after(() => api.close());
+  const apiPort = await listen(api);
+
+  const response = await requestJson(
+    apiPort,
+    "/v1/concepts/extract?view=compact",
+    JSON.stringify({
+      text: "alpha beta alpha",
+      options: {
+        mode: "default-extended",
+        wikipedia_title_index_endpoint: `http://127.0.0.1:${wtiPort}`,
+        wikipedia_title_index_timeout_ms: 1000,
+      },
+    })
+  );
+
+  assert.equal(response.statusCode, 200);
+  assert.ok(mock.calls.length > 0);
+  const alpha = response.body.concepts.find((c) => c.name === "alpha");
+  assert.ok(alpha);
+  assert.deepEqual(alpha.properties.wikipedia_title_index, {
+    exact_match: true,
+    prefix_count: 9,
+  });
 });

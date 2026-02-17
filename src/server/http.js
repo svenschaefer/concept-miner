@@ -75,6 +75,8 @@ function createApiServer() {
       const doc = await extractConcepts(body.text, {
         inputId: body.input_id,
         mode: bodyOptions.mode,
+        wikipediaTitleIndexEndpoint: bodyOptions.wikipedia_title_index_endpoint,
+        wikipediaTitleIndexTimeoutMs: bodyOptions.wikipedia_title_index_timeout_ms,
         includeEvidence,
         includeDiagnostics,
       });

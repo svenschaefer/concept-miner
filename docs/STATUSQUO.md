@@ -5,7 +5,7 @@
 - Branch: `main`
 - Sync: tracking `origin/main` (kept in sync via stable phase commits)
 - Current annotated release tag: `v0.10.0`
-- Latest stable phase: `v0.108` (internal mode terminology closure complete; default-extended extension-field decision documented as deferred)
+- Latest stable phase: `v0.109` (default-extended runtime wikipedia-title-index wiring implemented and contract-tested)
 - Major completed workstreams:
   - template baseline scaffold + CI/release workflow
   - transition product API (`extractConcepts`, `validateConcepts`)
@@ -28,6 +28,7 @@ Implemented and stable:
 - Product API and CLI surfaces are implemented and contract-tested.
 - OpenAPI/schema/runtime alignment checks are active.
 - Frozen reference governance and full golden artifact regression checks are active across all seed fixtures.
+- Default-extended runtime extraction now performs wikipedia-title-index lookups and attaches deterministic enrichment under concept `properties.wikipedia_title_index` when service is reachable.
 
 Remaining open implementation items:
 

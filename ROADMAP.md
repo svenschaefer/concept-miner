@@ -552,3 +552,10 @@ Cycle CX (`v0.108`) - Default-Extended Extension Field Decision Closure:
 - Close outstanding TODO items for Section 3/4 terminology/contract decision completion.
 Status:
 - Completed on `main` (decision: deferred; public concepts contract unchanged in this phase).
+
+Cycle CY (`v0.109`) - Default-Extended Wikipedia Runtime Wiring:
+- Wire default-extended runtime extraction to query `wikipedia-title-index` over HTTP when endpoint is configured/reachable.
+- Keep generic-baseline mode free from wikipedia-title-index lookups.
+- Add integration tests proving request flow and deterministic enrichment shape, and document REST option fields.
+Status:
+- Completed on `main`.

@@ -150,6 +150,17 @@ components:
           $ref: "#/components/schemas/ExtractLimits"
         output:
           $ref: "#/components/schemas/OutputOptions"
+        wikipedia_title_index_endpoint:
+          type: string
+          minLength: 1
+          description: >
+            Optional wikipedia-title-index service base URL used in `default-extended`
+            mode runtime enrichment (for example `http://127.0.0.1:32123`).
+        wikipedia_title_index_timeout_ms:
+          type: integer
+          minimum: 1
+          default: 2000
+          description: Request timeout in milliseconds for wikipedia-title-index queries.
     ExtractLimits:
       type: object
       additionalProperties: false
