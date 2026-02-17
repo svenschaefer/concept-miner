@@ -45,7 +45,7 @@ Release/publish posture:
 - Package posture is publishable (`"private": false`).
 - Repository is public and npm public-release flow is enabled via `docs/NPM_RELEASE.md`.
 - Public npm publication has been executed and propagation checks are green.
-- npm deprecation for `1.0.0` is pending 2FA confirmation.
+- npm deprecations are active for `1.0.0` and `1.0.1` (message points consumers to `1.0.2+`).
 
 Current next-step planning:
 

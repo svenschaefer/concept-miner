@@ -20,7 +20,7 @@ All notable changes to this project are documented in this file.
 - release correction:
   - supersedes `1.0.0` for consumers due to packaging-policy correction.
   - published to npmjs with `latest` dist-tag updated to `1.0.1`.
-  - deprecation of `1.0.0` is pending npm 2FA confirmation.
+  - `1.0.0` and `1.0.1` are deprecated in npm with migration note to `1.0.2+`.
 
 ## [1.0.0] - 2026-02-17
 
