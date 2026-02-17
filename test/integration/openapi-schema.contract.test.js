@@ -31,12 +31,14 @@ test("openapi concepts document matches key input constraints from JSON schema",
   const schemaInputIdMin = schema.properties.input_id.minLength;
   const schemaConceptIdPattern = schema.$defs.concept.properties.id.pattern;
   const schemaSurfaceFormsUnique = schema.$defs.concept.properties.surface_forms.uniqueItems;
+  const schemaWti = schema.$defs.wikipediaTitleIndexSignals;
 
   const openapiPath = path.join(repoRoot, "openapi", "openapi.yaml");
   const openapi = YAML.parse(fs.readFileSync(openapiPath, "utf8"));
   const conceptsDoc = openapi.components.schemas.ConceptsDocument;
   const extractResponse = openapi.components.schemas.ExtractConceptsResponse;
   const concept = openapi.components.schemas.Concept;
+  const openapiWti = openapi.components.schemas.WikipediaTitleIndexSignals;
 
   assert.ok(conceptsDoc.required.includes("schema_version"));
   assert.ok(conceptsDoc.required.includes("concepts"));
@@ -47,6 +49,10 @@ test("openapi concepts document matches key input constraints from JSON schema",
   assert.equal(extractResponse.properties.input_id.minLength, schemaInputIdMin);
   assert.equal(concept.properties.id.pattern, schemaConceptIdPattern);
   assert.equal(concept.properties.surface_forms.uniqueItems, schemaSurfaceFormsUnique);
+  assert.deepEqual(openapiWti.required, schemaWti.required);
+  assert.equal(openapiWti.properties.exact_match.type, schemaWti.properties.exact_match.type);
+  assert.equal(openapiWti.properties.prefix_count.type, schemaWti.properties.prefix_count.type);
+  assert.equal(openapiWti.properties.prefix_count.minimum, schemaWti.properties.prefix_count.minimum);
 });
 
 test("occurrence offsets are documented as UTF-16 in schema and openapi", () => {

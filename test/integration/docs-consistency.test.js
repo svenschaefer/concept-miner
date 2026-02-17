@@ -54,6 +54,13 @@ test("README includes REST quick-start examples for extract endpoint", () => {
   assert.match(readme, /curl -sS -X POST/);
 });
 
+test("README states compatibility command support policy for 1.x", () => {
+  const readme = read("README.md");
+  assert.match(readme, /Compatibility commands \(supported for 1\.x\)/);
+  assert.match(readme, /concept-miner run --text/);
+  assert.match(readme, /concept-miner validate --in/);
+});
+
 test("release guide uses explicit staging paths for release commits", () => {
   const releaseGuide = read("docs/NPM_RELEASE.md");
   assert.match(
@@ -68,6 +75,16 @@ test("guarantees doc states the upstream elementary-assertions Step12 boundary",
   assert.match(guarantees, /elementary-assertions/);
   assert.match(guarantees, /Step12/i);
   assert.match(guarantees, /out of scope/i);
+});
+
+test("guarantees doc states enrichment typing and compatibility policy", () => {
+  const guarantees = read("docs/GUARANTEES.md");
+  assert.match(guarantees, /wikipedia_title_index/);
+  assert.match(guarantees, /exact_match/);
+  assert.match(guarantees, /prefix_count/);
+  assert.match(guarantees, /run/);
+  assert.match(guarantees, /validate/);
+  assert.match(guarantees, /1\.x/);
 });
 
 test("repo workflows doc states pre-1.0 tag strategy", () => {
@@ -86,4 +103,13 @@ test("operational guide documents optional PowerShell wrappers", () => {
   const operational = read("docs/OPERATIONAL.md");
   assert.match(operational, /run-seed-concept-candidates\.ps1/);
   assert.match(operational, /check-concept-candidates\.ps1/);
+});
+
+test("operational guide documents REST runtime hardening notes", () => {
+  const operational = read("docs/OPERATIONAL.md");
+  assert.match(operational, /1 MiB/);
+  assert.match(operational, /400/);
+  assert.match(operational, /404/);
+  assert.match(operational, /500/);
+  assert.match(operational, /without enrichment fields/i);
 });

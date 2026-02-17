@@ -70,3 +70,43 @@ test("extractConcepts accepts kebab-case mode values", async () => {
   assert.ok(Array.isArray(doc.concepts));
   assert.equal(doc.concepts.length, 2);
 });
+
+test("validateConcepts rejects invalid wikipedia_title_index enrichment typing", () => {
+  const result = validateConcepts({
+    schema_version: "1.0.0",
+    concepts: [
+      {
+        id: "c_1f2d3c4b5a6e",
+        name: "alpha",
+        properties: {
+          wikipedia_title_index: {
+            exact_match: "yes",
+            prefix_count: -1,
+          },
+        },
+      },
+    ],
+  });
+  assert.equal(result.ok, false);
+  assert.ok(result.errors.length > 0);
+});
+
+test("validateConcepts accepts valid wikipedia_title_index enrichment typing", () => {
+  const result = validateConcepts({
+    schema_version: "1.0.0",
+    concepts: [
+      {
+        id: "c_1f2d3c4b5a6e",
+        name: "alpha",
+        properties: {
+          wikipedia_title_index: {
+            exact_match: true,
+            prefix_count: 7,
+          },
+        },
+      },
+    ],
+  });
+  assert.equal(result.ok, true);
+  assert.deepEqual(result.errors, []);
+});

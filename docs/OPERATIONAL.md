@@ -25,6 +25,19 @@ Core product usage remains:
 - library API via `src/index.js`
 - CLI via `bin/cli.js`
 
+## REST Runtime Notes
+
+- API server entrypoint: `bin/api-server.js` (default `127.0.0.1:32180`).
+- Request body limit: `1 MiB` for `POST /v1/concepts/extract`.
+- Runtime error behavior:
+  - malformed/invalid request: `400`
+  - unknown route: `404`
+  - unexpected internal extractor failure: `500`
+- Default-extended enrichment behavior:
+  - if wikipedia-title-index is reachable, enrichment may be added under
+    `concepts[*].properties.wikipedia_title_index`
+  - if unavailable/timeout, extraction remains successful without enrichment fields.
+
 ## Quality Gates
 
 - `npm test`

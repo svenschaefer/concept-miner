@@ -5,7 +5,7 @@
 - Branch: `main`
 - Sync: tracking `origin/main` (kept in sync via stable phase commits)
 - Current annotated release tag: `v0.10.0`
-- Latest stable phase: `v0.109` (default-extended runtime wikipedia-title-index wiring implemented and contract-tested)
+- Latest stable phase: `v0.113` (default-extended enrichment contract formalized, compatibility policy closed, API runtime hardening checks added)
 - Planning state: `TODO.md` and `ROADMAP.md` are synchronized through `v0.109`; no additional preplanned execution cycles are currently open.
 - Major completed workstreams:
   - template baseline scaffold + CI/release workflow
@@ -30,11 +30,13 @@ Implemented and stable:
 - OpenAPI/schema/runtime alignment checks are active.
 - Frozen reference governance and full golden artifact regression checks are active across all seed fixtures.
 - Default-extended runtime extraction now performs wikipedia-title-index lookups and attaches deterministic enrichment under concept `properties.wikipedia_title_index` when service is reachable.
+- Field-level enrichment typing is now contract-defined (`exact_match` boolean, `prefix_count` integer >= 0).
+- Compatibility commands `run` and `validate` are explicitly retained as supported surfaces for 1.x.
 
 Remaining open implementation items:
 
 - Keep prototype governance assets operational while maintaining prototype read-only policy.
-- Revisit optional default-extended extension fields in a future pre-1.0 cycle when field semantics are finalized.
+- Close publish/release posture gates for first stable `v1.000` cut.
 
 Current next-step planning:
 

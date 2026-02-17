@@ -46,6 +46,34 @@ function requestJson(port, path, payloadText) {
   });
 }
 
+function requestRaw(port, method, path, payloadText = "") {
+  return new Promise((resolve, reject) => {
+    const req = http.request(
+      {
+        host: "127.0.0.1",
+        port,
+        method,
+        path,
+        headers: {
+          "content-type": "application/json",
+        },
+      },
+      (res) => {
+        let raw = "";
+        res.setEncoding("utf8");
+        res.on("data", (chunk) => {
+          raw += chunk;
+        });
+        res.on("end", () => {
+          resolve({ statusCode: res.statusCode, raw });
+        });
+      }
+    );
+    req.on("error", reject);
+    req.end(payloadText);
+  });
+}
+
 function createMockWikipediaTitleIndexServer() {
   const calls = [];
   const server = http.createServer(async (req, res) => {
@@ -125,6 +153,30 @@ test("REST extract endpoint rejects malformed JSON with 400", async (t) => {
   assert.equal(response.body.error, "invalid_request");
 });
 
+test("REST API returns 404 for unknown routes", async (t) => {
+  const api = createApiServer();
+  t.after(() => api.close());
+  const apiPort = await listen(api);
+
+  const response = await requestRaw(apiPort, "GET", "/v1/unknown");
+  const body = JSON.parse(response.raw);
+  assert.equal(response.statusCode, 404);
+  assert.equal(body.error, "not_found");
+});
+
+test("REST extract endpoint rejects too-large request payload with 400", async (t) => {
+  const api = createApiServer();
+  t.after(() => api.close());
+  const apiPort = await listen(api);
+
+  const giant = "a".repeat(1024 * 1024 + 128);
+  const response = await requestRaw(apiPort, "POST", "/v1/concepts/extract", giant);
+  const body = JSON.parse(response.raw);
+  assert.equal(response.statusCode, 400);
+  assert.equal(body.error, "invalid_request");
+  assert.match(String(body.message || ""), /too large/i);
+});
+
 test("REST extract default-extended mode forwards wikipedia-title-index endpoint options", async (t) => {
   const mock = createMockWikipediaTitleIndexServer();
   t.after(() => mock.server.close());
@@ -155,4 +207,48 @@ test("REST extract default-extended mode forwards wikipedia-title-index endpoint
     exact_match: true,
     prefix_count: 9,
   });
+});
+
+test("REST extract remains successful without enrichment when wikipedia-title-index is unavailable", async (t) => {
+  const api = createApiServer();
+  t.after(() => api.close());
+  const apiPort = await listen(api);
+
+  const response = await requestJson(
+    apiPort,
+    "/v1/concepts/extract?view=evidence",
+    JSON.stringify({
+      text: "alpha beta alpha",
+      options: {
+        mode: "default-extended",
+        wikipedia_title_index_endpoint: "http://127.0.0.1:1",
+        wikipedia_title_index_timeout_ms: 50,
+      },
+    })
+  );
+
+  assert.equal(response.statusCode, 200);
+  assert.ok(Array.isArray(response.body.concepts));
+  for (const concept of response.body.concepts) {
+    const hasWti = Boolean(
+      concept.properties
+        && typeof concept.properties === "object"
+        && concept.properties.wikipedia_title_index
+    );
+    assert.equal(hasWti, false);
+  }
+});
+
+test("REST extract endpoint maps unexpected extractor failures to 500", async (t) => {
+  const api = createApiServer({
+    extractConcepts: async () => {
+      throw new Error("boom");
+    },
+  });
+  t.after(() => api.close());
+  const apiPort = await listen(api);
+
+  const response = await requestJson(apiPort, "/v1/concepts/extract", JSON.stringify({ text: "alpha" }));
+  assert.equal(response.statusCode, 500);
+  assert.equal(response.body.error, "internal_error");
 });

@@ -8,9 +8,9 @@ const { loadProjectConfig } = require("./config");
 function usage() {
   return [
     "Usage:",
-    "  concept-miner extract --text <string> [--out <path>] [--mode <generic-baseline|default-extended>] [--config <path>]",
-    "  concept-miner extract --seed-id <id> [--artifacts-root <path>] [--out <path>] [--mode <generic-baseline|default-extended>] [--config <path>]",
-    "  concept-miner extract --step12-in <path> [--out <path>] [--mode <generic-baseline|default-extended>] [--config <path>]",
+    "  concept-miner extract --text <string> [--out <path>] [--mode <generic-baseline|default-extended>] [--wikipedia-title-index-endpoint <url>] [--wikipedia-title-index-timeout-ms <ms>] [--config <path>]",
+    "  concept-miner extract --seed-id <id> [--artifacts-root <path>] [--out <path>] [--mode <generic-baseline|default-extended>] [--wikipedia-title-index-endpoint <url>] [--wikipedia-title-index-timeout-ms <ms>] [--config <path>]",
+    "  concept-miner extract --step12-in <path> [--out <path>] [--mode <generic-baseline|default-extended>] [--wikipedia-title-index-endpoint <url>] [--wikipedia-title-index-timeout-ms <ms>] [--config <path>]",
     "  concept-miner validate-concepts --in <path>",
     "",
     "Compatibility commands:",
@@ -74,8 +74,19 @@ async function extractCommand(args) {
   const modeRaw = arg(args, "--mode");
   const outPath = arg(args, "--out");
   const configPath = arg(args, "--config");
+  const wikipediaTitleIndexEndpoint = arg(args, "--wikipedia-title-index-endpoint");
+  const wikipediaTitleIndexTimeoutMsRaw = arg(args, "--wikipedia-title-index-timeout-ms");
 
   const mode = normalizeModeValue(modeRaw);
+  const wikipediaTitleIndexTimeoutMs = wikipediaTitleIndexTimeoutMsRaw
+    ? Number.parseInt(wikipediaTitleIndexTimeoutMsRaw, 10)
+    : undefined;
+  if (
+    wikipediaTitleIndexTimeoutMsRaw
+    && (!Number.isFinite(wikipediaTitleIndexTimeoutMs) || wikipediaTitleIndexTimeoutMs <= 0)
+  ) {
+    throw new Error("Invalid --wikipedia-title-index-timeout-ms value. Expected positive integer.");
+  }
 
   if (!text && !seedId && !step12Path) {
     throw new Error("extract requires one of --text, --seed-id, or --step12-in.");
@@ -91,6 +102,8 @@ async function extractCommand(args) {
     seedId,
     step12Path,
     artifactsRoot,
+    wikipediaTitleIndexEndpoint,
+    wikipediaTitleIndexTimeoutMs,
     includeDiagnostics: false,
     ...(config || {}),
   });

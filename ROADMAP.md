@@ -573,7 +573,7 @@ Cycle CZ (`v0.110`) - Default-Extended Contract Formalization:
 - Promote selected fields into explicit schema/OpenAPI documentation (or explicitly mark them non-contractual).
 - Add contract tests for finalized default-extended enrichment guarantees.
 Status:
-- Planned.
+- Completed on `main`.
 
 Cycle DA (`v0.111`) - REST And CLI Contract Stabilization:
 - Align CLI/API/REST option naming and defaults for wikipedia-title-index integration.
@@ -582,7 +582,7 @@ Cycle DA (`v0.111`) - REST And CLI Contract Stabilization:
   - `generic baseline mode`
   - `default extended mode`
 Status:
-- Planned.
+- Completed on `main`.
 
 Cycle DB (`v0.112`) - Compatibility Surface Decision:
 - Decide final policy for compatibility commands:
@@ -591,7 +591,7 @@ Cycle DB (`v0.112`) - Compatibility Surface Decision:
 - Implement selected policy in CLI help/docs/tests.
 - Ensure release notes and migration docs are consistent with selected direction.
 Status:
-- Planned.
+- Completed on `main` (decision: keep `run`/`validate` compatibility commands supported in 1.x).
 
 Cycle DC (`v0.113`) - Production Hardening For API Runtime:
 - Add operational hardening for API server wrapper:
@@ -600,7 +600,7 @@ Cycle DC (`v0.113`) - Production Hardening For API Runtime:
   - deterministic logging/error payload expectations where applicable
 - Re-verify OpenAPI/runtime conformance after hardening.
 Status:
-- Planned.
+- Completed on `main`.
 
 Cycle DD (`v0.114`) - Release And Publish Readiness Closure:
 - Confirm package publish posture transition (`private` decision) and npm release checklist completion.

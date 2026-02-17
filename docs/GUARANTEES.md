@@ -13,6 +13,12 @@ This file defines core behavior guarantees for template-based projects.
   - view/tooling outputs are derived and non-authoritative.
 - Stable error surface:
   - validation failures use stable error codes for consumer branching.
+- Default-extended enrichment typing:
+  - when present, `concepts[*].properties.wikipedia_title_index` has:
+    - `exact_match` (`boolean`)
+    - `prefix_count` (`integer`, `>= 0`)
+- Compatibility command policy (1.x):
+  - `concept-miner run` and `concept-miner validate` remain supported compatibility surfaces in 1.x.
 
 ## Non-Goals
 

@@ -63,7 +63,29 @@
         },
         "properties": {
           "type": "object",
-          "additionalProperties": true
+          "additionalProperties": true,
+          "properties": {
+            "wikipedia_title_index": {
+              "$ref": "#/$defs/wikipediaTitleIndexSignals"
+            }
+          }
+        }
+      }
+    },
+    "wikipediaTitleIndexSignals": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "exact_match",
+        "prefix_count"
+      ],
+      "properties": {
+        "exact_match": {
+          "type": "boolean"
+        },
+        "prefix_count": {
+          "type": "integer",
+          "minimum": 0
         }
       }
     },

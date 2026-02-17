@@ -77,7 +77,18 @@ concept-miner extract --text "alpha beta alpha" --mode default-extended --out co
 concept-miner validate-concepts --in concepts.json
 ```
 
-Compatibility commands still available:
+Optional runtime enrichment flags for `extract`:
+
+```bash
+concept-miner extract --text "alpha beta alpha" \
+  --mode default-extended \
+  --wikipedia-title-index-endpoint "http://127.0.0.1:32123" \
+  --wikipedia-title-index-timeout-ms 1500
+```
+
+If wikipedia-title-index is unavailable or times out, extraction remains successful and deterministic without enrichment fields.
+
+Compatibility commands (supported for 1.x):
 
 ```bash
 concept-miner run --text "alpha beta alpha"

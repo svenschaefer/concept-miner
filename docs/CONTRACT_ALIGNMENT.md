@@ -16,6 +16,13 @@ This document defines the canonical contract alignment between runtime output, J
 
 - `POST /v1/concepts/extract`
   - response shape `ExtractConceptsResponse` aligns to canonical concepts-document core fields.
+  - `default extended mode` enrichment contract:
+    - optional `concepts[*].properties.wikipedia_title_index.exact_match` (`boolean`)
+    - optional `concepts[*].properties.wikipedia_title_index.prefix_count` (`integer`, `>= 0`)
+
+Default-extended enrichment availability:
+- If wikipedia-title-index service is configured and reachable, enrichment may be included.
+- If service is unavailable or times out, extraction remains successful and deterministic without enrichment fields.
 
 ## Envelope Rule
 

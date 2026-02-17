@@ -155,12 +155,15 @@ components:
           minLength: 1
           description: >
             Optional wikipedia-title-index service base URL used in `default-extended`
-            mode runtime enrichment (for example `http://127.0.0.1:32123`).
+            mode runtime enrichment (for example `http://127.0.0.1:32123`). If unavailable,
+            extraction remains successful without enrichment fields.
         wikipedia_title_index_timeout_ms:
           type: integer
           minimum: 1
           default: 2000
-          description: Request timeout in milliseconds for wikipedia-title-index queries.
+          description: >
+            Request timeout in milliseconds for wikipedia-title-index queries. On timeout,
+            extraction remains successful without enrichment fields.
     ExtractLimits:
       type: object
       additionalProperties: false
@@ -263,8 +266,14 @@ components:
           $ref: "#/components/schemas/Signals"
         properties:
           type: object
-          description: Optional structured attributes derived deterministically.
+          description: >
+            Optional structured attributes derived deterministically. In `default-extended`
+            mode, when wikipedia-title-index enrichment is available, this includes
+            `wikipedia_title_index`.
           additionalProperties: true
+          properties:
+            wikipedia_title_index:
+              $ref: "#/components/schemas/WikipediaTitleIndexSignals"
     Occurrence:
       type: object
       additionalProperties: false
@@ -300,6 +309,18 @@ components:
           type: string
           enum: [low, medium, high]
           description: Optional bucketed strength indicator.
+    WikipediaTitleIndexSignals:
+      type: object
+      additionalProperties: false
+      required: [exact_match, prefix_count]
+      properties:
+        exact_match:
+          type: boolean
+          description: True when a case-sensitive exact title match exists.
+        prefix_count:
+          type: integer
+          minimum: 0
+          description: Count of titles in prefix range query result.
     ResponseMeta:
       type: object
       additionalProperties: false

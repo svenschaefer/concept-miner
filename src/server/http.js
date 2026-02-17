@@ -17,7 +17,9 @@ function readJsonBody(req) {
     req.on("data", (chunk) => {
       raw += chunk;
       if (raw.length > 1024 * 1024) {
-        reject(new Error("request_too_large"));
+        const err = new Error("request_too_large");
+        err.code = "REQUEST_TOO_LARGE";
+        reject(err);
       }
     });
     req.on("end", () => {
@@ -38,7 +40,8 @@ function mapViewToFlags(view, bodyOptions = {}) {
   return { includeEvidence, includeDiagnostics };
 }
 
-function createApiServer() {
+function createApiServer(deps = {}) {
+  const extractConceptsImpl = typeof deps.extractConcepts === "function" ? deps.extractConcepts : extractConcepts;
   return http.createServer(async (req, res) => {
     const method = req.method || "GET";
     const parsed = new URL(req.url || "/", "http://127.0.0.1");
@@ -59,6 +62,10 @@ function createApiServer() {
     try {
       body = await readJsonBody(req);
     } catch (err) {
+      if (err && err.code === "REQUEST_TOO_LARGE") {
+        writeJson(res, 400, { error: "invalid_request", message: "Request body too large (max 1 MiB)." });
+        return;
+      }
       writeJson(res, 400, { error: "invalid_request", message: "Malformed JSON body." });
       return;
     }
@@ -72,7 +79,7 @@ function createApiServer() {
     const { includeEvidence, includeDiagnostics } = mapViewToFlags(view, bodyOptions);
 
     try {
-      const doc = await extractConcepts(body.text, {
+      const doc = await extractConceptsImpl(body.text, {
         inputId: body.input_id,
         mode: bodyOptions.mode,
         wikipediaTitleIndexEndpoint: bodyOptions.wikipedia_title_index_endpoint,
@@ -82,8 +89,12 @@ function createApiServer() {
       });
       writeJson(res, 200, doc);
     } catch (err) {
-      const message = err && err.message ? err.message : "Unprocessable input.";
-      writeJson(res, 422, { error: "unprocessable_input", message });
+      if (err && (err.code === "UNPROCESSABLE_INPUT" || err.name === "UnprocessableInputError")) {
+        const message = err && err.message ? err.message : "Unprocessable input.";
+        writeJson(res, 422, { error: "unprocessable_input", message });
+        return;
+      }
+      writeJson(res, 500, { error: "internal_error", message: "Internal server error." });
     }
   });
 }

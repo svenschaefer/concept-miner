@@ -85,6 +85,36 @@ test("CLI extract accepts kebab-case product mode flag", () => {
   assert.ok(Array.isArray(parsed.concepts));
 });
 
+test("CLI extract remains successful with unreachable wikipedia-title-index endpoint", () => {
+  const result = runCli([
+    "extract",
+    "--text",
+    "alpha beta alpha",
+    "--mode",
+    "default-extended",
+    "--wikipedia-title-index-endpoint",
+    "http://127.0.0.1:1",
+    "--wikipedia-title-index-timeout-ms",
+    "50",
+  ]);
+  assert.equal(result.status, 0);
+  const parsed = JSON.parse(String(result.stdout || "{}"));
+  assert.equal(parsed.schema_version, "1.0.0");
+  assert.ok(Array.isArray(parsed.concepts));
+});
+
+test("CLI extract rejects invalid wikipedia-title-index timeout flag", () => {
+  const result = runCli([
+    "extract",
+    "--text",
+    "alpha beta alpha",
+    "--wikipedia-title-index-timeout-ms",
+    "0",
+  ]);
+  assert.equal(result.status, 1);
+  assert.match(String(result.stderr || ""), /Invalid --wikipedia-title-index-timeout-ms/i);
+});
+
 test("CLI validate-concepts validates extracted output", () => {
   const tmpDir = fs.mkdtempSync(path.join(os.tmpdir(), "nodejs-template-cli-"));
   const outputPath = path.join(tmpDir, "concepts.json");
