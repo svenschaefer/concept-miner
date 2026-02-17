@@ -4,9 +4,7 @@ All notable changes to this project are documented in this file.
 
 ## [Unreleased]
 
-- publish posture transition:
-  - switched package posture to publishable (`"private": false`)
-  - updated release/status docs from private-phase wording to public-flow wording.
+- No unreleased changes.
 
 ## [1.0.0] - 2026-02-17
 
@@ -166,3 +164,6 @@ All notable changes to this project are documented in this file.
   - documented current publish posture (`private: true`) in release docs
   - added initial `v1.0.0` release-notes checklist (finalized at `docs/releases/v1.0.0.md`)
   - revalidated smoke rehearsal flow for clean-workspace pre/post publish simulation.
+- public npm release execution:
+  - `concept-miner@1.0.0` published to npmjs
+  - npm registry verification confirms `latest` dist-tag points to `1.0.0`.
