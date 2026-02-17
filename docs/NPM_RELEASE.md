@@ -83,6 +83,9 @@ git push origin v<x.y.z>
 
 ## 5) Publish to npmjs
 
+Precondition:
+- `package.json` is publishable (`"private": false`).
+
 ```powershell
 npm whoami
 npm publish --access public
@@ -147,8 +150,8 @@ Behavior:
 
 - `main` contains the release commit.
 - `v<x.y.z>` tag exists and points to the release commit.
-- npm package is live with expected `latest`.
-- post-publish smoke check passed.
+- npm package is live with expected `latest` (only for publishable/public release flow).
+- post-publish smoke check passed (public registry or private tarball rehearsal, depending on posture).
 - repo is clean (`git status`).
 
 ## Current Posture (v1.000)

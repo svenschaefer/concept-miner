@@ -18,8 +18,8 @@
 6. Merge to `main`.
 7. Create annotated tag on `main`: `git tag -a v<x.y.z> -m "v<x.y.z>"`.
 8. Push commit and tag.
-9. Publish to npm: `npm publish --access public`.
-10. Verify npm propagation and run post-publish smoke checks.
+9. Publish to npm: `npm publish --access public` (only when package posture is publishable, `"private": false`).
+10. Verify npm propagation and run post-publish smoke checks (or tarball rehearsal when package remains private).
 
 Rules:
 - Pre-1.0 strategy:
