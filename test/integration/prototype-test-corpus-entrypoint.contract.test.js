@@ -1,54 +1,35 @@
 const test = require("node:test");
 const assert = require("node:assert/strict");
-const fs = require("node:fs");
-const os = require("node:os");
 const path = require("node:path");
-const { spawnSync } = require("node:child_process");
+const Module = require("node:module");
 
+const { extractConcepts } = require("../../src");
 const repoRoot = path.resolve(__dirname, "..", "..");
 const artifactsRoot = path.join(repoRoot, "test", "artifacts");
 
-function stageLegacyPrototypeArtifacts() {
-  const stagedRoot = fs.mkdtempSync(path.join(os.tmpdir(), "concept-miner-prototype-corpus-"));
-  const seedIds = fs
-    .readdirSync(artifactsRoot, { withFileTypes: true })
-    .filter((entry) => entry.isDirectory())
-    .map((entry) => entry.name)
-    .sort((a, b) => (a < b ? -1 : a > b ? 1 : 0));
-
-  for (const seedId of seedIds) {
-    const sourceSeedDir = path.join(artifactsRoot, seedId);
-    const sourceResultRefDir = path.join(sourceSeedDir, "result-reference");
-    const targetSeedDir = path.join(stagedRoot, seedId, "seed");
-    fs.mkdirSync(targetSeedDir, { recursive: true });
-
-    const sourceSeedTxt = path.join(sourceSeedDir, "seed.txt");
-    if (!fs.existsSync(sourceSeedTxt)) continue;
-    fs.copyFileSync(sourceSeedTxt, path.join(targetSeedDir, "seed.txt"));
-
-    const sourceStep12 = path.join(sourceResultRefDir, "seed.elementary-assertions.yaml");
-    if (fs.existsSync(sourceStep12)) {
-      fs.copyFileSync(sourceStep12, path.join(targetSeedDir, "seed.elementary-assertions.yaml"));
+test("product runtime does not load prototype modules", async () => {
+  const originalLoad = Module._load;
+  Module._load = function patchedLoad(request, parent, isMain) {
+    const normalized = String(request || "").replace(/\\/g, "/");
+    if (normalized.includes("prototype/")) {
+      throw new Error(`runtime prototype import attempted: ${request}`);
     }
+    return originalLoad.call(this, request, parent, isMain);
+  };
+
+  try {
+    const runtimeDoc = await extractConcepts("", {
+      seedId: "prime_gen",
+      artifactsRoot,
+      mode: "default-extended",
+    });
+    assert.ok(Array.isArray(runtimeDoc.concepts));
+    assert.ok(runtimeDoc.concepts.length > 0);
+
+    const textDoc = await extractConcepts("alpha beta alpha", {});
+    assert.ok(Array.isArray(textDoc.concepts));
+    assert.equal(textDoc.concepts.length, 2);
+  } finally {
+    Module._load = originalLoad;
   }
-
-  return stagedRoot;
-}
-
-test("prototype concept-candidates corpus entrypoint runs in productized layout", () => {
-  const legacyArtifactsRoot = stageLegacyPrototypeArtifacts();
-  const result = spawnSync(process.execPath, ["prototype/concept-candidates.test.js"], {
-    cwd: repoRoot,
-    encoding: "utf8",
-    env: {
-      ...process.env,
-      CONCEPT_MINER_ARTIFACTS_ROOT: legacyArtifactsRoot,
-    },
-    timeout: 600000,
-  });
-
-  if (result.error) throw result.error;
-
-  assert.equal(result.status, 0, String(result.stderr || result.stdout || ""));
-  assert.match(String(result.stdout || ""), /concept-candidates tests passed\./);
 });
