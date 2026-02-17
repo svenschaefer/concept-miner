@@ -15,19 +15,12 @@ This repository currently contains:
 - product-facing contracts:
   - `openapi/openapi.yaml`
   - `schema/concepts.schema.json`
-- prototype implementation and governance assets:
-  - `prototype/`
-- realistic frozen regression corpus:
-  - `test/artifacts/<seed>/seed.txt`
-  - `test/artifacts/<seed>/result-reference/*`
 
 The full productization backlog is tracked in `TODO.md`, and staged milestones are in `ROADMAP.md`.
 
 Runtime boundary:
 
-- product runtime does not load `prototype/*` modules.
-- `prototype/` is maintained as reference/governance material only.
-- npm package payload excludes `prototype/` (package `files` allowlist + `.npmignore`).
+- package payload is product runtime only.
 
 ## Target Mode Model
 
@@ -45,18 +38,6 @@ npm run dev:report:metrics
 npm run dev:report:maturity
 npm run ci:check
 npm run release:check
-```
-
-Prototype-oriented checks and reports:
-
-```bash
-npm run check:concept-candidates:benchmark-policy
-npm run check:concept-candidates:legacy-policy
-npm run eval:concept-candidates:independent:generic-baseline
-npm run eval:concept-candidates:independent:default-extended
-npm run eval:concept-candidates:independent:default-extended:policy
-npm run eval:concept-candidates:default-extended:threshold-sweep
-npm run report:wikipedia-title-index:coverage
 ```
 
 ## JavaScript API (Current)
@@ -153,15 +134,12 @@ Relevant documentation:
 - `docs/releases/v0.10.0.md`
 - `docs/releases/v1.0.0.md`
 - `docs/releases/v1.0.1.md`
-- `docs/releases/v1.0.1.md`
+- `docs/releases/v1.0.2.md`
 - `docs/BASELINE_TEST_RUN.md`
 - `docs/FROZEN_REFERENCES_POLICY.md`
 - `docs/GENERATED_REPORT_ARTIFACTS_POLICY.md`
 - `docs/CONTRACT_ALIGNMENT.md`
 - `docs/GUARANTEES.md`
-- `docs/PROTOTYPE_MIGRATION_NOTES.md`
-- `docs/REPO_LAYOUT_DECISION.md`
-- `docs/STEP12_UPSTREAM_BACKLOG.md`
 - `docs/STATUSQUO.md`
 - `docs/TEMPLATE_SETUP.md`
 - `CONTRIBUTING.md`

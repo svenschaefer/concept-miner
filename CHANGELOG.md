@@ -6,6 +6,12 @@ All notable changes to this project are documented in this file.
 
 - No unreleased changes.
 
+## [1.0.2] - 2026-02-17
+
+- npm README cleanup:
+  - removed prototype-oriented sections/links from npm-facing `README.md`.
+  - clarified package payload language as product-runtime only.
+
 ## [1.0.1] - 2026-02-17
 
 - release packaging guard:
