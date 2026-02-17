@@ -54,6 +54,7 @@ Status date: 2026-02-17
 - [x] `v0.042` repeat-run determinism and ordering contracts enforced across realistic persisted Step12 seeds and both modes.
 - [x] `v0.043` runtime seed-text input-path transition compatibility enforced for both legacy and flattened artifact layouts with deterministic product API contracts.
 - [x] `v0.102` product runtime decoupled from `prototype/*` modules; extraction now runs product-native paths without prototype runtime imports (`30fc53f`).
+- [x] `v0.103` prototype read-only planning enforcement closed: roadmap execution is restricted to product-owned surfaces while prototype remains reference/governance only.
 - [x] `v0.104` consolidate product schema export path by moving `src/schema/output.schema.json` to `schema/output.schema.json` and rewiring runtime/package references.
 - [x] `v0.105` schema hardening completed: `concept.id` pattern and `surface_forms` uniqueness constraints are now enforced in schema and OpenAPI with alignment tests.
 - [x] `v0.106` REST API runtime implementation completed: in-repo HTTP server now hosts `POST /v1/concepts/extract` with deterministic behavior and integration coverage.

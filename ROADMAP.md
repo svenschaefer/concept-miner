@@ -516,7 +516,7 @@ Cycle CS (`v0.103`) - Prototype Read-Only Enforcement In Planning:
 - Continue productization work only in product-owned surfaces (`src/`, `bin/`, `test/`, `docs/`, `openapi/`, `schema/`, `scripts/`).
 - Keep prototype usage limited to reference/governance tooling, not product runtime.
 Status:
-- Planned.
+- Completed on `main`.
 
 Cycle CT (`v0.104`) - Product Schema Export Consolidation:
 - Move runtime/package schema export from `src/schema/output.schema.json` to `schema/output.schema.json`.

@@ -6,6 +6,7 @@
 - Sync: tracking `origin/main` (kept in sync via stable phase commits)
 - Current annotated release tag: `v0.10.0`
 - Latest stable phase: `v0.109` (default-extended runtime wikipedia-title-index wiring implemented and contract-tested)
+- Planning state: `TODO.md` and `ROADMAP.md` are synchronized through `v0.109`; no additional preplanned execution cycles are currently open.
 - Major completed workstreams:
   - template baseline scaffold + CI/release workflow
   - transition product API (`extractConcepts`, `validateConcepts`)
@@ -34,6 +35,10 @@ Remaining open implementation items:
 
 - Keep prototype governance assets operational while maintaining prototype read-only policy.
 - Revisit optional default-extended extension fields in a future pre-1.0 cycle when field semantics are finalized.
+
+Current next-step planning:
+
+- Define the next cycle explicitly in `ROADMAP.md` before implementation when the deferred default-extended extension-field scope is ready.
 
 ## Runtime status
 
