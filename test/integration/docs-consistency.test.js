@@ -87,6 +87,14 @@ test("guarantees doc states enrichment typing and compatibility policy", () => {
   assert.match(guarantees, /1\.x/);
 });
 
+test("guarantees doc defines 1.x stability policy with breaking/non-breaking examples", () => {
+  const guarantees = read("docs/GUARANTEES.md");
+  assert.match(guarantees, /1\.x Stability Policy/);
+  assert.match(guarantees, /Breaking changes/);
+  assert.match(guarantees, /Non-breaking changes/);
+  assert.match(guarantees, /major version bump/i);
+});
+
 test("repo workflows doc states pre-1.0 tag strategy", () => {
   const workflows = read("docs/REPO_WORKFLOWS.md");
   assert.match(workflows, /Pre-1\.0 strategy/i);

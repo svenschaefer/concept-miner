@@ -394,6 +394,6 @@ Status date: 2026-02-17
 - [x] Close release/publish posture:
 - explicit decision for `"private"` vs publishable package posture
 - final clean `npm run release:check` and smoke rehearsal evidence
-- [ ] Publish 1.x stability policy:
+- [x] Publish 1.x stability policy:
 - document what constitutes breaking vs non-breaking change for API/schema/CLI
 - ensure roadmap/todo/status docs reflect stable-release state at cut time

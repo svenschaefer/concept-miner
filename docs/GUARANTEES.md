@@ -44,3 +44,17 @@ If behavior is important, make it contract-tested.
 - Out-of-scope for this repository:
   - changing Step12 assertion extraction semantics in `elementary-assertions`
   - silently mutating or repairing upstream Step12 content
+
+## 1.x Stability Policy
+
+Breaking changes (require major version bump):
+
+- Remove or rename documented REST endpoints/fields.
+- Tighten required-field constraints in `schema/concepts.schema.json` so previously valid documents fail.
+- Remove compatibility commands documented as supported for 1.x (`run`, `validate`).
+
+Non-breaking changes (allowed in 1.x):
+
+- Add optional fields to responses/contracts while preserving existing semantics.
+- Add new CLI options without changing existing option behavior.
+- Improve internal implementation/performance while preserving deterministic output contract.

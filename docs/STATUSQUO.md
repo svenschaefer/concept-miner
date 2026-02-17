@@ -32,6 +32,7 @@ Implemented and stable:
 - Default-extended runtime extraction now performs wikipedia-title-index lookups and attaches deterministic enrichment under concept `properties.wikipedia_title_index` when service is reachable.
 - Field-level enrichment typing is now contract-defined (`exact_match` boolean, `prefix_count` integer >= 0).
 - Compatibility commands `run` and `validate` are explicitly retained as supported surfaces for 1.x.
+- 1.x stability policy (breaking vs non-breaking changes) is now documented in `docs/GUARANTEES.md`.
 
 Remaining open implementation items:
 
