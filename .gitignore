@@ -2,9 +2,11 @@ node_modules/
 coverage/
 .nyc_output/
 *.log
+*.tgz
 .env
 .env.*
 dist/
 build/
 .DS_Store
 Thumbs.db
+cody.bat
