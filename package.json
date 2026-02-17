@@ -25,7 +25,7 @@
     "./schema": "./schema/output.schema.json"
   },
   "bin": {
-    "concept-miner": "./bin/cli.js"
+    "concept-miner": "bin/cli.js"
   },
   "files": [
     "bin/",
