@@ -4,7 +4,9 @@ All notable changes to this project are documented in this file.
 
 ## [Unreleased]
 
-- No unreleased changes.
+- publish posture transition:
+  - switched package posture to publishable (`"private": false`)
+  - updated release/status docs from private-phase wording to public-flow wording.
 
 ## [1.0.0] - 2026-02-17
 

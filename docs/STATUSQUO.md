@@ -17,7 +17,7 @@
   - sidecar and release-workflow contract tests
   - full per-seed golden artifact regeneration diff checks (YAML/JSON) with diagnostics timing normalization
   - explicit core extraction invariant contracts across realistic persisted Step12 seeds
-  - pre/post publish smoke rehearsal flow for private-package phase (`smoke:release:rehearsal`)
+  - pre/post publish smoke rehearsal flow (`smoke:release:rehearsal`)
   - repeat-run deterministic persisted-step12 output contracts across all seed fixtures and both modes
   - runtime seed-text extraction compatibility for both legacy and flattened artifact layouts
 
@@ -41,8 +41,8 @@ Remaining open implementation items:
 
 Release/publish posture:
 
-- Current package posture remains `"private": true`.
-- `v1.0.0` is cut as a stable private release; public npm publication remains a separate explicit decision.
+- Package posture is publishable (`"private": false`).
+- Repository is public and npm public-release flow is enabled via `docs/NPM_RELEASE.md`.
 
 Current next-step planning:
 

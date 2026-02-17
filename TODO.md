@@ -85,7 +85,7 @@ Status date: 2026-02-17
 - [x] Confirm Node baseline (template requires Node >=20) and npm baseline.
 - Current baseline: Node `>=20` (enforced in `package.json` engines).
 - [x] Confirm publish intent and timing:
-- Current state: `"private": true` kept through current release-candidate milestones.
+- Current state: package is publishable (`"private": false`).
 
 ## 1. Template Baseline Adoption
 
@@ -366,7 +366,7 @@ Status date: 2026-02-17
 
 - [x] Cut first productized version and tag strategy (`v0.x` or `v1.0.0` decision).
 - [x] Run pre-publish and post-publish smoke flows from release docs.
-- Current phase uses tarball-based postpublish simulation (`npm run smoke:release:rehearsal`) while package publication remains private.
+- Public npm postpublish flow is documented; tarball-based rehearsal remains available via `npm run smoke:release:rehearsal`.
 - [x] Publish release notes using `docs/RELEASE_NOTES_TEMPLATE.md`.
 - [x] Record operational snapshot in `docs/STATUSQUO.md`.
 - [x] Plan backlog for upstream Step 12 improvements that remain out-of-repo.

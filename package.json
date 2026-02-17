@@ -15,7 +15,7 @@
     "url": "https://github.com/svenschaefer/concept-miner/issues"
   },
   "homepage": "https://github.com/svenschaefer/concept-miner#readme",
-  "private": true,
+  "private": false,
   "type": "commonjs",
   "main": "./src/index.js",
   "exports": {

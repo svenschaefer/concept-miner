@@ -607,7 +607,7 @@ Cycle DD (`v0.114`) - Release And Publish Readiness Closure:
 - Run full `release:check` + smoke rehearsal on clean workspace.
 - Prepare `v1.000` release notes draft and changelog cut.
 Status:
-- Completed on `main` (decision: remain `private` until explicit `v1.000` publish transition approval).
+- Completed on `main` (initial decision: remain `private` until explicit `v1.000` publish transition approval; later transitioned to publishable posture post-`v1.000`).
 
 Cycle DE (`v1.000`) - First Stable Product Release:
 - Tag and publish first stable `1.0.0` release.
@@ -621,4 +621,4 @@ Exit criteria:
 - Compatibility command policy (`run`, `validate`) is finalized and documented.
 - Publish posture decision (`private` vs publishable) is finalized with reproducible release evidence.
 Status:
-- Completed on `main` (stable `1.0.0` cut completed with private-package posture retained).
+- Completed on `main` (stable `1.0.0` cut completed; publish posture later transitioned to publishable post-`v1.000`).

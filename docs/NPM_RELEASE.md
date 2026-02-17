@@ -113,8 +113,7 @@ node -e "console.log(require('concept-miner/package.json').version)"
 npx concept-miner --help
 ```
 
-For the current private-package phase, run the same postpublish checks in a second clean workspace using the local tarball rehearsal (`npm run smoke:release:rehearsal`).
-When public npm validation is required, set:
+Optional rehearsal-only mode (without registry publish):
 
 ```powershell
 $env:CONCEPT_MINER_PUBLIC_POSTPUBLISH_SMOKE = "1"
@@ -154,7 +153,7 @@ Behavior:
 - post-publish smoke check passed (public registry or private tarball rehearsal, depending on posture).
 - repo is clean (`git status`).
 
-## Current Posture (v1.000)
+## Current Posture (v1.001)
 
-- Stable release `v1.0.0` is cut with repository posture `"private": true`.
-- Public npm publication remains an explicit, separate transition decision.
+- Repository/package posture is publishable (`"private": false`).
+- Public npm release can be executed using this guide (`npm whoami`, `npm publish`, propagation checks, post-publish smoke).
