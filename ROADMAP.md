@@ -12,7 +12,7 @@ Goals:
 - Remove legacy compatibility and fallback behavior from the 1.x product stream.
 - Keep only strict product modes:
   - `default-extended` (default, wikipedia-title-index required)
-  - `generic-baseline` (optional, no wikipedia-title-index)
+  - `generic-baseline` (historical; later removed in `v1.0.5`)
 
 Deliverables:
 - remove CLI compatibility commands `run` and `validate`
