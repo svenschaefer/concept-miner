@@ -178,10 +178,9 @@ Behavior:
   - `npm run release:check`
   and requires `RELEASE_TARGET_VERSION`.
 
-## Current Posture (v1.0.4 release prep)
+## Current Posture (v1.0.5)
 
 - Repository/package posture is publishable (`"private": false`).
 - Public npm release can be executed using this guide (`npm whoami`, `npm publish`, propagation checks, post-publish smoke).
-- Current published package state: `concept-miner@1.0.3` with `latest` dist-tag.
-- Next planned patch release: `1.0.4` (legacy/fallback hard-cut removal).
-- Deprecated npm versions: `1.0.0`, `1.0.1` (migration message points to `1.0.2+`).
+- Current published package state: `concept-miner@1.0.5` with `latest` dist-tag.
+- Deprecated npm versions: `1.0.1`, `1.0.2`, `1.0.3`, `1.0.4` (migration message points to `1.0.5+`).

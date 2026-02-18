@@ -4,6 +4,8 @@ All notable changes to this project are documented in this file.
 
 ## [Unreleased]
 
+## [1.0.5] - 2026-02-18
+
 - strict 13b-only runtime transition:
   - removed product `generic-baseline` mode support; `default-extended` is now the only runtime mode.
   - `extractConcepts` now executes Step12 (`elementary-assertions`) + product-owned Step13 engine for text and seed input paths.
@@ -21,6 +23,10 @@ All notable changes to this project are documented in this file.
 - tests/docs:
   - updated tests to strict default-extended contract and removed 13a/generic-baseline expectations.
   - synchronized README/STATUSQUO/GUARANTEES/OPERATIONAL/TODO/ROADMAP with current runtime direction.
+  - added strict release-target guard for release scripts (`RELEASE_TARGET_VERSION` must match `package.json` and changelog heading).
+- npm release posture:
+  - published `concept-miner@1.0.5` (`latest` dist-tag -> `1.0.5`).
+  - deprecated `1.0.1` through `1.0.4` with migration message to `1.0.5+`.
 
 ## [1.0.4] - 2026-02-18
 
