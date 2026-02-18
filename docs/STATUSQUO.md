@@ -6,9 +6,9 @@
 - Sync: tracking `origin/main` (kept in sync via stable phase commits)
 - Repository layout: `prototype/` directory removed; product repository is now product-owned surfaces only.
 - Current annotated release tag: `v1.0.2`
-- npm package status: `concept-miner@1.0.5` published (`latest` -> `1.0.5`).
+- npm package status: `concept-miner@1.1.0` published (`latest` -> `1.1.0`).
 - Latest stable phase: `v1.000` (first stable product release cut at package version `1.0.0`)
-- Planning state: `TODO.md` and `ROADMAP.md` are synchronized; `v1.1.0` is in progress.
+- Planning state: `TODO.md` and `ROADMAP.md` are synchronized; `v1.1.0` is completed.
 - Major completed workstreams:
   - template baseline scaffold + CI/release workflow
   - transition product API (`extractConcepts`, `validateConcepts`)
@@ -43,19 +43,19 @@ Implemented and stable:
 
 Remaining open implementation items:
 
-- Complete repository cleanup after `prototype/` removal and finalize release cut docs for `v1.1.0`.
+- Define and execute next post-`1.1.0` release-line backlog.
 
 Release/publish posture:
 
 - Package posture is publishable (`"private": false`).
 - Repository is public and npm public-release flow is enabled via `docs/NPM_RELEASE.md`.
 - Public npm publication has been executed and propagation checks are green.
-- npm deprecations are active for `1.0.1` through `1.0.4` (message points consumers to `1.0.5+`).
+- npm deprecations are active for `1.0.1` through `1.0.4` (message points consumers to `1.1.0+`).
 
 Current next-step planning:
 
 - Continue post-`v1.000` 1.x backlog execution under the documented stability policy.
-- Complete `v1.1.0-e` docs/release sync and release cut.
+- Define next release scope (`v1.2.0`) and execution cycles.
 
 ## Runtime status
 
@@ -100,4 +100,5 @@ Recently updated:
 - `docs/releases/v0.10.0.md`
 - `docs/releases/v1.0.0.md`
 - `docs/releases/v1.0.5.md`
+- `docs/releases/v1.1.0.md`
 - `docs/STEP12_UPSTREAM_BACKLOG.md`

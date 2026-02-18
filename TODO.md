@@ -23,7 +23,7 @@ Status date: 2026-02-18
 - update README/docs/STATUSQUO/TODO/ROADMAP and release notes to strict 13b-only product behavior
 - run full gate, then commit and push stable phase
 
-## Next Release Line: v1.1.0
+## Next Release Line: v1.2.0
 
 - [x] Define and approve `v1.1.0` scope (feature set and non-goals).
 - [x] Add concrete `v1.1.0` execution cycles to `ROADMAP.md`.
@@ -39,6 +39,7 @@ Status date: 2026-02-18
 - [x] Remove `prototype/` directory from repository after port-completeness gate.
 - [x] Update docs/policies/tests that still assume in-repo prototype retention.
 - [x] Re-run full release gates after prototype removal (`npm run ci:check`, `npm run release:check`).
+- [x] Publish `concept-miner@1.1.0` and complete post-publish smoke verification.
 
 ## Progress Snapshot
 
