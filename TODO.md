@@ -16,10 +16,10 @@ Status date: 2026-02-18
 - [x] `v1.0.7` make quality gate extraction-runtime-based (not frozen-artifact replay):
 - evaluate benchmark from `seed.txt` runtime generation in product code
 - require `overall_score=100.0` in default-extended mode
-- [ ] `v1.0.8` productize relevant prototype tests into product-owned tests (in progress):
+- [x] `v1.0.8` productize relevant prototype tests into product-owned tests:
 - port core invariants/determinism/schema/benchmark checks required for Step13 behavior
 - remove product test/runtime dependence on `prototype/*` modules/scripts
-- [ ] `v1.0.9` doc and release sync (in progress):
+- [x] `v1.0.9` doc and release sync:
 - update README/docs/STATUSQUO/TODO/ROADMAP and release notes to strict 13b-only product behavior
 - run full gate, then commit and push stable phase
 

@@ -113,7 +113,12 @@ Exit criteria:
 - product tests cover relevant Step13 behavior without prototype runtime dependency
 
 Status:
-- In progress.
+- Completed on `main`.
+
+Execution cycles:
+- `v1.0.8-a` completed: migrated prototype-module integration coverage to `src/core/step13`.
+- `v1.0.8-b` completed: replaced prototype script execution checks with product-owned script/runtime checks.
+- `v1.0.8-c` completed: removed remaining product test execution dependence on `prototype/*` paths while preserving anti-import guard coverage.
 
 ## v1.0.9 - Docs/Release Sync
 
@@ -129,7 +134,11 @@ Exit criteria:
 - stable commit pushed
 
 Status:
-- In progress.
+- Completed on `main`.
+
+Execution cycles:
+- `v1.0.9-a` completed: markdown/doc sync for strict default-extended contract and product-owned tooling paths.
+- `v1.0.9-b` completed: closed checklist/status lines in `TODO.md` and `ROADMAP.md`.
 
 ## v0.001 - Foundation And Scope Lock
 

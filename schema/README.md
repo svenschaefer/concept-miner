@@ -8,6 +8,8 @@ This directory contains JSON Schemas for public, product-facing documents.
   frozen prototype-reference artifacts.
 - `concept-candidates-diagnostics.schema.json` defines the persisted diagnostics sidecar contract
   used by frozen prototype-reference artifacts.
+- `seed.concept-candidates.schema.json` defines the internal Step13 candidate-artifact contract
+  used by product-owned Step13 deterministic checks and benchmark tooling.
 
 Notes:
 - Offsets in `occurrences[*].start/end` are UTF-16 code units (JavaScript string indexing).

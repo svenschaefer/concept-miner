@@ -6,7 +6,7 @@ const { spawnSync } = require("node:child_process");
 const YAML = require("yaml");
 
 const repoRoot = path.resolve(__dirname, "..", "..");
-const prototype = require(path.join(repoRoot, "prototype", "concept-candidates.js"));
+const step13 = require(path.join(repoRoot, "src", "core", "step13.js"));
 const step12Path = path.join(
   repoRoot,
   "test",
@@ -36,26 +36,30 @@ function mutateAssertionMentionEvidenceCount(step12) {
   return false;
 }
 
-test("prototype hard-fails when wiki_*_count is not integer", () => {
+test("step13 hard-fails when wiki_*_count is not integer", () => {
   const step12 = YAML.parse(fs.readFileSync(step12Path, "utf8"));
   const mutated = mutateAssertionMentionEvidenceCount(step12);
   assert.equal(mutated, true, "expected at least one assertion mention-evidence wiki_*_count field in fixture");
 
   assert.throws(
-    () => prototype.buildConceptCandidatesFromStep12(step12, { step13Mode: "13b" }),
+    () => step13.buildConceptCandidatesFromStep12(step12, { step13Mode: "13b" }),
     /integer|count/i
   );
 });
 
-test("prototype generateForStep12Path is deterministic in-process", () => {
-  const a = prototype.generateForStep12Path(step12Path, { step13Mode: "13b" });
-  const b = prototype.generateForStep12Path(step12Path, { step13Mode: "13b" });
+test("step13 generateForStep12Path is deterministic in-process", () => {
+  const a = step13.generateForStep12Path(step12Path, { step13Mode: "13b" });
+  const b = step13.generateForStep12Path(step12Path, { step13Mode: "13b" });
   assert.equal(a.yamlText, b.yamlText);
 });
 
-test("prototype CLI replay is deterministic and keeps LF with one trailing newline", () => {
-  const cliPath = path.join(repoRoot, "prototype", "concept-candidates.js");
-  const args = [cliPath, "--step12-in", step12Path, "--step13-mode", "13b", "--print"];
+test("step13 fresh-process replay is deterministic and keeps LF with one trailing newline", () => {
+  const script = [
+    "const s=require('./src/core/step13');",
+    `const out=s.generateForStep12Path(${JSON.stringify(step12Path)},{step13Mode:'13b'});`,
+    "process.stdout.write(out.yamlText);",
+  ].join("");
+  const args = ["-e", script];
 
   const r1 = spawnSync(process.execPath, args, { cwd: repoRoot, encoding: "utf8" });
   const r2 = spawnSync(process.execPath, args, { cwd: repoRoot, encoding: "utf8" });

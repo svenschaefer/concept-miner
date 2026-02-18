@@ -20,6 +20,7 @@ const COUNT_KEY_RE = /^wiki_[A-Za-z0-9_]+_count$/;
 const WIKIPEDIA_SIGNAL_KEY_RE = /^wiki_[A-Za-z0-9_]+$/;
 const DEFAULT_ARTIFACTS_ROOT = path.resolve(__dirname, "..", "artifacts");
 const STEP13_DIR = __dirname;
+const STEP13_SCHEMA_PATH = path.resolve(__dirname, "..", "..", "schema", "seed.concept-candidates.schema.json");
 const DEFAULT_WIKIPEDIA_TITLE_INDEX_ENDPOINT = "http://127.0.0.1:32123";
 const STEP13_MODES = new Set(["13a", "13b"]);
 
@@ -1822,8 +1823,7 @@ function validateConceptCandidatesDeterminism(doc) {
 }
 
 function loadConceptCandidatesSchema() {
-  const schemaPath = path.join(STEP13_DIR, "seed.concept-candidates.schema.json");
-  return JSON.parse(fs.readFileSync(schemaPath, "utf8"));
+  return JSON.parse(fs.readFileSync(STEP13_SCHEMA_PATH, "utf8"));
 }
 
 function validateSchema(schema, doc) {
