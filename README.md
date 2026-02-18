@@ -68,14 +68,7 @@ concept-miner extract --text "alpha beta alpha" \
   --wikipedia-title-index-timeout-ms 1500
 ```
 
-If wikipedia-title-index is unavailable or times out, extraction remains successful and deterministic without enrichment fields.
-
-Compatibility commands (supported for 1.x):
-
-```bash
-concept-miner run --text "alpha beta alpha"
-concept-miner validate --in output.json
-```
+In `default-extended` mode, wikipedia-title-index is required. If unavailable or timed out, extraction hard-fails.
 
 ## REST API
 
@@ -136,6 +129,7 @@ Relevant documentation:
 - `docs/releases/v1.0.1.md`
 - `docs/releases/v1.0.2.md`
 - `docs/releases/v1.0.3.md`
+- `docs/releases/v1.0.4.md`
 - `docs/BASELINE_TEST_RUN.md`
 - `docs/FROZEN_REFERENCES_POLICY.md`
 - `docs/GENERATED_REPORT_ARTIFACTS_POLICY.md`

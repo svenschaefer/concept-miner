@@ -2,7 +2,7 @@
 
 Goal: productize the current concept-miner prototype (`prototype/`) into a template-aligned Node.js package in this repository, based on `C:\code\.nodejs-project-template`.
 
-Status date: 2026-02-17
+Status date: 2026-02-18
 
 ## Progress Snapshot
 
@@ -22,7 +22,7 @@ Status date: 2026-02-17
 - [x] `v0.010` first productized pre-1.0 release baseline completed (`0.10.0`).
 - [x] `v0.011` product-facing script/readme mode terminology normalized (generic-baseline/default-extended).
 - [x] `v0.012` product-facing terminology guardrails added (no `step13`/`13a`/`13b`/`wiki`/`wti` in primary surfaces).
-- [x] `v0.013` mode ergonomics aligned: kebab-case and underscore mode values both supported in API/CLI.
+- [x] `v0.013` mode ergonomics aligned (historical).
 - [x] `v0.014` scope/contract decisions in Section 0 reconciled to implemented repository state.
 - [x] `v0.015` compatibility `validate` command aligned to canonical concepts validation with legacy fallback.
 - [x] `v0.016` metadata/diagnostics sidecar contracts added and enforced against frozen references.
@@ -63,10 +63,18 @@ Status date: 2026-02-17
 - [x] `v0.109` default-extended wikipedia runtime wiring completed: runtime extraction now queries `wikipedia-title-index` (when reachable/configured) and exposes deterministic enrichment in concept properties.
 - [x] `v0.110` formalize stable default-extended enrichment contract in schema/OpenAPI/docs (field-level guarantees).
 - [x] `v0.111` stabilize REST/CLI runtime behavior for wikipedia-title-index failure and timeout semantics with explicit tests.
-- [x] `v0.112` close compatibility-surface decision for `run`/`validate` with docs/tests alignment (decision: keep supported in 1.x).
+- [x] `v0.112` compatibility-surface decision recorded (historical; superseded by strict `v1.0.4` cut).
 - [x] `v0.113` complete API runtime production-hardening checks and explicit error contract coverage.
 - [x] `v0.114` close publish posture and release-readiness gates for first stable release (decision carried into `v1.000`: stable release remains `private`).
 - [x] `v1.000` first stable release gate closure.
+- [x] `v1.0.3` published with stopword filtering improvement for raw-text extraction.
+- [x] `v1.0.4` strict-stream hard cut:
+- remove CLI compatibility commands (`run`, `validate`)
+- remove underscore mode aliases (`generic_baseline`, `default_extended`)
+- remove silent default-extended wikipedia-title-index fallback (hard-fail when unavailable)
+- remove Step12 token-only fallback (`mentions[]` required)
+- remove legacy artifact filename fallback in runtime seed-mode loading
+- align docs/contracts/tests to strict mode semantics
 
 ## 0. Scope And Decisions (must be resolved first)
 
@@ -151,8 +159,8 @@ Status date: 2026-02-17
 - uniqueness constraints where required by contract
 - identifier/version format constraints if part of public contract
 - [x] Add schema export file under `schema/` and wire it to package export.
-- [x] Ensure `validate` command validates against the canonical public schema.
-- Current behavior: canonical concepts schema is validated first; legacy template output validation remains as compatibility fallback.
+- [x] Ensure `validate-concepts` command validates against the canonical public schema.
+- [ ] Remove legacy template-output validation fallback from product CLI.
 - [x] Migrate/replace prototype persisted schema artifact:
 - `prototype/seed.concept-candidates.schema.json` -> product schema location and validator wiring
 - [x] Preserve prototype deterministic serialization contracts where applicable:
@@ -385,11 +393,11 @@ Status date: 2026-02-17
 - [x] Freeze field-level public contract for `default extended mode` enrichment:
 - explicitly define stable keys/types under `concepts[*].properties.wikipedia_title_index`
 - reflect guarantees in `schema/concepts.schema.json`, `openapi/openapi.yaml`, and docs
-- [x] Finalize compatibility command policy (`run`, `validate`):
-- explicitly keep as supported 1.x surfaces, or deprecate with migration guidance
-- enforce selected policy via CLI/docs tests
+- [ ] Finalize strict product-only CLI policy:
+- remove compatibility commands (`run`, `validate`) from CLI/docs/tests
+- enforce strict command surface via contract tests
 - [x] Harden REST runtime operational behavior:
-- deterministic behavior when wikipedia-title-index is unavailable or slow
+- deterministic hard-failure behavior when wikipedia-title-index is unavailable or slow in `default-extended` mode
 - explicit response-class contract checks for `400` / `422` / `500`
 - [x] Close release/publish posture:
 - explicit decision for `"private"` vs publishable package posture

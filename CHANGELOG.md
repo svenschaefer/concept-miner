@@ -6,6 +6,18 @@ All notable changes to this project are documented in this file.
 
 - No unreleased changes.
 
+## [1.0.4] - 2026-02-18
+
+- strict-stream runtime hard cut:
+  - removed CLI compatibility commands `run` and `validate` from product-facing CLI.
+  - removed underscore mode aliases; only `generic-baseline` and `default-extended` are accepted.
+  - default-extended now hard-fails when wikipedia-title-index is unavailable (no silent fallback).
+  - Step12 ingestion now requires `mentions[]` (token-only fallback removed).
+  - runtime seed artifact lookup now resolves strict mode-specific artifact files (`13a`/`13b`) without legacy fallback chain.
+- contracts/docs/tests:
+  - REST/runtime behavior updated to return `422 unprocessable_input` for unavailable wikipedia-title-index in default-extended mode.
+  - documentation and integration tests updated to strict semantics.
+
 ## [1.0.3] - 2026-02-18
 
 - fallback extraction quality fix:

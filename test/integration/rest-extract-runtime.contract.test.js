@@ -209,7 +209,7 @@ test("REST extract default-extended mode forwards wikipedia-title-index endpoint
   });
 });
 
-test("REST extract remains successful without enrichment when wikipedia-title-index is unavailable", async (t) => {
+test("REST extract returns 422 when wikipedia-title-index is unavailable in default-extended mode", async (t) => {
   const api = createApiServer();
   t.after(() => api.close());
   const apiPort = await listen(api);
@@ -227,16 +227,9 @@ test("REST extract remains successful without enrichment when wikipedia-title-in
     })
   );
 
-  assert.equal(response.statusCode, 200);
-  assert.ok(Array.isArray(response.body.concepts));
-  for (const concept of response.body.concepts) {
-    const hasWti = Boolean(
-      concept.properties
-        && typeof concept.properties === "object"
-        && concept.properties.wikipedia_title_index
-    );
-    assert.equal(hasWti, false);
-  }
+  assert.equal(response.statusCode, 422);
+  assert.equal(response.body.error, "unprocessable_input");
+  assert.match(String(response.body.message || ""), /wikipedia-title-index query failed/i);
 });
 
 test("REST extract endpoint maps unexpected extractor failures to 500", async (t) => {

@@ -5,13 +5,13 @@
 - Branch: `main`
 - Sync: tracking `origin/main` (kept in sync via stable phase commits)
 - Current annotated release tag: `v1.0.2`
-- npm package status: `concept-miner@1.0.2` published (`latest` -> `1.0.2`), `1.0.3` in release prep.
+- npm package status: `concept-miner@1.0.3` published (`latest` -> `1.0.3`), `1.0.4` in release prep.
 - Latest stable phase: `v1.000` (first stable product release cut at package version `1.0.0`)
-- Planning state: `TODO.md` and `ROADMAP.md` are synchronized through `v1.000`.
+- Planning state: `TODO.md` and `ROADMAP.md` are synchronized through `v1.0.4` strict-stream hard-cut planning.
 - Major completed workstreams:
   - template baseline scaffold + CI/release workflow
   - transition product API (`extractConcepts`, `validateConcepts`)
-  - product CLI commands (`extract`, `validate-concepts`) plus compatibility commands
+  - product CLI commands (`extract`, `validate-concepts`) with legacy compatibility commands removed
   - prototype governance checks integrated into CI
   - frozen artifact corpus layout + frozen reference regression checks
   - OpenAPI/schema contract guard tests
@@ -32,7 +32,8 @@ Implemented and stable:
 - Frozen reference governance and full golden artifact regression checks are active across all seed fixtures.
 - Default-extended runtime extraction now performs wikipedia-title-index lookups and attaches deterministic enrichment under concept `properties.wikipedia_title_index` when service is reachable.
 - Field-level enrichment typing is now contract-defined (`exact_match` boolean, `prefix_count` integer >= 0).
-- Compatibility commands `run` and `validate` are explicitly retained as supported surfaces for 1.x.
+- Default-extended runtime now hard-fails when wikipedia-title-index is unavailable (no silent enrichment fallback).
+- Legacy CLI compatibility commands `run` and `validate` are removed from product-facing surfaces.
 - 1.x stability policy (breaking vs non-breaking changes) is now documented in `docs/GUARANTEES.md`.
 
 Remaining open implementation items:

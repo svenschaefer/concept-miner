@@ -6,6 +6,30 @@ Versioning note:
 - `v0.001+` is used for pre-1.0 productization milestones.
 - Each milestone requires deterministic behavior and explicit contract validation.
 
+## v1.0.4 - Strict Stream Hard Cut
+
+Goals:
+- Remove legacy compatibility and fallback behavior from the 1.x product stream.
+- Keep only strict product modes:
+  - `default-extended` (default, wikipedia-title-index required)
+  - `generic-baseline` (optional, no wikipedia-title-index)
+
+Deliverables:
+- remove CLI compatibility commands `run` and `validate`
+- remove underscore mode aliases (`generic_baseline`, `default_extended`)
+- remove silent default-extended wikipedia-title-index fallback (hard-fail with unprocessable input)
+- remove Step12 token-only fallback (`mentions[]` is required)
+- remove runtime seed artifact legacy filename fallback
+- sync docs/contracts/tests to strict behavior
+
+Exit criteria:
+- all unit/integration gates green under strict behavior
+- `TODO.md`, `ROADMAP.md`, and status docs aligned to strict 1.x policy
+
+Status:
+- Completed (release prep done on `main`).
+- Note: this cycle supersedes earlier roadmap items that kept compatibility commands/fallback behavior.
+
 ## v0.001 - Foundation And Scope Lock
 
 Goals:

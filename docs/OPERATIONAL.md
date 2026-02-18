@@ -2,14 +2,14 @@
 
 ## Commands
 
-- `run`: Execute the main pipeline.
-- `validate`: Validate output contract.
+- `extract`: Run concept extraction.
+- `validate-concepts`: Validate concepts output contract.
 
 ## CLI Examples
 
 ```bash
-npx concept-miner run --in input.json --out output.json --config project.config.json
-npx concept-miner validate --in output.json
+npx concept-miner extract --text "alpha beta alpha" --mode default-extended --out output.json
+npx concept-miner validate-concepts --in output.json
 ```
 
 ## Optional PowerShell Wrappers
@@ -31,12 +31,13 @@ Core product usage remains:
 - Request body limit: `1 MiB` for `POST /v1/concepts/extract`.
 - Runtime error behavior:
   - malformed/invalid request: `400`
+  - unprocessable extractor input/runtime dependency failure: `422`
   - unknown route: `404`
   - unexpected internal extractor failure: `500`
 - Default-extended enrichment behavior:
   - if wikipedia-title-index is reachable, enrichment may be added under
     `concepts[*].properties.wikipedia_title_index`
-  - if unavailable/timeout, extraction remains successful without enrichment fields.
+  - if unavailable/timeout, extraction fails (no silent enrichment fallback).
 
 ## Quality Gates
 

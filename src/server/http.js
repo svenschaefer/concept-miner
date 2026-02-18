@@ -89,6 +89,10 @@ function createApiServer(deps = {}) {
       });
       writeJson(res, 200, doc);
     } catch (err) {
+      if (err && err.code === "INVALID_MODE") {
+        writeJson(res, 400, { error: "invalid_request", message: err.message });
+        return;
+      }
       if (err && (err.code === "UNPROCESSABLE_INPUT" || err.name === "UnprocessableInputError")) {
         const message = err && err.message ? err.message : "Unprocessable input.";
         writeJson(res, 422, { error: "unprocessable_input", message });

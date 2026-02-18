@@ -11,23 +11,71 @@ const STOPWORDS = new Set([
   "as",
   "at",
   "be",
+  "been",
+  "being",
   "by",
+  "can",
+  "did",
+  "do",
+  "does",
   "for",
   "from",
+  "had",
+  "has",
+  "have",
+  "he",
+  "her",
+  "hers",
+  "him",
+  "his",
+  "i",
   "in",
+  "into",
   "is",
   "it",
+  "its",
+  "itself",
+  "me",
+  "my",
   "of",
   "on",
   "or",
+  "our",
+  "ours",
+  "she",
   "that",
   "the",
+  "their",
+  "theirs",
+  "them",
+  "then",
+  "there",
+  "these",
+  "they",
   "this",
+  "those",
   "to",
   "was",
+  "we",
   "were",
+  "what",
+  "when",
+  "where",
+  "which",
+  "who",
   "with",
+  "would",
+  "you",
+  "your",
+  "yours",
 ]);
+
+function unprocessable(message) {
+  const err = new Error(message);
+  err.code = "UNPROCESSABLE_INPUT";
+  err.name = "UnprocessableInputError";
+  return err;
+}
 
 function canonicalizeToken(value) {
   return String(value || "")
@@ -74,21 +122,28 @@ async function fetchWikipediaTitleIndexSignals(endpoint, queryText, timeoutMs) {
       body: JSON.stringify(payload),
       signal: controller.signal,
     });
-    if (!response.ok) return null;
+    if (!response.ok) {
+      throw unprocessable(`wikipedia-title-index query failed: HTTP ${response.status}.`);
+    }
 
     const body = await response.json();
     const row = Array.isArray(body.rows) && body.rows.length > 0 && Array.isArray(body.rows[0]) ? body.rows[0] : null;
-    if (!row) return null;
-
-    const prefixCount = Number.isInteger(row[0]) ? row[0] : 0;
-    const exactCount = Number.isInteger(row[1]) ? row[1] : 0;
+    if (!row) {
+      throw unprocessable("wikipedia-title-index query response missing rows.");
+    }
+    if (!Number.isInteger(row[0]) || !Number.isInteger(row[1])) {
+      throw unprocessable("wikipedia-title-index query response has invalid typing.");
+    }
 
     return {
-      exact_match: exactCount > 0,
-      prefix_count: prefixCount,
+      exact_match: row[1] > 0,
+      prefix_count: row[0],
     };
-  } catch (_err) {
-    return null;
+  } catch (err) {
+    if (err && (err.code === "UNPROCESSABLE_INPUT" || err.name === "UnprocessableInputError")) {
+      throw err;
+    }
+    throw unprocessable(`wikipedia-title-index query failed: ${err && err.message ? err.message : String(err)}`);
   } finally {
     clearTimeout(timer);
   }
@@ -99,10 +154,10 @@ async function addWikipediaTitleIndexSignals(concepts, options = {}) {
   if (mode !== "default-extended") return concepts;
 
   const endpoint =
-    options.wikipediaTitleIndexEndpoint ||
-    options.wikipedia_title_index_endpoint ||
-    process.env.WIKIPEDIA_TITLE_INDEX_ENDPOINT ||
-    DEFAULT_WIKIPEDIA_TITLE_INDEX_ENDPOINT;
+    options.wikipediaTitleIndexEndpoint
+    || options.wikipedia_title_index_endpoint
+    || process.env.WIKIPEDIA_TITLE_INDEX_ENDPOINT
+    || DEFAULT_WIKIPEDIA_TITLE_INDEX_ENDPOINT;
   const timeoutMs = Number.isFinite(options.wikipediaTitleIndexTimeoutMs)
     ? Number(options.wikipediaTitleIndexTimeoutMs)
     : (Number.isFinite(options.wikipedia_title_index_timeout_ms)
@@ -116,23 +171,19 @@ async function addWikipediaTitleIndexSignals(concepts, options = {}) {
       : String(concept.name || "");
     const queryText = titleCaseAscii(surface);
     const wti = await fetchWikipediaTitleIndexSignals(endpoint, queryText, timeoutMs);
-
-    if (wti) {
-      out.push({
-        ...concept,
-        properties: {
-          ...(concept.properties && typeof concept.properties === "object" ? concept.properties : {}),
-          wikipedia_title_index: wti,
-        },
-      });
-    } else {
-      out.push(concept);
-    }
+    out.push({
+      ...concept,
+      properties: {
+        ...(concept.properties && typeof concept.properties === "object" ? concept.properties : {}),
+        wikipedia_title_index: wti,
+      },
+    });
   }
   return out;
 }
 
-async function runFallbackExtraction(text, options = {}) {
+async function runExtraction(text, options = {}) {
+  const mode = normalizeModeValue(options.mode);
   const byName = new Map();
   const sourceText = String(text || "");
   for (const match of sourceText.matchAll(/[A-Za-z0-9]+/g)) {
@@ -166,7 +217,10 @@ async function runFallbackExtraction(text, options = {}) {
       surface_forms: Array.from(new Set(entry.surface_forms)),
       ...(options.includeEvidence === true ? { occurrences: entry.occurrences } : {}),
     }));
-  concepts = await addWikipediaTitleIndexSignals(concepts, options);
+
+  if (mode === "default-extended") {
+    concepts = await addWikipediaTitleIndexSignals(concepts, options);
+  }
 
   const out = {
     schema_version: String(options.schemaVersion || "1.0.0"),
@@ -187,5 +241,6 @@ async function runFallbackExtraction(text, options = {}) {
 }
 
 module.exports = {
-  runFallbackExtraction,
+  runExtraction,
+  unprocessable,
 };

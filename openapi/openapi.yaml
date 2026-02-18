@@ -156,14 +156,14 @@ components:
           description: >
             Optional wikipedia-title-index service base URL used in `default-extended`
             mode runtime enrichment (for example `http://127.0.0.1:32123`). If unavailable,
-            extraction remains successful without enrichment fields.
+            extraction fails with an unprocessable-input error.
         wikipedia_title_index_timeout_ms:
           type: integer
           minimum: 1
           default: 2000
           description: >
             Request timeout in milliseconds for wikipedia-title-index queries. On timeout,
-            extraction remains successful without enrichment fields.
+            extraction fails with an unprocessable-input error.
     ExtractLimits:
       type: object
       additionalProperties: false

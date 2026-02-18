@@ -17,8 +17,9 @@ This file defines core behavior guarantees for template-based projects.
   - when present, `concepts[*].properties.wikipedia_title_index` has:
     - `exact_match` (`boolean`)
     - `prefix_count` (`integer`, `>= 0`)
-- Compatibility command policy (1.x):
-  - `concept-miner run` and `concept-miner validate` remain supported compatibility surfaces in 1.x.
+- Mode policy:
+  - `default-extended` is the default runtime mode and requires wikipedia-title-index availability.
+  - `generic-baseline` is optional and runs without wikipedia-title-index.
 
 ## Non-Goals
 
@@ -51,10 +52,11 @@ Breaking changes (require major version bump):
 
 - Remove or rename documented REST endpoints/fields.
 - Tighten required-field constraints in `schema/concepts.schema.json` so previously valid documents fail.
-- Remove compatibility commands documented as supported for 1.x (`run`, `validate`).
+- Remove `generic-baseline` mode from public API/CLI.
 
 Non-breaking changes (allowed in 1.x):
 
 - Add optional fields to responses/contracts while preserving existing semantics.
 - Add new CLI options without changing existing option behavior.
 - Improve internal implementation/performance while preserving deterministic output contract.
+- Tighten behavior from silent fallback to explicit unprocessable failure for missing runtime dependencies.

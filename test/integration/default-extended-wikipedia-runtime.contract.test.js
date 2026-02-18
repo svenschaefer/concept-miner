@@ -94,21 +94,13 @@ test("generic-baseline extraction does not call wikipedia-title-index runtime", 
   }
 });
 
-test("default-extended extraction remains successful without enrichment when wikipedia-title-index is unavailable", async () => {
-  const doc = await extractConcepts("alpha beta alpha", {
-    mode: "default-extended",
-    wikipediaTitleIndexEndpoint: "http://127.0.0.1:1",
-    wikipediaTitleIndexTimeoutMs: 50,
-  });
-
-  assert.ok(Array.isArray(doc.concepts));
-  assert.equal(doc.concepts.length, 2);
-  for (const concept of doc.concepts) {
-    const hasWti = Boolean(
-      concept.properties
-        && typeof concept.properties === "object"
-        && concept.properties.wikipedia_title_index
-    );
-    assert.equal(hasWti, false);
-  }
+test("default-extended extraction hard-fails when wikipedia-title-index is unavailable", async () => {
+  await assert.rejects(
+    () => extractConcepts("alpha beta alpha", {
+      mode: "default-extended",
+      wikipediaTitleIndexEndpoint: "http://127.0.0.1:1",
+      wikipediaTitleIndexTimeoutMs: 50,
+    }),
+    /wikipedia-title-index query failed/i
+  );
 });

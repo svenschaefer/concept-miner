@@ -1,7 +1,5 @@
-const { runMain, runFromInput } = require("../run");
 const { extractConcepts, validateConcepts } = require("../concepts");
 const { normalizeModeValue } = require("../core/mode");
-const { validateOutput } = require("../validate");
 const { arg, readUtf8, writeUtf8 } = require("./io");
 const { loadProjectConfig } = require("./config");
 
@@ -12,58 +10,7 @@ function usage() {
     "  concept-miner extract --seed-id <id> [--artifacts-root <path>] [--out <path>] [--mode <generic-baseline|default-extended>] [--wikipedia-title-index-endpoint <url>] [--wikipedia-title-index-timeout-ms <ms>] [--config <path>]",
     "  concept-miner extract --step12-in <path> [--out <path>] [--mode <generic-baseline|default-extended>] [--wikipedia-title-index-endpoint <url>] [--wikipedia-title-index-timeout-ms <ms>] [--config <path>]",
     "  concept-miner validate-concepts --in <path>",
-    "",
-    "Compatibility commands:",
-    "  concept-miner run --text <string> | --in <path> [--out <path>] [--config <path>]",
-    "  concept-miner validate --in <path>",
   ].join("\n");
-}
-
-async function runCommand(args) {
-  const text = arg(args, "--text");
-  const inPath = arg(args, "--in");
-  const outPath = arg(args, "--out");
-  const configPath = arg(args, "--config");
-
-  const hasText = typeof text === "string";
-  const hasIn = typeof inPath === "string";
-  if (Number(hasText) + Number(hasIn) !== 1) {
-    throw new Error("Exactly one of --text or --in is required.");
-  }
-
-  const { config } = loadProjectConfig({
-    configPath,
-    requireExists: typeof configPath === "string" && configPath.length > 0,
-  });
-
-  let doc;
-  if (hasText) {
-    doc = await runMain(text, { config });
-  } else {
-    const raw = readUtf8(inPath, "input file");
-    const input = JSON.parse(raw);
-    doc = runFromInput(input, { config });
-  }
-
-  const output = JSON.stringify(doc, null, 2) + "\n";
-  if (outPath) writeUtf8(outPath, output);
-  else process.stdout.write(output);
-}
-
-function validateCommand(args) {
-  const inPath = arg(args, "--in");
-  if (!inPath) throw new Error("validate requires --in <path>");
-  const raw = readUtf8(inPath, "input file");
-  const doc = JSON.parse(raw);
-  const conceptsResult = validateConcepts(doc);
-  if (conceptsResult.ok) {
-    process.stdout.write("ok\n");
-    return;
-  }
-
-  // Backward-compatible fallback for legacy template output documents.
-  validateOutput(doc);
-  process.stdout.write("ok\n");
 }
 
 async function extractCommand(args) {
@@ -135,8 +82,6 @@ async function runCli(argv = process.argv.slice(2)) {
 
   if (cmd === "extract") return extractCommand(args);
   if (cmd === "validate-concepts") return validateConceptsCommand(args);
-  if (cmd === "run") return runCommand(args);
-  if (cmd === "validate") return validateCommand(args);
 
   throw new Error(`Unknown command: ${cmd}`);
 }

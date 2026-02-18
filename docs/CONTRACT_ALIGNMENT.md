@@ -22,7 +22,7 @@ This document defines the canonical contract alignment between runtime output, J
 
 Default-extended enrichment availability:
 - If wikipedia-title-index service is configured and reachable, enrichment may be included.
-- If service is unavailable or times out, extraction remains successful and deterministic without enrichment fields.
+- If service is unavailable or times out in default-extended mode, extraction fails with an unprocessable-input error.
 
 ## Envelope Rule
 

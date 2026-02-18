@@ -51,11 +51,11 @@ test("README includes REST quick-start examples for extract endpoint", () => {
   assert.match(readme, /curl -sS -X POST/);
 });
 
-test("README states compatibility command support policy for 1.x", () => {
+test("README does not advertise removed compatibility commands", () => {
   const readme = read("README.md");
-  assert.match(readme, /Compatibility commands \(supported for 1\.x\)/);
-  assert.match(readme, /concept-miner run --text/);
-  assert.match(readme, /concept-miner validate --in/);
+  assert.doesNotMatch(readme, /Compatibility commands/i);
+  assert.doesNotMatch(readme, /concept-miner run --text/);
+  assert.doesNotMatch(readme, /concept-miner validate --in/);
 });
 
 test("release guide uses explicit staging paths for release commits", () => {
@@ -74,14 +74,13 @@ test("guarantees doc states the upstream elementary-assertions Step12 boundary",
   assert.match(guarantees, /out of scope/i);
 });
 
-test("guarantees doc states enrichment typing and compatibility policy", () => {
+test("guarantees doc states enrichment typing and strict mode policy", () => {
   const guarantees = read("docs/GUARANTEES.md");
   assert.match(guarantees, /wikipedia_title_index/);
   assert.match(guarantees, /exact_match/);
   assert.match(guarantees, /prefix_count/);
-  assert.match(guarantees, /run/);
-  assert.match(guarantees, /validate/);
-  assert.match(guarantees, /1\.x/);
+  assert.match(guarantees, /default-extended/i);
+  assert.match(guarantees, /generic-baseline/i);
 });
 
 test("guarantees doc defines 1.x stability policy with breaking/non-breaking examples", () => {
@@ -116,5 +115,5 @@ test("operational guide documents REST runtime hardening notes", () => {
   assert.match(operational, /400/);
   assert.match(operational, /404/);
   assert.match(operational, /500/);
-  assert.match(operational, /without enrichment fields/i);
+  assert.match(operational, /422/);
 });
