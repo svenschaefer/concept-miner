@@ -108,8 +108,7 @@ Status date: 2026-02-18
 - [x] Define compatibility policy between current OpenAPI and prototype output:
 - Selected: keep canonical public concepts document and use explicit transform from prototype candidate output.
 - [x] Confirm final mode naming and defaults in all public interfaces:
-- `generic baseline mode` = extraction without wikipedia/wikipedia-title-index information (optional)
-- `default extended mode` = extraction with wikipedia/wikipedia-title-index information (default)
+- `default extended mode` = extraction with wikipedia/wikipedia-title-index information (default and only product runtime mode)
 - [x] Enforce terminology policy in code/docs/contracts:
 - Use `wikipedia` and `wikipedia-title-index`
 - Do not expose `step13`, `13a`, `13b`, `wiki`, or `wti` in product-facing naming

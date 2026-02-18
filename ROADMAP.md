@@ -666,7 +666,7 @@ Status:
 
 Cycle CW (`v0.107`) - Internal Mode Terminology Closure:
 - Remove remaining `13a`/`13b` step-label naming from product-owned runtime internals while preserving artifact compatibility behavior.
-- Keep API/CLI mode handling centered on product mode names (`generic-baseline`, `default-extended`), with underscore compatibility aliases retained.
+- Keep API/CLI mode handling centered on product mode names (`generic-baseline`, `default-extended`) (historical; superseded by strict default-extended-only policy in `v1.0.5`).
 - Add/adjust contracts to prevent regression of step-label naming in product-owned runtime internals.
 Status:
 - Completed on `main`.
