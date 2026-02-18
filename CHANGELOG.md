@@ -4,6 +4,8 @@ All notable changes to this project are documented in this file.
 
 ## [Unreleased]
 
+## [1.1.0] - 2026-02-18
+
 - v1.1.0 quality-recovery work:
   - ported latest quality-relevant Step13 logic deltas from reference prototype into product-owned `src/core/step13.js` (including stronger 13b suppression/promotion guards).
   - restored independent 13b benchmark gate to `overall_score=100.0` across all six realistic seeds.
@@ -15,6 +17,9 @@ All notable changes to this project are documented in this file.
   - added `scripts/check-concept-candidates-determinism.js` (standalone schema + deterministic key-order check for concept-candidates YAML).
   - added product runner `scripts/run-seed-concept-candidates.ps1`.
   - added heuristic-level Step13 regression tests for suppression/promotion behavior.
+- repository layout hardening:
+  - removed `prototype/` directory from the repository after product-owned parity/tooling coverage completion.
+  - aligned docs/policies/tests to product-owned-only posture.
 
 ## [1.0.5] - 2026-02-18
 

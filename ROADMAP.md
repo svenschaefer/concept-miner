@@ -160,6 +160,8 @@ Planned cycles:
     - heuristic-level Step13 regression coverage
 - `v1.1.0-f` completed: removed `prototype/` from repository and updated product docs/tests/policies to product-owned-only posture.
 - `v1.1.0-g` in progress: full release gate run (`ci:check`, `release:check`) completed; release cut notes/tag/publish pending.
+- `v1.1.0-h` completed: prepared release artifacts (`docs/releases/v1.1.0.md`, `CHANGELOG.md`, `package.json`/`package-lock.json` to `1.1.0`).
+- `v1.1.0-i` in progress: run release gates for `1.1.0`, finalize planning docs, and push stable release-prep phase.
 
 Status:
 - In progress.
