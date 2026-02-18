@@ -23,13 +23,13 @@ Avoid hard-locking:
 2. Run command sequence.
 3. Assert invariant checkpoints only.
 4. Capture result summary (counts/flags/hashes) instead of fragile full output strings.
-5. Keep one deterministic smoke path in CI (`npm run smoke:release`).
+5. Keep one deterministic smoke path in CI (`npm run smoke:release:ci`).
 
 ## Suggested Run Checklist
 
 - `npm test`
 - `npm run pack:check`
-- `npm run smoke:release`
+- `npm run smoke:release:ci`
 
 Optional:
 - multi-cycle run for workflows that involve non-deterministic retries, with bounded attempts.

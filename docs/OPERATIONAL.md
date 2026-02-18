@@ -34,5 +34,5 @@ npx concept-miner validate-concepts --in output.json
 
 - `npm test`
 - `npm run pack:check`
-- `npm run smoke:release`
+- `npm run smoke:release:ci`
 - `npm run ci:check`

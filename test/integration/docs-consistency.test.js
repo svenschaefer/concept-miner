@@ -104,6 +104,7 @@ test("npm release guide documents npm publish prerequisites", () => {
   assert.match(releaseGuide, /pack:check/);
   assert.match(releaseGuide, /does not create/i);
   assert.match(releaseGuide, /pack:artifact/);
+  assert.match(releaseGuide, /RELEASE_TARGET_VERSION/);
 });
 
 test("operational guide documents runtime boundary", () => {

@@ -36,6 +36,7 @@ npm run dev:check
 npm run dev:report:metrics
 npm run dev:report:maturity
 npm run ci:check
+$env:RELEASE_TARGET_VERSION = (node -p "require('./package.json').version")
 npm run release:check
 ```
 

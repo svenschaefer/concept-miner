@@ -26,12 +26,16 @@ Package payload rule:
 ```powershell
 git checkout -b release/<x.y.z>-<scope>
 ```
-2. Run release checks on a clean worktree:
+2. Set explicit release target version (required by release scripts):
+```powershell
+$env:RELEASE_TARGET_VERSION = "<x.y.z>"
+```
+3. Run release checks on a clean worktree:
 ```powershell
 npm run release:check
 ```
-3. Update code, tests, and `CHANGELOG.md`.
-4. Bump version without creating a tag:
+4. Update code, tests, and `CHANGELOG.md`.
+5. Bump version without creating a tag:
 ```powershell
 npm version <x.y.z> --no-git-tag-version
 ```
@@ -47,6 +51,10 @@ npm run ci:check
 Important:
 - `npm run pack:check` is validation only (`npm pack --dry-run`) and does not create `*.tgz`.
 - Use `npm run pack:artifact` (or `npm pack`) when a real tarball file is required.
+- `npm run pack:artifact`, `npm run smoke:release`, and `npm run release:check` require
+  `RELEASE_TARGET_VERSION` and verify:
+  - `RELEASE_TARGET_VERSION === package.json version`
+  - `CHANGELOG.md` contains heading `## [<x.y.z>]`
 
 ```powershell
 npm run pack:artifact
@@ -160,6 +168,15 @@ Behavior:
 - npm package is live with expected `latest` (only for publishable/public release flow).
 - post-publish smoke check passed (public registry or private tarball rehearsal, depending on posture).
 - repo is clean (`git status`).
+
+## Strict Release Script Notes
+
+- CI path uses `npm run smoke:release:ci` (no release-target env required).
+- Human release path uses:
+  - `npm run pack:artifact`
+  - `npm run smoke:release`
+  - `npm run release:check`
+  and requires `RELEASE_TARGET_VERSION`.
 
 ## Current Posture (v1.0.4 release prep)
 

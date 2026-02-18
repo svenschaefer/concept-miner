@@ -19,3 +19,6 @@ Public API contract (starter):
 
 Tooling layer:
 - Validation and CLI must not mutate core output.
+- Release script safety:
+  - `pack:artifact`, `smoke:release`, and `release:check` require `RELEASE_TARGET_VERSION`.
+  - Release target must match `package.json` version and have a matching `CHANGELOG.md` heading.

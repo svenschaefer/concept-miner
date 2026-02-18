@@ -31,8 +31,13 @@ test("package scripts include lint and ci gate wiring", () => {
   assert.equal(typeof pkg.scripts.lint, "string");
   assert.match(pkg.scripts.ci_check || pkg.scripts["ci:check"], /npm run lint/);
   assert.equal(pkg.scripts["pack:check"], "npm pack --dry-run");
+  assert.match(pkg.scripts["pack:artifact"], /check-release-target-version\.js --require-env/);
   assert.match(pkg.scripts["pack:artifact"], /npm pack/);
   assert.match(pkg.scripts["pack:artifact"], /check-pack-artifact\.js/);
+  assert.match(pkg.scripts["smoke:release"], /check-release-target-version\.js --require-env/);
+  assert.match(pkg.scripts["smoke:release:ci"], /release-smoke-check\.js/);
+  assert.match(pkg.scripts["ci:check"], /smoke:release:ci/);
+  assert.match(pkg.scripts["release:check"], /check-release-target-version\.js --require-env/);
 });
 
 test("package scripts expose product-facing mode names for benchmark tooling", () => {
