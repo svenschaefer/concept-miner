@@ -159,7 +159,7 @@ Planned cycles:
     - `scripts/run-seed-concept-candidates.ps1`
     - heuristic-level Step13 regression coverage
 - `v1.1.0-f` completed: removed `prototype/` from repository and updated product docs/tests/policies to product-owned-only posture.
-- `v1.1.0-g` in progress: full release gate run (`ci:check`, `release:check`) and release cut notes.
+- `v1.1.0-g` in progress: full release gate run (`ci:check`, `release:check`) completed; release cut notes/tag/publish pending.
 
 Status:
 - In progress.

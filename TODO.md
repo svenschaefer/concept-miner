@@ -38,7 +38,7 @@ Status date: 2026-02-18
 - product PowerShell seed runner script
 - [x] Remove `prototype/` directory from repository after port-completeness gate.
 - [x] Update docs/policies/tests that still assume in-repo prototype retention.
-- [ ] Re-run full release gates after prototype removal (`npm run ci:check`, `npm run release:check`).
+- [x] Re-run full release gates after prototype removal (`npm run ci:check`, `npm run release:check`).
 
 ## Progress Snapshot
 
