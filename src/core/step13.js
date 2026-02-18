@@ -227,15 +227,6 @@ function parseNonNegativeNumberArg(name, raw, fallback) {
   return value;
 }
 
-function countObjectTotal(raw) {
-  let total = 0;
-  for (const key of Object.keys(raw || {})) {
-    const value = raw[key];
-    if (Number.isInteger(value) && value > 0) total += value;
-  }
-  return total;
-}
-
 function selectMentionEvidenceByPolicy(assertionEvidence, lexiconEvidence, policy) {
   if (policy === "assertion_only") return assertionEvidence || {};
   return assertionEvidence || lexiconEvidence || {};
@@ -383,27 +374,6 @@ function buildMentionLexiconWikipediaTitleIndexMap(step12) {
   return mentionWikipediaTitleIndex;
 }
 
-function mentionKindRank(kind) {
-  const k = String(kind || "");
-  if (k === "mwe") return 0;
-  if (k === "chunk") return 1;
-  if (k === "token") return 2;
-  return 3;
-}
-
-function mentionSortKeyForSelection(mention) {
-  const tokenCount = Array.isArray(mention && mention.token_ids) ? mention.token_ids.length : 0;
-  const span = mention && mention.span && Number.isInteger(mention.span.start) && Number.isInteger(mention.span.end)
-    ? (mention.span.end - mention.span.start)
-    : 0;
-  return {
-    kindRank: mentionKindRank(mention && mention.kind),
-    tokenCount,
-    span,
-    id: String((mention && mention.id) || ""),
-  };
-}
-
 function isEligibleMentionForConcept(mention, tokenById, options = {}) {
   const token = tokenById.get(String((mention && mention.head_token_id) || "")) || {};
   const tag = String(((token.pos || {}).tag) || "");
@@ -514,30 +484,6 @@ function deriveLiftedSurface(mention, canonicalText, tokenById) {
     }
   }
   return result;
-}
-
-function selectCanonicalMentionId(mentionIds, mentionById, tokenById) {
-  const mentions = [];
-  for (const id of mentionIds || []) {
-    const mention = mentionById.get(String(id || ""));
-    if (!mention) continue;
-    mentions.push(mention);
-  }
-  if (mentions.length === 0) return null;
-
-  mentions.sort((a, b) => {
-    const ka = mentionSortKeyForSelection(a);
-    const kb = mentionSortKeyForSelection(b);
-    if (ka.kindRank !== kb.kindRank) return ka.kindRank - kb.kindRank;
-    if (ka.tokenCount !== kb.tokenCount) return kb.tokenCount - ka.tokenCount;
-    if (ka.span !== kb.span) return kb.span - ka.span;
-    return compareStrings(ka.id, kb.id);
-  });
-
-  for (const mention of mentions) {
-    if (isEligibleMentionForConcept(mention, tokenById)) return mention.id;
-  }
-  return null;
 }
 
 function mentionHasFiniteVerbToken(mention, tokenById) {
@@ -775,7 +721,7 @@ function buildConceptCandidatesFromStep12(step12, options = {}) {
         if (!info.shouldLift) continue;
         if (!info.hasLiftedSurface) continue;
         if (info.skipSingle) continue;
-        const { mention, liftedSurface } = info;
+        const { liftedSurface } = info;
         const canonical = canonicalizeSurface(liftedSurface);
         if (!byCanonical.has(canonical)) {
           byCanonical.set(canonical, {
@@ -880,7 +826,7 @@ function buildConceptCandidatesFromStep12(step12, options = {}) {
     if (!info) continue;
     if (!info.shouldLift) continue;
     if (!info.hasLiftedSurface) continue;
-    const { rawSurface, normalizedRawSurface, liftedSurface } = info;
+    const { normalizedRawSurface, liftedSurface } = info;
     if (info.hasFiniteVerbToken && liftedSurface === normalizedRawSurface) {
       const lower = String(liftedSurface).toLowerCase();
       if (!(enableLegacyEnrichment && LEGACY_NOMINAL_VERB_WHITELIST.has(lower))) continue;
@@ -1248,7 +1194,6 @@ function buildConceptCandidatesFromStep12(step12, options = {}) {
         const ordered = mentionTokensInOrder(mention, tokenById);
         const firstTok = ordered[0] || {};
         const firstTag = String((((firstTok.pos || {}).tag) || ""));
-        const firstCoarse = String((((firstTok.pos || {}).coarse) || ""));
         if (isFunctionLeadingTag(firstTag)) functionLeadingCount += 1;
         if (firstTag === "CD" || firstTag === "JJR") quantifierLeadingCount += 1;
         if (firstTag === "VBG" || firstTag === "VBN") participialLeadingCount += 1;
@@ -1300,13 +1245,13 @@ function buildConceptCandidatesFromStep12(step12, options = {}) {
           participialChunkReductionCount += 1;
         }
         if (liftedParts === 2) {
-          const ordered = mentionTokensInOrder(mention, tokenById);
+          const orderedLift = mentionTokensInOrder(mention, tokenById);
           const firstLift = String((info.liftedSurface || "").split(/\s+/)[0] || "").toLowerCase();
-          let firstLiftToken = ordered.find((t) => {
+          let firstLiftToken = orderedLift.find((t) => {
             const tok = String(t.normalized || t.surface || "").toLowerCase();
             return tok === firstLift;
           });
-          if (!firstLiftToken) firstLiftToken = ordered[0] || {};
+          if (!firstLiftToken) firstLiftToken = orderedLift[0] || {};
           const firstLiftTag = String((((firstLiftToken.pos || {}).tag) || ""));
           const firstLiftCoarse = String((((firstLiftToken.pos || {}).coarse) || ""));
           const headTag = String(((head.pos || {}).tag) || "");

@@ -29,7 +29,7 @@ Default-extended enrichment availability:
 - No additional transport envelope is defined (`data`, `payload`, wrapper objects).
 - The canonical concepts document itself is the payload for persistence and validation.
 
-## Prototype Compatibility Note
+## Historical Compatibility Note
 
-- Prototype `concept_candidates` artifacts remain governance/testing references.
+- Legacy prototype `concept_candidates` mappings were fully ported into product-owned runtime/tooling/tests.
 - Product-facing contracts are the concepts document contracts above.

@@ -1,6 +1,6 @@
 # Frozen References Policy
 
-`test/artifacts/*/result-reference/*` are frozen regression baselines from the prototype.
+`test/artifacts/*/result-reference/*` are frozen regression baselines derived from the historical prototype and now owned by the product repository.
 
 Policy:
 

@@ -15,7 +15,7 @@ npx concept-miner validate-concepts --in output.json
 ## Runtime Boundary
 
 - Product runtime is self-contained under `src/`, `bin/`, `schema/`, and `scripts/`.
-- `prototype/` is reference-only and not part of runtime execution paths.
+- Product runtime has no dependency on prototype-local files.
 
 ## REST Runtime Notes
 

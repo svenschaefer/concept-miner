@@ -17,7 +17,7 @@ Generic release process for template-based Node.js packages.
 Both streams should point to the same version and release commit.
 
 Package payload rule:
-- `prototype/` is reference-only and must not be included in npm tarballs.
+- Only product-owned runtime/tooling/docs files are included in npm tarballs.
 - Enforcement in this repository uses package `files` allowlist plus `.npmignore`.
 
 ## 1) Prepare

@@ -1,9 +1,6 @@
 # Prototype Migration Notes
 
-This document captures the productization-relevant content migrated from:
-
-- `prototype/README.md`
-- `prototype/TODO.md`
+This document captures productization-relevant content migrated from historical prototype sources that were previously kept in-repo.
 
 ## Contract Points Migrated
 
@@ -42,7 +39,7 @@ This document captures the productization-relevant content migrated from:
 
 ## Backlog History Snapshot
 
-From `prototype/TODO.md`:
+From historical prototype planning notes:
 
 - Closed in this repository:
   - deterministic `13b` calibration/sweep support
@@ -57,8 +54,7 @@ From `prototype/TODO.md`:
 
 ## Mapping Notes
 
-- Prototype file `prototype/README.md` remains authoritative for prototype internals.
-- Product runtime must not depend on `prototype/*` modules.
+- Product runtime must not depend on prototype-local modules/files.
 - Product-facing contracts are authoritative in:
   - `README.md`
   - `schema/concepts.schema.json`

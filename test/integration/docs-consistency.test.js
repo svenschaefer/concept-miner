@@ -110,7 +110,7 @@ test("npm release guide documents npm publish prerequisites", () => {
 test("operational guide documents runtime boundary", () => {
   const operational = read("docs/OPERATIONAL.md");
   assert.match(operational, /Runtime Boundary/);
-  assert.match(operational, /prototype\/.*reference-only/i);
+  assert.match(operational, /no dependency on prototype-local files/i);
 });
 
 test("operational guide documents REST runtime hardening notes", () => {

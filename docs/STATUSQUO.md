@@ -4,6 +4,7 @@
 
 - Branch: `main`
 - Sync: tracking `origin/main` (kept in sync via stable phase commits)
+- Repository layout: `prototype/` directory removed; product repository is now product-owned surfaces only.
 - Current annotated release tag: `v1.0.2`
 - npm package status: `concept-miner@1.0.5` published (`latest` -> `1.0.5`).
 - Latest stable phase: `v1.000` (first stable product release cut at package version `1.0.0`)
@@ -12,7 +13,7 @@
   - template baseline scaffold + CI/release workflow
   - transition product API (`extractConcepts`, `validateConcepts`)
   - product CLI commands (`extract`, `validate-concepts`) with legacy compatibility commands removed
-  - prototype governance checks integrated into CI
+  - prototype-derived governance checks fully productized into product-owned scripts/tests
   - frozen artifact corpus layout + frozen reference regression checks
   - OpenAPI/schema contract guard tests
   - sidecar and release-workflow contract tests
@@ -36,13 +37,13 @@ Implemented and stable:
 - Legacy CLI compatibility commands `run` and `validate` are removed from product-facing surfaces.
 - 13b independent benchmark quality gate is now mandatory in `ci:check` with required `overall_score=100.0`.
 - Latest `v1.1.0` Step13 delta port restored the 13b gate to `overall_score=100.0` on all six benchmark seeds.
-- Prototype-deletion safety gap closure is in progress with product-owned benchmark diagnostics tooling, determinism checker script, and heuristic-level Step13 regression tests.
+- Prototype-deletion safety gap closure completed (product-owned benchmark diagnostics tooling, determinism checker script, and heuristic-level Step13 regression tests).
 - 13a/generic-baseline mode is removed from the product runtime/API/CLI contract.
 - 1.x stability policy (breaking vs non-breaking changes) is documented in `docs/GUARANTEES.md`.
 
 Remaining open implementation items:
 
-- Continue reducing non-product test dependencies on `prototype/*` while keeping prototype read-only as reference material.
+- Complete repository cleanup after `prototype/` removal and finalize release cut docs for `v1.1.0`.
 
 Release/publish posture:
 
@@ -72,7 +73,7 @@ Working commands:
 Known setup constraints:
 
 - Node.js `>=20` is required.
-- Product runtime does not import `prototype/*`; prototype remains reference-only.
+- Product runtime does not import prototype-local modules/files.
 
 ## Quality status
 
