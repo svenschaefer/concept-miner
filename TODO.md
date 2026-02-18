@@ -182,7 +182,7 @@ Status date: 2026-02-18
 - identifier/version format constraints if part of public contract
 - [x] Add schema export file under `schema/` and wire it to package export.
 - [x] Ensure `validate-concepts` command validates against the canonical public schema.
-- [ ] Remove legacy template-output validation fallback from product CLI.
+- [x] Remove legacy template-output validation fallback from product CLI.
 - [x] Migrate/replace prototype persisted schema artifact:
 - `prototype/seed.concept-candidates.schema.json` -> product schema location and validator wiring
 - [x] Preserve prototype deterministic serialization contracts where applicable:
@@ -415,7 +415,7 @@ Status date: 2026-02-18
 - [x] Freeze field-level public contract for `default extended mode` enrichment:
 - explicitly define stable keys/types under `concepts[*].properties.wikipedia_title_index`
 - reflect guarantees in `schema/concepts.schema.json`, `openapi/openapi.yaml`, and docs
-- [ ] Finalize strict product-only CLI policy:
+- [x] Finalize strict product-only CLI policy:
 - remove compatibility commands (`run`, `validate`) from CLI/docs/tests
 - enforce strict command surface via contract tests
 - [x] Harden REST runtime operational behavior:
