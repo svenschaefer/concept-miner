@@ -7,7 +7,7 @@
 - Current annotated release tag: `v1.0.2`
 - npm package status: `concept-miner@1.0.5` published (`latest` -> `1.0.5`).
 - Latest stable phase: `v1.000` (first stable product release cut at package version `1.0.0`)
-- Planning state: `TODO.md` and `ROADMAP.md` are synchronized; next planned line is `v1.1.0`.
+- Planning state: `TODO.md` and `ROADMAP.md` are synchronized; `v1.1.0` is in progress.
 - Major completed workstreams:
   - template baseline scaffold + CI/release workflow
   - transition product API (`extractConcepts`, `validateConcepts`)
@@ -35,6 +35,7 @@ Implemented and stable:
 - Default-extended runtime now hard-fails when wikipedia-title-index is unavailable (no silent enrichment fallback).
 - Legacy CLI compatibility commands `run` and `validate` are removed from product-facing surfaces.
 - 13b independent benchmark quality gate is now mandatory in `ci:check` with required `overall_score=100.0`.
+- Latest `v1.1.0` Step13 delta port restored the 13b gate to `overall_score=100.0` on all six benchmark seeds.
 - 13a/generic-baseline mode is removed from the product runtime/API/CLI contract.
 - 1.x stability policy (breaking vs non-breaking changes) is documented in `docs/GUARANTEES.md`.
 
@@ -52,6 +53,7 @@ Release/publish posture:
 Current next-step planning:
 
 - Continue post-`v1.000` 1.x backlog execution under the documented stability policy.
+- Complete `v1.1.0-e` docs/release sync and release cut.
 
 ## Runtime status
 

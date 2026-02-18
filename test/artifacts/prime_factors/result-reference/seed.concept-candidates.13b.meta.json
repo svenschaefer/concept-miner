@@ -7,7 +7,9 @@
     "enable_13b_mode": true,
     "mode13b_policy": {
       "verb_promotion_min_wikipedia_count": 1,
-      "unlinked_finite_verb_promotion_min_wikipedia_count": 80,
+      "predicate_verb_promotion_min_wikipedia_count": 70,
+      "unlinked_finite_verb_promotion_min_wikipedia_count": 130,
+      "unlinked_finite_verb_promotion_max_wikipedia_count": 200,
       "low_wikipedia_count_unlinked_min_avg": 0.5,
       "nonnominal_share_min": 0.5,
       "nonnominal_weak_wikipedia_count_max": 1.5,

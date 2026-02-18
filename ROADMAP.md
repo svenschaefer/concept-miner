@@ -148,14 +148,14 @@ Goals:
 - keep 13b quality gate at `overall_score=100.0`
 
 Planned cycles:
-- `v1.1.0-a` scope lock and acceptance criteria
-- `v1.1.0-b` analyze all `prototype/*` changes against product source and classify quality-relevant deltas.
-- `v1.1.0-c` port selected Step13 extraction/test improvements into product-owned code and tests.
-- `v1.1.0-d` iterate benchmark alignment until `check:quality-gate:13b` reaches `overall_score=100.0`.
-- `v1.1.0-e` docs/release sync and cut.
+- `v1.1.0-a` completed: scope lock and acceptance criteria.
+- `v1.1.0-b` completed: analyzed `prototype/*` Step13 deltas and classified quality-relevant changes.
+- `v1.1.0-c` completed: ported Step13 quality deltas into `src/core/step13.js`.
+- `v1.1.0-d` completed: `npm run check:quality-gate:13b` restored to `overall_score=100.0`.
+- `v1.1.0-e` in progress: docs/release sync and cut.
 
 Status:
-- Planned.
+- In progress.
 
 ## v0.001 - Foundation And Scope Lock
 

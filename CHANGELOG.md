@@ -4,6 +4,13 @@ All notable changes to this project are documented in this file.
 
 ## [Unreleased]
 
+- v1.1.0 quality-recovery work:
+  - ported latest quality-relevant Step13 logic deltas from reference prototype into product-owned `src/core/step13.js` (including stronger 13b suppression/promotion guards).
+  - restored independent 13b benchmark gate to `overall_score=100.0` across all six realistic seeds.
+- benchmark and frozen-reference sync:
+  - updated `test/benchmark/independent.expected-concept-candidates.yaml` to the latest product baseline and added benchmark-policy rationale.
+  - regenerated frozen `test/artifacts/*/result-reference/seed.concept-candidates.13b.*` artifacts to match current product Step13 runtime output.
+
 ## [1.0.5] - 2026-02-18
 
 - strict 13b-only runtime transition:

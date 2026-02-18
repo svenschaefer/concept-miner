@@ -25,11 +25,7 @@
       "alias",
       "supplemental"
     ],
-    "are": [
-      "mode13b_promotion"
-    ],
     "auditing": [
-      "mode13b_promotion",
       "role",
       "supplemental"
     ],
@@ -51,12 +47,6 @@
     "decisions": [
       "alias",
       "supplemental"
-    ],
-    "is": [
-      "mode13b_promotion"
-    ],
-    "more_role": [
-      "alias"
     ],
     "more_roles": [
       "role",
@@ -89,7 +79,6 @@
       "supplemental"
     ],
     "roles": [
-      "alias",
       "supplemental"
     ],
     "security": [
@@ -126,40 +115,16 @@
     ]
   },
   "mode13b_by_canonical": {
-    "are": {
+    "more_roles": {
       "policy_hits": [
-        "promotion_unlinked_finite_verb_wikipedia_count"
+        "suppress_quantifier_led_fragment"
       ],
       "metrics": {
-        "role_total": 0,
-        "assertion_count": 0,
-        "mention_count": 1,
-        "avg_wikipedia_count": 242,
-        "non_nominal_share": 1
-      }
-    },
-    "auditing": {
-      "policy_hits": [
-        "promotion_verb_wikipedia_count"
-      ],
-      "metrics": {
-        "role_total": 2,
+        "role_total": 1,
         "assertion_count": 1,
         "mention_count": 2,
-        "avg_wikipedia_count": 24,
-        "non_nominal_share": 1
-      }
-    },
-    "is": {
-      "policy_hits": [
-        "promotion_unlinked_finite_verb_wikipedia_count"
-      ],
-      "metrics": {
-        "role_total": 0,
-        "assertion_count": 0,
-        "mention_count": 1,
-        "avg_wikipedia_count": 105,
-        "non_nominal_share": 1
+        "avg_wikipedia_count": 200,
+        "non_nominal_share": 0
       }
     },
     "using": {
@@ -185,6 +150,370 @@
         "avg_wikipedia_count": 68.5,
         "non_nominal_share": 0.5
       }
+    },
+    "access_control_system": {
+      "policy_hits": [],
+      "metrics": {
+        "role_total": 2,
+        "assertion_count": 2,
+        "mention_count": 2,
+        "avg_wikipedia_count": 772.5,
+        "non_nominal_share": 0
+      },
+      "source_categories": [
+        "role",
+        "supplemental"
+      ]
+    },
+    "access_decision": {
+      "policy_hits": [],
+      "metrics": {
+        "role_total": 1,
+        "assertion_count": 1,
+        "mention_count": 2,
+        "avg_wikipedia_count": 253,
+        "non_nominal_share": 0
+      },
+      "source_categories": [
+        "alias"
+      ]
+    },
+    "access_decisions": {
+      "policy_hits": [],
+      "metrics": {
+        "role_total": 1,
+        "assertion_count": 1,
+        "mention_count": 2,
+        "avg_wikipedia_count": 253,
+        "non_nominal_share": 0
+      },
+      "source_categories": [
+        "role",
+        "supplemental"
+      ]
+    },
+    "action": {
+      "policy_hits": [],
+      "metrics": {
+        "role_total": 2,
+        "assertion_count": 2,
+        "mention_count": 1,
+        "avg_wikipedia_count": 185,
+        "non_nominal_share": 0
+      },
+      "source_categories": [
+        "alias"
+      ]
+    },
+    "actions": {
+      "policy_hits": [],
+      "metrics": {
+        "role_total": 2,
+        "assertion_count": 2,
+        "mention_count": 1,
+        "avg_wikipedia_count": 185,
+        "non_nominal_share": 0
+      },
+      "source_categories": [
+        "alias",
+        "supplemental"
+      ]
+    },
+    "analysis": {
+      "policy_hits": [],
+      "metrics": {
+        "role_total": 1,
+        "assertion_count": 1,
+        "mention_count": 2,
+        "avg_wikipedia_count": 249,
+        "non_nominal_share": 0
+      },
+      "source_categories": [
+        "alias",
+        "supplemental"
+      ]
+    },
+    "auditing": {
+      "policy_hits": [],
+      "metrics": {
+        "role_total": 1,
+        "assertion_count": 1,
+        "mention_count": 2,
+        "avg_wikipedia_count": 18,
+        "non_nominal_share": 0
+      },
+      "source_categories": [
+        "role",
+        "supplemental"
+      ]
+    },
+    "control_system": {
+      "policy_hits": [],
+      "metrics": {
+        "role_total": 2,
+        "assertion_count": 2,
+        "mention_count": 2,
+        "avg_wikipedia_count": 772.5,
+        "non_nominal_share": 0
+      },
+      "source_categories": [
+        "alias"
+      ]
+    },
+    "credential": {
+      "policy_hits": [],
+      "metrics": {
+        "role_total": 0,
+        "assertion_count": 0,
+        "mention_count": 1,
+        "avg_wikipedia_count": 6,
+        "non_nominal_share": 0
+      },
+      "source_categories": [
+        "alias"
+      ]
+    },
+    "credentials": {
+      "policy_hits": [],
+      "metrics": {
+        "role_total": 0,
+        "assertion_count": 0,
+        "mention_count": 1,
+        "avg_wikipedia_count": 6,
+        "non_nominal_share": 0
+      },
+      "source_categories": [
+        "supplemental"
+      ]
+    },
+    "decision": {
+      "policy_hits": [],
+      "metrics": {
+        "role_total": 1,
+        "assertion_count": 1,
+        "mention_count": 2,
+        "avg_wikipedia_count": 253,
+        "non_nominal_share": 0
+      },
+      "source_categories": [
+        "alias"
+      ]
+    },
+    "decisions": {
+      "policy_hits": [],
+      "metrics": {
+        "role_total": 1,
+        "assertion_count": 1,
+        "mention_count": 2,
+        "avg_wikipedia_count": 253,
+        "non_nominal_share": 0
+      },
+      "source_categories": [
+        "alias",
+        "supplemental"
+      ]
+    },
+    "permission": {
+      "policy_hits": [],
+      "metrics": {
+        "role_total": 0,
+        "assertion_count": 0,
+        "mention_count": 3,
+        "avg_wikipedia_count": 110.333,
+        "non_nominal_share": 0
+      },
+      "source_categories": [
+        "alias"
+      ]
+    },
+    "permissions": {
+      "policy_hits": [],
+      "metrics": {
+        "role_total": 0,
+        "assertion_count": 0,
+        "mention_count": 1,
+        "avg_wikipedia_count": 4,
+        "non_nominal_share": 0
+      },
+      "source_categories": [
+        "supplemental"
+      ]
+    },
+    "protected_resource": {
+      "policy_hits": [],
+      "metrics": {
+        "role_total": 2,
+        "assertion_count": 2,
+        "mention_count": 2,
+        "avg_wikipedia_count": 439.5,
+        "non_nominal_share": 0
+      },
+      "source_categories": [
+        "alias"
+      ]
+    },
+    "protected_resources": {
+      "policy_hits": [],
+      "metrics": {
+        "role_total": 2,
+        "assertion_count": 2,
+        "mention_count": 2,
+        "avg_wikipedia_count": 439.5,
+        "non_nominal_share": 0
+      },
+      "source_categories": [
+        "role",
+        "supplemental"
+      ]
+    },
+    "required_permission": {
+      "policy_hits": [],
+      "metrics": {
+        "role_total": 0,
+        "assertion_count": 0,
+        "mention_count": 2,
+        "avg_wikipedia_count": 163.5,
+        "non_nominal_share": 0
+      },
+      "source_categories": [
+        "supplemental"
+      ]
+    },
+    "resource": {
+      "policy_hits": [],
+      "metrics": {
+        "role_total": 2,
+        "assertion_count": 2,
+        "mention_count": 2,
+        "avg_wikipedia_count": 439.5,
+        "non_nominal_share": 0
+      },
+      "source_categories": [
+        "alias"
+      ]
+    },
+    "resources": {
+      "policy_hits": [],
+      "metrics": {
+        "role_total": 2,
+        "assertion_count": 2,
+        "mention_count": 2,
+        "avg_wikipedia_count": 439.5,
+        "non_nominal_share": 0
+      },
+      "source_categories": [
+        "alias"
+      ]
+    },
+    "role": {
+      "policy_hits": [],
+      "metrics": {
+        "role_total": 0,
+        "assertion_count": 0,
+        "mention_count": 1,
+        "avg_wikipedia_count": 30,
+        "non_nominal_share": 0
+      },
+      "source_categories": [
+        "alias",
+        "supplemental"
+      ]
+    },
+    "roles": {
+      "policy_hits": [],
+      "metrics": {
+        "role_total": 0,
+        "assertion_count": 0,
+        "mention_count": 1,
+        "avg_wikipedia_count": 30,
+        "non_nominal_share": 0
+      },
+      "source_categories": [
+        "supplemental"
+      ]
+    },
+    "security_analysis": {
+      "policy_hits": [],
+      "metrics": {
+        "role_total": 1,
+        "assertion_count": 1,
+        "mention_count": 2,
+        "avg_wikipedia_count": 249,
+        "non_nominal_share": 0
+      },
+      "source_categories": [
+        "role",
+        "supplemental"
+      ]
+    },
+    "specific_action": {
+      "policy_hits": [],
+      "metrics": {
+        "role_total": 2,
+        "assertion_count": 2,
+        "mention_count": 1,
+        "avg_wikipedia_count": 185,
+        "non_nominal_share": 0
+      },
+      "source_categories": [
+        "alias"
+      ]
+    },
+    "specific_actions": {
+      "policy_hits": [],
+      "metrics": {
+        "role_total": 2,
+        "assertion_count": 2,
+        "mention_count": 1,
+        "avg_wikipedia_count": 185,
+        "non_nominal_share": 0
+      },
+      "source_categories": [
+        "role"
+      ]
+    },
+    "system": {
+      "policy_hits": [],
+      "metrics": {
+        "role_total": 3,
+        "assertion_count": 3,
+        "mention_count": 4,
+        "avg_wikipedia_count": 502.5,
+        "non_nominal_share": 0
+      },
+      "source_categories": [
+        "alias",
+        "role",
+        "supplemental"
+      ]
+    },
+    "user": {
+      "policy_hits": [],
+      "metrics": {
+        "role_total": 2,
+        "assertion_count": 2,
+        "mention_count": 2,
+        "avg_wikipedia_count": 36,
+        "non_nominal_share": 0
+      },
+      "source_categories": [
+        "alias",
+        "role"
+      ]
+    },
+    "users": {
+      "policy_hits": [],
+      "metrics": {
+        "role_total": 2,
+        "assertion_count": 2,
+        "mention_count": 2,
+        "avg_wikipedia_count": 36,
+        "non_nominal_share": 0
+      },
+      "source_categories": [
+        "role",
+        "supplemental"
+      ]
     }
   },
   "stats": {
@@ -195,24 +524,28 @@
     "role_candidates_lifted": 14,
     "supplemental_mentions_scanned": 118,
     "supplemental_candidates_lifted": 24,
-    "mode13b_suppressed_candidates": 2,
+    "mode13b_suppressed_candidates": 3,
     "mode13b_suppressed_low_wikipedia_count_unlinked": 0,
     "mode13b_suppressed_non_nominal_bias": 0,
     "mode13b_suppressed_contained_by_stronger_host": 0,
-    "mode13b_promoted_unlinked_finite_verb": 2,
+    "mode13b_promoted_unlinked_finite_verb": 0,
     "mode13b_suppressed_participial_fragment": 1,
     "mode13b_suppressed_participial_chunk_reduction": 0,
     "mode13b_suppressed_two_token_participial_lift": 1,
     "mode13b_suppressed_short_symbolic_token": 0,
+    "mode13b_suppressed_function_leading_fragment": 1,
+    "mode13b_suppressed_leading_verb_fragment": 0,
+    "mode13b_suppressed_predicate_fragment": 0,
+    "mode13b_post_alias_suppressed": 0,
     "mode13b_merged_into_stronger_host": 0,
     "phase_ms": {
       "role_lifting": 2,
-      "supplemental_lifting": 5,
-      "prune": 1,
-      "alias_and_legacy": 0,
-      "emit": 3,
-      "total": 13,
-      "mode13b_filter": 3
+      "supplemental_lifting": 8,
+      "prune": 0,
+      "alias_and_legacy": 1,
+      "emit": 4,
+      "total": 20,
+      "mode13b_filter": 5
     }
   }
 }

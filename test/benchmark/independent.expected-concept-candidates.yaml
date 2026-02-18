@@ -23,6 +23,8 @@ seeds:
     neutral:
       - system
     anti_targets:
+      - are
+      - is
       - using_credentials
       - who_may_perform
       - one_or_more
@@ -30,6 +32,8 @@ seeds:
       - read
       - write
       - administer
+      - more_role
+      - more_roles
       - before_an_action
       - executed
       - must_verify
@@ -65,6 +69,8 @@ seeds:
       - irs
       - request_clarification
     anti_targets:
+      - are
+      - is
       - submit_reports_about
       - reports_may_include
       - as_well
@@ -92,6 +98,7 @@ seeds:
       - set_of_prime_numbers
       - process
     anti_targets:
+      - is
       - decomposes
       - must_equal
       - starts_with
@@ -117,6 +124,7 @@ seeds:
       - generator
       - generated_primes
     anti_targets:
+      - are
       - starts_at
       - given_minimum
       - tests_each
@@ -124,6 +132,8 @@ seeds:
       - ensure
       - only_numbers_greater
       - are_considered
+      - only_number
+      - only_numbers
   webshop:
     must_have:
       - webshop
@@ -139,6 +149,10 @@ seeds:
       - people
       - shop
     anti_targets:
+      - are
+      - is
+      - make
+      - s_payment
       - the_order
       - while_doing_that
       - make_sure
@@ -217,6 +231,23 @@ seeds:
       - customer
       - visibility
     anti_targets:
+      - are
+      - is
+      - belong
+      - has
+      - that
+      - which
+      - in_context
+      - one_organization
+      - of_recovery
+      - of_resource
+      - include_security
+      - including_billing_address
+      - has_name
+      - plan_has_name
+      - setting_include_security
+      - settings_include_security
+      - that_type
       - i_e
       - represented
       - modeled

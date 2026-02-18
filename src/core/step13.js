@@ -1,5 +1,4 @@
 #!/usr/bin/env node
-/* eslint-disable no-unused-vars */
 const fs = require("fs");
 const path = require("path");
 const crypto = require("crypto");
@@ -20,7 +19,6 @@ const COUNT_KEY_RE = /^wiki_[A-Za-z0-9_]+_count$/;
 const WIKIPEDIA_SIGNAL_KEY_RE = /^wiki_[A-Za-z0-9_]+$/;
 const DEFAULT_ARTIFACTS_ROOT = path.resolve(__dirname, "..", "artifacts");
 const STEP13_DIR = __dirname;
-const STEP13_SCHEMA_PATH = path.resolve(__dirname, "..", "..", "schema", "seed.concept-candidates.schema.json");
 const DEFAULT_WIKIPEDIA_TITLE_INDEX_ENDPOINT = "http://127.0.0.1:32123";
 const STEP13_MODES = new Set(["13a", "13b"]);
 
@@ -36,7 +34,9 @@ function usage() {
     "  Shared flags:",
     "      [--step13-mode <13a|13b>]",
     "      [--mode13b-verb-promotion-min-wikipedia-count <number>]",
+    "      [--mode13b-predicate-verb-promotion-min-wikipedia-count <number>]",
     "      [--mode13b-unlinked-finite-verb-promotion-min-wikipedia-count <number>]",
+    "      [--mode13b-unlinked-finite-verb-promotion-max-wikipedia-count <number>]",
     "      [--mode13b-low-wikipedia-count-unlinked-min-avg <number>]",
     "      [--mode13b-nonnominal-share-min <number>]",
     "      [--mode13b-nonnominal-weak-wikipedia-count-max <number>]",
@@ -114,6 +114,26 @@ function normalizeLiftedSurface(surface) {
 
 function isNominalTag(tag) {
   return tag === "NN" || tag === "NNS" || tag === "NNP" || tag === "NNPS" || tag === "JJ" || tag === "JJR" || tag === "JJS" || tag === "CD" || tag === "VBN" || tag === "VBG";
+}
+
+function isFunctionLeadingTag(tag) {
+  return (
+    tag === "IN" ||
+    tag === "TO" ||
+    tag === "DT" ||
+    tag === "CD" ||
+    tag === "CC" ||
+    tag === "WDT" ||
+    tag === "WP" ||
+    tag === "WP$" ||
+    tag === "WRB" ||
+    tag === "PRP" ||
+    tag === "PRP$" ||
+    tag === "RB" ||
+    tag === "RBR" ||
+    tag === "RBS" ||
+    tag === "JJR"
+  );
 }
 
 function sha256HexUtf8(text) {
@@ -555,6 +575,11 @@ function buildConceptCandidatesFromStep12(step12, options = {}) {
     options.mode13bVerbPromotionMinWti,
     1.0
   );
+  const mode13bPredicateVerbPromotionMinWti = parseNonNegativeNumberArg(
+    "mode13bPredicateVerbPromotionMinWti",
+    options.mode13bPredicateVerbPromotionMinWti,
+    70.0
+  );
   const mode13bLowWtiUnlinkedMinAvg = parseNonNegativeNumberArg(
     "mode13bLowWtiUnlinkedMinAvg",
     options.mode13bLowWtiUnlinkedMinAvg,
@@ -563,7 +588,12 @@ function buildConceptCandidatesFromStep12(step12, options = {}) {
   const mode13bUnlinkedFiniteVerbPromotionMinWti = parseNonNegativeNumberArg(
     "mode13bUnlinkedFiniteVerbPromotionMinWti",
     options.mode13bUnlinkedFiniteVerbPromotionMinWti,
-    80.0
+    130.0
+  );
+  const mode13bUnlinkedFiniteVerbPromotionMaxWti = parseNonNegativeNumberArg(
+    "mode13bUnlinkedFiniteVerbPromotionMaxWti",
+    options.mode13bUnlinkedFiniteVerbPromotionMaxWti,
+    200.0
   );
   const mode13bNonnominalShareMin = parseNonNegativeNumberArg(
     "mode13bNonnominalShareMin",
@@ -632,6 +662,10 @@ function buildConceptCandidatesFromStep12(step12, options = {}) {
     mode13b_suppressed_participial_chunk_reduction: 0,
     mode13b_suppressed_two_token_participial_lift: 0,
     mode13b_suppressed_short_symbolic_token: 0,
+    mode13b_suppressed_function_leading_fragment: 0,
+    mode13b_suppressed_leading_verb_fragment: 0,
+    mode13b_suppressed_predicate_fragment: 0,
+    mode13b_post_alias_suppressed: 0,
     mode13b_merged_into_stronger_host: 0,
     phase_ms: {
       role_lifting: 0,
@@ -672,6 +706,7 @@ function buildConceptCandidatesFromStep12(step12, options = {}) {
   };
   const selectedMentionIds = new Set();
   const roleLinkedByMentionId = new Map();
+  const predicateLinkedByMentionId = new Map();
   const markRoleLinkedMention = (mentionId, assertionId, bucket) => {
     const key = String(mentionId || "");
     if (!roleLinkedByMentionId.has(key)) {
@@ -683,6 +718,21 @@ function buildConceptCandidatesFromStep12(step12, options = {}) {
     const entry = roleLinkedByMentionId.get(key);
     entry.assertionIds.add(assertionId);
     entry.roleCounts[bucket] += 1;
+  };
+  const markPredicateLinkedMention = (mentionId, assertionId, hasCoreRoleLink, hasAnyRoleLink) => {
+    const key = String(mentionId || "");
+    if (!key) return;
+    if (!predicateLinkedByMentionId.has(key)) {
+      predicateLinkedByMentionId.set(key, {
+        assertionIds: new Set(),
+        coreRoleLinkedAssertions: 0,
+        anyRoleLinkedAssertions: 0,
+      });
+    }
+    const entry = predicateLinkedByMentionId.get(key);
+    entry.assertionIds.add(assertionId);
+    if (hasCoreRoleLink) entry.coreRoleLinkedAssertions += 1;
+    if (hasAnyRoleLink) entry.anyRoleLinkedAssertions += 1;
   };
   const assertions = Array.isArray(step12.assertions) ? step12.assertions : [];
 
@@ -700,6 +750,19 @@ function buildConceptCandidatesFromStep12(step12, options = {}) {
     const roleEntries = []
       .concat(argumentsList.map((x) => ({ role: x.role, mention_ids: x.mention_ids })))
       .concat(modifiersList.map((x) => ({ role: x.role, mention_ids: x.mention_ids })));
+    const predicateMentionId = String((((assertion.predicate || {}).mention_id) || ""));
+    if (predicateMentionId) {
+      if (!mentionById.has(predicateMentionId)) {
+        throw new Error(`assertions[${ai}].predicate.mention_id references unknown mention id: ${predicateMentionId}`);
+      }
+      const hasAnyRoleLink = roleEntries.some((entry) => Array.isArray(entry.mention_ids) && entry.mention_ids.length > 0);
+      const hasCoreRoleLink = roleEntries.some((entry) =>
+        roleBucket(entry.role) !== "other" &&
+        Array.isArray(entry.mention_ids) &&
+        entry.mention_ids.length > 0
+      );
+      markPredicateLinkedMention(predicateMentionId, assertionId, hasCoreRoleLink, hasAnyRoleLink);
+    }
 
     for (const entry of roleEntries) {
       if (String(entry.role || "") === "exemplifies") continue;
@@ -873,6 +936,37 @@ function buildConceptCandidatesFromStep12(step12, options = {}) {
       }
       return false;
     };
+    const hasStrongNominalContainer = (mention) => {
+      const span = mention && mention.span;
+      if (!span || !Number.isInteger(span.start) || !Number.isInteger(span.end)) return false;
+      const segmentId = String((mention && mention.segment_id) || "");
+      for (const host of mentions) {
+        if (!host || host.id === mention.id) continue;
+        const hostKind = String(host.kind || "");
+        if (hostKind !== "chunk" && hostKind !== "mwe") continue;
+        const hostSpan = host.span || {};
+        if (!Number.isInteger(hostSpan.start) || !Number.isInteger(hostSpan.end)) continue;
+        const hostSegmentId = String((host && host.segment_id) || "");
+        if (segmentId && hostSegmentId && segmentId !== hostSegmentId) continue;
+        if (!(hostSpan.start <= span.start && hostSpan.end >= span.end)) continue;
+        const hostTokens = mentionTokensInOrder(host, tokenById);
+        let finiteVerbCount = 0;
+        for (const t of hostTokens) {
+          const tag = String(((t.pos || {}).tag) || "");
+          if (tag === "VB" || tag === "VBD" || tag === "VBP" || tag === "VBZ") finiteVerbCount += 1;
+        }
+        if (hostTokens.length > 4) continue;
+        if (finiteVerbCount > 1) continue;
+        let nominalCount = 0;
+        for (const t of hostTokens) {
+          const tag = String(((t.pos || {}).tag) || "");
+          const coarse = String(((t.pos || {}).coarse) || "");
+          if (isNominalTag(tag) || coarse === "NOUN" || coarse === "PROPN" || coarse === "ADJ") nominalCount += 1;
+        }
+        if (nominalCount >= 1 && hostTokens.length >= 2) return true;
+      }
+      return false;
+    };
 
     // 13b extension: promote verb-headed role-linked mentions with sufficiently strong Wikipedia Title Index evidence.
     for (const [mentionId, linkInfo] of roleLinkedByMentionId.entries()) {
@@ -880,12 +974,23 @@ function buildConceptCandidatesFromStep12(step12, options = {}) {
       if (!info || !info.hasLiftedSurface || info.skipSingle || !info.hasAlnum) continue;
       const mention = info.mention || {};
       const tokenCount = Array.isArray(mention.token_ids) ? mention.token_ids.length : 0;
-      if (tokenCount !== 1) continue;
+      const mentionKind = String(mention.kind || "");
+      const allowRecoveryChunk =
+        tokenCount > 1 &&
+        (mentionKind === "chunk" || mentionKind === "mwe") &&
+        info.skipSingle === true;
+      if (tokenCount !== 1 && !allowRecoveryChunk) continue;
       const head = tokenById.get(String(mention.head_token_id || "")) || {};
       const tag = String(((head.pos || {}).tag) || "");
       const coarse = String(((head.pos || {}).coarse) || "");
       const isVerbHead = coarse === "VERB" || tag === "VB" || tag === "VBD" || tag === "VBP" || tag === "VBZ";
       if (!isVerbHead) continue;
+      const coreRoleCount =
+        linkInfo.roleCounts.actor +
+        linkInfo.roleCounts.theme +
+        linkInfo.roleCounts.attr +
+        linkInfo.roleCounts.topic +
+        linkInfo.roleCounts.location;
 
       const assertionEvidence = mentionWikipediaTitleIndex.get(mentionId) || null;
       const lexiconEvidence = mentionLexiconWikipediaTitleIndex.get(mentionId) || null;
@@ -901,6 +1006,14 @@ function buildConceptCandidatesFromStep12(step12, options = {}) {
       if (mentionWikipediaCountTotal < mode13bVerbPromotionMinWti) continue;
 
       const canonical = canonicalizeSurface(info.liftedSurface);
+      const allowOtherOnlyPluralVerbPromotion =
+        coreRoleCount === 0 &&
+        linkInfo.roleCounts.other > 0 &&
+        tag === "VBZ" &&
+        canonical.length >= 4 &&
+        canonical.endsWith("s") &&
+        mentionWikipediaCountTotal >= 50;
+      if (coreRoleCount <= 0 && !allowOtherOnlyPluralVerbPromotion) continue;
       if (!byCanonical.has(canonical)) {
         byCanonical.set(canonical, {
           canonical,
@@ -936,6 +1049,67 @@ function buildConceptCandidatesFromStep12(step12, options = {}) {
       });
     }
 
+    // 13b extension: promote predicate finite-verb singleton mentions with structural linkage and strong evidence.
+    for (const [mentionId, predInfo] of predicateLinkedByMentionId.entries()) {
+      if (!predInfo || predInfo.assertionIds.size === 0) continue;
+      if (predInfo.anyRoleLinkedAssertions <= 0 || predInfo.coreRoleLinkedAssertions <= 0) continue;
+      const info = getMentionLiftInfo(mentionId);
+      if (!info || !info.hasLiftedSurface || !info.hasAlnum) continue;
+      const mention = info.mention || {};
+      if (mention.is_primary !== true) continue;
+      const tokenCount = Array.isArray(mention.token_ids) ? mention.token_ids.length : 0;
+      if (tokenCount !== 1) continue;
+      const head = tokenById.get(String(mention.head_token_id || "")) || {};
+      const tag = String(((head.pos || {}).tag) || "");
+      if (tag !== "VBZ" && tag !== "VBP" && tag !== "VBD") continue;
+
+      const canonical = canonicalizeSurface(info.liftedSurface);
+      if (canonical.length < 5 || !canonical.endsWith("s")) continue;
+      const nounLikePluralSuffix = /(tions|sions|ments|ities|ships|ances|ences|ors|ers|ings)$/;
+      if (!nounLikePluralSuffix.test(canonical)) continue;
+
+      const assertionEvidence = mentionWikipediaTitleIndex.get(mentionId) || null;
+      const lexiconEvidence = mentionLexiconWikipediaTitleIndex.get(mentionId) || null;
+      const selected = selectMentionEvidenceByPolicy(assertionEvidence, lexiconEvidence, policy);
+      let mentionWikipediaCountTotal = 0;
+      for (const key of wikipediaCountKeys) {
+        const value = selected[key];
+        if (value !== undefined) {
+          assert(Number.isInteger(value), `Non-integer value for ${key} on mention ${mentionId}.`);
+          mentionWikipediaCountTotal += value;
+        }
+      }
+      if (mentionWikipediaCountTotal < mode13bPredicateVerbPromotionMinWti) continue;
+
+      if (!byCanonical.has(canonical)) {
+        byCanonical.set(canonical, {
+          canonical,
+          surfaces: new Set(),
+          mention_ids: new Set(),
+          assertion_ids: new Set(),
+          roles: { actor: 0, theme: 0, attr: 0, topic: 0, location: 0, other: 0 },
+        });
+      }
+      const candidate = byCanonical.get(canonical);
+      candidate.surfaces.add(info.liftedSurface);
+      candidate.mention_ids.add(mentionId);
+      for (const assertionId of predInfo.assertionIds) candidate.assertion_ids.add(assertionId);
+      markSource(canonical, "mode13b_promotion");
+      markMode13bDecision(canonical, "promotion_predicate_verb_wikipedia_count", {
+        roleTotal:
+          candidate.roles.actor +
+          candidate.roles.theme +
+          candidate.roles.attr +
+          candidate.roles.topic +
+          candidate.roles.location +
+          candidate.roles.other,
+        assertionCount: candidate.assertion_ids.size,
+        mentionCount: candidate.mention_ids.size,
+        avgWti: mentionWikipediaCountTotal,
+        nonNominalShare: 1,
+      });
+    }
+
     // 13b extension: promote unlinked finite-verb singleton mentions when Wikipedia Title Index evidence is very strong.
     for (const mention of mentions) {
       if (!mention || typeof mention.id !== "string") continue;
@@ -955,6 +1129,7 @@ function buildConceptCandidatesFromStep12(step12, options = {}) {
       const finiteVerbHead = tag === "VBP" || tag === "VBZ" || tag === "VBD";
       if (!finiteVerbHead) continue;
       if (hasEnumeratedVerbHost(mention)) continue;
+      if (!hasStrongNominalContainer(mention)) continue;
 
       const assertionEvidence = mentionWikipediaTitleIndex.get(mention.id) || null;
       const lexiconEvidence = mentionLexiconWikipediaTitleIndex.get(mention.id) || null;
@@ -968,6 +1143,7 @@ function buildConceptCandidatesFromStep12(step12, options = {}) {
         }
       }
       if (mentionWikipediaCountTotal < mode13bUnlinkedFiniteVerbPromotionMinWti) continue;
+      if (mentionWikipediaCountTotal > mode13bUnlinkedFiniteVerbPromotionMaxWti) continue;
 
       const canonical = canonicalizeSurface(info.liftedSurface);
       if (!byCanonical.has(canonical)) {
@@ -1050,6 +1226,16 @@ function buildConceptCandidatesFromStep12(step12, options = {}) {
       let twoTokenParticipialLiftCount = 0;
       let shortSymbolicTokenCount = 0;
       let punctuatedSurfaceCount = 0;
+      let functionLeadingCount = 0;
+      let leadingVerbCount = 0;
+      let finiteVerbPredicateCount = 0;
+      let adpositionTokenCount = 0;
+      let whMarkerCount = 0;
+      let nominalDenseCount = 0;
+      let quantifierLeadingCount = 0;
+      let participialLeadingCount = 0;
+      let middleFiniteVerbCount = 0;
+      let shortAdjPluralLeadCount = 0;
       for (const mentionId of mentionIds) {
         const mention = mentionById.get(mentionId) || {};
         const head = tokenById.get(String(mention.head_token_id || "")) || {};
@@ -1059,6 +1245,49 @@ function buildConceptCandidatesFromStep12(step12, options = {}) {
         if (!nominalHead) nonNominalCount += 1;
         const tokenCount = Array.isArray(mention.token_ids) ? mention.token_ids.length : 0;
         const sourceKind = String((((mention.provenance || {}).source_kind) || ""));
+        const ordered = mentionTokensInOrder(mention, tokenById);
+        const firstTok = ordered[0] || {};
+        const firstTag = String((((firstTok.pos || {}).tag) || ""));
+        const firstCoarse = String((((firstTok.pos || {}).coarse) || ""));
+        if (isFunctionLeadingTag(firstTag)) functionLeadingCount += 1;
+        if (firstTag === "CD" || firstTag === "JJR") quantifierLeadingCount += 1;
+        if (firstTag === "VBG" || firstTag === "VBN") participialLeadingCount += 1;
+        if (firstTag === "VB" || firstTag === "VBP" || firstTag === "VBZ" || firstTag === "VBD") {
+          leadingVerbCount += 1;
+        }
+        let hasFiniteVerb = false;
+        let hasAdposition = false;
+        let hasWhMarker = false;
+        let nominalTokenCount = 0;
+        for (const tok of ordered) {
+          const tokTag = String((((tok.pos || {}).tag) || ""));
+          const tokCoarse = String((((tok.pos || {}).coarse) || ""));
+          if (tokTag === "VB" || tokTag === "VBD" || tokTag === "VBP" || tokTag === "VBZ" || tokTag === "MD") hasFiniteVerb = true;
+          if (tokTag === "IN" || tokTag === "TO") hasAdposition = true;
+          if (tokTag === "WDT" || tokTag === "WP" || tokTag === "WP$" || tokTag === "WRB") hasWhMarker = true;
+          if (isNominalTag(tokTag) || tokCoarse === "NOUN" || tokCoarse === "PROPN" || tokCoarse === "ADJ") nominalTokenCount += 1;
+        }
+        if (hasFiniteVerb && tokenCount >= 2) finiteVerbPredicateCount += 1;
+        if (ordered.length >= 3) {
+          const midTag = String((((ordered[1] || {}).pos || {}).tag) || "");
+          if (midTag === "VB" || midTag === "VBD" || midTag === "VBP" || midTag === "VBZ") {
+            middleFiniteVerbCount += 1;
+          }
+        }
+        if (ordered.length === 2) {
+          const secondTok = ordered[1] || {};
+          const secondTag = String((((secondTok.pos || {}).tag) || ""));
+          const firstNorm = String(firstTok.normalized || firstTok.surface || "").toLowerCase();
+          const firstIsShortAdjLike =
+            (firstTag === "JJ" || firstTag === "JJR" || firstTag === "JJS" || firstTag === "RB" || firstTag === "RBR" || firstTag === "RBS") &&
+            firstNorm.length > 0 &&
+            firstNorm.length <= 4;
+          const secondIsPluralNoun = secondTag === "NNS" || secondTag === "NNPS";
+          if (firstIsShortAdjLike && secondIsPluralNoun) shortAdjPluralLeadCount += 1;
+        }
+        if (hasAdposition) adpositionTokenCount += 1;
+        if (hasWhMarker) whMarkerCount += 1;
+        if (nominalTokenCount >= 2) nominalDenseCount += 1;
         const participialTag = tag === "VBN" || tag === "VBG" || tag === "VBD";
         if (tokenCount === 1 && participialTag && (sourceKind === "token_fallback" || sourceKind === "token_shadow")) {
           participialFragmentCount += 1;
@@ -1122,6 +1351,16 @@ function buildConceptCandidatesFromStep12(step12, options = {}) {
       const twoTokenParticipialLiftShare = mentionCount > 0 ? (twoTokenParticipialLiftCount / mentionCount) : 0;
       const shortSymbolicTokenShare = mentionCount > 0 ? (shortSymbolicTokenCount / mentionCount) : 0;
       const punctuatedSurfaceShare = mentionCount > 0 ? (punctuatedSurfaceCount / mentionCount) : 0;
+      const functionLeadingShare = mentionCount > 0 ? (functionLeadingCount / mentionCount) : 0;
+      const leadingVerbShare = mentionCount > 0 ? (leadingVerbCount / mentionCount) : 0;
+      const finiteVerbPredicateShare = mentionCount > 0 ? (finiteVerbPredicateCount / mentionCount) : 0;
+      const adpositionShare = mentionCount > 0 ? (adpositionTokenCount / mentionCount) : 0;
+      const whMarkerShare = mentionCount > 0 ? (whMarkerCount / mentionCount) : 0;
+      const nominalDenseShare = mentionCount > 0 ? (nominalDenseCount / mentionCount) : 0;
+      const quantifierLeadingShare = mentionCount > 0 ? (quantifierLeadingCount / mentionCount) : 0;
+      const participialLeadingShare = mentionCount > 0 ? (participialLeadingCount / mentionCount) : 0;
+      const middleFiniteVerbShare = mentionCount > 0 ? (middleFiniteVerbCount / mentionCount) : 0;
+      const shortAdjPluralLeadShare = mentionCount > 0 ? (shortAdjPluralLeadCount / mentionCount) : 0;
       const coreRoleTotal = (roles.actor || 0) + (roles.theme || 0) + (roles.attr || 0) + (roles.topic || 0) + (roles.location || 0);
       candidateMetrics.set(canonical, {
         roleTotal,
@@ -1135,6 +1374,16 @@ function buildConceptCandidatesFromStep12(step12, options = {}) {
         twoTokenParticipialLiftShare,
         shortSymbolicTokenShare,
         punctuatedSurfaceShare,
+        functionLeadingShare,
+        leadingVerbShare,
+        finiteVerbPredicateShare,
+        adpositionShare,
+        whMarkerShare,
+        nominalDenseShare,
+        quantifierLeadingShare,
+        participialLeadingShare,
+        middleFiniteVerbShare,
+        shortAdjPluralLeadShare,
       });
     }
 
@@ -1144,6 +1393,7 @@ function buildConceptCandidatesFromStep12(step12, options = {}) {
       const metrics = candidateMetrics.get(canonical);
       if (!metrics) continue;
       if (metrics.mentionCount === 0) continue;
+      const candidatePartCount = String(canonical).split("_").filter(Boolean).length;
 
       // Low-evidence unlinked suppression (requires some non-nominal structural signal).
       if (
@@ -1227,9 +1477,105 @@ function buildConceptCandidatesFromStep12(step12, options = {}) {
         continue;
       }
 
+      if (
+        candidatePartCount <= 3 &&
+        metrics.functionLeadingShare >= 0.8 &&
+        metrics.roleTotal === 0 &&
+        metrics.assertionCount === 0
+      ) {
+        markMode13bDecision(canonical, "suppress_function_leading_fragment", metrics);
+        byCanonical.delete(canonical);
+        stats.mode13b_suppressed_candidates += 1;
+        stats.mode13b_suppressed_function_leading_fragment += 1;
+        continue;
+      }
+
+      if (
+        candidatePartCount <= 3 &&
+        metrics.leadingVerbShare >= 0.8 &&
+        metrics.roleTotal === 0 &&
+        metrics.coreRoleTotal === 0 &&
+        metrics.avgWti < mode13bUnlinkedFiniteVerbPromotionMinWti &&
+        metrics.assertionCount === 0
+      ) {
+        markMode13bDecision(canonical, "suppress_leading_verb_fragment", metrics);
+        byCanonical.delete(canonical);
+        stats.mode13b_suppressed_candidates += 1;
+        stats.mode13b_suppressed_leading_verb_fragment += 1;
+        continue;
+      }
+
+      if (
+        candidatePartCount >= 2 &&
+        candidatePartCount <= 3 &&
+        metrics.finiteVerbPredicateShare >= 0.8 &&
+        metrics.coreRoleTotal <= 1 &&
+        metrics.nominalDenseShare < 0.5 &&
+        metrics.assertionCount <= 1
+      ) {
+        markMode13bDecision(canonical, "suppress_predicate_fragment", metrics);
+        byCanonical.delete(canonical);
+        stats.mode13b_suppressed_candidates += 1;
+        stats.mode13b_suppressed_predicate_fragment += 1;
+        continue;
+      }
+
+      if (
+        candidatePartCount === 2 &&
+        metrics.quantifierLeadingShare >= 0.8 &&
+        metrics.roleTotal <= 1 &&
+        metrics.assertionCount <= 1
+      ) {
+        markMode13bDecision(canonical, "suppress_quantifier_led_fragment", metrics);
+        byCanonical.delete(canonical);
+        stats.mode13b_suppressed_candidates += 1;
+        stats.mode13b_suppressed_function_leading_fragment += 1;
+        continue;
+      }
+
+      if (
+        candidatePartCount === 2 &&
+        metrics.shortAdjPluralLeadShare >= 0.5 &&
+        metrics.coreRoleTotal <= 1 &&
+        metrics.roleTotal <= 1 &&
+        metrics.assertionCount <= 1
+      ) {
+        markMode13bDecision(canonical, "suppress_short_adj_plural_fragment", metrics);
+        byCanonical.delete(canonical);
+        stats.mode13b_suppressed_candidates += 1;
+        stats.mode13b_suppressed_function_leading_fragment += 1;
+        continue;
+      }
+
+      if (
+        candidatePartCount >= 3 &&
+        candidatePartCount <= 4 &&
+        metrics.participialLeadingShare >= 0.8 &&
+        metrics.coreRoleTotal <= 1 &&
+        metrics.assertionCount <= 1
+      ) {
+        markMode13bDecision(canonical, "suppress_leading_verb_predicate_fragment", metrics);
+        byCanonical.delete(canonical);
+        stats.mode13b_suppressed_candidates += 1;
+        stats.mode13b_suppressed_leading_verb_fragment += 1;
+        continue;
+      }
+
+      if (
+        candidatePartCount === 3 &&
+        metrics.middleFiniteVerbShare >= 0.8 &&
+        metrics.coreRoleTotal <= 1 &&
+        metrics.assertionCount <= 1
+      ) {
+        markMode13bDecision(canonical, "suppress_middle_finite_verb_fragment", metrics);
+        byCanonical.delete(canonical);
+        stats.mode13b_suppressed_candidates += 1;
+        stats.mode13b_suppressed_predicate_fragment += 1;
+        continue;
+      }
+
       // Suppress if all mentions are structurally contained by stronger host candidates.
       if (metrics.roleTotal > 0 || metrics.assertionCount > 0) continue;
-      const candidatePartCount = String(canonical).split("_").filter(Boolean).length;
       if (candidatePartCount < 2) continue;
       let allMentionsContainedByStrongerHost = true;
       for (const mentionId of item.mention_ids) {
@@ -1562,6 +1908,140 @@ function buildConceptCandidatesFromStep12(step12, options = {}) {
   }
   stats.phase_ms.alias_and_legacy = Date.now() - aliasStart;
 
+  if (step13Mode === "13b") {
+    for (const canonical of Array.from(byCanonical.keys()).sort(compareStrings)) {
+      const item = byCanonical.get(canonical);
+      if (!item) continue;
+      const sources = sourceByCanonical.get(canonical) || new Set();
+      if (!sources.has("alias")) continue;
+      const aliasOnly = sources.size === 1;
+      if (!aliasOnly) continue;
+      const mentionIds = Array.from(item.mention_ids).map((v) => String(v));
+      const partCount = String(canonical).split("_").filter(Boolean).length;
+      const roleTotal =
+        (item.roles.actor || 0) +
+        (item.roles.theme || 0) +
+        (item.roles.attr || 0) +
+        (item.roles.topic || 0) +
+        (item.roles.location || 0) +
+        (item.roles.other || 0);
+      const coreRoleTotal =
+        (item.roles.actor || 0) +
+        (item.roles.theme || 0) +
+        (item.roles.attr || 0) +
+        (item.roles.topic || 0) +
+        (item.roles.location || 0);
+      const assertionCount = item.assertion_ids.size;
+      let functionLeadingCount = 0;
+      let finiteVerbPredicateCount = 0;
+      let adpositionCount = 0;
+      let whMarkerCount = 0;
+      let shortAdjPluralLeadCount = 0;
+      for (const mentionId of mentionIds) {
+        const mention = mentionById.get(mentionId) || {};
+        const ordered = mentionTokensInOrder(mention, tokenById);
+        const first = ordered[0] || {};
+        const firstTag = String((((first.pos || {}).tag) || ""));
+        if (isFunctionLeadingTag(firstTag)) functionLeadingCount += 1;
+        let hasFiniteVerb = false;
+        let hasAdposition = false;
+        let hasWhMarker = false;
+        for (const tok of ordered) {
+          const tag = String((((tok.pos || {}).tag) || ""));
+          if (tag === "VB" || tag === "VBD" || tag === "VBP" || tag === "VBZ" || tag === "MD") hasFiniteVerb = true;
+          if (tag === "IN" || tag === "TO") hasAdposition = true;
+          if (tag === "WDT" || tag === "WP" || tag === "WP$" || tag === "WRB") hasWhMarker = true;
+        }
+        if (hasFiniteVerb && ordered.length >= 2) finiteVerbPredicateCount += 1;
+        if (hasAdposition) adpositionCount += 1;
+        if (hasWhMarker) whMarkerCount += 1;
+        if (ordered.length === 2) {
+          const second = ordered[1] || {};
+          const secondTag = String((((second.pos || {}).tag) || ""));
+          const firstNorm = String(first.normalized || first.surface || "").toLowerCase();
+          const firstIsShortAdjLike =
+            (firstTag === "JJ" || firstTag === "JJR" || firstTag === "JJS" || firstTag === "RB" || firstTag === "RBR" || firstTag === "RBS") &&
+            firstNorm.length > 0 &&
+            firstNorm.length <= 4;
+          const secondIsPluralNoun = secondTag === "NNS" || secondTag === "NNPS";
+          if (firstIsShortAdjLike && secondIsPluralNoun) shortAdjPluralLeadCount += 1;
+        }
+      }
+      const mentionCount = mentionIds.length;
+      const functionLeadingShare = mentionCount > 0 ? (functionLeadingCount / mentionCount) : 0;
+      const finiteVerbPredicateShare = mentionCount > 0 ? (finiteVerbPredicateCount / mentionCount) : 0;
+      const adpositionShare = mentionCount > 0 ? (adpositionCount / mentionCount) : 0;
+      const whMarkerShare = mentionCount > 0 ? (whMarkerCount / mentionCount) : 0;
+      const shortAdjPluralLeadShare = mentionCount > 0 ? (shortAdjPluralLeadCount / mentionCount) : 0;
+      const firstPart = String(canonical).split("_").filter(Boolean)[0] || "";
+      const shortLead = firstPart.length > 0 && firstPart.length <= 2;
+      const metrics = {
+        roleTotal,
+        assertionCount,
+        mentionCount,
+        avgWti: 0,
+        nonNominalShare: 0,
+      };
+      if (
+        partCount === 2 &&
+        shortAdjPluralLeadShare >= 0.5 &&
+        coreRoleTotal <= 1 &&
+        roleTotal <= 1 &&
+        assertionCount <= 1
+      ) {
+        markMode13bDecision(canonical, "suppress_alias_short_adj_plural_fragment", metrics);
+        byCanonical.delete(canonical);
+        stats.mode13b_suppressed_candidates += 1;
+        stats.mode13b_post_alias_suppressed += 1;
+        continue;
+      }
+      if (
+        partCount >= 2 &&
+        shortLead &&
+        roleTotal <= 2
+      ) {
+        markMode13bDecision(canonical, "suppress_alias_short_lead_fragment", metrics);
+        byCanonical.delete(canonical);
+        stats.mode13b_suppressed_candidates += 1;
+        stats.mode13b_post_alias_suppressed += 1;
+        continue;
+      }
+      if (
+        partCount <= 2 &&
+        finiteVerbPredicateShare >= 0.8 &&
+        coreRoleTotal <= 1 &&
+        assertionCount <= 1
+      ) {
+        markMode13bDecision(canonical, "suppress_alias_predicate_fragment", metrics);
+        byCanonical.delete(canonical);
+        stats.mode13b_suppressed_candidates += 1;
+        stats.mode13b_post_alias_suppressed += 1;
+        continue;
+      }
+      if (
+        partCount <= 2 &&
+        functionLeadingShare >= 0.8 &&
+        roleTotal <= 1
+      ) {
+        markMode13bDecision(canonical, "suppress_alias_function_leading_fragment", metrics);
+        byCanonical.delete(canonical);
+        stats.mode13b_suppressed_candidates += 1;
+        stats.mode13b_post_alias_suppressed += 1;
+        continue;
+      }
+      if (
+        partCount <= 2 &&
+        (adpositionShare >= 0.8 || whMarkerShare >= 0.8) &&
+        roleTotal <= 2
+      ) {
+        markMode13bDecision(canonical, "suppress_alias_relation_marker_fragment", metrics);
+        byCanonical.delete(canonical);
+        stats.mode13b_suppressed_candidates += 1;
+        stats.mode13b_post_alias_suppressed += 1;
+      }
+    }
+  }
+
   const emitWikipediaTitleIndexEvidence = options.emitWikipediaTitleIndexEvidence !== false;
 
   const emitStart = Date.now();
@@ -1705,6 +2185,44 @@ function buildConceptCandidatesFromStep12(step12, options = {}) {
         },
       };
     }
+    // Ensure diagnostics include compact metric rows for all emitted candidates,
+    // not only policy-hit entries, so survivor analysis stays complete.
+    for (const candidate of candidates) {
+      const canonical = String(candidate.canonical || "");
+      if (!canonical) continue;
+      if (!diagnostics.mode13b_by_canonical[canonical]) {
+        let wtiTotal = 0;
+        for (const mentionId of candidate.mention_ids) {
+          const evidence = mentionWikipediaTitleIndex.get(mentionId) || mentionLexiconWikipediaTitleIndex.get(mentionId) || {};
+          for (const key of wikipediaCountKeys) {
+            const value = evidence[key];
+            if (Number.isInteger(value)) wtiTotal += value;
+          }
+        }
+        const mentionCount = candidate.mention_ids.length;
+        const roleTotal =
+          (candidate.roles.actor || 0) +
+          (candidate.roles.theme || 0) +
+          (candidate.roles.attr || 0) +
+          (candidate.roles.topic || 0) +
+          (candidate.roles.location || 0) +
+          (candidate.roles.other || 0);
+        diagnostics.mode13b_by_canonical[canonical] = {
+          policy_hits: [],
+          metrics: {
+            role_total: roleTotal,
+            assertion_count: candidate.assertion_ids.length,
+            mention_count: mentionCount,
+            avg_wikipedia_count: roundFixed3(mentionCount > 0 ? (wtiTotal / mentionCount) : 0),
+            non_nominal_share: 0,
+          },
+          source_categories: (sourceByCanonical.get(canonical) ? Array.from(sourceByCanonical.get(canonical)) : []).sort(compareStrings),
+        };
+      } else if (!Array.isArray(diagnostics.mode13b_by_canonical[canonical].source_categories)) {
+        diagnostics.mode13b_by_canonical[canonical].source_categories =
+          (sourceByCanonical.get(canonical) ? Array.from(sourceByCanonical.get(canonical)) : []).sort(compareStrings);
+      }
+    }
     top._diagnostics = diagnostics;
   }
   return top;
@@ -1823,7 +2341,8 @@ function validateConceptCandidatesDeterminism(doc) {
 }
 
 function loadConceptCandidatesSchema() {
-  return JSON.parse(fs.readFileSync(STEP13_SCHEMA_PATH, "utf8"));
+  const schemaPath = path.resolve(STEP13_DIR, "..", "..", "schema", "seed.concept-candidates.schema.json");
+  return JSON.parse(fs.readFileSync(schemaPath, "utf8"));
 }
 
 function validateSchema(schema, doc) {
@@ -1872,6 +2391,7 @@ async function generateForSeed(seedId, options = {}) {
   const outputDoc = buildConceptCandidatesFromStep12(step12, {
     step13Mode: options.step13Mode,
     mode13bVerbPromotionMinWti: options.mode13bVerbPromotionMinWti,
+    mode13bPredicateVerbPromotionMinWti: options.mode13bPredicateVerbPromotionMinWti,
     mode13bUnlinkedFiniteVerbPromotionMinWti: options.mode13bUnlinkedFiniteVerbPromotionMinWti,
     mode13bLowWtiUnlinkedMinAvg: options.mode13bLowWtiUnlinkedMinAvg,
     mode13bNonnominalShareMin: options.mode13bNonnominalShareMin,
@@ -1912,6 +2432,7 @@ function generateForStep12Path(step12Path, options = {}) {
   const outputDoc = buildConceptCandidatesFromStep12(step12, {
     step13Mode: options.step13Mode,
     mode13bVerbPromotionMinWti: options.mode13bVerbPromotionMinWti,
+    mode13bPredicateVerbPromotionMinWti: options.mode13bPredicateVerbPromotionMinWti,
     mode13bUnlinkedFiniteVerbPromotionMinWti: options.mode13bUnlinkedFiniteVerbPromotionMinWti,
     mode13bLowWtiUnlinkedMinAvg: options.mode13bLowWtiUnlinkedMinAvg,
     mode13bNonnominalShareMin: options.mode13bNonnominalShareMin,
@@ -1962,11 +2483,21 @@ async function main() {
       arg(args, "--mode13b-verb-promotion-min-wikipedia-count") || arg(args, "--mode13b-verb-promotion-min-wti"),
       1.0
     );
+    const mode13bPredicateVerbPromotionMinWti = parseNonNegativeNumberArg(
+      "--mode13b-predicate-verb-promotion-min-wikipedia-count",
+      arg(args, "--mode13b-predicate-verb-promotion-min-wikipedia-count"),
+      70.0
+    );
     const mode13bUnlinkedFiniteVerbPromotionMinWti = parseNonNegativeNumberArg(
       "--mode13b-unlinked-finite-verb-promotion-min-wikipedia-count",
       arg(args, "--mode13b-unlinked-finite-verb-promotion-min-wikipedia-count")
         || arg(args, "--mode13b-unlinked-finite-verb-promotion-min-wti"),
-      80.0
+      130.0
+    );
+    const mode13bUnlinkedFiniteVerbPromotionMaxWti = parseNonNegativeNumberArg(
+      "--mode13b-unlinked-finite-verb-promotion-max-wikipedia-count",
+      arg(args, "--mode13b-unlinked-finite-verb-promotion-max-wikipedia-count"),
+      200.0
     );
     const mode13bLowWtiUnlinkedMinAvg = parseNonNegativeNumberArg(
       "--mode13b-low-wikipedia-count-unlinked-min-avg",
@@ -2016,7 +2547,9 @@ async function main() {
       wikipediaTitleIndexPolicy,
       step13Mode,
       mode13bVerbPromotionMinWti,
+      mode13bPredicateVerbPromotionMinWti,
       mode13bUnlinkedFiniteVerbPromotionMinWti,
+      mode13bUnlinkedFiniteVerbPromotionMaxWti,
       mode13bLowWtiUnlinkedMinAvg,
       mode13bNonnominalShareMin,
       mode13bNonnominalWeakWtiMax,
@@ -2055,7 +2588,9 @@ async function main() {
           enable_13b_mode: step13Mode === "13b",
           mode13b_policy: {
             verb_promotion_min_wikipedia_count: mode13bVerbPromotionMinWti,
+            predicate_verb_promotion_min_wikipedia_count: mode13bPredicateVerbPromotionMinWti,
             unlinked_finite_verb_promotion_min_wikipedia_count: mode13bUnlinkedFiniteVerbPromotionMinWti,
+            unlinked_finite_verb_promotion_max_wikipedia_count: mode13bUnlinkedFiniteVerbPromotionMaxWti,
             low_wikipedia_count_unlinked_min_avg: mode13bLowWtiUnlinkedMinAvg,
             nonnominal_share_min: mode13bNonnominalShareMin,
             nonnominal_weak_wikipedia_count_max: mode13bNonnominalWeakWtiMax,
