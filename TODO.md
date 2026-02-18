@@ -4,7 +4,7 @@ Goal: productize the current concept-miner prototype (`prototype/`) into a templ
 
 Status date: 2026-02-18
 
-## Immediate Execution Cycles (v1.0.5+)
+## Immediate Execution Cycles (completed through v1.0.9)
 
 - [x] `v1.0.5` remove generic-baseline/13a from product stream:
 - mode handling accepts only `default-extended`
@@ -22,6 +22,12 @@ Status date: 2026-02-18
 - [x] `v1.0.9` doc and release sync:
 - update README/docs/STATUSQUO/TODO/ROADMAP and release notes to strict 13b-only product behavior
 - run full gate, then commit and push stable phase
+
+## Next Release Line: v1.1.0
+
+- [ ] Define and approve `v1.1.0` scope (feature set and non-goals).
+- [ ] Add concrete `v1.1.0` execution cycles to `ROADMAP.md`.
+- [ ] Execute `v1.1.0` cycles with full gate validation and release notes.
 
 ## Progress Snapshot
 

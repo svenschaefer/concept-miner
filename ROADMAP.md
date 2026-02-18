@@ -140,6 +140,21 @@ Execution cycles:
 - `v1.0.9-a` completed: markdown/doc sync for strict default-extended contract and product-owned tooling paths.
 - `v1.0.9-b` completed: closed checklist/status lines in `TODO.md` and `ROADMAP.md`.
 
+## v1.1.0 - Next Planned Release
+
+Goals:
+- define first post-`1.0.x` feature release scope
+- keep strict product-only runtime policy intact
+- keep 13b quality gate at `overall_score=100.0`
+
+Planned cycles:
+- `v1.1.0-a` scope lock and acceptance criteria
+- `v1.1.0-b` implementation + tests
+- `v1.1.0-c` docs/release sync and cut
+
+Status:
+- Planned.
+
 ## v0.001 - Foundation And Scope Lock
 
 Goals:
