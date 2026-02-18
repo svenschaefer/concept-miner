@@ -30,6 +30,24 @@ Status:
 - Completed (release prep done on `main`).
 - Note: this cycle supersedes earlier roadmap items that kept compatibility commands/fallback behavior.
 
+## v1.0.4-a - Mandatory 13b Benchmark Gate Restoration
+
+Goals:
+- Reinstate hard pass/fail quality gate for 13b against independent expected benchmark.
+- Keep benchmark target and gate implementation product-owned (no runtime dependency on `prototype/` path for this gate).
+
+Deliverables:
+- copy benchmark file to `test/benchmark/independent.expected-concept-candidates.yaml`
+- add `scripts/check-quality-gate-13b.js`
+- wire `npm run check:quality-gate:13b` into `ci:check`
+- enforce required score: `overall_score=100.0`
+
+Exit criteria:
+- local/CI `ci:check` fails if any benchmark seed drops below 100 in 13b mode
+
+Status:
+- Completed on `main`.
+
 ## v0.001 - Foundation And Scope Lock
 
 Goals:

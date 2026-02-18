@@ -34,6 +34,7 @@ Implemented and stable:
 - Field-level enrichment typing is now contract-defined (`exact_match` boolean, `prefix_count` integer >= 0).
 - Default-extended runtime now hard-fails when wikipedia-title-index is unavailable (no silent enrichment fallback).
 - Legacy CLI compatibility commands `run` and `validate` are removed from product-facing surfaces.
+- 13b independent benchmark quality gate is now mandatory in `ci:check` with required `overall_score=100.0`.
 - 1.x stability policy (breaking vs non-breaking changes) is now documented in `docs/GUARANTEES.md`.
 
 Remaining open implementation items:

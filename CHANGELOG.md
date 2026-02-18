@@ -4,7 +4,9 @@ All notable changes to this project are documented in this file.
 
 ## [Unreleased]
 
-- No unreleased changes.
+- quality gate restoration:
+  - added mandatory 13b independent benchmark gate (`overall_score=100.0`) in `ci:check`.
+  - added product-owned benchmark target at `test/benchmark/independent.expected-concept-candidates.yaml`.
 
 ## [1.0.4] - 2026-02-18
 

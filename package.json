@@ -51,7 +51,7 @@
     "pack:check": "npm pack --dry-run",
     "smoke:release": "node scripts/release-smoke-check.js",
     "smoke:release:rehearsal": "node scripts/release-smoke-rehearsal.js",
-    "ci:check": "npm run lint && npm test && npm run check:concept-candidates:policies && npm run check:frozen-references-policy && npm run check:generated-report-artifacts-policy && npm run dev:report:metrics && npm run dev:report:maturity && npm run pack:check && npm run smoke:release",
+    "ci:check": "npm run lint && npm test && npm run check:quality-gate:13b && npm run check:concept-candidates:policies && npm run check:frozen-references-policy && npm run check:generated-report-artifacts-policy && npm run dev:report:metrics && npm run dev:report:maturity && npm run pack:check && npm run smoke:release",
     "release:check": "node scripts/ensure-clean-worktree.js && npm run ci:check",
     "check:concept-candidates": "node prototype/check-concept-candidates.js",
     "check:concept-candidates:benchmark-policy": "node prototype/check-benchmark-policy.js",
@@ -67,6 +67,7 @@
     "eval:concept-candidates:13b:sweep": "npm run eval:concept-candidates:default-extended:threshold-sweep",
     "report:step12:wikipedia-title-index-coverage": "npm run report:wikipedia-title-index:coverage",
     "check:concept-candidates:policies": "npm run check:concept-candidates:benchmark-policy && npm run check:concept-candidates:legacy-policy",
+    "check:quality-gate:13b": "node scripts/check-quality-gate-13b.js --benchmark ./test/benchmark/independent.expected-concept-candidates.yaml --artifacts-root ./test/artifacts",
     "check:frozen-references-policy": "node scripts/check-frozen-references-policy.js",
     "check:generated-report-artifacts-policy": "node scripts/check-generated-report-artifacts-policy.js",
     "serve:api": "node bin/api-server.js"

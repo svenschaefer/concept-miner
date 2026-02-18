@@ -75,6 +75,10 @@ Status date: 2026-02-18
 - remove Step12 token-only fallback (`mentions[]` required)
 - remove legacy artifact filename fallback in runtime seed-mode loading
 - align docs/contracts/tests to strict mode semantics
+- [x] `v1.0.4-a` restore mandatory independent benchmark quality gate for 13b:
+- copied benchmark target to product-owned path: `test/benchmark/independent.expected-concept-candidates.yaml`
+- added product-owned gate script: `scripts/check-quality-gate-13b.js`
+- wired gate into `ci:check` with mandatory `overall_score=100.0` for all benchmark seeds
 
 ## 0. Scope And Decisions (must be resolved first)
 
