@@ -153,6 +153,11 @@ Planned cycles:
 - `v1.1.0-c` completed: ported Step13 quality deltas into `src/core/step13.js`.
 - `v1.1.0-d` completed: `npm run check:quality-gate:13b` restored to `overall_score=100.0`.
 - `v1.1.0-e` in progress: docs/release sync and cut.
+  - product-owned deletion-safety tooling/tests ported:
+    - `scripts/concept-candidates.independent-benchmark.js`
+    - `scripts/check-concept-candidates-determinism.js`
+    - `scripts/run-seed-concept-candidates.ps1`
+    - heuristic-level Step13 regression coverage
 
 Status:
 - In progress.

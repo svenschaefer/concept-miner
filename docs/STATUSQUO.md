@@ -36,6 +36,7 @@ Implemented and stable:
 - Legacy CLI compatibility commands `run` and `validate` are removed from product-facing surfaces.
 - 13b independent benchmark quality gate is now mandatory in `ci:check` with required `overall_score=100.0`.
 - Latest `v1.1.0` Step13 delta port restored the 13b gate to `overall_score=100.0` on all six benchmark seeds.
+- Prototype-deletion safety gap closure is in progress with product-owned benchmark diagnostics tooling, determinism checker script, and heuristic-level Step13 regression tests.
 - 13a/generic-baseline mode is removed from the product runtime/API/CLI contract.
 - 1.x stability policy (breaking vs non-breaking changes) is documented in `docs/GUARANTEES.md`.
 

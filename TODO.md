@@ -31,6 +31,11 @@ Status date: 2026-02-18
 - [x] Analyze all changes in `prototype/*` against product source and port the deltas that improve candidate quality or test quality.
 - [x] Prioritize and apply Step13 quality improvements from prototype (`concept-candidates.js` / benchmark / tests) into product-owned code and tests.
 - [x] Re-run and iterate until `npm run check:quality-gate:13b` reaches `overall_score=100.0` again.
+- [x] Port remaining prototype deletion-safety gaps:
+- detailed independent benchmark diagnostics tooling
+- standalone concept-candidates determinism checker script
+- heuristic-level Step13 regression tests
+- product PowerShell seed runner script
 
 ## Progress Snapshot
 

@@ -60,6 +60,7 @@
     "check:concept-candidates:benchmark-policy": "node scripts/check-benchmark-policy.js",
     "check:concept-candidates:legacy-policy": "node scripts/check-legacy-policy.js",
     "eval:concept-candidates:independent:default-extended": "node scripts/check-quality-gate-13b.js --benchmark ./test/benchmark/independent.expected-concept-candidates.yaml --artifacts-root ./test/artifacts",
+    "eval:concept-candidates:independent:detailed": "node scripts/concept-candidates.independent-benchmark.js --benchmark ./test/benchmark/independent.expected-concept-candidates.yaml --artifacts-root ./test/artifacts --report-policy-intersections",
     "eval:concept-candidates:independent:13b": "npm run eval:concept-candidates:independent:default-extended",
     "eval:concept-candidates:independent:13b:policy": "node scripts/check-quality-gate-13b.js --benchmark ./test/benchmark/independent.expected-concept-candidates.yaml --artifacts-root ./test/artifacts",
     "eval:concept-candidates:13b:sweep": "node scripts/concept-candidates.13b-threshold-sweep.js --artifacts-root ./test/artifacts",

@@ -10,6 +10,11 @@ All notable changes to this project are documented in this file.
 - benchmark and frozen-reference sync:
   - updated `test/benchmark/independent.expected-concept-candidates.yaml` to the latest product baseline and added benchmark-policy rationale.
   - regenerated frozen `test/artifacts/*/result-reference/seed.concept-candidates.13b.*` artifacts to match current product Step13 runtime output.
+- prototype-deletion safety tooling/tests:
+  - added `scripts/concept-candidates.independent-benchmark.js` (detailed benchmark diagnostics with `neutral_present` and optional policy intersections).
+  - added `scripts/check-concept-candidates-determinism.js` (standalone schema + deterministic key-order check for concept-candidates YAML).
+  - added product runner `scripts/run-seed-concept-candidates.ps1`.
+  - added heuristic-level Step13 regression tests for suppression/promotion behavior.
 
 ## [1.0.5] - 2026-02-18
 

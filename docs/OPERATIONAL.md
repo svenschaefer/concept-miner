@@ -36,3 +36,12 @@ npx concept-miner validate-concepts --in output.json
 - `npm run pack:check`
 - `npm run smoke:release:ci`
 - `npm run ci:check`
+
+## Step13 Tooling
+
+- Detailed runtime benchmark diagnostics:
+  - `node scripts/concept-candidates.independent-benchmark.js --artifacts-root ./test/artifacts --benchmark ./test/benchmark/independent.expected-concept-candidates.yaml`
+- Standalone concept-candidates determinism/schema check:
+  - `node scripts/check-concept-candidates-determinism.js --in ./test/artifacts/webshop/result-reference/seed.concept-candidates.13b.yaml`
+- PowerShell batch runner for seed concept-candidates regeneration:
+  - `pwsh ./scripts/run-seed-concept-candidates.ps1 -Mode persisted`
