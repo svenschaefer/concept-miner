@@ -28,6 +28,9 @@ Status date: 2026-02-18
 - [ ] Define and approve `v1.1.0` scope (feature set and non-goals).
 - [ ] Add concrete `v1.1.0` execution cycles to `ROADMAP.md`.
 - [ ] Execute `v1.1.0` cycles with full gate validation and release notes.
+- [ ] Analyze all changes in `prototype/*` against product source and port the deltas that improve candidate quality or test quality.
+- [ ] Prioritize and apply Step13 quality improvements from prototype (`concept-candidates.js` / benchmark / tests) into product-owned code and tests.
+- [ ] Re-run and iterate until `npm run check:quality-gate:13b` reaches `overall_score=100.0` again.
 
 ## Progress Snapshot
 
