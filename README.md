@@ -135,6 +135,7 @@ Relevant documentation:
 - `docs/releases/v1.0.0.md`
 - `docs/releases/v1.0.1.md`
 - `docs/releases/v1.0.2.md`
+- `docs/releases/v1.0.3.md`
 - `docs/BASELINE_TEST_RUN.md`
 - `docs/FROZEN_REFERENCES_POLICY.md`
 - `docs/GENERATED_REPORT_ARTIFACTS_POLICY.md`

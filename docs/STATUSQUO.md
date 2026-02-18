@@ -5,7 +5,7 @@
 - Branch: `main`
 - Sync: tracking `origin/main` (kept in sync via stable phase commits)
 - Current annotated release tag: `v1.0.2`
-- npm package status: `concept-miner@1.0.2` published (`latest` -> `1.0.2`)
+- npm package status: `concept-miner@1.0.2` published (`latest` -> `1.0.2`), `1.0.3` in release prep.
 - Latest stable phase: `v1.000` (first stable product release cut at package version `1.0.0`)
 - Planning state: `TODO.md` and `ROADMAP.md` are synchronized through `v1.000`.
 - Major completed workstreams:

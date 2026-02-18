@@ -12,6 +12,20 @@ test("extractConcepts fallback returns concepts document", async () => {
   assert.deepEqual(names, ["alpha", "beta"]);
 });
 
+test("extractConcepts fallback removes stopwords for simple sentence", async () => {
+  const doc = await extractConcepts("This is a test.", { includeEvidence: true });
+  const names = doc.concepts.map((c) => c.name).sort();
+  assert.deepEqual(names, ["test"]);
+  assert.deepEqual(doc.concepts[0].surface_forms, ["test"]);
+  assert.equal(doc.concepts[0].occurrences.length, 1);
+});
+
+test("extractConcepts fallback removes stopword-only concept from pangram", async () => {
+  const doc = await extractConcepts("The quick brown fox jumps over the lazy dog.", {});
+  const names = doc.concepts.map((c) => c.name).sort();
+  assert.deepEqual(names, ["brown", "dog", "fox", "jumps", "lazy", "over", "quick"]);
+});
+
 test("validateConcepts accepts extracted fallback document", async () => {
   const doc = await extractConcepts("alpha beta alpha", {});
   const result = validateConcepts(doc);

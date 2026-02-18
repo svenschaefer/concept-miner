@@ -2,6 +2,32 @@ const crypto = require("node:crypto");
 const { normalizeModeValue } = require("./mode");
 
 const DEFAULT_WIKIPEDIA_TITLE_INDEX_ENDPOINT = "http://127.0.0.1:32123";
+const MIN_TOKEN_LENGTH = 2;
+const STOPWORDS = new Set([
+  "a",
+  "an",
+  "and",
+  "are",
+  "as",
+  "at",
+  "be",
+  "by",
+  "for",
+  "from",
+  "in",
+  "is",
+  "it",
+  "of",
+  "on",
+  "or",
+  "that",
+  "the",
+  "this",
+  "to",
+  "was",
+  "were",
+  "with",
+]);
 
 function canonicalizeToken(value) {
   return String(value || "")
@@ -9,6 +35,10 @@ function canonicalizeToken(value) {
     .toLowerCase()
     .replace(/[^a-z0-9]+/g, " ")
     .trim();
+}
+
+function isConceptCandidate(token) {
+  return token.length >= MIN_TOKEN_LENGTH && !STOPWORDS.has(token);
 }
 
 function conceptIdFromName(name) {
@@ -107,7 +137,7 @@ async function runFallbackExtraction(text, options = {}) {
   const sourceText = String(text || "");
   for (const match of sourceText.matchAll(/[A-Za-z0-9]+/g)) {
     const token = canonicalizeToken(match[0]);
-    if (!token) continue;
+    if (!token || !isConceptCandidate(token)) continue;
     if (!byName.has(token)) {
       byName.set(token, {
         id: conceptIdFromName(token),

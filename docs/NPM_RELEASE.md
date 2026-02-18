@@ -157,9 +157,10 @@ Behavior:
 - post-publish smoke check passed (public registry or private tarball rehearsal, depending on posture).
 - repo is clean (`git status`).
 
-## Current Posture (v1.002)
+## Current Posture (v1.0.3 release prep)
 
 - Repository/package posture is publishable (`"private": false`).
 - Public npm release can be executed using this guide (`npm whoami`, `npm publish`, propagation checks, post-publish smoke).
 - Current published package state: `concept-miner@1.0.2` with `latest` dist-tag.
+- Next planned patch release: `1.0.3` (fallback extraction quality fix).
 - Deprecated npm versions: `1.0.0`, `1.0.1` (migration message points to `1.0.2+`).

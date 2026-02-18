@@ -6,6 +6,14 @@ All notable changes to this project are documented in this file.
 
 - No unreleased changes.
 
+## [1.0.3] - 2026-02-18
+
+- fallback extraction quality fix:
+  - removed trivial stopword-only concepts from raw-text fallback extraction.
+  - `"This is a test."` now yields concept set `["test"]` instead of token-dump output.
+- tests:
+  - added unit coverage for stopword filtering on trivial and pangram-style inputs.
+
 ## [1.0.2] - 2026-02-17
 
 - npm README cleanup:
