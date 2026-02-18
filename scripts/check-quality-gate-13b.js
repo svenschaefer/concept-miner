@@ -56,6 +56,9 @@ async function main() {
   );
   const artifactsRoot = path.resolve(arg(args, "--artifacts-root") || path.join(__dirname, "..", "test", "artifacts"));
   const seedFilter = arg(args, "--seed-id");
+  const wikipediaTitleIndexEndpoint = arg(args, "--wikipedia-title-index-endpoint");
+  const wikipediaTitleIndexTimeoutMsRaw = arg(args, "--wikipedia-title-index-timeout-ms");
+  const wikipediaTitleIndexTimeoutMs = wikipediaTitleIndexTimeoutMsRaw ? Number(wikipediaTitleIndexTimeoutMsRaw) : undefined;
 
   if (!fs.existsSync(benchmarkPath)) {
     throw new Error(`Missing benchmark file: ${benchmarkPath}`);
@@ -83,6 +86,8 @@ async function main() {
       seedId,
       artifactsRoot,
       mode: "default-extended",
+      wikipediaTitleIndexEndpoint,
+      wikipediaTitleIndexTimeoutMs,
     });
     const gotSet = toSet((doc.concepts || []).map((c) => c.name));
     const score = scoreSeed(gotSet, benchmark.seeds[seedId] || {});

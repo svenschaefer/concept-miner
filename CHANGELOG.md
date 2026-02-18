@@ -4,9 +4,23 @@ All notable changes to this project are documented in this file.
 
 ## [Unreleased]
 
-- quality gate restoration:
-  - added mandatory 13b independent benchmark gate (`overall_score=100.0`) in `ci:check`.
-  - added product-owned benchmark target at `test/benchmark/independent.expected-concept-candidates.yaml`.
+- strict 13b-only runtime transition:
+  - removed product `generic-baseline` mode support; `default-extended` is now the only runtime mode.
+  - `extractConcepts` now executes Step12 (`elementary-assertions`) + product-owned Step13 engine for text and seed input paths.
+  - removed token-regex fallback runtime path from product extraction behavior.
+- runtime quality gate hardening:
+  - `scripts/check-quality-gate-13b.js` now evaluates runtime extraction path with seed text inputs.
+  - quality gate remains mandatory at `overall_score=100.0` in `ci:check`.
+- product-owned Step13 tooling migration:
+  - added product-owned copies under `scripts/`:
+    - `check-benchmark-policy.js`
+    - `check-legacy-policy.js`
+    - `concept-candidates.13b-threshold-sweep.js`
+    - `step12-wikipedia-title-index-coverage.js`
+  - updated package scripts and report-artifact policy to use product-owned script paths.
+- tests/docs:
+  - updated tests to strict default-extended contract and removed 13a/generic-baseline expectations.
+  - synchronized README/STATUSQUO/GUARANTEES/OPERATIONAL/TODO/ROADMAP with current runtime direction.
 
 ## [1.0.4] - 2026-02-18
 

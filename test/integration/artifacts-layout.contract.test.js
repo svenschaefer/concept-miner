@@ -25,9 +25,6 @@ test("each realistic seed directory has seed.txt and frozen result-reference out
     assert.ok(fs.existsSync(refDir), `missing frozen result-reference directory: ${refDir}`);
 
     const required = [
-      "seed.concept-candidates.13a.yaml",
-      "seed.concept-candidates.13a.meta.json",
-      "seed.concept-candidates.13a.diag.json",
       "seed.concept-candidates.13b.yaml",
       "seed.concept-candidates.13b.meta.json",
       "seed.concept-candidates.13b.diag.json",

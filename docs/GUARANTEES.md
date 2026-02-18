@@ -18,8 +18,8 @@ This file defines core behavior guarantees for template-based projects.
     - `exact_match` (`boolean`)
     - `prefix_count` (`integer`, `>= 0`)
 - Mode policy:
-  - `default-extended` is the default runtime mode and requires wikipedia-title-index availability.
-  - `generic-baseline` is optional and runs without wikipedia-title-index.
+  - `default-extended` is the only product runtime mode.
+  - wikipedia-title-index availability is required.
 
 ## Non-Goals
 
@@ -52,7 +52,7 @@ Breaking changes (require major version bump):
 
 - Remove or rename documented REST endpoints/fields.
 - Tighten required-field constraints in `schema/concepts.schema.json` so previously valid documents fail.
-- Remove `generic-baseline` mode from public API/CLI.
+- Change `default-extended` extraction semantics in a way that breaks benchmark or contract compatibility.
 
 Non-breaking changes (allowed in 1.x):
 

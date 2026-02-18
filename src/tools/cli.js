@@ -6,9 +6,9 @@ const { loadProjectConfig } = require("./config");
 function usage() {
   return [
     "Usage:",
-    "  concept-miner extract --text <string> [--out <path>] [--mode <generic-baseline|default-extended>] [--wikipedia-title-index-endpoint <url>] [--wikipedia-title-index-timeout-ms <ms>] [--config <path>]",
-    "  concept-miner extract --seed-id <id> [--artifacts-root <path>] [--out <path>] [--mode <generic-baseline|default-extended>] [--wikipedia-title-index-endpoint <url>] [--wikipedia-title-index-timeout-ms <ms>] [--config <path>]",
-    "  concept-miner extract --step12-in <path> [--out <path>] [--mode <generic-baseline|default-extended>] [--wikipedia-title-index-endpoint <url>] [--wikipedia-title-index-timeout-ms <ms>] [--config <path>]",
+    "  concept-miner extract --text <string> [--out <path>] [--mode <default-extended>] [--wikipedia-title-index-endpoint <url>] [--wikipedia-title-index-timeout-ms <ms>] [--config <path>]",
+    "  concept-miner extract --seed-id <id> [--artifacts-root <path>] [--out <path>] [--mode <default-extended>] [--wikipedia-title-index-endpoint <url>] [--wikipedia-title-index-timeout-ms <ms>] [--config <path>]",
+    "  concept-miner extract --step12-in <path> [--out <path>] [--mode <default-extended>] [--wikipedia-title-index-endpoint <url>] [--wikipedia-title-index-timeout-ms <ms>] [--config <path>]",
     "  concept-miner validate-concepts --in <path>",
   ].join("\n");
 }

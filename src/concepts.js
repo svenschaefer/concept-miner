@@ -3,21 +3,41 @@ const crypto = require("node:crypto");
 const path = require("node:path");
 const Ajv2020 = require("ajv/dist/2020");
 const YAML = require("yaml");
-const { runExtraction, unprocessable } = require("./core/extraction");
+const { runElementaryAssertions } = require("elementary-assertions");
+const { buildConceptCandidatesFromStep12 } = require("./core/step13");
 const { normalizeModeValue } = require("./core/mode");
 const { enforceConceptInvariants } = require("./validate/concepts-invariants");
+
+const DEFAULT_WIKIPEDIA_TITLE_INDEX_ENDPOINT = "http://127.0.0.1:32123";
 
 function conceptIdFromName(name) {
   return `c_${crypto.createHash("sha256").update(Buffer.from(name, "utf8")).digest("hex").slice(0, 12)}`;
 }
 
+function unprocessable(message) {
+  const err = new Error(message);
+  err.code = "UNPROCESSABLE_INPUT";
+  err.name = "UnprocessableInputError";
+  return err;
+}
+
+function sortedUniqueStrings(values) {
+  return Array.from(new Set((values || []).map((v) => String(v)))).sort((a, b) => a.localeCompare(b));
+}
+
 function mapConceptEntriesToDocument(conceptsInput, options = {}) {
   const concepts = conceptsInput
-    .map((entry) => ({
-      id: String(entry.id || conceptIdFromName(entry.name)),
-      name: String(entry.name || ""),
-      surface_forms: Array.isArray(entry.surface_forms) ? Array.from(new Set(entry.surface_forms.map((v) => String(v)))) : [],
-    }))
+    .map((entry) => {
+      const base = {
+        id: String(entry.id || conceptIdFromName(entry.name)),
+        name: String(entry.name || ""),
+        surface_forms: sortedUniqueStrings(entry.surface_forms || []),
+      };
+      if (Array.isArray(entry.occurrences) && entry.occurrences.length > 0) {
+        base.occurrences = entry.occurrences;
+      }
+      return base;
+    })
     .filter((entry) => entry.name.length > 0)
     .sort((a, b) => a.name.localeCompare(b.name));
 
@@ -35,87 +55,132 @@ function mapConceptEntriesToDocument(conceptsInput, options = {}) {
   };
 }
 
-function mapCandidateDocToConceptsDocument(candidateDoc, options = {}) {
-  const concepts = (candidateDoc.concept_candidates || []).map((candidate) => ({
-    id: candidate.concept_id,
-    name: candidate.canonical,
-    surface_forms: Array.isArray(candidate.surfaces) ? candidate.surfaces : [],
-  }));
+function mapCandidateDocToConceptsDocument(candidateDoc, options = {}, context = {}) {
+  const mentionById = new Map();
+  if (context.step12Document && Array.isArray(context.step12Document.mentions)) {
+    for (const mention of context.step12Document.mentions) {
+      if (mention && typeof mention.id === "string") {
+        mentionById.set(mention.id, mention);
+      }
+    }
+  }
+
+  const concepts = (candidateDoc.concept_candidates || []).map((candidate) => {
+    const concept = {
+      id: candidate.concept_id,
+      name: candidate.canonical,
+      surface_forms: Array.isArray(candidate.surfaces) ? candidate.surfaces : [],
+    };
+    if (options.includeEvidence === true && Array.isArray(candidate.mention_ids)) {
+      const occurrences = [];
+      for (const mentionId of candidate.mention_ids) {
+        const mention = mentionById.get(mentionId);
+        if (!mention) continue;
+        occurrences.push({
+          start: Number.isInteger(mention.start) ? mention.start : 0,
+          end: Number.isInteger(mention.end) ? mention.end : 0,
+          text: String(mention.surface || mention.normalized_surface || ""),
+          source: String(mention.kind || "mention"),
+        });
+      }
+      if (occurrences.length > 0) {
+        concept.occurrences = occurrences.sort((a, b) => (a.start - b.start) || (a.end - b.end));
+      }
+    }
+    return concept;
+  });
   return mapConceptEntriesToDocument(concepts, options);
 }
 
-function loadSeedCandidateDoc(seedId, options = {}) {
+function loadSeedText(seedId, options = {}) {
   const artifactsRoot = path.resolve(options.artifactsRoot || path.join(process.cwd(), "test", "artifacts"));
-  const mode = normalizeModeValue(options.mode);
-  const modeSuffixByProductMode = {
-    "generic-baseline": "13a",
-    "default-extended": "13b",
-  };
-  const modeSuffix = modeSuffixByProductMode[mode];
-  const baseDir = path.join(artifactsRoot, seedId);
-  const searchDirs = [
-    path.join(baseDir, "result-reference"),
-    path.join(baseDir, "seed"),
-    baseDir,
-  ];
-  const searchFile = `seed.concept-candidates.${modeSuffix}.yaml`;
-
-  for (const dirPath of searchDirs) {
-    const docPath = path.join(dirPath, searchFile);
-    if (!fs.existsSync(docPath)) continue;
-    return YAML.parse(fs.readFileSync(docPath, "utf8"));
+  const seedTextPath = path.join(artifactsRoot, seedId, "seed.txt");
+  if (!fs.existsSync(seedTextPath)) {
+    throw unprocessable(`Missing seed.txt for seed ${seedId} under ${artifactsRoot}`);
   }
-  throw unprocessable(`Missing concept-candidates artifact (${searchFile}) for seed ${seedId} under ${artifactsRoot}`);
+  return fs.readFileSync(seedTextPath, "utf8");
 }
 
-function toStep12ConceptDocument(step12Document, options = {}) {
-  if (!step12Document || typeof step12Document !== "object") {
+function parseStep12Document(step12Raw) {
+  if (!step12Raw || typeof step12Raw !== "object") {
     throw unprocessable("Step12 input must be an object.");
   }
-  if (!Array.isArray(step12Document.mentions) || step12Document.mentions.length === 0) {
-    throw unprocessable("Step12 input must provide non-empty mentions[]; token-only fallback is not supported.");
+  if (!Array.isArray(step12Raw.mentions) || step12Raw.mentions.length === 0) {
+    throw unprocessable("Step12 input must provide non-empty mentions[].");
+  }
+  if (!Array.isArray(step12Raw.assertions)) {
+    throw unprocessable("Step12 input must provide assertions[].");
+  }
+  return step12Raw;
+}
+
+async function runDefaultExtendedExtractionFromText(text, options = {}) {
+  const endpoint =
+    options.wikipediaTitleIndexEndpoint
+    || options.wikipedia_title_index_endpoint
+    || process.env.WIKIPEDIA_TITLE_INDEX_ENDPOINT
+    || DEFAULT_WIKIPEDIA_TITLE_INDEX_ENDPOINT;
+  const timeoutMs = Number.isFinite(options.timeoutMs) ? Number(options.timeoutMs) : 120000;
+  const wikipediaTitleIndexTimeoutMs = Number.isFinite(options.wikipediaTitleIndexTimeoutMs)
+    ? Number(options.wikipediaTitleIndexTimeoutMs)
+    : (Number.isFinite(options.wikipedia_title_index_timeout_ms) ? Number(options.wikipedia_title_index_timeout_ms) : 2000);
+
+  let step12;
+  try {
+    step12 = await runElementaryAssertions(String(text), {
+      services: {
+        "wikipedia-title-index": { endpoint },
+      },
+      timeoutMs,
+      wtiTimeoutMs: wikipediaTitleIndexTimeoutMs,
+    });
+  } catch (err) {
+    throw unprocessable(err && err.message ? err.message : String(err));
   }
 
-  const byName = new Map();
-
-  for (const mention of step12Document.mentions) {
-    const name = String(mention.normalized_surface || mention.surface || "").trim().toLowerCase().replace(/\s+/g, "_");
-    if (!name) continue;
-    if (!byName.has(name)) {
-      byName.set(name, { id: conceptIdFromName(name), name, surface_forms: [] });
-    }
-    if (mention.surface) {
-      byName.get(name).surface_forms.push(String(mention.surface));
-    }
-  }
-  if (byName.size === 0) {
-    throw unprocessable("Step12 mentions[] did not yield concept candidates.");
-  }
-
-  return mapConceptEntriesToDocument(Array.from(byName.values()), options);
+  const candidateDoc = buildConceptCandidatesFromStep12(parseStep12Document(step12), {
+    step13Mode: "13b",
+    enableLegacyEnrichment: false,
+    enableRecoverySynthesis: false,
+  });
+  if (candidateDoc && candidateDoc._diagnostics) delete candidateDoc._diagnostics;
+  return mapCandidateDocToConceptsDocument(candidateDoc, options, { step12Document: step12 });
 }
 
 async function extractConcepts(text, options = {}) {
-  const mode = normalizeModeValue(options.mode);
-  const extractionOptions = { ...options, mode };
+  normalizeModeValue(options.mode);
 
   if (options.step12Document && typeof options.step12Document === "object") {
-    return toStep12ConceptDocument(options.step12Document, extractionOptions);
+    const step12Document = parseStep12Document(options.step12Document);
+    const candidateDoc = buildConceptCandidatesFromStep12(step12Document, {
+      step13Mode: "13b",
+      enableLegacyEnrichment: false,
+      enableRecoverySynthesis: false,
+    });
+    if (candidateDoc && candidateDoc._diagnostics) delete candidateDoc._diagnostics;
+    return mapCandidateDocToConceptsDocument(candidateDoc, options, { step12Document });
   }
 
   if (typeof options.step12Path === "string" && options.step12Path.length > 0) {
-    const step12Document = YAML.parse(fs.readFileSync(options.step12Path, "utf8"));
-    return toStep12ConceptDocument(step12Document, extractionOptions);
+    const step12Document = parseStep12Document(YAML.parse(fs.readFileSync(options.step12Path, "utf8")));
+    const candidateDoc = buildConceptCandidatesFromStep12(step12Document, {
+      step13Mode: "13b",
+      enableLegacyEnrichment: false,
+      enableRecoverySynthesis: false,
+    });
+    if (candidateDoc && candidateDoc._diagnostics) delete candidateDoc._diagnostics;
+    return mapCandidateDocToConceptsDocument(candidateDoc, options, { step12Document });
   }
 
   if (typeof options.seedId === "string" && options.seedId.length > 0) {
-    return mapCandidateDocToConceptsDocument(loadSeedCandidateDoc(options.seedId, extractionOptions), extractionOptions);
+    const seedText = loadSeedText(options.seedId, options);
+    return runDefaultExtendedExtractionFromText(seedText, options);
   }
 
   if (typeof text !== "string" || text.length === 0) {
     throw new Error("extractConcepts requires non-empty text when no Step12 source is provided.");
   }
-  return runExtraction(text, extractionOptions);
+  return runDefaultExtendedExtractionFromText(text, options);
 }
 
 function validateConcepts(document) {
@@ -137,4 +202,5 @@ function validateConcepts(document) {
 module.exports = {
   extractConcepts,
   validateConcepts,
+  unprocessable,
 };

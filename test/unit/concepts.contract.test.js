@@ -1,33 +1,23 @@
 const test = require("node:test");
 const assert = require("node:assert/strict");
+const path = require("node:path");
 
 const { extractConcepts, validateConcepts } = require("../../src");
 
-test("extractConcepts returns concepts document in generic-baseline mode", async () => {
-  const doc = await extractConcepts("alpha beta alpha", { mode: "generic-baseline", includeEvidence: true });
+const repoRoot = path.resolve(__dirname, "..", "..");
+const step12Path = path.join(repoRoot, "test", "artifacts", "webshop", "result-reference", "seed.elementary-assertions.yaml");
+
+test("extractConcepts returns concepts document from Step12 input", async () => {
+  const doc = await extractConcepts("", { step12Path, includeEvidence: true });
   assert.equal(doc.schema_version, "1.0.0");
   assert.ok(Array.isArray(doc.concepts));
-  assert.equal(doc.concepts.length, 2);
-  const names = doc.concepts.map((c) => c.name).sort();
-  assert.deepEqual(names, ["alpha", "beta"]);
+  assert.ok(doc.concepts.length > 0);
+  assert.ok(doc.concepts.some((c) => c.name === "online_store"));
+  assert.ok(doc.concepts.some((c) => c.name === "shopping_cart"));
 });
 
-test("extractConcepts removes stopwords for simple sentence", async () => {
-  const doc = await extractConcepts("This is a test.", { mode: "generic-baseline", includeEvidence: true });
-  const names = doc.concepts.map((c) => c.name).sort();
-  assert.deepEqual(names, ["test"]);
-  assert.deepEqual(doc.concepts[0].surface_forms, ["test"]);
-  assert.equal(doc.concepts[0].occurrences.length, 1);
-});
-
-test("extractConcepts removes stopword-only concept from pangram", async () => {
-  const doc = await extractConcepts("The quick brown fox jumps over the lazy dog.", { mode: "generic-baseline" });
-  const names = doc.concepts.map((c) => c.name).sort();
-  assert.deepEqual(names, ["brown", "dog", "fox", "jumps", "lazy", "over", "quick"]);
-});
-
-test("validateConcepts accepts extracted generic-baseline document", async () => {
-  const doc = await extractConcepts("alpha beta alpha", { mode: "generic-baseline" });
+test("validateConcepts accepts extracted document", async () => {
+  const doc = await extractConcepts("", { step12Path });
   const result = validateConcepts(doc);
   assert.equal(result.ok, true);
   assert.deepEqual(result.errors, []);
@@ -78,11 +68,11 @@ test("validateConcepts rejects occurrence bounds where end < start", () => {
   assert.ok(result.errors.some((error) => error.keyword === "invariant" && /Occurrence end/.test(error.message)));
 });
 
-test("extractConcepts accepts kebab-case mode values", async () => {
-  const doc = await extractConcepts("alpha beta alpha", { mode: "generic-baseline" });
-  assert.equal(doc.schema_version, "1.0.0");
-  assert.ok(Array.isArray(doc.concepts));
-  assert.equal(doc.concepts.length, 2);
+test("extractConcepts rejects removed mode generic-baseline", async () => {
+  await assert.rejects(
+    () => extractConcepts("alpha beta alpha", { mode: "generic-baseline" }),
+    /Invalid mode/i
+  );
 });
 
 test("extractConcepts rejects legacy underscore mode values", async () => {
@@ -99,7 +89,7 @@ test("extractConcepts hard-fails in default-extended mode when wikipedia-title-i
       wikipediaTitleIndexEndpoint: "http://127.0.0.1:1",
       wikipediaTitleIndexTimeoutMs: 50,
     }),
-    /wikipedia-title-index query failed/i
+    /wikipedia-title-index/i
   );
 });
 

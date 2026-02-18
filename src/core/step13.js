@@ -1,0 +1,2107 @@
+#!/usr/bin/env node
+/* eslint-disable no-unused-vars */
+const fs = require("fs");
+const path = require("path");
+const crypto = require("crypto");
+const YAML = require("yaml");
+const Ajv2020 = require("ajv/dist/2020");
+const { runElementaryAssertions } = require("elementary-assertions");
+const {
+  LEGACY_GENERIC_DROP,
+  LEGACY_NOMINAL_VERB_WHITELIST,
+  applyLegacyStringRules,
+} = require("./legacy-enrichment");
+
+const ROLE_KEYS = ["actor", "theme", "attr", "topic", "location", "other"];
+const TOP_LEVEL_KEYS = ["schema_version", "seed_id", "stage", "concept_candidates"];
+const CANDIDATE_KEYS = ["concept_id", "canonical", "surfaces", "mention_ids", "assertion_ids", "roles", "wikipedia_title_index"];
+const CANDIDATE_KEYS_WITH_WIKIPEDIA_TITLE_INDEX_EVIDENCE = [...CANDIDATE_KEYS, "wikipedia_title_index_evidence"];
+const COUNT_KEY_RE = /^wiki_[A-Za-z0-9_]+_count$/;
+const WIKIPEDIA_SIGNAL_KEY_RE = /^wiki_[A-Za-z0-9_]+$/;
+const DEFAULT_ARTIFACTS_ROOT = path.resolve(__dirname, "..", "artifacts");
+const STEP13_DIR = __dirname;
+const DEFAULT_WIKIPEDIA_TITLE_INDEX_ENDPOINT = "http://127.0.0.1:32123";
+const STEP13_MODES = new Set(["13a", "13b"]);
+
+function usage() {
+  return [
+    "Usage:",
+    "  Runtime mode:",
+    "    node concept-candidates.js --seed-id <id> [--artifacts-root <path>] [--out <path>]",
+    "      [--wikipedia-title-index-endpoint <url>] [--timeout-ms <ms>] [--wikipedia-title-index-timeout-ms <ms>]",
+    "      [--wti-endpoint <url>] [--wti-timeout-ms <ms>]  # backward-compatible aliases",
+    "  Persisted mode:",
+    "    node concept-candidates.js --step12-in <path> [--out <path>]",
+    "  Shared flags:",
+    "      [--step13-mode <13a|13b>]",
+    "      [--mode13b-verb-promotion-min-wikipedia-count <number>]",
+    "      [--mode13b-unlinked-finite-verb-promotion-min-wikipedia-count <number>]",
+    "      [--mode13b-low-wikipedia-count-unlinked-min-avg <number>]",
+    "      [--mode13b-nonnominal-share-min <number>]",
+    "      [--mode13b-nonnominal-weak-wikipedia-count-max <number>]",
+    "      [--mode13b-merge-host-min-wikipedia-count-ratio <number>]",
+    "      [--mode13b-verb-promotion-min-wti <number>]  # backward-compatible alias",
+    "      [--mode13b-unlinked-finite-verb-promotion-min-wti <number>]  # backward-compatible alias",
+    "      [--mode13b-low-wti-unlinked-min-avg <number>]  # backward-compatible alias",
+    "      [--mode13b-nonnominal-weak-wti-max <number>]  # backward-compatible alias",
+    "      [--mode13b-merge-host-min-wti-ratio <number>]  # backward-compatible alias",
+    "      [--wikipedia-title-index-policy <assertion_then_lexicon_fallback|assertion_only>]",
+    "      [--wti-policy <assertion_then_lexicon_fallback|assertion_only>]  # backward-compatible alias",
+    "      [--disable-supplemental] [--disable-alias-synthesis] [--enable-legacy-enrichment] [--enable-recovery-synthesis]",
+    "      [--no-emit-wikipedia-title-index-evidence]",
+    "      [--no-emit-wti-evidence]  # backward-compatible alias",
+    "      [--diag-out <path>] [--meta-out <path>] [--print]",
+  ].join("\n");
+}
+
+function arg(args, name) {
+  const i = args.indexOf(name);
+  if (i < 0 || i + 1 >= args.length) return null;
+  return args[i + 1];
+}
+
+function hasFlag(args, name) {
+  return args.includes(name);
+}
+
+function compareStrings(a, b) {
+  if (a < b) return -1;
+  if (a > b) return 1;
+  return 0;
+}
+
+function assert(condition, message) {
+  if (!condition) throw new Error(message);
+}
+
+function parseSemverMajor(value) {
+  const m = /^(\d+)\.(\d+)\.(\d+)(?:[-+].*)?$/.exec(String(value || ""));
+  if (!m) return null;
+  return Number(m[1]);
+}
+
+function defaultCaseFold(input) {
+  let out = String(input || "").toLowerCase();
+  out = out.replace(/\u1E9E/g, "ss").replace(/\u00DF/g, "ss");
+  out = out.replace(/\u03C2/g, "\u03C3");
+  return out;
+}
+
+function canonicalizeSurface(surface) {
+  let out = String(surface || "");
+  out = out.normalize("NFKC");
+  out = defaultCaseFold(out);
+  out = out.replace(/[^A-Za-z0-9]/gu, " ");
+  out = out.replace(/ +/g, " ").trim();
+  out = out.replace(/ /g, "_");
+  if (!out) throw new Error(`Canonicalization produced empty key for surface: ${JSON.stringify(surface)}`);
+  return out;
+}
+
+function normalizeLiftedSurface(surface) {
+  const trimmed = String(surface || "").replace(/\s+/g, " ").trim();
+  if (!trimmed) return trimmed;
+  const parts = trimmed.split(" ");
+  const drop = new Set([
+    "a", "an", "the",
+  ]);
+  let i = 0;
+  while (i < parts.length && drop.has(parts[i].toLowerCase())) i += 1;
+  while (i < parts.length && /^[0-9]+$/.test(parts[i])) i += 1;
+  return parts.slice(i).join(" ").trim();
+}
+
+function isNominalTag(tag) {
+  return tag === "NN" || tag === "NNS" || tag === "NNP" || tag === "NNPS" || tag === "JJ" || tag === "JJR" || tag === "JJS" || tag === "CD" || tag === "VBN" || tag === "VBG";
+}
+
+function sha256HexUtf8(text) {
+  return crypto.createHash("sha256").update(Buffer.from(String(text), "utf8")).digest("hex");
+}
+
+function conceptIdFromCanonical(canonical) {
+  return `cc_${sha256HexUtf8(canonical).slice(0, 16)}`;
+}
+
+function sortedUniqueStrings(values) {
+  return Array.from(new Set((values || []).map((v) => String(v)))).sort(compareStrings);
+}
+
+function orderedSparseWikipediaSignalObject(raw) {
+  const out = Object.create(null);
+  const keys = Object.keys(raw || {}).filter((k) => WIKIPEDIA_SIGNAL_KEY_RE.test(k)).sort(compareStrings);
+  for (const k of keys) out[k] = raw[k];
+  return out;
+}
+
+function roleBucket(role) {
+  const r = String(role || "");
+  if (r === "actor") return "actor";
+  if (r === "theme") return "theme";
+  if (r === "attr" || r === "attribute") return "attr";
+  if (r === "topic") return "topic";
+  if (r === "location") return "location";
+  return "other";
+}
+
+function singularizeTokenPart(part) {
+  const p = String(part || "");
+  if (p.length <= 3) return p;
+  if (p.endsWith("ies") && p.length > 4) return `${p.slice(0, -3)}y`;
+  if (/(ches|shes|xes|zes)$/i.test(p)) return p.slice(0, -2);
+  if (p.endsWith("sses")) return `${p.slice(0, -2)}`;
+  if (p.endsWith("ss") || p.endsWith("us") || p.endsWith("is") || p.endsWith("ics")) return p;
+  if (p.endsWith("s")) return p.slice(0, -1);
+  return p;
+}
+
+function singularizeCanonical(canonical) {
+  const parts = String(canonical || "").split("_").filter(Boolean);
+  if (parts.length === 0) return String(canonical || "");
+  return parts.map((p) => singularizeTokenPart(p)).join("_");
+}
+
+function shouldRejectAliasCanonical(canonical) {
+  const c = String(canonical || "");
+  if (!c) return true;
+  if (c.startsWith("a_") || c.startsWith("an_") || c.startsWith("the_")) return true;
+  const parts = c.split("_").filter(Boolean);
+  if (parts.length === 2) {
+    const p0 = String(parts[0] || "");
+    if (p0 === "a" || p0 === "an" || p0 === "the") return true;
+  }
+  return false;
+}
+
+function ensureIntegerCount(key, value, pathLabel) {
+  if (!Number.isInteger(value)) {
+    throw new Error(`Non-integer ${key} at ${pathLabel}; integer required (no coercion).`);
+  }
+}
+
+function ensureWikipediaSignalScalar(key, value, pathLabel) {
+  if (COUNT_KEY_RE.test(key)) {
+    ensureIntegerCount(key, value, pathLabel);
+    return;
+  }
+  if (typeof value !== "boolean") {
+    throw new Error(`Invalid ${key} at ${pathLabel}; expected boolean for non-count wiki signal.`);
+  }
+}
+
+function parseStep13Mode(value) {
+  const mode = String(value || "13b");
+  if (!STEP13_MODES.has(mode)) {
+    throw new Error(`Invalid --step13-mode: ${mode}`);
+  }
+  return mode;
+}
+
+function parseNonNegativeNumberArg(name, raw, fallback) {
+  if (raw === null || raw === undefined || raw === "") return fallback;
+  const value = Number(raw);
+  if (!Number.isFinite(value) || value < 0) {
+    throw new Error(`Invalid ${name}: ${String(raw)}`);
+  }
+  return value;
+}
+
+function countObjectTotal(raw) {
+  let total = 0;
+  for (const key of Object.keys(raw || {})) {
+    const value = raw[key];
+    if (Number.isInteger(value) && value > 0) total += value;
+  }
+  return total;
+}
+
+function selectMentionEvidenceByPolicy(assertionEvidence, lexiconEvidence, policy) {
+  if (policy === "assertion_only") return assertionEvidence || {};
+  return assertionEvidence || lexiconEvidence || {};
+}
+
+function roundFixed3(value) {
+  const n = Number(value);
+  if (!Number.isFinite(n)) return 0;
+  return Math.round(n * 1000) / 1000;
+}
+
+function walkWikipediaSignalFields(node, onSignal, pathLabel) {
+  if (Array.isArray(node)) {
+    for (let i = 0; i < node.length; i += 1) {
+      walkWikipediaSignalFields(node[i], onSignal, `${pathLabel}[${i}]`);
+    }
+    return;
+  }
+  if (!node || typeof node !== "object") return;
+  for (const [key, value] of Object.entries(node)) {
+    const nextPath = `${pathLabel}.${key}`;
+    if (WIKIPEDIA_SIGNAL_KEY_RE.test(key)) {
+      ensureWikipediaSignalScalar(key, value, nextPath);
+      onSignal(key, value, nextPath);
+    }
+    walkWikipediaSignalFields(value, onSignal, nextPath);
+  }
+}
+
+function mentionSurfaceFromSpan(mention, canonicalText) {
+  const span = mention && mention.span;
+  assert(span && Number.isInteger(span.start) && Number.isInteger(span.end), `Mention ${mention && mention.id} has invalid span.`);
+  assert(span.start >= 0 && span.end >= span.start, `Mention ${mention && mention.id} span is invalid.`);
+  assert(typeof canonicalText === "string", "Step 12 canonical_text missing.");
+  return canonicalText.slice(span.start, span.end);
+}
+
+function validateStep12Contract(step12) {
+  assert(step12 && typeof step12 === "object", "Step 12 document must be an object.");
+  assert(step12.stage === "elementary_assertions", `Invalid Step 12 stage: ${String(step12.stage)}`);
+  const major = parseSemverMajor(step12.schema_version);
+  assert(major !== null, `Step 12 schema_version must be valid SemVer, got: ${String(step12.schema_version)}`);
+  assert(major === 1, `Incompatible Step 12 schema major: ${major}; expected 1.`);
+  assert(Array.isArray(step12.mentions), "Step 12 mentions[] missing.");
+  assert(Array.isArray(step12.assertions), "Step 12 assertions[] missing.");
+  assert(typeof step12.canonical_text === "string", "Step 12 canonical_text missing.");
+}
+
+function buildMentionIndex(step12) {
+  const byId = new Map();
+  for (const mention of step12.mentions) {
+    assert(mention && typeof mention.id === "string" && mention.id.length > 0, "Step 12 mention missing non-empty id.");
+    if (byId.has(mention.id)) {
+      throw new Error(`Duplicate mention id in Step 12: ${mention.id}`);
+    }
+    byId.set(mention.id, mention);
+  }
+  return byId;
+}
+
+function buildTokenIndex(step12) {
+  const byId = new Map();
+  for (const token of Array.isArray(step12.tokens) ? step12.tokens : []) {
+    if (token && typeof token.id === "string" && token.id.length > 0) {
+      byId.set(token.id, token);
+    }
+  }
+  return byId;
+}
+
+function mergeWikipediaSignalValue(bucket, key, value) {
+  if (COUNT_KEY_RE.test(key)) {
+    bucket[key] = (bucket[key] || 0) + value;
+    return;
+  }
+  bucket[key] = Boolean(bucket[key]) || Boolean(value);
+}
+
+function collectUnionWikipediaSignalKeys(step12) {
+  const keySet = new Set();
+  const assertions = Array.isArray(step12.assertions) ? step12.assertions : [];
+
+  for (let ai = 0; ai < assertions.length; ai += 1) {
+    const assertion = assertions[ai] || {};
+    const mentionEvidence = ((((assertion.evidence || {}).wiki_signals || {}).mention_evidence) || []);
+    for (let mi = 0; mi < mentionEvidence.length; mi += 1) {
+      const entry = mentionEvidence[mi] || {};
+      walkWikipediaSignalFields(entry.evidence, (k) => keySet.add(k), `assertions[${ai}].evidence.wiki_signals.mention_evidence[${mi}].evidence`);
+    }
+  }
+
+  walkWikipediaSignalFields(step12.wiki_title_evidence, (k) => keySet.add(k), "wiki_title_evidence");
+
+  assert(keySet.size > 0, "Wikipedia title index signal union is empty; at least one upstream wiki_* key is required.");
+  return Array.from(keySet).sort(compareStrings);
+}
+
+function buildMentionWikipediaTitleIndexMap(step12) {
+  const mentionWikipediaTitleIndex = new Map();
+  const assertions = Array.isArray(step12.assertions) ? step12.assertions : [];
+
+  for (let ai = 0; ai < assertions.length; ai += 1) {
+    const assertion = assertions[ai] || {};
+    const mentionEvidence = ((((assertion.evidence || {}).wiki_signals || {}).mention_evidence) || []);
+    for (let mi = 0; mi < mentionEvidence.length; mi += 1) {
+      const entry = mentionEvidence[mi] || {};
+      const mentionId = String(entry.mention_id || "");
+      if (!mentionId) continue;
+      if (!mentionWikipediaTitleIndex.has(mentionId)) mentionWikipediaTitleIndex.set(mentionId, Object.create(null));
+      const bucket = mentionWikipediaTitleIndex.get(mentionId);
+      walkWikipediaSignalFields(
+        entry.evidence,
+        (k, v) => {
+          mergeWikipediaSignalValue(bucket, k, v);
+        },
+        `assertions[${ai}].evidence.wiki_signals.mention_evidence[${mi}].evidence`
+      );
+    }
+  }
+
+  return mentionWikipediaTitleIndex;
+}
+
+function buildMentionLexiconWikipediaTitleIndexMap(step12) {
+  const mentionWikipediaTitleIndex = new Map();
+  const mentions = Array.isArray(step12.mentions) ? step12.mentions : [];
+  for (let mi = 0; mi < mentions.length; mi += 1) {
+    const mention = mentions[mi] || {};
+    const mentionId = String(mention.id || "");
+    if (!mentionId) continue;
+    const evidence = (((mention.provenance || {}).lexicon_evidence) || null);
+    if (!evidence) continue;
+    const bucket = Object.create(null);
+    walkWikipediaSignalFields(
+      evidence,
+      (k, v) => {
+        mergeWikipediaSignalValue(bucket, k, v);
+      },
+      `mentions[${mi}].provenance.lexicon_evidence`
+    );
+    if (Object.keys(bucket).length > 0) {
+      mentionWikipediaTitleIndex.set(mentionId, bucket);
+    }
+  }
+  return mentionWikipediaTitleIndex;
+}
+
+function mentionKindRank(kind) {
+  const k = String(kind || "");
+  if (k === "mwe") return 0;
+  if (k === "chunk") return 1;
+  if (k === "token") return 2;
+  return 3;
+}
+
+function mentionSortKeyForSelection(mention) {
+  const tokenCount = Array.isArray(mention && mention.token_ids) ? mention.token_ids.length : 0;
+  const span = mention && mention.span && Number.isInteger(mention.span.start) && Number.isInteger(mention.span.end)
+    ? (mention.span.end - mention.span.start)
+    : 0;
+  return {
+    kindRank: mentionKindRank(mention && mention.kind),
+    tokenCount,
+    span,
+    id: String((mention && mention.id) || ""),
+  };
+}
+
+function isEligibleMentionForConcept(mention, tokenById, options = {}) {
+  const token = tokenById.get(String((mention && mention.head_token_id) || "")) || {};
+  const tag = String(((token.pos || {}).tag) || "");
+  const coarse = String(((token.pos || {}).coarse) || "");
+  const normalized = String(token.normalized || token.surface || "").toLowerCase();
+  const isPunct = Boolean(((token.flags || {}).is_punct));
+  const isSpace = Boolean(((token.flags || {}).is_space));
+  const tokenCount = Array.isArray(mention && mention.token_ids) ? mention.token_ids.length : 0;
+
+  if (isPunct || isSpace) return false;
+  if (tag === "DT" || tag === "CD" || tag === "CC") return false;
+  if (coarse === "PRON" || coarse === "ADV" || coarse === "ADP" || coarse === "X") return false;
+  if (coarse === "VERB" && tag !== "VBG") {
+    if (!(options.enableLegacyNominalWhitelist === true && LEGACY_NOMINAL_VERB_WHITELIST.has(normalized))) return false;
+  }
+  if (tokenCount === 1 && (tag === "JJ" || tag === "JJR" || tag === "JJS" || tag === "RB" || tag === "RBR" || tag === "RBS")) return false;
+  if (tokenCount === 1 && tag === "VBG" && (normalized === "doing" || normalized === "placing")) return false;
+  if (tokenCount === 1 && normalized.endsWith("ly")) return false;
+  return true;
+}
+
+function shouldLiftMention(mention, canonicalText, tokenById, options = {}) {
+  if (isEligibleMentionForConcept(mention, tokenById, options)) return true;
+  const kind = String((mention && mention.kind) || "");
+  if (kind === "chunk" || kind === "mwe") {
+    const raw = normalizeLiftedSurface(mentionSurfaceFromSpan(mention, canonicalText));
+    const derived = deriveLiftedSurface(mention, canonicalText, tokenById);
+    return Boolean(derived) && derived !== raw;
+  }
+  return false;
+}
+
+function mentionTokensInOrder(mention, tokenById) {
+  const ids = Array.isArray(mention && mention.token_ids) ? mention.token_ids : [];
+  return ids
+    .map((id) => tokenById.get(id))
+    .filter(Boolean)
+    .sort((a, b) => {
+      const ai = Number.isInteger(a.i) ? a.i : 0;
+      const bi = Number.isInteger(b.i) ? b.i : 0;
+      if (ai !== bi) return ai - bi;
+      return compareStrings(String(a.id || ""), String(b.id || ""));
+    });
+}
+
+function shouldSkipDerivedSingleToken(rawSurface, liftedSurface, mention, tokenById) {
+  const rawParts = String(rawSurface || "").trim().split(/\s+/).filter(Boolean);
+  const liftedParts = String(liftedSurface || "").trim().split(/\s+/).filter(Boolean);
+  if (rawParts.length <= 1 || liftedParts.length !== 1) return false;
+  const ordered = mentionTokensInOrder(mention, tokenById);
+  const first = ordered[0] || {};
+  const firstLower = String(first.normalized || first.surface || "").toLowerCase();
+  const firstTag = String(((first.pos || {}).tag) || "");
+  if (["IN", "TO", "DT", "CC", "WDT", "MD", "VB", "VBP", "VBZ", "VBD"].includes(firstTag)) return true;
+  return ["as", "before", "after", "during", "while", "when", "if", "than", "such", "only", "least"].includes(firstLower);
+}
+
+function deriveLiftedSurface(mention, canonicalText, tokenById) {
+  const baseSurface = mentionSurfaceFromSpan(mention, canonicalText);
+  const ordered = mentionTokensInOrder(mention, tokenById);
+  if (ordered.length === 0) {
+    return normalizeLiftedSurface(baseSurface);
+  }
+
+  const firstTag = String((((ordered[0] || {}).pos || {}).tag) || "");
+  const secondTag = String((((ordered[1] || {}).pos || {}).tag) || "");
+  const startsNominal = isNominalTag(firstTag) && !(firstTag === "VBG" && secondTag === "DT");
+
+  if (!startsNominal) {
+    let right = ordered.length - 1;
+    while (right >= 0) {
+      const t = ordered[right] || {};
+      const tag = String((((t.pos || {}).tag) || ""));
+      if (isNominalTag(tag)) break;
+      right -= 1;
+    }
+    if (right >= 0) {
+      let left = right;
+      while (left > 0) {
+        const prev = ordered[left - 1] || {};
+        const prevTag = String((((prev.pos || {}).tag) || ""));
+        if (!isNominalTag(prevTag)) break;
+        left -= 1;
+      }
+      const start = (((ordered[left] || {}).span || {}).start);
+      const end = (((ordered[right] || {}).span || {}).end);
+      if (Number.isInteger(start) && Number.isInteger(end) && end >= start) {
+        return normalizeLiftedSurface(canonicalText.slice(start, end));
+      }
+    }
+  }
+
+  let result = normalizeLiftedSurface(baseSurface);
+  const stopAdp = new Set(["for", "to", "with", "without", "by", "from", "than", "before", "after", "during", "while", "when", "if", "as"]);
+  if (ordered.length > 1) {
+    for (let i = 1; i < ordered.length; i += 1) {
+      const t = ordered[i] || {};
+      const tag = String((((t.pos || {}).tag) || ""));
+      const lower = String(t.normalized || t.surface || "").toLowerCase();
+      if (tag !== "IN" && tag !== "TO") continue;
+      if (!stopAdp.has(lower)) continue;
+      const start = (((ordered[0] || {}).span || {}).start);
+      const end = (((ordered[i - 1] || {}).span || {}).end);
+      if (Number.isInteger(start) && Number.isInteger(end) && end >= start) {
+        result = normalizeLiftedSurface(canonicalText.slice(start, end));
+      }
+      break;
+    }
+  }
+  return result;
+}
+
+function selectCanonicalMentionId(mentionIds, mentionById, tokenById) {
+  const mentions = [];
+  for (const id of mentionIds || []) {
+    const mention = mentionById.get(String(id || ""));
+    if (!mention) continue;
+    mentions.push(mention);
+  }
+  if (mentions.length === 0) return null;
+
+  mentions.sort((a, b) => {
+    const ka = mentionSortKeyForSelection(a);
+    const kb = mentionSortKeyForSelection(b);
+    if (ka.kindRank !== kb.kindRank) return ka.kindRank - kb.kindRank;
+    if (ka.tokenCount !== kb.tokenCount) return kb.tokenCount - ka.tokenCount;
+    if (ka.span !== kb.span) return kb.span - ka.span;
+    return compareStrings(ka.id, kb.id);
+  });
+
+  for (const mention of mentions) {
+    if (isEligibleMentionForConcept(mention, tokenById)) return mention.id;
+  }
+  return null;
+}
+
+function mentionHasFiniteVerbToken(mention, tokenById) {
+  const ordered = mentionTokensInOrder(mention, tokenById);
+  for (const t of ordered) {
+    const tag = String((((t.pos || {}).tag) || ""));
+    if (tag === "VB" || tag === "VBD" || tag === "VBP" || tag === "VBZ" || tag === "MD") {
+      return true;
+    }
+  }
+  return false;
+}
+
+function validateMentionIdsShape(entries, entryPath, mentionById) {
+  assert(Array.isArray(entries), `${entryPath} must be an array.`);
+  for (let i = 0; i < entries.length; i += 1) {
+    const entry = entries[i] || {};
+    assert(Array.isArray(entry.mention_ids), `${entryPath}[${i}].mention_ids must be string[].`);
+    for (let j = 0; j < entry.mention_ids.length; j += 1) {
+      const mentionId = entry.mention_ids[j];
+      assert(typeof mentionId === "string" && mentionId.length > 0, `${entryPath}[${i}].mention_ids[${j}] must be non-empty string.`);
+      if (!mentionById.has(mentionId)) {
+        throw new Error(`${entryPath}[${i}].mention_ids[${j}] references unknown mention id: ${mentionId}`);
+      }
+    }
+  }
+}
+
+function buildConceptCandidatesFromStep12(step12, options = {}) {
+  validateStep12Contract(step12);
+  const step13Mode = parseStep13Mode(options.step13Mode);
+  const enableLegacyEnrichment = options.enableLegacyEnrichment === true;
+  const mode13bVerbPromotionMinWti = parseNonNegativeNumberArg(
+    "mode13bVerbPromotionMinWti",
+    options.mode13bVerbPromotionMinWti,
+    1.0
+  );
+  const mode13bLowWtiUnlinkedMinAvg = parseNonNegativeNumberArg(
+    "mode13bLowWtiUnlinkedMinAvg",
+    options.mode13bLowWtiUnlinkedMinAvg,
+    0.5
+  );
+  const mode13bUnlinkedFiniteVerbPromotionMinWti = parseNonNegativeNumberArg(
+    "mode13bUnlinkedFiniteVerbPromotionMinWti",
+    options.mode13bUnlinkedFiniteVerbPromotionMinWti,
+    80.0
+  );
+  const mode13bNonnominalShareMin = parseNonNegativeNumberArg(
+    "mode13bNonnominalShareMin",
+    options.mode13bNonnominalShareMin,
+    0.5
+  );
+  const mode13bNonnominalWeakWtiMax = parseNonNegativeNumberArg(
+    "mode13bNonnominalWeakWtiMax",
+    options.mode13bNonnominalWeakWtiMax,
+    1.5
+  );
+  const mode13bMergeHostMinWtiRatio = parseNonNegativeNumberArg(
+    "mode13bMergeHostMinWtiRatio",
+    options.mode13bMergeHostMinWtiRatio,
+    1.0
+  );
+  const t0 = Date.now();
+  const mentionById = buildMentionIndex(step12);
+  const tokenById = buildTokenIndex(step12);
+  const mentions = Array.isArray(step12.mentions) ? step12.mentions : [];
+  const wikipediaSignalKeys = collectUnionWikipediaSignalKeys(step12);
+  const wikipediaCountKeys = wikipediaSignalKeys.filter((k) => COUNT_KEY_RE.test(k));
+  const mentionWikipediaTitleIndex = buildMentionWikipediaTitleIndexMap(step12);
+  const mentionLexiconWikipediaTitleIndex = buildMentionLexiconWikipediaTitleIndexMap(step12);
+
+  const byCanonical = new Map();
+  const sourceByCanonical = new Map();
+  const mode13bByCanonical = new Map();
+  const markSource = (canonical, sourceTag) => {
+    if (!sourceByCanonical.has(canonical)) sourceByCanonical.set(canonical, new Set());
+    sourceByCanonical.get(canonical).add(String(sourceTag || ""));
+  };
+  const markMode13bDecision = (canonical, policyTag, metrics) => {
+    if (!mode13bByCanonical.has(canonical)) {
+      mode13bByCanonical.set(canonical, {
+        policy_hits: new Set(),
+        metrics: null,
+      });
+    }
+    const entry = mode13bByCanonical.get(canonical);
+    entry.policy_hits.add(String(policyTag || ""));
+    if (metrics && typeof metrics === "object") {
+      entry.metrics = {
+        role_total: Number.isInteger(metrics.roleTotal) ? metrics.roleTotal : 0,
+        assertion_count: Number.isInteger(metrics.assertionCount) ? metrics.assertionCount : 0,
+        mention_count: Number.isInteger(metrics.mentionCount) ? metrics.mentionCount : 0,
+        avg_wikipedia_count: roundFixed3(metrics.avgWti),
+        non_nominal_share: roundFixed3(metrics.nonNominalShare),
+      };
+    }
+  };
+  const stats = {
+    step13_mode: step13Mode,
+    mentions_total: Array.isArray(step12.mentions) ? step12.mentions.length : 0,
+    assertions_total: Array.isArray(step12.assertions) ? step12.assertions.length : 0,
+    role_mentions_scanned: 0,
+    role_candidates_lifted: 0,
+    supplemental_mentions_scanned: 0,
+    supplemental_candidates_lifted: 0,
+    mode13b_suppressed_candidates: 0,
+    mode13b_suppressed_low_wikipedia_count_unlinked: 0,
+    mode13b_suppressed_non_nominal_bias: 0,
+    mode13b_suppressed_contained_by_stronger_host: 0,
+    mode13b_promoted_unlinked_finite_verb: 0,
+    mode13b_suppressed_participial_fragment: 0,
+    mode13b_suppressed_participial_chunk_reduction: 0,
+    mode13b_suppressed_two_token_participial_lift: 0,
+    mode13b_suppressed_short_symbolic_token: 0,
+    mode13b_merged_into_stronger_host: 0,
+    phase_ms: {
+      role_lifting: 0,
+      supplemental_lifting: 0,
+      prune: 0,
+      alias_and_legacy: 0,
+      emit: 0,
+      total: 0,
+    },
+  };
+  const mentionLiftInfoById = new Map();
+  const getMentionLiftInfo = (mentionId) => {
+    const key = String(mentionId || "");
+    if (mentionLiftInfoById.has(key)) return mentionLiftInfoById.get(key);
+    const mention = mentionById.get(key);
+    if (!mention) {
+      mentionLiftInfoById.set(key, null);
+      return null;
+    }
+    const rawSurface = mentionSurfaceFromSpan(mention, step12.canonical_text);
+    const liftedSurface = deriveLiftedSurface(mention, step12.canonical_text, tokenById);
+    const normalizedRawSurface = normalizeLiftedSurface(rawSurface);
+    const info = {
+      mention,
+      rawSurface,
+      normalizedRawSurface,
+      liftedSurface,
+      hasLiftedSurface: Boolean(liftedSurface),
+      shouldLift: shouldLiftMention(mention, step12.canonical_text, tokenById, { enableLegacyNominalWhitelist: enableLegacyEnrichment }),
+      skipSingle: Boolean(liftedSurface)
+        ? shouldSkipDerivedSingleToken(rawSurface, liftedSurface, mention, tokenById)
+        : false,
+      hasAlnum: Boolean(liftedSurface) ? /[A-Za-z0-9]/.test(liftedSurface) : false,
+      hasFiniteVerbToken: mentionHasFiniteVerbToken(mention, tokenById),
+    };
+    mentionLiftInfoById.set(key, info);
+    return info;
+  };
+  const selectedMentionIds = new Set();
+  const roleLinkedByMentionId = new Map();
+  const markRoleLinkedMention = (mentionId, assertionId, bucket) => {
+    const key = String(mentionId || "");
+    if (!roleLinkedByMentionId.has(key)) {
+      roleLinkedByMentionId.set(key, {
+        assertionIds: new Set(),
+        roleCounts: { actor: 0, theme: 0, attr: 0, topic: 0, location: 0, other: 0 },
+      });
+    }
+    const entry = roleLinkedByMentionId.get(key);
+    entry.assertionIds.add(assertionId);
+    entry.roleCounts[bucket] += 1;
+  };
+  const assertions = Array.isArray(step12.assertions) ? step12.assertions : [];
+
+  const roleStart = Date.now();
+  for (let ai = 0; ai < assertions.length; ai += 1) {
+    const assertion = assertions[ai] || {};
+    const assertionId = String(assertion.id || "");
+    assert(assertionId, `assertions[${ai}] missing id.`);
+    const argumentsList = Array.isArray(assertion.arguments) ? assertion.arguments : [];
+    const modifiersList = Array.isArray(assertion.modifiers) ? assertion.modifiers : [];
+
+    validateMentionIdsShape(argumentsList, `assertions[${ai}].arguments`, mentionById);
+    validateMentionIdsShape(modifiersList, `assertions[${ai}].modifiers`, mentionById);
+
+    const roleEntries = []
+      .concat(argumentsList.map((x) => ({ role: x.role, mention_ids: x.mention_ids })))
+      .concat(modifiersList.map((x) => ({ role: x.role, mention_ids: x.mention_ids })));
+
+    for (const entry of roleEntries) {
+      if (String(entry.role || "") === "exemplifies") continue;
+      const bucket = roleBucket(entry.role);
+      for (const mentionId of entry.mention_ids) {
+        markRoleLinkedMention(mentionId, assertionId, bucket);
+        stats.role_mentions_scanned += 1;
+        const info = getMentionLiftInfo(mentionId);
+        if (!info) continue;
+        if (!info.shouldLift) continue;
+        if (!info.hasLiftedSurface) continue;
+        if (info.skipSingle) continue;
+        const { mention, liftedSurface } = info;
+        const canonical = canonicalizeSurface(liftedSurface);
+        if (!byCanonical.has(canonical)) {
+          byCanonical.set(canonical, {
+            canonical,
+            surfaces: new Set(),
+            mention_ids: new Set(),
+            assertion_ids: new Set(),
+            roles: { actor: 0, theme: 0, attr: 0, topic: 0, location: 0, other: 0 },
+          });
+        }
+        const candidate = byCanonical.get(canonical);
+        candidate.surfaces.add(liftedSurface);
+        candidate.mention_ids.add(mentionId);
+        candidate.assertion_ids.add(assertionId);
+        candidate.roles[bucket] += 1;
+        markSource(canonical, "role");
+        selectedMentionIds.add(mentionId);
+        stats.role_candidates_lifted += 1;
+      }
+    }
+  }
+  stats.phase_ms.role_lifting = Date.now() - roleStart;
+
+  const enableSupplemental = options.enableSupplemental !== false;
+  const supplementalStart = Date.now();
+  if (enableSupplemental) {
+    const supplementalSourceKinds = new Set(["mwe_materialized", "token_shadow", "chunk_accepted", "token_fallback"]);
+    const nonTokenMentions = mentions.filter((m) => m && (m.kind === "mwe" || m.kind === "chunk"));
+    const nonTokenBySegment = new Map();
+    for (const host of nonTokenMentions) {
+      const segmentId = String((host && host.segment_id) || "");
+      if (!nonTokenBySegment.has(segmentId)) nonTokenBySegment.set(segmentId, []);
+      nonTokenBySegment.get(segmentId).push(host);
+    }
+    const containingHostsByMentionId = new Map();
+    const getContainingHosts = (mention) => {
+      const mentionId = String((mention && mention.id) || "");
+      if (!mentionId) return [];
+      if (containingHostsByMentionId.has(mentionId)) return containingHostsByMentionId.get(mentionId);
+      const span = mention && mention.span;
+      if (!span || !Number.isInteger(span.start) || !Number.isInteger(span.end)) {
+        containingHostsByMentionId.set(mentionId, []);
+        return [];
+      }
+      const segmentId = String((mention && mention.segment_id) || "");
+      const hostsInSegment = nonTokenBySegment.get(segmentId) || [];
+      const out = [];
+      for (const host of hostsInSegment) {
+        if (!host || host.id === mention.id) continue;
+        const hs = host.span || {};
+        if (!Number.isInteger(hs.start) || !Number.isInteger(hs.end)) continue;
+        if (hs.start <= span.start && hs.end >= span.end) out.push(host);
+      }
+      containingHostsByMentionId.set(mentionId, out);
+      return out;
+    };
+    const hasNonFiniteVerbContainer = (mention) => {
+    const hosts = getContainingHosts(mention);
+    for (const host of hosts) {
+      if (!mentionHasFiniteVerbToken(host, tokenById)) return true;
+    }
+    return false;
+    };
+    const hasPrepositionLedNonFiniteContainer = (mention) => {
+    for (const host of getContainingHosts(mention)) {
+      if (mentionHasFiniteVerbToken(host, tokenById)) continue;
+      const hostTokens = mentionTokensInOrder(host, tokenById);
+      const first = hostTokens[0] || {};
+      const firstTag = String(((first.pos || {}).tag) || "");
+      const firstLower = String(first.normalized || first.surface || "").toLowerCase();
+      if (firstTag === "IN" || firstTag === "TO" || firstTag === "RB") return true;
+      if (["as", "before", "after", "than", "while", "when", "if"].includes(firstLower)) return true;
+    }
+    return false;
+    };
+    const hasVbnLedNonFiniteContainer = (mention) => {
+    for (const host of getContainingHosts(mention)) {
+      if (mentionHasFiniteVerbToken(host, tokenById)) continue;
+      const hostTokens = mentionTokensInOrder(host, tokenById);
+      const first = hostTokens[0] || {};
+      const firstTag = String(((first.pos || {}).tag) || "");
+      if (firstTag === "VBN") return true;
+    }
+    return false;
+    };
+    for (const mention of mentions) {
+    if (!mention || typeof mention.id !== "string") continue;
+    stats.supplemental_mentions_scanned += 1;
+    if (selectedMentionIds.has(mention.id)) continue;
+    const sourceKind = String((((mention.provenance || {}).source_kind) || ""));
+    if (!supplementalSourceKinds.has(sourceKind)) continue;
+    if (sourceKind === "token_fallback" && hasNonFiniteVerbContainer(mention) && hasPrepositionLedNonFiniteContainer(mention)) {
+      const head = tokenById.get(String(mention.head_token_id || "")) || {};
+      const headTag = String(((head.pos || {}).tag) || "");
+      const rawSurface = normalizeLiftedSurface(mentionSurfaceFromSpan(mention, step12.canonical_text)).toLowerCase();
+      const isPluralNoun = headTag === "NNS" || headTag === "NNPS";
+      const looksPlural = rawSurface.endsWith("s");
+      if (!isPluralNoun && !looksPlural) continue;
+    }
+    if (sourceKind === "token_shadow" && hasNonFiniteVerbContainer(mention) && hasVbnLedNonFiniteContainer(mention)) continue;
+    const info = getMentionLiftInfo(mention.id);
+    if (!info) continue;
+    if (!info.shouldLift) continue;
+    if (!info.hasLiftedSurface) continue;
+    const { rawSurface, normalizedRawSurface, liftedSurface } = info;
+    if (info.hasFiniteVerbToken && liftedSurface === normalizedRawSurface) {
+      const lower = String(liftedSurface).toLowerCase();
+      if (!(enableLegacyEnrichment && LEGACY_NOMINAL_VERB_WHITELIST.has(lower))) continue;
+    }
+    if (info.skipSingle) continue;
+    if (!info.hasAlnum) continue;
+    const canonical = canonicalizeSurface(liftedSurface);
+
+    if (!byCanonical.has(canonical)) {
+      byCanonical.set(canonical, {
+        canonical,
+        surfaces: new Set(),
+        mention_ids: new Set(),
+        assertion_ids: new Set(),
+        roles: { actor: 0, theme: 0, attr: 0, topic: 0, location: 0, other: 0 },
+      });
+    }
+    const candidate = byCanonical.get(canonical);
+    candidate.surfaces.add(liftedSurface);
+    candidate.mention_ids.add(mention.id);
+    markSource(canonical, "supplemental");
+    stats.supplemental_candidates_lifted += 1;
+    }
+  }
+
+  // 13b generic extended filtering:
+  // suppression is allowed only by structural signals and Wikipedia Title Index-derived evidence, never by literal-string rules.
+  if (step13Mode === "13b") {
+    const mode13bStart = Date.now();
+    const policy = String(options.wikipediaTitleIndexPolicy || options.wtiPolicy || "assertion_then_lexicon_fallback");
+    const hasEnumeratedVerbHost = (mention) => {
+      const span = mention && mention.span;
+      if (!span || !Number.isInteger(span.start) || !Number.isInteger(span.end)) return false;
+      const segmentId = String((mention && mention.segment_id) || "");
+      for (const host of mentions) {
+        if (!host || host.id === mention.id) continue;
+        const hostKind = String(host.kind || "");
+        if (hostKind !== "chunk" && hostKind !== "mwe") continue;
+        const hostSpan = host.span || {};
+        if (!Number.isInteger(hostSpan.start) || !Number.isInteger(hostSpan.end)) continue;
+        const hostSegmentId = String((host && host.segment_id) || "");
+        if (segmentId && hostSegmentId && segmentId !== hostSegmentId) continue;
+        if (!(hostSpan.start <= span.start && hostSpan.end >= span.end)) continue;
+        const hostTokens = mentionTokensInOrder(host, tokenById);
+        let finiteVerbCount = 0;
+        for (const t of hostTokens) {
+          const tag = String(((t.pos || {}).tag) || "");
+          if (tag === "VB" || tag === "VBP" || tag === "VBZ" || tag === "VBD") {
+            finiteVerbCount += 1;
+          }
+        }
+        if (finiteVerbCount >= 2) return true;
+      }
+      return false;
+    };
+
+    // 13b extension: promote verb-headed role-linked mentions with sufficiently strong Wikipedia Title Index evidence.
+    for (const [mentionId, linkInfo] of roleLinkedByMentionId.entries()) {
+      const info = getMentionLiftInfo(mentionId);
+      if (!info || !info.hasLiftedSurface || info.skipSingle || !info.hasAlnum) continue;
+      const mention = info.mention || {};
+      const tokenCount = Array.isArray(mention.token_ids) ? mention.token_ids.length : 0;
+      if (tokenCount !== 1) continue;
+      const head = tokenById.get(String(mention.head_token_id || "")) || {};
+      const tag = String(((head.pos || {}).tag) || "");
+      const coarse = String(((head.pos || {}).coarse) || "");
+      const isVerbHead = coarse === "VERB" || tag === "VB" || tag === "VBD" || tag === "VBP" || tag === "VBZ";
+      if (!isVerbHead) continue;
+
+      const assertionEvidence = mentionWikipediaTitleIndex.get(mentionId) || null;
+      const lexiconEvidence = mentionLexiconWikipediaTitleIndex.get(mentionId) || null;
+      const selected = selectMentionEvidenceByPolicy(assertionEvidence, lexiconEvidence, policy);
+      let mentionWikipediaCountTotal = 0;
+      for (const key of wikipediaCountKeys) {
+        const value = selected[key];
+        if (value !== undefined) {
+          assert(Number.isInteger(value), `Non-integer value for ${key} on mention ${mentionId}.`);
+          mentionWikipediaCountTotal += value;
+        }
+      }
+      if (mentionWikipediaCountTotal < mode13bVerbPromotionMinWti) continue;
+
+      const canonical = canonicalizeSurface(info.liftedSurface);
+      if (!byCanonical.has(canonical)) {
+        byCanonical.set(canonical, {
+          canonical,
+          surfaces: new Set(),
+          mention_ids: new Set(),
+          assertion_ids: new Set(),
+          roles: { actor: 0, theme: 0, attr: 0, topic: 0, location: 0, other: 0 },
+        });
+      }
+      const candidate = byCanonical.get(canonical);
+      candidate.surfaces.add(info.liftedSurface);
+      candidate.mention_ids.add(mentionId);
+      for (const assertionId of linkInfo.assertionIds) candidate.assertion_ids.add(assertionId);
+      candidate.roles.actor += linkInfo.roleCounts.actor;
+      candidate.roles.theme += linkInfo.roleCounts.theme;
+      candidate.roles.attr += linkInfo.roleCounts.attr;
+      candidate.roles.topic += linkInfo.roleCounts.topic;
+      candidate.roles.location += linkInfo.roleCounts.location;
+      candidate.roles.other += linkInfo.roleCounts.other;
+      markSource(canonical, "mode13b_promotion");
+      markMode13bDecision(canonical, "promotion_verb_wikipedia_count", {
+        roleTotal:
+          candidate.roles.actor +
+          candidate.roles.theme +
+          candidate.roles.attr +
+          candidate.roles.topic +
+          candidate.roles.location +
+          candidate.roles.other,
+        assertionCount: candidate.assertion_ids.size,
+        mentionCount: candidate.mention_ids.size,
+        avgWti: mentionWikipediaCountTotal,
+        nonNominalShare: 1,
+      });
+    }
+
+    // 13b extension: promote unlinked finite-verb singleton mentions when Wikipedia Title Index evidence is very strong.
+    for (const mention of mentions) {
+      if (!mention || typeof mention.id !== "string") continue;
+      if (selectedMentionIds.has(mention.id)) continue;
+      const info = getMentionLiftInfo(mention.id);
+      if (!info || !info.hasLiftedSurface || info.skipSingle || !info.hasAlnum) continue;
+      const tokenCount = Array.isArray(mention.token_ids) ? mention.token_ids.length : 0;
+      if (tokenCount !== 1 || String(mention.kind || "") !== "token") continue;
+      const sourceKind = String((((mention.provenance || {}).source_kind) || ""));
+      if (sourceKind !== "token_fallback" && sourceKind !== "token_shadow") continue;
+      if (mention.is_primary !== true) continue;
+      const roleLink = roleLinkedByMentionId.get(mention.id);
+      if (roleLink && roleLink.assertionIds && roleLink.assertionIds.size > 0) continue;
+
+      const head = tokenById.get(String(mention.head_token_id || "")) || {};
+      const tag = String(((head.pos || {}).tag) || "");
+      const finiteVerbHead = tag === "VBP" || tag === "VBZ" || tag === "VBD";
+      if (!finiteVerbHead) continue;
+      if (hasEnumeratedVerbHost(mention)) continue;
+
+      const assertionEvidence = mentionWikipediaTitleIndex.get(mention.id) || null;
+      const lexiconEvidence = mentionLexiconWikipediaTitleIndex.get(mention.id) || null;
+      const selected = selectMentionEvidenceByPolicy(assertionEvidence, lexiconEvidence, policy);
+      let mentionWikipediaCountTotal = 0;
+      for (const key of wikipediaCountKeys) {
+        const value = selected[key];
+        if (value !== undefined) {
+          assert(Number.isInteger(value), `Non-integer value for ${key} on mention ${mention.id}.`);
+          mentionWikipediaCountTotal += value;
+        }
+      }
+      if (mentionWikipediaCountTotal < mode13bUnlinkedFiniteVerbPromotionMinWti) continue;
+
+      const canonical = canonicalizeSurface(info.liftedSurface);
+      if (!byCanonical.has(canonical)) {
+        byCanonical.set(canonical, {
+          canonical,
+          surfaces: new Set(),
+          mention_ids: new Set(),
+          assertion_ids: new Set(),
+          roles: { actor: 0, theme: 0, attr: 0, topic: 0, location: 0, other: 0 },
+        });
+      }
+      const candidate = byCanonical.get(canonical);
+      candidate.surfaces.add(info.liftedSurface);
+      candidate.mention_ids.add(mention.id);
+      markSource(canonical, "mode13b_promotion");
+      markMode13bDecision(canonical, "promotion_unlinked_finite_verb_wikipedia_count", {
+        roleTotal: 0,
+        assertionCount: 0,
+        mentionCount: candidate.mention_ids.size,
+        avgWti: mentionWikipediaCountTotal,
+        nonNominalShare: 1,
+      });
+      stats.mode13b_promoted_unlinked_finite_verb += 1;
+      selectedMentionIds.add(mention.id);
+    }
+
+    const mentionToCanonicals = new Map();
+    for (const [canonical, item] of byCanonical.entries()) {
+      for (const mentionId of item.mention_ids) {
+        const key = String(mentionId || "");
+        if (!mentionToCanonicals.has(key)) mentionToCanonicals.set(key, new Set());
+        mentionToCanonicals.get(key).add(canonical);
+      }
+    }
+
+    const mentionSpanById = new Map();
+    for (const mention of mentions) {
+      if (!mention || typeof mention.id !== "string") continue;
+      const span = mention.span || {};
+      if (!Number.isInteger(span.start) || !Number.isInteger(span.end)) continue;
+      mentionSpanById.set(mention.id, { start: span.start, end: span.end, length: span.end - span.start });
+    }
+    const containingMentionIdsByMentionId = new Map();
+    for (const mention of mentions) {
+      if (!mention || typeof mention.id !== "string") continue;
+      const span = mentionSpanById.get(mention.id);
+      if (!span) continue;
+      const segmentId = String((mention.segment_id) || "");
+      const hosts = [];
+      for (const host of mentions) {
+        if (!host || typeof host.id !== "string" || host.id === mention.id) continue;
+        const hostSpan = mentionSpanById.get(host.id);
+        if (!hostSpan) continue;
+        const hostSegmentId = String((host.segment_id) || "");
+        if (segmentId && hostSegmentId && segmentId !== hostSegmentId) continue;
+        if (hostSpan.start <= span.start && hostSpan.end >= span.end) {
+          hosts.push(host.id);
+        }
+      }
+      containingMentionIdsByMentionId.set(mention.id, hosts);
+    }
+
+    const candidateMetrics = new Map();
+    for (const [canonical, item] of byCanonical.entries()) {
+      const mentionIds = Array.from(item.mention_ids).map((v) => String(v));
+      const assertionIds = Array.from(item.assertion_ids).map((v) => String(v));
+      const roles = item.roles || {};
+      const roleTotal =
+        (roles.actor || 0) +
+        (roles.theme || 0) +
+        (roles.attr || 0) +
+        (roles.topic || 0) +
+        (roles.location || 0) +
+        (roles.other || 0);
+
+      let wtiTotal = 0;
+      let nonNominalCount = 0;
+      let participialFragmentCount = 0;
+      let participialChunkReductionCount = 0;
+      let twoTokenParticipialLiftCount = 0;
+      let shortSymbolicTokenCount = 0;
+      let punctuatedSurfaceCount = 0;
+      for (const mentionId of mentionIds) {
+        const mention = mentionById.get(mentionId) || {};
+        const head = tokenById.get(String(mention.head_token_id || "")) || {};
+        const tag = String(((head.pos || {}).tag) || "");
+        const coarse = String(((head.pos || {}).coarse) || "");
+        const nominalHead = isNominalTag(tag) || coarse === "NOUN" || coarse === "PROPN" || coarse === "ADJ";
+        if (!nominalHead) nonNominalCount += 1;
+        const tokenCount = Array.isArray(mention.token_ids) ? mention.token_ids.length : 0;
+        const sourceKind = String((((mention.provenance || {}).source_kind) || ""));
+        const participialTag = tag === "VBN" || tag === "VBG" || tag === "VBD";
+        if (tokenCount === 1 && participialTag && (sourceKind === "token_fallback" || sourceKind === "token_shadow")) {
+          participialFragmentCount += 1;
+        }
+        const info = getMentionLiftInfo(mentionId) || {};
+        const rawParts = String(info.normalizedRawSurface || "").split(/\s+/).filter(Boolean).length;
+        const liftedParts = String(info.liftedSurface || "").split(/\s+/).filter(Boolean).length;
+        const isChunkLike = String(mention.kind || "") === "chunk" || String(mention.kind || "") === "mwe";
+        if (isChunkLike && participialTag && rawParts >= 2 && liftedParts === 1) {
+          participialChunkReductionCount += 1;
+        }
+        if (liftedParts === 2) {
+          const ordered = mentionTokensInOrder(mention, tokenById);
+          const firstLift = String((info.liftedSurface || "").split(/\s+/)[0] || "").toLowerCase();
+          let firstLiftToken = ordered.find((t) => {
+            const tok = String(t.normalized || t.surface || "").toLowerCase();
+            return tok === firstLift;
+          });
+          if (!firstLiftToken) firstLiftToken = ordered[0] || {};
+          const firstLiftTag = String((((firstLiftToken.pos || {}).tag) || ""));
+          const firstLiftCoarse = String((((firstLiftToken.pos || {}).coarse) || ""));
+          const headTag = String(((head.pos || {}).tag) || "");
+          const isGerundLead =
+            (firstLiftTag === "VBG" && firstLiftCoarse === "VERB") ||
+            headTag === "VBG";
+          if (isGerundLead) {
+            twoTokenParticipialLiftCount += 1;
+          }
+        }
+        if (
+          tokenCount === 1 &&
+          (sourceKind === "token_fallback" || sourceKind === "token_shadow") &&
+          String(canonical || "").length <= 3 &&
+          String(canonical || "").includes("_")
+        ) {
+          shortSymbolicTokenCount += 1;
+        }
+        if (tokenCount === 1) {
+          const rawSurface = String(info.normalizedRawSurface || "");
+          if (/[^a-z0-9 ]/.test(rawSurface)) {
+            punctuatedSurfaceCount += 1;
+          }
+        }
+
+        const assertionEvidence = mentionWikipediaTitleIndex.get(mentionId) || null;
+        const lexiconEvidence = mentionLexiconWikipediaTitleIndex.get(mentionId) || null;
+        const selected = selectMentionEvidenceByPolicy(assertionEvidence, lexiconEvidence, policy);
+        for (const key of wikipediaCountKeys) {
+          const value = selected[key];
+          if (value !== undefined) {
+            assert(Number.isInteger(value), `Non-integer value for ${key} on mention ${mentionId}.`);
+            wtiTotal += value;
+          }
+        }
+      }
+      const mentionCount = mentionIds.length;
+      const avgWti = mentionCount > 0 ? (wtiTotal / mentionCount) : 0;
+      const nonNominalShare = mentionCount > 0 ? (nonNominalCount / mentionCount) : 0;
+      const participialFragmentShare = mentionCount > 0 ? (participialFragmentCount / mentionCount) : 0;
+      const participialChunkReductionShare = mentionCount > 0 ? (participialChunkReductionCount / mentionCount) : 0;
+      const twoTokenParticipialLiftShare = mentionCount > 0 ? (twoTokenParticipialLiftCount / mentionCount) : 0;
+      const shortSymbolicTokenShare = mentionCount > 0 ? (shortSymbolicTokenCount / mentionCount) : 0;
+      const punctuatedSurfaceShare = mentionCount > 0 ? (punctuatedSurfaceCount / mentionCount) : 0;
+      const coreRoleTotal = (roles.actor || 0) + (roles.theme || 0) + (roles.attr || 0) + (roles.topic || 0) + (roles.location || 0);
+      candidateMetrics.set(canonical, {
+        roleTotal,
+        coreRoleTotal,
+        assertionCount: assertionIds.length,
+        mentionCount,
+        avgWti,
+        nonNominalShare,
+        participialFragmentShare,
+        participialChunkReductionShare,
+        twoTokenParticipialLiftShare,
+        shortSymbolicTokenShare,
+        punctuatedSurfaceShare,
+      });
+    }
+
+    for (const canonical of Array.from(byCanonical.keys()).sort(compareStrings)) {
+      const item = byCanonical.get(canonical);
+      if (!item) continue;
+      const metrics = candidateMetrics.get(canonical);
+      if (!metrics) continue;
+      if (metrics.mentionCount === 0) continue;
+
+      // Low-evidence unlinked suppression (requires some non-nominal structural signal).
+      if (
+        metrics.roleTotal === 0 &&
+        metrics.assertionCount === 0 &&
+        metrics.avgWti < mode13bLowWtiUnlinkedMinAvg &&
+        metrics.nonNominalShare >= 0.25
+      ) {
+        markMode13bDecision(canonical, "suppress_low_wikipedia_count_unlinked", metrics);
+        byCanonical.delete(canonical);
+        stats.mode13b_suppressed_candidates += 1;
+        stats.mode13b_suppressed_low_wikipedia_count_unlinked += 1;
+        continue;
+      }
+
+      // Stronger suppression for structurally non-nominal candidates with weak evidence.
+      if (
+        metrics.roleTotal === 0 &&
+        metrics.assertionCount === 0 &&
+        metrics.nonNominalShare >= mode13bNonnominalShareMin &&
+        metrics.avgWti < mode13bNonnominalWeakWtiMax
+      ) {
+        markMode13bDecision(canonical, "suppress_nonnominal_weak_wikipedia_count", metrics);
+        byCanonical.delete(canonical);
+        stats.mode13b_suppressed_candidates += 1;
+        stats.mode13b_suppressed_non_nominal_bias += 1;
+        continue;
+      }
+
+      if (
+        metrics.participialFragmentShare >= 0.8 &&
+        metrics.coreRoleTotal === 0 &&
+        metrics.roleTotal <= 1 &&
+        metrics.assertionCount <= 1
+      ) {
+        markMode13bDecision(canonical, "suppress_participial_fragment", metrics);
+        byCanonical.delete(canonical);
+        stats.mode13b_suppressed_candidates += 1;
+        stats.mode13b_suppressed_participial_fragment += 1;
+        continue;
+      }
+
+      if (
+        metrics.participialChunkReductionShare >= 0.8 &&
+        metrics.coreRoleTotal === 0 &&
+        metrics.roleTotal <= 1 &&
+        metrics.assertionCount <= 1
+      ) {
+        markMode13bDecision(canonical, "suppress_participial_chunk_reduction", metrics);
+        byCanonical.delete(canonical);
+        stats.mode13b_suppressed_candidates += 1;
+        stats.mode13b_suppressed_participial_chunk_reduction += 1;
+        continue;
+      }
+
+      if (
+        metrics.twoTokenParticipialLiftShare >= 0.8 &&
+        metrics.coreRoleTotal === 0 &&
+        metrics.assertionCount === 0
+      ) {
+        markMode13bDecision(canonical, "suppress_two_token_participial_lift", metrics);
+        byCanonical.delete(canonical);
+        stats.mode13b_suppressed_candidates += 1;
+        stats.mode13b_suppressed_two_token_participial_lift += 1;
+        continue;
+      }
+
+      if (
+        metrics.roleTotal === 0 &&
+        metrics.assertionCount === 0 &&
+        metrics.shortSymbolicTokenShare >= 0.5 &&
+        metrics.punctuatedSurfaceShare >= 0.5 &&
+        metrics.coreRoleTotal === 0 &&
+        String(canonical || "").length <= 3 &&
+        String(canonical || "").includes("_")
+      ) {
+        markMode13bDecision(canonical, "suppress_short_symbolic_token", metrics);
+        byCanonical.delete(canonical);
+        stats.mode13b_suppressed_candidates += 1;
+        stats.mode13b_suppressed_short_symbolic_token += 1;
+        continue;
+      }
+
+      // Suppress if all mentions are structurally contained by stronger host candidates.
+      if (metrics.roleTotal > 0 || metrics.assertionCount > 0) continue;
+      const candidatePartCount = String(canonical).split("_").filter(Boolean).length;
+      if (candidatePartCount < 2) continue;
+      let allMentionsContainedByStrongerHost = true;
+      for (const mentionId of item.mention_ids) {
+        const mentionSpan = mentionSpanById.get(String(mentionId || ""));
+        const hostMentionIds = containingMentionIdsByMentionId.get(String(mentionId || "")) || [];
+        let supported = false;
+        for (const hostMentionId of hostMentionIds) {
+          const hostSpan = mentionSpanById.get(String(hostMentionId || ""));
+          const hostCanonicals = mentionToCanonicals.get(String(hostMentionId || "")) || new Set();
+          for (const hostCanonical of hostCanonicals) {
+            if (hostCanonical === canonical) continue;
+            const hostItem = byCanonical.get(hostCanonical);
+            const hostMetrics = candidateMetrics.get(hostCanonical);
+            if (!hostItem || !hostMetrics) continue;
+            const hostPartCount = String(hostCanonical).split("_").filter(Boolean).length;
+            const hostIsBroader =
+              hostPartCount > candidatePartCount ||
+              (hostSpan && mentionSpan && hostSpan.length > mentionSpan.length);
+            const hostIsStronger = hostMetrics.roleTotal > 0 || hostMetrics.avgWti >= metrics.avgWti;
+            if (hostIsBroader && hostIsStronger) {
+              supported = true;
+              break;
+            }
+          }
+          if (supported) break;
+        }
+        if (!supported) {
+          allMentionsContainedByStrongerHost = false;
+          break;
+        }
+      }
+      if (allMentionsContainedByStrongerHost) {
+        let bestHostCanonical = null;
+        let bestHostRank = null;
+        for (const mentionId of item.mention_ids) {
+          const hostMentionIds = containingMentionIdsByMentionId.get(String(mentionId || "")) || [];
+          for (const hostMentionId of hostMentionIds) {
+            const hostCanonicals = mentionToCanonicals.get(String(hostMentionId || "")) || new Set();
+            for (const hostCanonical of hostCanonicals) {
+              if (hostCanonical === canonical) continue;
+              const hostItem = byCanonical.get(hostCanonical);
+              const hostMetrics = candidateMetrics.get(hostCanonical);
+              if (!hostItem || !hostMetrics) continue;
+              const hostPartCount = String(hostCanonical).split("_").filter(Boolean).length;
+              const hostIsBroader = hostPartCount > candidatePartCount;
+              if (!hostIsBroader) continue;
+              const hostWtiRatio = metrics.avgWti > 0 ? (hostMetrics.avgWti / metrics.avgWti) : Number.POSITIVE_INFINITY;
+              if (hostWtiRatio < mode13bMergeHostMinWtiRatio) continue;
+              const rank = [
+                hostMetrics.roleTotal,
+                roundFixed3(hostMetrics.avgWti),
+                hostPartCount,
+                hostCanonical,
+              ];
+              if (!bestHostRank) {
+                bestHostRank = rank;
+                bestHostCanonical = hostCanonical;
+                continue;
+              }
+              if (rank[0] > bestHostRank[0]) {
+                bestHostRank = rank;
+                bestHostCanonical = hostCanonical;
+                continue;
+              }
+              if (rank[0] === bestHostRank[0] && rank[1] > bestHostRank[1]) {
+                bestHostRank = rank;
+                bestHostCanonical = hostCanonical;
+                continue;
+              }
+              if (rank[0] === bestHostRank[0] && rank[1] === bestHostRank[1] && rank[2] > bestHostRank[2]) {
+                bestHostRank = rank;
+                bestHostCanonical = hostCanonical;
+                continue;
+              }
+              if (
+                rank[0] === bestHostRank[0] &&
+                rank[1] === bestHostRank[1] &&
+                rank[2] === bestHostRank[2] &&
+                compareStrings(rank[3], bestHostRank[3]) < 0
+              ) {
+                bestHostRank = rank;
+                bestHostCanonical = hostCanonical;
+              }
+            }
+          }
+        }
+        if (bestHostCanonical) {
+          const hostItem = byCanonical.get(bestHostCanonical);
+          if (hostItem) {
+            for (const v of item.surfaces) hostItem.surfaces.add(v);
+            for (const v of item.mention_ids) hostItem.mention_ids.add(v);
+            for (const v of item.assertion_ids) hostItem.assertion_ids.add(v);
+            hostItem.roles.actor += item.roles.actor || 0;
+            hostItem.roles.theme += item.roles.theme || 0;
+            hostItem.roles.attr += item.roles.attr || 0;
+            hostItem.roles.topic += item.roles.topic || 0;
+            hostItem.roles.location += item.roles.location || 0;
+            hostItem.roles.other += item.roles.other || 0;
+            markMode13bDecision(canonical, "merge_into_stronger_host", metrics);
+            byCanonical.delete(canonical);
+            stats.mode13b_suppressed_candidates += 1;
+            stats.mode13b_merged_into_stronger_host += 1;
+            continue;
+          }
+        }
+        markMode13bDecision(canonical, "suppress_contained_stronger_host", metrics);
+        byCanonical.delete(canonical);
+        stats.mode13b_suppressed_candidates += 1;
+        stats.mode13b_suppressed_contained_by_stronger_host += 1;
+      }
+    }
+    stats.phase_ms.mode13b_filter = Date.now() - mode13bStart;
+  }
+  stats.phase_ms.supplemental_lifting = Date.now() - supplementalStart;
+
+  const pruneStart = Date.now();
+  const initialCanonicals = Array.from(byCanonical.keys());
+  const pluralSet = new Set(initialCanonicals);
+  const roleTotalByCanonical = new Map();
+  const partsByCanonical = new Map();
+  const compoundsByComponent = new Map();
+  const compoundsBySuffix = new Map();
+  for (const canonical of initialCanonicals) {
+    const item = byCanonical.get(canonical);
+    if (!item) continue;
+    const roleTotal =
+      (item.roles.actor || 0) +
+      (item.roles.theme || 0) +
+      (item.roles.attr || 0) +
+      (item.roles.topic || 0) +
+      (item.roles.location || 0) +
+      (item.roles.other || 0);
+    roleTotalByCanonical.set(canonical, roleTotal);
+    const parts = canonical.split("_").filter(Boolean);
+    partsByCanonical.set(canonical, parts);
+    if (parts.length >= 2) {
+      const seenParts = new Set(parts);
+      for (const p of seenParts) {
+        if (!compoundsByComponent.has(p)) compoundsByComponent.set(p, new Set());
+        compoundsByComponent.get(p).add(canonical);
+      }
+      for (let i = 1; i < parts.length; i += 1) {
+        const suffix = parts.slice(i).join("_");
+        if (!compoundsBySuffix.has(suffix)) compoundsBySuffix.set(suffix, new Set());
+        compoundsBySuffix.get(suffix).add(canonical);
+      }
+    }
+  }
+  const activeCanonicals = new Set(initialCanonicals);
+  const hasComponentInCompound = (canonical) => {
+    const compounds = compoundsByComponent.get(canonical);
+    if (!compounds) return false;
+    for (const compound of compounds) {
+      if (compound !== canonical && activeCanonicals.has(compound)) return true;
+    }
+    return false;
+  };
+  const deactivateCanonical = (canonical) => {
+    if (!activeCanonicals.delete(canonical)) return;
+    const parts = partsByCanonical.get(canonical) || [];
+    if (parts.length >= 2) {
+      const seenParts = new Set(parts);
+      for (const p of seenParts) {
+        const set = compoundsByComponent.get(p);
+        if (set) {
+          set.delete(canonical);
+          if (set.size === 0) compoundsByComponent.delete(p);
+        }
+      }
+      for (let i = 1; i < parts.length; i += 1) {
+        const suffix = parts.slice(i).join("_");
+        const set = compoundsBySuffix.get(suffix);
+        if (set) {
+          set.delete(canonical);
+          if (set.size === 0) compoundsBySuffix.delete(suffix);
+        }
+      }
+    }
+  };
+  for (const canonical of initialCanonicals) {
+    if (!activeCanonicals.has(canonical)) continue;
+    if (canonical.length < 2) {
+      byCanonical.delete(canonical);
+      deactivateCanonical(canonical);
+      continue;
+    }
+    if (enableLegacyEnrichment && LEGACY_GENERIC_DROP.has(canonical)) {
+      byCanonical.delete(canonical);
+      deactivateCanonical(canonical);
+      continue;
+    }
+    const item = byCanonical.get(canonical);
+    if (!canonical.includes("_") && pluralSet.has(`${canonical}s`)) {
+      byCanonical.delete(canonical);
+      deactivateCanonical(canonical);
+      continue;
+    }
+    
+    const roleTotal = roleTotalByCanonical.get(canonical) || 0;
+    const mentionCount = item ? item.mention_ids.size : 0;
+    const looksPlural = canonical.endsWith("s") && !canonical.endsWith("ss");
+    const keepPluralAggregate = looksPlural && mentionCount >= 2;
+    if (roleTotal === 0 && hasComponentInCompound(canonical)) {
+      const hasPrimaryTokenMention = item && Array.from(item.mention_ids).some((id) => {
+        const mention = mentionById.get(String(id || ""));
+        return Boolean(mention && mention.is_primary === true && mention.kind === "token");
+      });
+      const keepPrimaryLeaf = hasPrimaryTokenMention && !canonical.includes("_");
+      if (!keepPluralAggregate && !keepPrimaryLeaf) {
+        byCanonical.delete(canonical);
+        deactivateCanonical(canonical);
+        continue;
+      }
+    }
+
+    const parts = partsByCanonical.get(canonical) || canonical.split("_");
+    if (parts.length === 2) {
+      const head = parts[1];
+      const hasHead = byCanonical.has(head);
+      const longerSuffixSet = compoundsBySuffix.get(canonical);
+      let hasLongerSuffix = false;
+      if (longerSuffixSet) {
+        for (const other of longerSuffixSet) {
+          if (other === canonical || !activeCanonicals.has(other)) continue;
+          if ((roleTotalByCanonical.get(other) || 0) === 0) {
+            hasLongerSuffix = true;
+            break;
+          }
+        }
+      }
+      if (hasHead && hasLongerSuffix) {
+        byCanonical.delete(canonical);
+        deactivateCanonical(canonical);
+        continue;
+      }
+    }
+
+    if (enableLegacyEnrichment && canonical.startsWith("generated_") && roleTotal === 0) {
+      byCanonical.delete(canonical);
+      deactivateCanonical(canonical);
+      continue;
+    }
+  }
+  stats.phase_ms.prune = Date.now() - pruneStart;
+
+  const aliasStart = Date.now();
+  const enableAliasSynthesis = options.enableAliasSynthesis !== false;
+  if (enableAliasSynthesis) {
+    const enableRecoverySynthesis = enableLegacyEnrichment && options.enableRecoverySynthesis === true;
+    for (const canonical of Array.from(byCanonical.keys())) {
+    const singular = singularizeCanonical(canonical);
+    if (!singular || singular === canonical) continue;
+    const source = byCanonical.get(canonical);
+    if (!source) continue;
+    if (!byCanonical.has(singular)) {
+      byCanonical.set(singular, {
+        canonical: singular,
+        surfaces: new Set(),
+        mention_ids: new Set(),
+        assertion_ids: new Set(),
+        roles: { actor: 0, theme: 0, attr: 0, topic: 0, location: 0, other: 0 },
+      });
+    }
+    const target = byCanonical.get(singular);
+    for (const s of source.surfaces) target.surfaces.add(s);
+    for (const m of source.mention_ids) target.mention_ids.add(m);
+    for (const a of source.assertion_ids) target.assertion_ids.add(a);
+    target.roles.actor += source.roles.actor || 0;
+    target.roles.theme += source.roles.theme || 0;
+    target.roles.attr += source.roles.attr || 0;
+    target.roles.topic += source.roles.topic || 0;
+    target.roles.location += source.roles.location || 0;
+    target.roles.other += source.roles.other || 0;
+    markSource(singular, "alias");
+  }
+
+    const mergeIntoCanonical = (targetCanonical, sourceCanonicals) => {
+    const t = String(targetCanonical || "");
+    if (!t) return;
+    if (shouldRejectAliasCanonical(t)) return;
+    if (!byCanonical.has(t)) {
+      byCanonical.set(t, {
+        canonical: t,
+        surfaces: new Set(),
+        mention_ids: new Set(),
+        assertion_ids: new Set(),
+        roles: { actor: 0, theme: 0, attr: 0, topic: 0, location: 0, other: 0 },
+      });
+    }
+    const target = byCanonical.get(t);
+    for (const sourceCanonical of sourceCanonicals || []) {
+      const source = byCanonical.get(String(sourceCanonical || ""));
+      if (!source) continue;
+      for (const s of source.surfaces) target.surfaces.add(s);
+      for (const m of source.mention_ids) target.mention_ids.add(m);
+      for (const a of source.assertion_ids) target.assertion_ids.add(a);
+      target.roles.actor += source.roles.actor || 0;
+      target.roles.theme += source.roles.theme || 0;
+      target.roles.attr += source.roles.attr || 0;
+      target.roles.topic += source.roles.topic || 0;
+      target.roles.location += source.roles.location || 0;
+      target.roles.other += source.roles.other || 0;
+    }
+      markSource(t, "alias");
+    };
+
+    for (const canonical of Array.from(byCanonical.keys())) {
+    const parts = canonical.split("_").filter(Boolean);
+    if (parts.length >= 3) {
+      const tail2 = `${parts[parts.length - 2]}_${parts[parts.length - 1]}`;
+      mergeIntoCanonical(tail2, [canonical]);
+    }
+    if (parts.length >= 2) {
+      const tail1 = `${parts[parts.length - 1]}`;
+      mergeIntoCanonical(tail1, [canonical]);
+    }
+    if (enableLegacyEnrichment && parts.length >= 2 && parts[0] === "abac") {
+      mergeIntoCanonical("abac", [canonical]);
+    }
+  }
+
+    if (enableLegacyEnrichment) {
+      applyLegacyStringRules({
+        byCanonical,
+        markSource,
+        compareStrings,
+        enableRecoverySynthesis,
+      });
+    }
+  }
+  stats.phase_ms.alias_and_legacy = Date.now() - aliasStart;
+
+  const emitWikipediaTitleIndexEvidence = options.emitWikipediaTitleIndexEvidence !== false;
+
+  const emitStart = Date.now();
+  const candidates = [];
+  const idToCandidate = new Map();
+
+  for (const candidate of Array.from(byCanonical.values()).sort((a, b) => compareStrings(a.canonical, b.canonical))) {
+    const mentionIds = sortedUniqueStrings(Array.from(candidate.mention_ids));
+    const assertionIds = sortedUniqueStrings(Array.from(candidate.assertion_ids));
+    const surfaces = sortedUniqueStrings(Array.from(candidate.surfaces));
+
+    const wikipediaTitleIndex = Object.create(null);
+    for (const key of wikipediaSignalKeys) {
+      wikipediaTitleIndex[key] = COUNT_KEY_RE.test(key) ? 0 : false;
+    }
+    const mentionContrib = [];
+    for (const mentionId of mentionIds) {
+      const assertionEvidence = mentionWikipediaTitleIndex.get(mentionId) || null;
+      const lexiconEvidence = mentionLexiconWikipediaTitleIndex.get(mentionId) || null;
+      let evidence = {};
+      const policy = String(options.wikipediaTitleIndexPolicy || options.wtiPolicy || "assertion_then_lexicon_fallback");
+      if (policy === "assertion_only") {
+        evidence = assertionEvidence || {};
+      } else {
+        evidence = assertionEvidence || lexiconEvidence || {};
+      }
+      for (const key of wikipediaSignalKeys) {
+        const value = evidence[key];
+        if (value !== undefined) {
+          ensureWikipediaSignalScalar(key, value, `selected_signals.${mentionId}.${key}`);
+          mergeWikipediaSignalValue(wikipediaTitleIndex, key, value);
+        }
+      }
+      if (emitWikipediaTitleIndexEvidence) {
+        let source = "none";
+        if (assertionEvidence && lexiconEvidence) source = "assertion_and_lexicon";
+        else if (assertionEvidence) source = "assertion";
+        else if (lexiconEvidence) source = "lexicon_fallback";
+        mentionContrib.push({
+          mention_id: mentionId,
+          source,
+          assertion_signals: orderedSparseWikipediaSignalObject(assertionEvidence || {}),
+          lexicon_signals: orderedSparseWikipediaSignalObject(lexiconEvidence || {}),
+          selected_signals: orderedSparseWikipediaSignalObject(evidence || {}),
+        });
+      }
+    }
+
+    const conceptId = conceptIdFromCanonical(candidate.canonical);
+    const existing = idToCandidate.get(conceptId);
+    if (existing && existing.canonical !== candidate.canonical) {
+      throw new Error(
+        JSON.stringify(
+          {
+            error: "concept_id_collision",
+            seed_id: step12.seed_id,
+            concept_id: conceptId,
+            canonicals: [
+              {
+                canonical: existing.canonical,
+                mention_ids: existing.mention_ids,
+                assertion_ids: existing.assertion_ids,
+              },
+              {
+                canonical: candidate.canonical,
+                mention_ids: mentionIds,
+                assertion_ids: assertionIds,
+              },
+            ],
+          },
+          null,
+          2
+        )
+      );
+    }
+
+    idToCandidate.set(conceptId, {
+      canonical: candidate.canonical,
+      mention_ids: mentionIds,
+      assertion_ids: assertionIds,
+    });
+
+    const roles = {
+      actor: candidate.roles.actor,
+      theme: candidate.roles.theme,
+      attr: candidate.roles.attr,
+      topic: candidate.roles.topic,
+      location: candidate.roles.location,
+      other: candidate.roles.other,
+    };
+    const orderedWikipediaTitleIndex = Object.create(null);
+    for (const k of wikipediaSignalKeys) orderedWikipediaTitleIndex[k] = wikipediaTitleIndex[k];
+
+    const record = {
+      concept_id: conceptId,
+      canonical: candidate.canonical,
+      surfaces,
+      mention_ids: mentionIds,
+      assertion_ids: assertionIds,
+      roles,
+      wikipedia_title_index: orderedWikipediaTitleIndex,
+    };
+    if (emitWikipediaTitleIndexEvidence) {
+      record.wikipedia_title_index_evidence = {
+        wikipedia_title_index_policy: String(options.wikipediaTitleIndexPolicy || options.wtiPolicy || "assertion_then_lexicon_fallback"),
+        mention_contributions: mentionContrib,
+      };
+    }
+    candidates.push(record);
+  }
+
+  const top = {
+    schema_version: String(step12.schema_version),
+    seed_id: String(step12.seed_id || ""),
+    stage: "concept_candidates",
+    concept_candidates: candidates,
+  };
+
+  validateConceptCandidatesDeterminism(top);
+  stats.phase_ms.emit = Date.now() - emitStart;
+  stats.phase_ms.total = Date.now() - t0;
+  if (options.collectDiagnostics === true) {
+    const diagnostics = {
+      source_by_canonical: Object.create(null),
+      mode13b_by_canonical: Object.create(null),
+      stats,
+    };
+    for (const canonical of Array.from(sourceByCanonical.keys()).sort(compareStrings)) {
+      diagnostics.source_by_canonical[canonical] = Array.from(sourceByCanonical.get(canonical)).filter(Boolean).sort(compareStrings);
+    }
+    for (const canonical of Array.from(mode13bByCanonical.keys()).sort(compareStrings)) {
+      const entry = mode13bByCanonical.get(canonical) || {};
+      diagnostics.mode13b_by_canonical[canonical] = {
+        policy_hits: Array.from(entry.policy_hits || []).filter(Boolean).sort(compareStrings),
+        metrics: entry.metrics || {
+          role_total: 0,
+          assertion_count: 0,
+          mention_count: 0,
+          avg_wikipedia_count: 0,
+          non_nominal_share: 0,
+        },
+      };
+    }
+    top._diagnostics = diagnostics;
+  }
+  return top;
+}
+
+function validateConceptCandidatesDeterminism(doc) {
+  assert(doc && typeof doc === "object", "Output document must be an object.");
+  assert(JSON.stringify(Object.keys(doc)) === JSON.stringify(TOP_LEVEL_KEYS), "Top-level key order mismatch.");
+  assert(doc.stage === "concept_candidates", "Output stage must be concept_candidates.");
+  assert(Array.isArray(doc.concept_candidates), "concept_candidates must be an array.");
+
+  let prevCanonical = null;
+  const idMap = new Map();
+  for (let i = 0; i < doc.concept_candidates.length; i += 1) {
+    const c = doc.concept_candidates[i];
+    const expectedKeys = c && Object.prototype.hasOwnProperty.call(c, "wikipedia_title_index_evidence")
+      ? CANDIDATE_KEYS_WITH_WIKIPEDIA_TITLE_INDEX_EVIDENCE
+      : CANDIDATE_KEYS;
+    assert(JSON.stringify(Object.keys(c)) === JSON.stringify(expectedKeys), `Candidate ${i} key order mismatch.`);
+    assert(typeof c.canonical === "string" && c.canonical.length > 0, `Candidate ${i} canonical missing.`);
+    if (prevCanonical !== null && compareStrings(prevCanonical, c.canonical) > 0) {
+      throw new Error(`Candidates not sorted by canonical at index ${i}.`);
+    }
+    prevCanonical = c.canonical;
+
+    const recomputed = conceptIdFromCanonical(c.canonical);
+    assert(c.concept_id === recomputed, `Candidate ${i} concept_id mismatch for canonical ${c.canonical}.`);
+
+    const existing = idMap.get(c.concept_id);
+    if (existing && existing !== c.canonical) {
+      throw new Error(`Collision in output: ${c.concept_id} maps to multiple canonicals.`);
+    }
+    idMap.set(c.concept_id, c.canonical);
+
+    for (const field of ["surfaces", "mention_ids", "assertion_ids"]) {
+      assert(Array.isArray(c[field]), `Candidate ${c.canonical} ${field} must be array.`);
+      for (let j = 1; j < c[field].length; j += 1) {
+        if (compareStrings(c[field][j - 1], c[field][j]) > 0) {
+          throw new Error(`Candidate ${c.canonical} ${field} must be sorted.`);
+        }
+      }
+    }
+
+    assert(c.roles && typeof c.roles === "object" && !Array.isArray(c.roles), `Candidate ${c.canonical} roles must be object.`);
+    assert(JSON.stringify(Object.keys(c.roles)) === JSON.stringify(ROLE_KEYS), `Candidate ${c.canonical} role keys mismatch.`);
+    for (const k of ROLE_KEYS) {
+      assert(Number.isInteger(c.roles[k]) && c.roles[k] >= 0, `Candidate ${c.canonical} roles.${k} must be non-negative integer.`);
+    }
+
+    assert(
+      c.wikipedia_title_index &&
+      typeof c.wikipedia_title_index === "object" &&
+      !Array.isArray(c.wikipedia_title_index),
+      `Candidate ${c.canonical} wikipedia_title_index must be object.`
+    );
+    const wikipediaSignalKeys = Object.keys(c.wikipedia_title_index);
+    for (let j = 1; j < wikipediaSignalKeys.length; j += 1) {
+      if (compareStrings(wikipediaSignalKeys[j - 1], wikipediaSignalKeys[j]) > 0) {
+        throw new Error(`Candidate ${c.canonical} wikipedia_title_index keys must be sorted.`);
+      }
+    }
+    for (const key of wikipediaSignalKeys) {
+      assert(WIKIPEDIA_SIGNAL_KEY_RE.test(key), `Candidate ${c.canonical} has invalid wikipedia_title_index key: ${key}`);
+      const value = c.wikipedia_title_index[key];
+      if (COUNT_KEY_RE.test(key)) {
+        assert(Number.isInteger(value) && value >= 0, `Candidate ${c.canonical} wikipedia_title_index.${key} must be non-negative integer.`);
+      } else {
+        assert(typeof value === "boolean", `Candidate ${c.canonical} wikipedia_title_index.${key} must be boolean.`);
+      }
+    }
+    if (Object.prototype.hasOwnProperty.call(c, "wikipedia_title_index_evidence")) {
+      assert(
+        c.wikipedia_title_index_evidence &&
+        typeof c.wikipedia_title_index_evidence === "object" &&
+        !Array.isArray(c.wikipedia_title_index_evidence),
+        `Candidate ${c.canonical} wikipedia_title_index_evidence must be object.`
+      );
+      assert(
+        typeof c.wikipedia_title_index_evidence.wikipedia_title_index_policy === "string" &&
+        c.wikipedia_title_index_evidence.wikipedia_title_index_policy.length > 0,
+        `Candidate ${c.canonical} wikipedia_title_index_evidence.wikipedia_title_index_policy must be non-empty string.`
+      );
+      assert(
+        Array.isArray(c.wikipedia_title_index_evidence.mention_contributions),
+        `Candidate ${c.canonical} wikipedia_title_index_evidence.mention_contributions must be array.`
+      );
+      let prevMention = null;
+      for (const mc of c.wikipedia_title_index_evidence.mention_contributions) {
+        assert(mc && typeof mc === "object" && !Array.isArray(mc), `Candidate ${c.canonical} mention contribution must be object.`);
+        assert(typeof mc.mention_id === "string" && mc.mention_id.length > 0, `Candidate ${c.canonical} mention contribution mention_id invalid.`);
+        if (prevMention !== null && compareStrings(prevMention, mc.mention_id) > 0) {
+          throw new Error(`Candidate ${c.canonical} wikipedia_title_index_evidence mention_contributions must be sorted by mention_id.`);
+        }
+        prevMention = mc.mention_id;
+        for (const field of ["assertion_signals", "lexicon_signals", "selected_signals"]) {
+          assert(mc[field] && typeof mc[field] === "object" && !Array.isArray(mc[field]), `Candidate ${c.canonical} ${field} must be object.`);
+          const keys = Object.keys(mc[field]);
+          for (let j = 1; j < keys.length; j += 1) {
+            if (compareStrings(keys[j - 1], keys[j]) > 0) {
+              throw new Error(`Candidate ${c.canonical} ${field} keys must be sorted.`);
+            }
+          }
+          for (const k of keys) {
+            assert(WIKIPEDIA_SIGNAL_KEY_RE.test(k), `Candidate ${c.canonical} has invalid ${field} key: ${k}`);
+            const v = mc[field][k];
+            if (COUNT_KEY_RE.test(k)) {
+              assert(Number.isInteger(v) && v >= 0, `Candidate ${c.canonical} ${field}.${k} must be non-negative integer.`);
+            } else {
+              assert(typeof v === "boolean", `Candidate ${c.canonical} ${field}.${k} must be boolean.`);
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+function loadConceptCandidatesSchema() {
+  const schemaPath = path.join(STEP13_DIR, "seed.concept-candidates.schema.json");
+  return JSON.parse(fs.readFileSync(schemaPath, "utf8"));
+}
+
+function validateSchema(schema, doc) {
+  const ajv = new Ajv2020({ allErrors: true, strict: false });
+  const validate = ajv.compile(schema);
+  if (!validate(doc)) {
+    const lines = (validate.errors || []).map((e) => `${e.instancePath || "/"} ${e.message || "schema error"}`);
+    throw new Error(`Schema validation failed:\n${lines.join("\n")}`);
+  }
+}
+
+function serializeDeterministicYaml(doc) {
+  let text = YAML.stringify(doc, {
+    lineWidth: 0,
+    indent: 2,
+    sortMapEntries: false,
+    aliasDuplicateObjects: false,
+  });
+  text = text.replace(/\r\n/g, "\n").replace(/\n*$/, "\n");
+  return text;
+}
+
+async function generateForSeed(seedId, options = {}) {
+  const artifactsRoot = options.artifactsRoot || DEFAULT_ARTIFACTS_ROOT;
+  const wikipediaTitleIndexEndpoint =
+    options.wikipediaTitleIndexEndpoint || options.wtiEndpoint || DEFAULT_WIKIPEDIA_TITLE_INDEX_ENDPOINT;
+  const timeoutMs = Number.isFinite(options.timeoutMs) ? options.timeoutMs : 120000;
+  const wikipediaTitleIndexTimeoutMs =
+    Number.isFinite(options.wikipediaTitleIndexTimeoutMs) ? options.wikipediaTitleIndexTimeoutMs
+      : (Number.isFinite(options.wtiTimeoutMs) ? options.wtiTimeoutMs : 2000);
+  const seedDir = path.join(artifactsRoot, seedId, "seed");
+  const seedTextPath = path.join(seedDir, "seed.txt");
+  if (!fs.existsSync(seedTextPath)) {
+    throw new Error(`Missing seed.txt for seed ${seedId}: ${seedTextPath}`);
+  }
+  const seedText = fs.readFileSync(seedTextPath, "utf8");
+
+  const step12 = await runElementaryAssertions(seedText, {
+    services: {
+      "wikipedia-title-index": { endpoint: wikipediaTitleIndexEndpoint },
+    },
+    timeoutMs,
+    wtiTimeoutMs: wikipediaTitleIndexTimeoutMs,
+  });
+
+  const outputDoc = buildConceptCandidatesFromStep12(step12, {
+    step13Mode: options.step13Mode,
+    mode13bVerbPromotionMinWti: options.mode13bVerbPromotionMinWti,
+    mode13bUnlinkedFiniteVerbPromotionMinWti: options.mode13bUnlinkedFiniteVerbPromotionMinWti,
+    mode13bLowWtiUnlinkedMinAvg: options.mode13bLowWtiUnlinkedMinAvg,
+    mode13bNonnominalShareMin: options.mode13bNonnominalShareMin,
+    mode13bNonnominalWeakWtiMax: options.mode13bNonnominalWeakWtiMax,
+    mode13bMergeHostMinWtiRatio: options.mode13bMergeHostMinWtiRatio,
+    enableSupplemental: options.enableSupplemental,
+    enableAliasSynthesis: options.enableAliasSynthesis,
+    enableLegacyEnrichment: options.enableLegacyEnrichment,
+    enableRecoverySynthesis: options.enableRecoverySynthesis,
+    wikipediaTitleIndexPolicy: options.wikipediaTitleIndexPolicy || options.wtiPolicy,
+    collectDiagnostics: options.collectDiagnostics,
+    emitWikipediaTitleIndexEvidence:
+      options.emitWikipediaTitleIndexEvidence !== undefined ? options.emitWikipediaTitleIndexEvidence : options.emitWtiEvidence,
+  });
+  const diagnostics = outputDoc._diagnostics || null;
+  if (outputDoc._diagnostics) delete outputDoc._diagnostics;
+  const schema = loadConceptCandidatesSchema();
+  validateSchema(schema, outputDoc);
+  validateConceptCandidatesDeterminism(outputDoc);
+
+  const yamlText = serializeDeterministicYaml(outputDoc);
+  return { outputDoc, yamlText, seedDir, diagnostics, mode: "runtime_step12" };
+}
+
+function loadStep12Yaml(step12Path) {
+  const inputPath = path.resolve(step12Path);
+  if (!fs.existsSync(inputPath)) {
+    throw new Error(`Missing Step 12 artifact: ${inputPath}`);
+  }
+  const text = fs.readFileSync(inputPath, "utf8");
+  const doc = YAML.parse(text);
+  return { inputPath, doc };
+}
+
+function generateForStep12Path(step12Path, options = {}) {
+  const { inputPath, doc: step12 } = loadStep12Yaml(step12Path);
+  const seedDir = path.dirname(inputPath);
+  const outputDoc = buildConceptCandidatesFromStep12(step12, {
+    step13Mode: options.step13Mode,
+    mode13bVerbPromotionMinWti: options.mode13bVerbPromotionMinWti,
+    mode13bUnlinkedFiniteVerbPromotionMinWti: options.mode13bUnlinkedFiniteVerbPromotionMinWti,
+    mode13bLowWtiUnlinkedMinAvg: options.mode13bLowWtiUnlinkedMinAvg,
+    mode13bNonnominalShareMin: options.mode13bNonnominalShareMin,
+    mode13bNonnominalWeakWtiMax: options.mode13bNonnominalWeakWtiMax,
+    mode13bMergeHostMinWtiRatio: options.mode13bMergeHostMinWtiRatio,
+    enableSupplemental: options.enableSupplemental,
+    enableAliasSynthesis: options.enableAliasSynthesis,
+    enableLegacyEnrichment: options.enableLegacyEnrichment,
+    enableRecoverySynthesis: options.enableRecoverySynthesis,
+    wikipediaTitleIndexPolicy: options.wikipediaTitleIndexPolicy || options.wtiPolicy,
+    collectDiagnostics: options.collectDiagnostics,
+    emitWikipediaTitleIndexEvidence:
+      options.emitWikipediaTitleIndexEvidence !== undefined ? options.emitWikipediaTitleIndexEvidence : options.emitWtiEvidence,
+  });
+  const diagnostics = outputDoc._diagnostics || null;
+  if (outputDoc._diagnostics) delete outputDoc._diagnostics;
+  const schema = loadConceptCandidatesSchema();
+  validateSchema(schema, outputDoc);
+  validateConceptCandidatesDeterminism(outputDoc);
+  const yamlText = serializeDeterministicYaml(outputDoc);
+  return { outputDoc, yamlText, seedDir, diagnostics, mode: "persisted_step12", step12Path: inputPath };
+}
+
+async function main() {
+  try {
+    const args = process.argv.slice(2);
+    const seedId = arg(args, "--seed-id");
+    const step12In = arg(args, "--step12-in");
+    const artifactsRoot = arg(args, "--artifacts-root") || DEFAULT_ARTIFACTS_ROOT;
+    const outPathArg = arg(args, "--out");
+    const diagOutPathArg = arg(args, "--diag-out");
+    const metaOutPathArg = arg(args, "--meta-out");
+    const wikipediaTitleIndexEndpoint =
+      arg(args, "--wikipedia-title-index-endpoint") ||
+      arg(args, "--wti-endpoint") ||
+      process.env.WIKIPEDIA_TITLE_INDEX_ENDPOINT ||
+      DEFAULT_WIKIPEDIA_TITLE_INDEX_ENDPOINT;
+    const timeoutMsRaw = arg(args, "--timeout-ms");
+    const wikipediaTitleIndexTimeoutMsRaw =
+      arg(args, "--wikipedia-title-index-timeout-ms") || arg(args, "--wti-timeout-ms");
+    const timeoutMs = timeoutMsRaw ? Number(timeoutMsRaw) : 120000;
+    const wikipediaTitleIndexTimeoutMs = wikipediaTitleIndexTimeoutMsRaw ? Number(wikipediaTitleIndexTimeoutMsRaw) : 2000;
+    const wikipediaTitleIndexPolicy =
+      arg(args, "--wikipedia-title-index-policy") || arg(args, "--wti-policy") || "assertion_then_lexicon_fallback";
+    const step13Mode = parseStep13Mode(arg(args, "--step13-mode") || "13b");
+    const mode13bVerbPromotionMinWti = parseNonNegativeNumberArg(
+      "--mode13b-verb-promotion-min-wikipedia-count",
+      arg(args, "--mode13b-verb-promotion-min-wikipedia-count") || arg(args, "--mode13b-verb-promotion-min-wti"),
+      1.0
+    );
+    const mode13bUnlinkedFiniteVerbPromotionMinWti = parseNonNegativeNumberArg(
+      "--mode13b-unlinked-finite-verb-promotion-min-wikipedia-count",
+      arg(args, "--mode13b-unlinked-finite-verb-promotion-min-wikipedia-count")
+        || arg(args, "--mode13b-unlinked-finite-verb-promotion-min-wti"),
+      80.0
+    );
+    const mode13bLowWtiUnlinkedMinAvg = parseNonNegativeNumberArg(
+      "--mode13b-low-wikipedia-count-unlinked-min-avg",
+      arg(args, "--mode13b-low-wikipedia-count-unlinked-min-avg") || arg(args, "--mode13b-low-wti-unlinked-min-avg"),
+      0.5
+    );
+    const mode13bNonnominalShareMin = parseNonNegativeNumberArg(
+      "--mode13b-nonnominal-share-min",
+      arg(args, "--mode13b-nonnominal-share-min"),
+      0.5
+    );
+    const mode13bNonnominalWeakWtiMax = parseNonNegativeNumberArg(
+      "--mode13b-nonnominal-weak-wikipedia-count-max",
+      arg(args, "--mode13b-nonnominal-weak-wikipedia-count-max") || arg(args, "--mode13b-nonnominal-weak-wti-max"),
+      1.5
+    );
+    const mode13bMergeHostMinWtiRatio = parseNonNegativeNumberArg(
+      "--mode13b-merge-host-min-wikipedia-count-ratio",
+      arg(args, "--mode13b-merge-host-min-wikipedia-count-ratio") || arg(args, "--mode13b-merge-host-min-wti-ratio"),
+      1.0
+    );
+    const enableSupplemental = hasFlag(args, "--disable-supplemental") ? false : true;
+    const enableAliasSynthesis = hasFlag(args, "--disable-alias-synthesis") ? false : true;
+    const enableLegacyEnrichment = hasFlag(args, "--enable-legacy-enrichment");
+    const enableRecoverySynthesis = hasFlag(args, "--enable-recovery-synthesis");
+    const collectDiagnostics = Boolean(diagOutPathArg);
+    const emitWikipediaTitleIndexEvidence =
+      hasFlag(args, "--no-emit-wikipedia-title-index-evidence") || hasFlag(args, "--no-emit-wti-evidence") ? false : true;
+    const printOnly = args.includes("--print");
+
+    if (!seedId && !step12In) {
+      console.error(usage());
+      process.exit(2);
+    }
+    if (seedId && step12In) {
+      throw new Error("Provide either --seed-id (runtime mode) or --step12-in (persisted mode), not both.");
+    }
+    if (wikipediaTitleIndexPolicy !== "assertion_then_lexicon_fallback" && wikipediaTitleIndexPolicy !== "assertion_only") {
+      throw new Error(`Invalid --wikipedia-title-index-policy: ${wikipediaTitleIndexPolicy}`);
+    }
+
+    const runOptions = {
+      artifactsRoot,
+      wikipediaTitleIndexEndpoint,
+      timeoutMs,
+      wikipediaTitleIndexTimeoutMs,
+      wikipediaTitleIndexPolicy,
+      step13Mode,
+      mode13bVerbPromotionMinWti,
+      mode13bUnlinkedFiniteVerbPromotionMinWti,
+      mode13bLowWtiUnlinkedMinAvg,
+      mode13bNonnominalShareMin,
+      mode13bNonnominalWeakWtiMax,
+      mode13bMergeHostMinWtiRatio,
+      enableSupplemental,
+      enableAliasSynthesis,
+      enableLegacyEnrichment,
+      enableRecoverySynthesis,
+      collectDiagnostics,
+      emitWikipediaTitleIndexEvidence,
+    };
+
+    const result = step12In ? generateForStep12Path(step12In, runOptions) : await generateForSeed(seedId, runOptions);
+    const { yamlText, seedDir, outputDoc, diagnostics, mode } = result;
+
+    if (printOnly) {
+      process.stdout.write(yamlText);
+      return;
+    }
+
+    const outPath = outPathArg || path.join(seedDir, "seed.concept-candidates.yaml");
+    fs.mkdirSync(path.dirname(outPath), { recursive: true });
+    fs.writeFileSync(outPath, yamlText, "utf8");
+    if (diagOutPathArg) {
+      const diagOutPath = path.resolve(diagOutPathArg);
+      fs.mkdirSync(path.dirname(diagOutPath), { recursive: true });
+      fs.writeFileSync(diagOutPath, JSON.stringify(diagnostics || { source_by_canonical: {} }, null, 2), "utf8");
+    }
+    if (metaOutPathArg) {
+      const meta = {
+        mode,
+        seed_id: outputDoc.seed_id,
+        step13: {
+          wikipedia_title_index_policy: wikipediaTitleIndexPolicy,
+          step13_mode: step13Mode,
+          enable_13b_mode: step13Mode === "13b",
+          mode13b_policy: {
+            verb_promotion_min_wikipedia_count: mode13bVerbPromotionMinWti,
+            unlinked_finite_verb_promotion_min_wikipedia_count: mode13bUnlinkedFiniteVerbPromotionMinWti,
+            low_wikipedia_count_unlinked_min_avg: mode13bLowWtiUnlinkedMinAvg,
+            nonnominal_share_min: mode13bNonnominalShareMin,
+            nonnominal_weak_wikipedia_count_max: mode13bNonnominalWeakWtiMax,
+            merge_host_min_wikipedia_count_ratio: mode13bMergeHostMinWtiRatio,
+          },
+          enable_supplemental: enableSupplemental,
+          enable_alias_synthesis: enableAliasSynthesis,
+          enable_legacy_enrichment: enableLegacyEnrichment,
+          enable_recovery_synthesis: enableLegacyEnrichment && enableRecoverySynthesis,
+          emit_wikipedia_title_index_evidence: emitWikipediaTitleIndexEvidence,
+        },
+        runtime: {
+          wikipedia_title_index_endpoint: step12In ? null : wikipediaTitleIndexEndpoint,
+          timeout_ms: timeoutMs,
+          wikipedia_title_index_timeout_ms: wikipediaTitleIndexTimeoutMs,
+        },
+      };
+      const metaOutPath = path.resolve(metaOutPathArg);
+      fs.mkdirSync(path.dirname(metaOutPath), { recursive: true });
+      fs.writeFileSync(metaOutPath, JSON.stringify(meta, null, 2), "utf8");
+    }
+    process.stdout.write(
+      `Wrote ${outPath} (${outputDoc.concept_candidates.length} candidates, mode=${mode})\n`
+    );
+  } catch (err) {
+    console.error(err && err.message ? err.message : String(err));
+    process.exit(1);
+  }
+}
+
+if (require.main === module) {
+  main();
+}
+
+module.exports = {
+  ROLE_KEYS,
+  TOP_LEVEL_KEYS,
+  CANDIDATE_KEYS,
+  CANDIDATE_KEYS_WITH_WIKIPEDIA_TITLE_INDEX_EVIDENCE,
+  COUNT_KEY_RE,
+  canonicalizeSurface,
+  conceptIdFromCanonical,
+  buildConceptCandidatesFromStep12,
+  validateConceptCandidatesDeterminism,
+  validateSchema,
+  serializeDeterministicYaml,
+  generateForSeed,
+  generateForStep12Path,
+};

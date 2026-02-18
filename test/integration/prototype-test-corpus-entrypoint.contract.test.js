@@ -5,7 +5,7 @@ const Module = require("node:module");
 
 const { extractConcepts } = require("../../src");
 const repoRoot = path.resolve(__dirname, "..", "..");
-const artifactsRoot = path.join(repoRoot, "test", "artifacts");
+const step12Path = path.join(repoRoot, "test", "artifacts", "prime_gen", "result-reference", "seed.elementary-assertions.yaml");
 
 test("product runtime does not load prototype modules", async () => {
   const originalLoad = Module._load;
@@ -19,16 +19,23 @@ test("product runtime does not load prototype modules", async () => {
 
   try {
     const runtimeDoc = await extractConcepts("", {
-      seedId: "prime_gen",
-      artifactsRoot,
+      step12Path,
       mode: "default-extended",
     });
     assert.ok(Array.isArray(runtimeDoc.concepts));
     assert.ok(runtimeDoc.concepts.length > 0);
 
-    const textDoc = await extractConcepts("alpha beta alpha", {});
+    await assert.rejects(
+      () => extractConcepts("alpha beta alpha", {
+        mode: "default-extended",
+        wikipediaTitleIndexEndpoint: "http://127.0.0.1:1",
+        wikipediaTitleIndexTimeoutMs: 50,
+      }),
+      /wikipedia-title-index/i
+    );
+    const textDoc = await extractConcepts("", { step12Path });
     assert.ok(Array.isArray(textDoc.concepts));
-    assert.equal(textDoc.concepts.length, 2);
+    assert.ok(textDoc.concepts.length > 0);
   } finally {
     Module._load = originalLoad;
   }

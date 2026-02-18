@@ -2,7 +2,7 @@ const { execSync } = require("node:child_process");
 
 function main() {
   const status = execSync(
-    "git status --porcelain -- prototype CHANGELOG.md docs/GENERATED_REPORT_ARTIFACTS_POLICY.md",
+    "git status --porcelain -- scripts CHANGELOG.md docs/GENERATED_REPORT_ARTIFACTS_POLICY.md",
     { encoding: "utf8" }
   )
     .trim()
@@ -12,8 +12,8 @@ function main() {
   const reportChanged = status.some((line) => {
     const normalized = line.replace(/\\/g, "/");
     return (
-      normalized.endsWith("prototype/13b-threshold-sweep.report.json") ||
-      normalized.endsWith("prototype/step12-wikipedia-title-index.coverage.report.json")
+      normalized.endsWith("scripts/13b-threshold-sweep.report.json") ||
+      normalized.endsWith("scripts/step12-wikipedia-title-index.coverage.report.json")
     );
   });
 

@@ -26,7 +26,7 @@ function seedDirs() {
 }
 
 for (const seed of seedDirs()) {
-  for (const mode of ["13a", "13b"]) {
+  for (const mode of ["13b"]) {
     test(`sidecars for seed=${seed} mode=${mode} match sidecar schemas`, () => {
       const refDir = path.join(artifactsRoot, seed, "result-reference");
       const metaPath = path.join(refDir, `seed.concept-candidates.${mode}.meta.json`);

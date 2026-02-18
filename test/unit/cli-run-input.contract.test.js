@@ -7,6 +7,7 @@ const { spawnSync } = require("node:child_process");
 
 const repoRoot = path.resolve(__dirname, "..", "..");
 const cliPath = path.join(repoRoot, "bin", "cli.js");
+const step12Path = path.join(repoRoot, "test", "artifacts", "webshop", "result-reference", "seed.elementary-assertions.yaml");
 
 function runCli(args) {
   const result = spawnSync(process.execPath, [cliPath].concat(args), {
@@ -39,23 +40,15 @@ test("CLI rejects removed compatibility validate command", () => {
 });
 
 test("CLI extract supports product mode flag", () => {
-  const result = runCli(["extract", "--text", "alpha beta alpha", "--mode", "generic-baseline"]);
+  const result = runCli(["extract", "--step12-in", step12Path, "--mode", "default-extended"]);
   assert.equal(result.status, 0);
   const parsed = JSON.parse(String(result.stdout || "{}"));
   assert.equal(parsed.schema_version, "1.0.0");
   assert.ok(Array.isArray(parsed.concepts));
 });
 
-test("CLI extract accepts kebab-case product mode flag", () => {
+test("CLI extract rejects removed generic-baseline mode", () => {
   const result = runCli(["extract", "--text", "alpha beta alpha", "--mode", "generic-baseline"]);
-  assert.equal(result.status, 0);
-  const parsed = JSON.parse(String(result.stdout || "{}"));
-  assert.equal(parsed.schema_version, "1.0.0");
-  assert.ok(Array.isArray(parsed.concepts));
-});
-
-test("CLI extract rejects legacy underscore mode alias", () => {
-  const result = runCli(["extract", "--text", "alpha beta alpha", "--mode", "generic_baseline"]);
   assert.equal(result.status, 1);
   assert.match(String(result.stderr || ""), /Invalid mode/i);
 });
@@ -73,7 +66,7 @@ test("CLI extract hard-fails with unreachable wikipedia-title-index endpoint in 
     "50",
   ]);
   assert.equal(result.status, 1);
-  assert.match(String(result.stderr || ""), /wikipedia-title-index query failed/i);
+  assert.match(String(result.stderr || ""), /wikipedia-title-index/i);
 });
 
 test("CLI extract rejects invalid wikipedia-title-index timeout flag", () => {
@@ -91,7 +84,7 @@ test("CLI extract rejects invalid wikipedia-title-index timeout flag", () => {
 test("CLI validate-concepts validates extracted output", () => {
   const tmpDir = fs.mkdtempSync(path.join(os.tmpdir(), "nodejs-template-cli-"));
   const outputPath = path.join(tmpDir, "concepts.json");
-  const extract = runCli(["extract", "--text", "alpha beta alpha", "--mode", "generic-baseline", "--out", outputPath]);
+  const extract = runCli(["extract", "--step12-in", step12Path, "--mode", "default-extended", "--out", outputPath]);
   assert.equal(extract.status, 0);
 
   const validate = runCli(["validate-concepts", "--in", outputPath]);

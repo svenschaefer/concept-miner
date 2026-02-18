@@ -12,18 +12,10 @@ npx concept-miner extract --text "alpha beta alpha" --mode default-extended --ou
 npx concept-miner validate-concepts --in output.json
 ```
 
-## Optional PowerShell Wrappers
+## Runtime Boundary
 
-Optional helper wrappers are provided for prototype-oriented execution flows. They are wrappers around repository-local Node entrypoints and are not required for product API/CLI usage.
-
-- `prototype/run-seed-concept-candidates.ps1`
-  - generates concept-candidates artifacts for one or all seeds
-- `prototype/check-concept-candidates.ps1`
-  - executes concept-candidates schema/determinism checks
-
-Core product usage remains:
-- library API via `src/index.js`
-- CLI via `bin/cli.js`
+- Product runtime is self-contained under `src/`, `bin/`, `schema/`, and `scripts/`.
+- `prototype/` is reference-only and not part of runtime execution paths.
 
 ## REST Runtime Notes
 
@@ -35,8 +27,7 @@ Core product usage remains:
   - unknown route: `404`
   - unexpected internal extractor failure: `500`
 - Default-extended enrichment behavior:
-  - if wikipedia-title-index is reachable, enrichment may be added under
-    `concepts[*].properties.wikipedia_title_index`
+  - extraction uses Step12 + Step13 pipeline behavior and may include deterministic enrichment fields where contract-defined
   - if unavailable/timeout, extraction fails (no silent enrichment fallback).
 
 ## Quality Gates

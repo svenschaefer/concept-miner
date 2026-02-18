@@ -28,38 +28,29 @@ function stageSeedArtifacts(seedId) {
   return tmpRoot;
 }
 
-test("independent benchmark executes in generic baseline mode (13a)", () => {
-  const artifactsRoot = stageSeedArtifacts("prime_gen");
+test("independent benchmark executes in default extended mode (13b)", (t) => {
+  const artifactsRoot = path.join(repoRoot, "test", "artifacts");
   const result = runNode([
-    "prototype/concept-candidates.independent-benchmark.js",
+    "scripts/check-quality-gate-13b.js",
+    "--benchmark",
+    path.join(repoRoot, "test", "benchmark", "independent.expected-concept-candidates.yaml"),
     "--artifacts-root",
     artifactsRoot,
-    "--step13-mode",
-    "13a",
     "--seed-id",
     "prime_gen",
+    "--wikipedia-title-index-endpoint",
+    "http://127.0.0.1:32123",
+    "--wikipedia-title-index-timeout-ms",
+    "1500",
   ]);
 
+  if (result.status !== 0 && /wikipedia-title-index health check failed/i.test(String(result.stderr || ""))) {
+    t.skip("wikipedia-title-index service unavailable for runtime gate test");
+    return;
+  }
   assert.equal(result.status, 0, String(result.stderr || result.stdout || ""));
   assert.match(String(result.stdout || ""), /seed=prime_gen/);
-  assert.match(String(result.stdout || ""), /mode=13a/);
-});
-
-test("independent benchmark executes in default extended mode (13b)", () => {
-  const artifactsRoot = stageSeedArtifacts("prime_gen");
-  const result = runNode([
-    "prototype/concept-candidates.independent-benchmark.js",
-    "--artifacts-root",
-    artifactsRoot,
-    "--step13-mode",
-    "13b",
-    "--seed-id",
-    "prime_gen",
-  ]);
-
-  assert.equal(result.status, 0, String(result.stderr || result.stdout || ""));
-  assert.match(String(result.stdout || ""), /seed=prime_gen/);
-  assert.match(String(result.stdout || ""), /mode=13b/);
+  assert.match(String(result.stdout || ""), /mode=13b|overall_score=/);
 });
 
 test("threshold sweep generates structured report", () => {
@@ -67,7 +58,7 @@ test("threshold sweep generates structured report", () => {
   const tmpDir = fs.mkdtempSync(path.join(os.tmpdir(), "concept-miner-sweep-"));
   const reportPath = path.join(tmpDir, "13b-threshold-sweep.report.json");
   const result = runNode([
-    "prototype/concept-candidates.13b-threshold-sweep.js",
+    "scripts/concept-candidates.13b-threshold-sweep.js",
     "--artifacts-root",
     artifactsRoot,
     "--seed-id",
@@ -91,7 +82,7 @@ test("wikipedia-title-index coverage generates structured report", () => {
   const tmpDir = fs.mkdtempSync(path.join(os.tmpdir(), "concept-miner-coverage-"));
   const reportPath = path.join(tmpDir, "step12-wikipedia-title-index.coverage.report.json");
   const result = runNode([
-    "prototype/step12-wikipedia-title-index-coverage.js",
+    "scripts/step12-wikipedia-title-index-coverage.js",
     "--artifacts-root",
     artifactsRoot,
     "--out",

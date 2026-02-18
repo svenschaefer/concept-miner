@@ -34,10 +34,9 @@ test("package scripts include lint and ci gate wiring", () => {
 
 test("package scripts expose product-facing mode names for benchmark tooling", () => {
   const pkg = JSON.parse(fs.readFileSync(packageJsonPath, "utf8"));
-  assert.equal(typeof pkg.scripts["eval:concept-candidates:independent:generic-baseline"], "string");
   assert.equal(typeof pkg.scripts["eval:concept-candidates:independent:default-extended"], "string");
-  assert.equal(typeof pkg.scripts["eval:concept-candidates:default-extended:threshold-sweep"], "string");
-  assert.equal(typeof pkg.scripts["report:wikipedia-title-index:coverage"], "string");
+  assert.equal(typeof pkg.scripts["eval:concept-candidates:13b:sweep"], "string");
+  assert.equal(typeof pkg.scripts["report:step12:wikipedia-title-index-coverage"], "string");
 });
 
 test("exported schema JSON is non-empty and parseable", () => {

@@ -4,6 +4,25 @@ Goal: productize the current concept-miner prototype (`prototype/`) into a templ
 
 Status date: 2026-02-18
 
+## Immediate Execution Cycles (v1.0.5+)
+
+- [x] `v1.0.5` remove generic-baseline/13a from product stream:
+- mode handling accepts only `default-extended`
+- remove 13a product scripts/tests/docs references
+- remove runtime expectations for 13a artifacts
+- [x] `v1.0.6` restore prototype-equivalent default-extended runtime extraction:
+- product text extraction must execute Step12 (`elementary-assertions`) + product-owned Step13 candidate construction
+- remove token-regex fallback extraction path from default runtime behavior
+- [x] `v1.0.7` make quality gate extraction-runtime-based (not frozen-artifact replay):
+- evaluate benchmark from `seed.txt` runtime generation in product code
+- require `overall_score=100.0` in default-extended mode
+- [ ] `v1.0.8` productize relevant prototype tests into product-owned tests (in progress):
+- port core invariants/determinism/schema/benchmark checks required for Step13 behavior
+- remove product test/runtime dependence on `prototype/*` modules/scripts
+- [ ] `v1.0.9` doc and release sync (in progress):
+- update README/docs/STATUSQUO/TODO/ROADMAP and release notes to strict 13b-only product behavior
+- run full gate, then commit and push stable phase
+
 ## Progress Snapshot
 
 - [x] `v0.001` scaffold baseline integrated and green gates (`28c7c0a`).

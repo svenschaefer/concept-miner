@@ -74,36 +74,14 @@ function requestRaw(port, method, path, payloadText = "") {
   });
 }
 
-function createMockWikipediaTitleIndexServer() {
-  const calls = [];
-  const server = http.createServer(async (req, res) => {
-    if (req.method !== "POST" || req.url !== "/v1/titles/query") {
-      res.statusCode = 404;
-      res.end("not found");
-      return;
-    }
-    let raw = "";
-    req.setEncoding("utf8");
-    for await (const chunk of req) raw += chunk;
-    const body = JSON.parse(raw || "{}");
-    calls.push(body);
-    const payload = {
-      columns: ["prefix_count", "exact_count"],
-      rows: [[9, 1]],
-      row_count: 1,
-      truncated: false,
-    };
-    const out = `${JSON.stringify(payload)}\n`;
-    res.statusCode = 200;
-    res.setHeader("content-type", "application/json; charset=utf-8");
-    res.setHeader("content-length", Buffer.byteLength(out, "utf8"));
-    res.end(out);
-  });
-  return { server, calls };
-}
-
 test("REST extract endpoint returns concepts document", async (t) => {
-  const server = createApiServer();
+  const server = createApiServer({
+    extractConcepts: async (text) => ({
+      schema_version: "1.0.0",
+      concepts: [{ id: "c_1", name: text.toLowerCase(), surface_forms: [text] }],
+      meta: { concept_count: 1, service: { name: "concept-miner", version: "test", deterministic: true } },
+    }),
+  });
   t.after(() => server.close());
   const port = await listen(server);
 
@@ -120,11 +98,21 @@ test("REST extract endpoint returns concepts document", async (t) => {
 });
 
 test("REST extract endpoint is deterministic for identical payloads", async (t) => {
-  const server = createApiServer();
+  const server = createApiServer({
+    extractConcepts: async (text, options) => ({
+      schema_version: "1.0.0",
+      concepts: [{ id: "c_1", name: text.toLowerCase(), surface_forms: [text] }],
+      input_id: options.inputId,
+      meta: { concept_count: 1, service: { name: "concept-miner", version: "test", deterministic: true } },
+    }),
+  });
   t.after(() => server.close());
   const port = await listen(server);
 
-  const payload = JSON.stringify({ text: "alpha beta alpha", input_id: "demo-1" });
+  const payload = JSON.stringify({
+    text: "alpha beta alpha",
+    input_id: "demo-1",
+  });
   const first = await requestJson(port, "/v1/concepts/extract?view=evidence", payload);
   const second = await requestJson(port, "/v1/concepts/extract?view=evidence", payload);
 
@@ -178,11 +166,18 @@ test("REST extract endpoint rejects too-large request payload with 400", async (
 });
 
 test("REST extract default-extended mode forwards wikipedia-title-index endpoint options", async (t) => {
-  const mock = createMockWikipediaTitleIndexServer();
-  t.after(() => mock.server.close());
-  const wtiPort = await listen(mock.server);
-
-  const api = createApiServer();
+  const endpoint = "http://127.0.0.1:32123";
+  let seenOptions = null;
+  const api = createApiServer({
+    extractConcepts: async (_text, options) => {
+      seenOptions = options;
+      return {
+        schema_version: "1.0.0",
+        concepts: [{ id: "c_1", name: "alpha" }],
+        meta: { concept_count: 1, service: { name: "concept-miner", version: "test", deterministic: true } },
+      };
+    },
+  });
   t.after(() => api.close());
   const apiPort = await listen(api);
 
@@ -193,20 +188,17 @@ test("REST extract default-extended mode forwards wikipedia-title-index endpoint
       text: "alpha beta alpha",
       options: {
         mode: "default-extended",
-        wikipedia_title_index_endpoint: `http://127.0.0.1:${wtiPort}`,
+        wikipedia_title_index_endpoint: endpoint,
         wikipedia_title_index_timeout_ms: 1000,
       },
     })
   );
 
   assert.equal(response.statusCode, 200);
-  assert.ok(mock.calls.length > 0);
-  const alpha = response.body.concepts.find((c) => c.name === "alpha");
-  assert.ok(alpha);
-  assert.deepEqual(alpha.properties.wikipedia_title_index, {
-    exact_match: true,
-    prefix_count: 9,
-  });
+  assert.ok(seenOptions);
+  assert.equal(seenOptions.mode, "default-extended");
+  assert.equal(seenOptions.wikipediaTitleIndexEndpoint, endpoint);
+  assert.equal(seenOptions.wikipediaTitleIndexTimeoutMs, 1000);
 });
 
 test("REST extract returns 422 when wikipedia-title-index is unavailable in default-extended mode", async (t) => {
@@ -229,7 +221,7 @@ test("REST extract returns 422 when wikipedia-title-index is unavailable in defa
 
   assert.equal(response.statusCode, 422);
   assert.equal(response.body.error, "unprocessable_input");
-  assert.match(String(response.body.message || ""), /wikipedia-title-index query failed/i);
+  assert.match(String(response.body.message || ""), /wikipedia-title-index/i);
 });
 
 test("REST extract endpoint maps unexpected extractor failures to 500", async (t) => {

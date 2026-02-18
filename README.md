@@ -24,8 +24,7 @@ Runtime boundary:
 
 ## Target Mode Model
 
-- `generic baseline mode` (optional): extraction without wikipedia/wikipedia-title-index information.
-- `default extended mode` (default): extraction with wikipedia/wikipedia-title-index information.
+- `default extended mode` (default and only product mode): extraction with wikipedia/wikipedia-title-index information.
 
 ## Development
 
@@ -46,7 +45,7 @@ npm run release:check
 const { extractConcepts, validateConcepts } = require("concept-miner");
 
 const doc = await extractConcepts("alpha beta alpha", {
-  mode: "default-extended", // or "generic-baseline"
+  mode: "default-extended",
 });
 
 const validation = validateConcepts(doc);

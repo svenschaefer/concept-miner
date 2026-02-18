@@ -80,7 +80,7 @@ test("guarantees doc states enrichment typing and strict mode policy", () => {
   assert.match(guarantees, /exact_match/);
   assert.match(guarantees, /prefix_count/);
   assert.match(guarantees, /default-extended/i);
-  assert.match(guarantees, /generic-baseline/i);
+  assert.doesNotMatch(guarantees, /generic-baseline/i);
 });
 
 test("guarantees doc defines 1.x stability policy with breaking/non-breaking examples", () => {
@@ -103,10 +103,10 @@ test("npm release guide documents npm publish prerequisites", () => {
   assert.match(releaseGuide, /NPM_TOKEN/);
 });
 
-test("operational guide documents optional PowerShell wrappers", () => {
+test("operational guide documents runtime boundary", () => {
   const operational = read("docs/OPERATIONAL.md");
-  assert.match(operational, /run-seed-concept-candidates\.ps1/);
-  assert.match(operational, /check-concept-candidates\.ps1/);
+  assert.match(operational, /Runtime Boundary/);
+  assert.match(operational, /prototype\/.*reference-only/i);
 });
 
 test("operational guide documents REST runtime hardening notes", () => {

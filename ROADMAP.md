@@ -48,6 +48,89 @@ Exit criteria:
 Status:
 - Completed on `main`.
 
+## v1.0.5 - Remove 13a From Product Stream
+
+Goals:
+- make product runtime strictly `default-extended` only
+- remove `generic-baseline` handling and 13a-oriented product contracts
+
+Deliverables:
+- mode normalization accepts only `default-extended`
+- CLI/API docs and tests updated to 13b-only product contract
+- remove 13a-focused product scripts and assertions
+
+Exit criteria:
+- no product runtime path depends on 13a
+- tests/docs/package scripts no longer require generic-baseline behavior
+
+Status:
+- Completed on `main`.
+
+## v1.0.6 - Prototype-Equivalent Runtime Extraction
+
+Goals:
+- make product text extraction behavior match prototype Step13 default mode behavior
+
+Deliverables:
+- product-owned Step13 extraction module derived from prototype logic
+- text path executes `elementary-assertions` then candidate construction
+- response mapping remains product `concepts[]` contract
+
+Exit criteria:
+- known regression sentence(s) no longer produce token-fallback output
+- runtime extraction parity behavior validated against benchmark expectations
+
+Status:
+- Completed on `main`.
+
+## v1.0.7 - Runtime Quality Gate (No Frozen Replay)
+
+Goals:
+- ensure quality gate measures live runtime extraction from `seed.txt`
+
+Deliverables:
+- quality gate script runs product extraction runtime for each seed
+- score computed against product benchmark file
+- hard fail unless overall score is `100.0`
+
+Exit criteria:
+- gate cannot pass by replaying precomputed concept-candidates artifacts
+
+Status:
+- Completed on `main`.
+
+## v1.0.8 - Product-Owned Test Migration
+
+Goals:
+- carry relevant prototype safety checks into product test suite
+
+Deliverables:
+- determinism, schema, and extraction-invariants tests on product modules
+- integration checks for benchmark gate and runtime behavior
+- remove product test imports/execution from `prototype/*`
+
+Exit criteria:
+- product tests cover relevant Step13 behavior without prototype runtime dependency
+
+Status:
+- In progress.
+
+## v1.0.9 - Docs/Release Sync
+
+Goals:
+- align all release-relevant docs to strict 13b-only product behavior
+
+Deliverables:
+- update README/docs/STATUSQUO/TODO/ROADMAP/changelog
+- verify release and CI scripts reflect new runtime and gate model
+
+Exit criteria:
+- docs and scripts are consistent with implemented behavior
+- stable commit pushed
+
+Status:
+- In progress.
+
 ## v0.001 - Foundation And Scope Lock
 
 Goals:
