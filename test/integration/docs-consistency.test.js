@@ -101,6 +101,9 @@ test("npm release guide documents npm publish prerequisites", () => {
   const releaseGuide = read("docs/NPM_RELEASE.md");
   assert.match(releaseGuide, /npm whoami/);
   assert.match(releaseGuide, /NPM_TOKEN/);
+  assert.match(releaseGuide, /pack:check/);
+  assert.match(releaseGuide, /does not create/i);
+  assert.match(releaseGuide, /pack:artifact/);
 });
 
 test("operational guide documents runtime boundary", () => {

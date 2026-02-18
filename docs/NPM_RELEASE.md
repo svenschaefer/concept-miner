@@ -44,8 +44,12 @@ npm run ci:check
 
 ## 3) Pre-Publish Local Tarball Smoke
 
+Important:
+- `npm run pack:check` is validation only (`npm pack --dry-run`) and does not create `*.tgz`.
+- Use `npm run pack:artifact` (or `npm pack`) when a real tarball file is required.
+
 ```powershell
-npm pack
+npm run pack:artifact
 ```
 
 Create a clean smoke workspace and install the tarball:
