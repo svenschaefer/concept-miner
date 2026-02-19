@@ -98,8 +98,5 @@ Recently updated:
 - `CHANGELOG.md`
 - `docs/FROZEN_REFERENCES_POLICY.md`
 - `docs/STATUSQUO.md`
-- `docs/releases/v0.10.0.md`
-- `docs/releases/v1.0.0.md`
-- `docs/releases/v1.0.5.md`
-- `docs/releases/v1.1.0.md`
+- `docs/releases/README.md`
 - `docs/STEP12_UPSTREAM_BACKLOG.md`
