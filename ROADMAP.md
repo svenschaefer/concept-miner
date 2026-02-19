@@ -140,7 +140,7 @@ Execution cycles:
 - `v1.0.9-a` completed: markdown/doc sync for strict default-extended contract and product-owned tooling paths.
 - `v1.0.9-b` completed: closed checklist/status lines in `TODO.md` and `ROADMAP.md`.
 
-## v1.1.0 - Next Planned Release
+## v1.1.0 - Completed Release
 
 Goals:
 - define first post-`1.0.x` feature release scope

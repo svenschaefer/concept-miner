@@ -1,8 +1,8 @@
 # concept-miner Productization TODO
 
-Goal: productize the current concept-miner prototype (`prototype/`) into a template-aligned Node.js package in this repository, based on `C:\code\.nodejs-project-template`.
+Goal: maintain and evolve the productized `concept-miner` package as a template-aligned, deterministic Node.js product.
 
-Status date: 2026-02-18
+Status date: 2026-02-19
 
 ## Immediate Execution Cycles (completed through v1.0.9)
 
@@ -26,7 +26,7 @@ Status date: 2026-02-18
 ## Next Release Line: v1.2.0
 
 - [ ] Define and approve `v1.2.0` scope (feature set and non-goals).
-- [ ] Add concrete `v1.2.0` execution cycles to `ROADMAP.md`.
+- [x] Add concrete `v1.2.0` execution cycles to `ROADMAP.md`.
 - [ ] Execute `v1.2.0` cycles with full gate validation and release notes.
 - [ ] Tag and publish `concept-miner@1.2.0` after green pre/post-publish smoke checks.
 
