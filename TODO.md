@@ -25,6 +25,11 @@ Status date: 2026-02-18
 
 ## Next Release Line: v1.2.0
 
+- [ ] Define and approve `v1.2.0` scope (feature set and non-goals).
+- [ ] Add concrete `v1.2.0` execution cycles to `ROADMAP.md`.
+- [ ] Execute `v1.2.0` cycles with full gate validation and release notes.
+- [ ] Tag and publish `concept-miner@1.2.0` after green pre/post-publish smoke checks.
+
 - [x] Define and approve `v1.1.0` scope (feature set and non-goals).
 - [x] Add concrete `v1.1.0` execution cycles to `ROADMAP.md`.
 - [x] Execute `v1.1.0` cycles with full gate validation and release notes.

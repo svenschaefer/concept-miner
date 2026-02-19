@@ -167,6 +167,22 @@ Planned cycles:
 Status:
 - Completed.
 
+## v1.2.0 - Planned Release Line
+
+Goals:
+- define first post-`1.1.0` feature scope with explicit acceptance criteria
+- keep deterministic extraction behavior and quality gates fully green
+- ship a fully documented and reproducible `1.2.0` release cut
+
+Planned cycles:
+- `v1.2.0-a`: scope lock and acceptance criteria definition.
+- `v1.2.0-b`: execution cycle implementation and test coverage updates.
+- `v1.2.0-c`: full gate run (`ci:check`, `release:check`) and docs/release-notes sync.
+- `v1.2.0-d`: tag/publish execution and post-publish smoke verification.
+
+Status:
+- Planned.
+
 ## v0.001 - Foundation And Scope Lock
 
 Goals:
