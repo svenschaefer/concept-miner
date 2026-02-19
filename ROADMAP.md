@@ -179,6 +179,13 @@ Planned cycles:
 - `v1.2.0-b`: execution cycle implementation and test coverage updates.
 - `v1.2.0-c`: full gate run (`ci:check`, `release:check`) and docs/release-notes sync.
 - `v1.2.0-d`: tag/publish execution and post-publish smoke verification.
+- `v1.2.0-e`: enterprise hardening closure from `TODO.md` Section 14:
+  - service metadata version alignment to package release version
+  - validator/performance hardening for repeated runtime calls
+  - release traceability closure for published versions
+  - dependency/security automation baseline (`dependabot`, audit policy)
+  - GitHub-native security scanning (CodeQL and scanning guidance)
+  - REST operations hardening (`/healthz`, `/readyz`, graceful shutdown)
 
 Status:
 - Planned.

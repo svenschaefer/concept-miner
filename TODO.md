@@ -450,3 +450,25 @@ Status date: 2026-02-19
 - [x] Publish 1.x stability policy:
 - document what constitutes breaking vs non-breaking change for API/schema/CLI
 - ensure roadmap/todo/status docs reflect stable-release state at cut time
+
+## 14. Enterprise Hardening Backlog
+
+- [ ] Align service metadata versioning to released package versions:
+- remove hard-coded fallback service version strings in runtime output
+- source runtime `meta.service.version` deterministically from `package.json` at build/release time
+- add regression tests that fail when response metadata version drifts from package version
+- [ ] Improve validation/runtime performance contracts:
+- cache compiled AJV validators instead of recompiling schema on every `validateConcepts(...)` call
+- add focused performance regression tests for repeated validation and extraction hot paths
+- [ ] Add release traceability closure for published versions:
+- ensure annotated git tags exist for all published npm versions (including `v1.1.0`)
+- add CI/docs check that publishable releases require matching tag + changelog + package version
+- [ ] Add repository security governance baseline:
+- add `.github/dependabot.yml` for npm and GitHub Actions dependency updates
+- add automated `npm audit` gate policy (with documented severity thresholds and exception workflow)
+- [ ] Add GitHub-native security scanning:
+- add CodeQL workflow for JavaScript/Node.js
+- add secret scanning / push-protection guidance to repository docs
+- [ ] Harden REST operational posture for enterprise deployment:
+- add `/healthz` and `/readyz` endpoints with deterministic contract tests
+- add graceful shutdown handling (`SIGINT`/`SIGTERM`) in `bin/api-server.js` for clean stop semantics

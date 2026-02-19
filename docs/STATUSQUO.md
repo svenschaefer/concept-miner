@@ -43,7 +43,7 @@ Implemented and stable:
 
 Remaining open implementation items:
 
-- Define and execute next post-`1.1.0` release-line backlog.
+- Define and execute next post-`1.1.0` release-line backlog (`v1.2.0`), including enterprise hardening items listed in `TODO.md` Section 14.
 
 Release/publish posture:
 
