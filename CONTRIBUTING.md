@@ -22,5 +22,6 @@ npm run ci:check
 - Keep changes scoped and reviewable.
 - Add or update tests for behavior changes.
 - Update docs when contracts or usage change.
+- Keep `CODEX_CONTEXT.md` aligned when runtime policy, quality gates, or release discipline changes.
 - Preserve backward compatibility for public API/CLI unless coordinated for a major release.
 - Avoid scope creep: large framework expansions should be discussed before implementation.

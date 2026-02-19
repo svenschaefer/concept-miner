@@ -138,6 +138,7 @@ Relevant documentation:
 - `docs/GUARANTEES.md`
 - `docs/STATUSQUO.md`
 - `docs/TEMPLATE_SETUP.md`
+- `CODEX_CONTEXT.md`
 - `CONTRIBUTING.md`
 - `SECURITY.md`
 - `CHANGELOG.md`
